@@ -20,8 +20,8 @@ public class SkisFragment extends ListFragment {
     private SkisShop skisShop = new SkisShop();
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         List<HashMap<String, String>> listBikeShop = new ArrayList<>();
 
         for (int i = 0; i < skisShop.getListShops().size(); i++) {
@@ -38,6 +38,6 @@ public class SkisFragment extends ListFragment {
         SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), listBikeShop, R.layout.list_for_snowboard, from, to);
         setListAdapter(adapter);
 
-        return super.onCreateView(inflater, container, savedInstanceState);
+        view.setBackgroundResource(R.drawable.background_skis);
     }
 }

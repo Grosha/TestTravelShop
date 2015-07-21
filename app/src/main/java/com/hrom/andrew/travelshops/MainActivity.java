@@ -1,5 +1,7 @@
 package com.hrom.andrew.travelshops;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -7,11 +9,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.hrom.andrew.travelshops.Fragments.BikeFragment;
 import com.hrom.andrew.travelshops.Fragments.MountainFragment;
 import com.hrom.andrew.travelshops.Fragments.SkisFragment;
 import com.hrom.andrew.travelshops.Fragments.SnowboardFragment;
+import com.hrom.andrew.travelshops.ShopDatas.SportShop;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.accountswitcher.AccountHeader;
@@ -20,6 +24,8 @@ import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
+        setContentView(R.layout.main_layout);
 
         manager = getSupportFragmentManager();
 
@@ -88,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
                         switch (i) {
                             case 0:
                                 Log.d(NAMEFRAGMENT, "0");
-                                drawer.closeDrawer();
                                 break;
                             case 2:
                                 Log.d(NAMEFRAGMENT, "нажав на гори");
@@ -101,32 +106,26 @@ public class MainActivity extends AppCompatActivity {
                                 Log.d(NAMEFRAGMENT, "нажав на лижі");
                                 if (manager.findFragmentByTag(SkisFragment.TAG) == null) {
                                     Log.d(NAMEFRAGMENT, "прийшов фрагмент " + SkisFragment.TAG);
-                                    transaction.add(R.id.container, skisFragment, SkisFragment.TAG);
-                                }
-                                if (manager.findFragmentByTag(SkisFragment.TAG) != null) {
-                                    Log.d(NAMEFRAGMENT, "прийшов фрагмент1 " + SkisFragment.TAG);
-                                    transaction.add(R.id.container, skisFragment, SkisFragment.TAG);
+                                    transaction.replace(R.id.container, skisFragment, SkisFragment.TAG);
                                 }
                                 break;
                             case 4:
                                 Log.d(NAMEFRAGMENT, "нажав на борд");
                                 if (manager.findFragmentByTag(SnowboardFragment.TAG) == null) {
                                     Log.d(NAMEFRAGMENT, "прийшов фрагмент " + SnowboardFragment.TAG);
-                                    transaction.add(R.id.container, snowboardFragment, SnowboardFragment.TAG);
+                                    transaction.replace(R.id.container, snowboardFragment, SnowboardFragment.TAG);
                                 }
                                 break;
                             case 5:
                                 Log.d(NAMEFRAGMENT, "нажав на байк");
                                 if (manager.findFragmentByTag(BikeFragment.TAG) == null) {
                                     Log.d(NAMEFRAGMENT, "прийшов фрагмент " + BikeFragment.TAG);
-                                    transaction.add(R.id.container, skisFragment, BikeFragment.TAG);
+                                    transaction.replace(R.id.container, bikeFragment, BikeFragment.TAG);
                                 }
                                 break;
                         }
-                        Log.d(NAMEFRAGMENT, "finish 1");
                         transaction.commit();
-                        Log.d(NAMEFRAGMENT, "finish 2");
-
+                        drawer.closeDrawer();
                         return true;
                     }
                 })

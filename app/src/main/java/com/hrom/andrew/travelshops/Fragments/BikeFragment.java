@@ -1,10 +1,15 @@
 package com.hrom.andrew.travelshops.Fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.support.v7.internal.widget.AdapterViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.hrom.andrew.travelshops.R;
@@ -19,8 +24,8 @@ public class BikeFragment extends ListFragment {
     private BikeShop bikeShop = new BikeShop();
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         List<HashMap<String, String>> listBikeShop = new ArrayList<>();
 
         for (int i = 0; i < bikeShop.getListShops().size(); i++) {
@@ -36,7 +41,15 @@ public class BikeFragment extends ListFragment {
 
         SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), listBikeShop, R.layout.list_single, from, to);
         setListAdapter(adapter);
+        view.setBackgroundResource(R.drawable.background_bike_2);
 
-        return super.onCreateView(inflater, container, savedInstanceState);
+        ListView listView = (ListView) getActivity().findViewById(R.id.travelList);
+        listView.setOnItemClickListener(new ListView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(bikeShop.getLinkShop(position)));
+                startActivity(intent);
+            }
+        });
     }
 }

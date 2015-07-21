@@ -19,7 +19,8 @@ public class MountainFragment extends ListFragment {
     private MountainShop mountainShop = new MountainShop();
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         List<HashMap<String, String>> listMountainShop = new ArrayList<>();
 
         for (int i = 0; i < mountainShop.getListShops().size(); i++) {
@@ -36,6 +37,6 @@ public class MountainFragment extends ListFragment {
         SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), listMountainShop, R.layout.list_single, from, to);
         setListAdapter(adapter);
 
-        return super.onCreateView(inflater, container, savedInstanceState);
+        view.setBackgroundResource(R.drawable.background_mountain);
     }
 }
