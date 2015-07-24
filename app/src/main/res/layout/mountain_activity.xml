@@ -4,9 +4,9 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_mountain">
 
-    <include
+    <!--<include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
+        layout="@layout/toolbar" />-->
 
     <ListView
         android:id="@+id/travelList"
