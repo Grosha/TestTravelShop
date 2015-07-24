@@ -96,28 +96,24 @@ public class MainActivity extends AppCompatActivity {
                                 Log.d(NAMEFRAGMENT, "0");
                                 break;
                             case 2:
-                                Log.d(NAMEFRAGMENT, "нажав на гори");
                                 if (manager.findFragmentByTag(MountainFragment.TAG) == null) {
                                     Log.d(NAMEFRAGMENT, "прийшов фрагмент " + MountainFragment.TAG);
                                     transaction.add(R.id.container, mountainFragment, MountainFragment.TAG);
                                 }
                                 break;
                             case 3:
-                                Log.d(NAMEFRAGMENT, "нажав на лижі");
                                 if (manager.findFragmentByTag(SkisFragment.TAG) == null) {
                                     Log.d(NAMEFRAGMENT, "прийшов фрагмент " + SkisFragment.TAG);
                                     transaction.replace(R.id.container, skisFragment, SkisFragment.TAG);
                                 }
                                 break;
                             case 4:
-                                Log.d(NAMEFRAGMENT, "нажав на борд");
                                 if (manager.findFragmentByTag(SnowboardFragment.TAG) == null) {
                                     Log.d(NAMEFRAGMENT, "прийшов фрагмент " + SnowboardFragment.TAG);
                                     transaction.replace(R.id.container, snowboardFragment, SnowboardFragment.TAG);
                                 }
                                 break;
                             case 5:
-                                Log.d(NAMEFRAGMENT, "нажав на байк");
                                 if (manager.findFragmentByTag(BikeFragment.TAG) == null) {
                                     Log.d(NAMEFRAGMENT, "прийшов фрагмент " + BikeFragment.TAG);
                                     transaction.replace(R.id.container, bikeFragment, BikeFragment.TAG);

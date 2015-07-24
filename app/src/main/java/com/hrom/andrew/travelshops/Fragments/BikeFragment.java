@@ -42,14 +42,12 @@ public class BikeFragment extends ListFragment {
         SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), listBikeShop, R.layout.list_single, from, to);
         setListAdapter(adapter);
         view.setBackgroundResource(R.drawable.background_bike_2);
+    }
 
-        ListView listView = (ListView) getActivity().findViewById(R.id.travelList);
-        listView.setOnItemClickListener(new ListView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(bikeShop.getLinkShop(position)));
-                startActivity(intent);
-            }
-        });
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(bikeShop.getLinkShop(position)));
+        startActivity(intent);
     }
 }
