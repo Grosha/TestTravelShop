@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TravelShops</string>
     <string name="title_activity_travel">TravelShops</string>
+    <string name="API_KEY">AIzaSyCO7xM6RwZOaR9-Fiyo_2Uqy5UtNSPEr7Q</string>
 </resources>
