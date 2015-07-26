@@ -1,13 +1,14 @@
 package com.hrom.andrew.travelshops;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.hrom.andrew.travelshops.Fragments.BikeFragment;
+import com.hrom.andrew.travelshops.Fragments.MapsFragment;
 import com.hrom.andrew.travelshops.Fragments.MountainFragment;
 import com.hrom.andrew.travelshops.Fragments.SkisFragment;
 import com.hrom.andrew.travelshops.Fragments.SnowboardFragment;
@@ -72,7 +73,9 @@ public class MainActivity extends AppCompatActivity {
                                 .withIcon(R.drawable.snowboarder_18),
                         new SecondaryDrawerItem()
                                 .withName("BikePage")
-                                .withIcon(R.drawable.bicycle_icon_18)
+                                .withIcon(R.drawable.bicycle_icon_18),
+                        new SecondaryDrawerItem()
+                                .withName("Maps")
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
 
@@ -82,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
                         switch (i) {
                             case 0:
-                                Log.d(NAMEFRAGMENT, "0");
+                                /*Log.d(NAMEFRAGMENT, "0");*/
                                 break;
                             case 2:
                                 transaction.replace(R.id.container, new MountainFragment());
@@ -95,6 +98,9 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case 5:
                                 transaction.replace(R.id.container, new BikeFragment());
+                                break;
+                            case 6:
+                                transaction.replace(R.id.container, new MapsFragment());
                                 break;
                         }
                         transaction.commit();
