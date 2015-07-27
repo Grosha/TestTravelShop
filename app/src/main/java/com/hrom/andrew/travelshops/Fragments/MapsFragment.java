@@ -20,10 +20,10 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.layout_maps,container,false);
+        return inflater.inflate(R.layout.layout_maps, container, false);
 
-        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        /*MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);*/
     }
 
     @Override
@@ -37,6 +37,5 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 .title("Sydney")
                 .snippet("The most populous city in Australia.")
                 .position(sydney));
-    }
     }
 }
