@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.hrom.andrew.travelshops.Fragments.BikeFragment;
+import com.hrom.andrew.travelshops.Fragments.Map;
 import com.hrom.andrew.travelshops.Fragments.MapsFragment;
 import com.hrom.andrew.travelshops.Fragments.MountainFragment;
 import com.hrom.andrew.travelshops.Fragments.SkisFragment;
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                                 .withIcon(R.drawable.bicycle_icon_18),
                         new SecondaryDrawerItem()
                                 .withName("Maps")
+                                .withIcon(R.drawable.ic_room_black_18dp)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
 
@@ -86,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
                         switch (i) {
                             case 0:
                                 /*Log.d(NAMEFRAGMENT, "0");*/
+                                Intent intent = new Intent(getApplicationContext(),Map.class);
+                                startActivity(intent);
                                 break;
                             case 2:
                                 transaction.replace(R.id.container, new MountainFragment());
