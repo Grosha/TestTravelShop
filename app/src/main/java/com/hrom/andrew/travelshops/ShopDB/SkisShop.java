@@ -22,13 +22,13 @@ public class SkisShop extends SportShop{
         siteShops.add("Sport Stylus");
         siteShops.add("Shlem");
         siteShops.add("A-Sport");
-        siteShops.add("Profi Rider");
+        //siteShops.add("Profi Rider");//Львів
         siteShops.add("Skaut");
         siteShops.add("Gorgany");
         siteShops.add("Sportek");
         siteShops.add("Veloviva");
         siteShops.add("Ekip Sport");
-        siteShops.add("Sport Continent");
+        //siteShops.add("Sport Continent");//Львів
         siteShops.add("Fischersports");
         siteShops.add("Skirental");
         siteShops.add("Keeperstore");
@@ -55,13 +55,13 @@ public class SkisShop extends SportShop{
         imageShops.add(R.drawable.icon_sport_stylus);
         imageShops.add(R.drawable.icon_shlem);
         imageShops.add(R.drawable.web_);
-        imageShops.add(R.drawable.icon_profirider);
+        //imageShops.add(R.drawable.icon_profirider);//Львів
         imageShops.add(R.drawable.icon_skaut);
         imageShops.add(R.drawable.icon_gorgany);
         imageShops.add(R.drawable.icon_sportek);
         imageShops.add(R.drawable.icon_veloviva);
         imageShops.add(R.drawable.icon_ekip_sport);
-        imageShops.add(R.drawable.icon_sport_co);
+        //imageShops.add(R.drawable.icon_sport_co);//Львів
         imageShops.add(R.drawable.icon_fishersports);
         imageShops.add(R.drawable.icon_skirental);
         imageShops.add(R.drawable.icon_keeperstore);
@@ -88,13 +88,13 @@ public class SkisShop extends SportShop{
         listAdressWebSite.add("http://sport.stylus.com.ua/ru/products/skiing/index.html");
         listAdressWebSite.add("http://shlem.com.ua/zimniy-sport/lizhi");
         listAdressWebSite.add("http://a-sport.in.ua/category/background_skis-head/");
-        listAdressWebSite.add("http://profirider.com.ua/shop/category/gornye-lyzhi");
+        //listAdressWebSite.add("http://profirider.com.ua/shop/category/gornye-lyzhi");//Львів
         listAdressWebSite.add("http://skaut.com.ua/market/zima/lyzhi");
         listAdressWebSite.add("http://ru.gorgany.com/begovye-lyzhi");
         listAdressWebSite.add("http://sportek.ua/shop/category/zimnie-vidy-sporta/lyzhi");
         listAdressWebSite.add("http://veloviva.com.ua/catalog/mountain-skiing/");
         listAdressWebSite.add("http://ekip-sport.com.ua/category/gornye_lyzhi/");
-        listAdressWebSite.add("http://sport-co.com.ua/catalog6/");
+        //listAdressWebSite.add("http://sport-co.com.ua/catalog6/");//Львів
         listAdressWebSite.add("http://www.fischersports.com.ua/catalogue/cat/gornie-lizhi-fischer/");
         listAdressWebSite.add("http://skirental.kiev.ua/shop");
         listAdressWebSite.add("http://www.keeperstore.com.ua/catalog/gornye_lyzhi_dlya_frirayda/");
