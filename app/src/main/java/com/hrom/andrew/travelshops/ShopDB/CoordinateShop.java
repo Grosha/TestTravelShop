@@ -1,4 +1,4 @@
-package com.hrom.andrew.travelshops.ShopDataBase;
+package com.hrom.andrew.travelshops.ShopDB;
 
 import com.google.android.gms.maps.model.LatLng;
 

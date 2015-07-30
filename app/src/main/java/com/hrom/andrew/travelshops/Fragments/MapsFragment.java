@@ -11,12 +11,12 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.hrom.andrew.travelshops.R;
 
 public class MapsFragment extends Fragment implements OnMapReadyCallback {
+    private GoogleMap googleMap;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -24,6 +24,9 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
         /*MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);*/
+        /*googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
+                .getMap();
+        onMapReady(googleMap);*/
     }
 
     @Override

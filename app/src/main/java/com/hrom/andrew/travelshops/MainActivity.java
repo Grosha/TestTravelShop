@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
 
                         switch (i) {
                             case 0:
-                                /*Log.d(NAMEFRAGMENT, "0");*/
                                 Intent intent = new Intent(getApplicationContext(),Map.class);
                                 startActivity(intent);
                                 break;

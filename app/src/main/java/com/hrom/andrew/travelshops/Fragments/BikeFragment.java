@@ -9,7 +9,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.hrom.andrew.travelshops.R;
-import com.hrom.andrew.travelshops.ShopDatas.BikeShop;
+import com.hrom.andrew.travelshops.ShopDB.BikeShop;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -2,55 +2,41 @@ package com.hrom.andrew.travelshops.Fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.hrom.andrew.travelshops.R;
 
-/**
- * Created by Andrew on 26.07.2015.
- */
 public class Map extends Activity {
-
-    // Google Map
-    private GoogleMap googleMap;
+    static final LatLng HAMBURG = new LatLng(53.558, 9.927);
+    static final LatLng KIEL = new LatLng(53.551, 9.993);
+    private GoogleMap map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_maps);
+        map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
+                .getMap();
 
-        try {
-            // Loading map
-            initilizeMap();
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (map != null) {
+            Marker hamburg = map.addMarker(new MarkerOptions().position(HAMBURG)
+                    .title("Hamburg"));
+            Marker kiel = map.addMarker(new MarkerOptions()
+                    .position(KIEL)
+                    .title("Kiel")
+                    .snippet("Kiel is cool")
+                    .icon(BitmapDescriptorFactory
+                            .fromResource(R.drawable.ic_group_work_black_18dp)));
         }
 
-    }
-
-    /**
-     * function to load map. If map is not created it will create it for you
-     * */
-    private void initilizeMap() {
-        if (googleMap == null) {
-            googleMap = ((MapFragment) getFragmentManager().findFragmentById(
-                    R.id.map)).getMap();
-
-            // check if map is created successfully or not
-            if (googleMap == null) {
-                Toast.makeText(getApplicationContext(),
-                        "Sorry! unable to create maps", Toast.LENGTH_SHORT)
-                        .show();
-            }
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        initilizeMap();
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(HAMBURG, 15));
+        map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
     }
 }

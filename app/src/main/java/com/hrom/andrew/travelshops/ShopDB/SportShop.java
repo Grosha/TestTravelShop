@@ -1,4 +1,4 @@
-package com.hrom.andrew.travelshops.ShopDatas;
+package com.hrom.andrew.travelshops.ShopDB;
 
 import android.support.v7.app.AppCompatActivity;
 
