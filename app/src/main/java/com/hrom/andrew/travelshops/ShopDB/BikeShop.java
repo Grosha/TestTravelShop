@@ -1,11 +1,9 @@
-package com.hrom.andrew.travelshops.ShopDatas;
+package com.hrom.andrew.travelshops.ShopDB;
 
 import com.hrom.andrew.travelshops.R;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class BikeShop extends SportShop {
     @Override
