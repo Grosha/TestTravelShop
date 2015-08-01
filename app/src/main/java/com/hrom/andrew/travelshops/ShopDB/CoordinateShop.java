@@ -33,6 +33,23 @@ public class CoordinateShop {/*
         lngMap.put("Бескід",new LatLng(50.430766, 30.398878));
         lngMap.put("Svoboda",new LatLng(50.423885, 30.497164));
         lngMap.put("Kant",new LatLng(50.419260, 30.473568));
+        lngMap.put("Драйв Спорт",new LatLng(50.469490, 30.443531));
+        lngMap.put("Драйв Спорт",new LatLng(50.411319, 30.530179));
+        lngMap.put("Skimarket",new LatLng(50.460821, 30.484599));
+        lngMap.put("Veloviva",new LatLng(50.480078, 30.595237));
+        lngMap.put("Номад",new LatLng(50.417040, 30.541335));
+        lngMap.put("Ист Сервис",new LatLng(50.427629, 30.510453));
+        lngMap.put("Gorgany",new LatLng(50.394643, 30.636576));
+        lngMap.put("Подорож",new LatLng(50.488781, 30.496300));
+        lngMap.put("Подорож",new LatLng(50.488781, 30.496300));
+        lngMap.put("Velomoto",new LatLng(50.496974, 30.606994));
+        lngMap.put("Velomoto",new LatLng(50.404392, 30.623163));
+        lngMap.put("Sport Stylus",new LatLng(50.457288, 30.487548));
+        lngMap.put("Shlem",new LatLng(50.450248, 30.497961));
+        lngMap.put("Ekip Sport",new LatLng(50.448420, 30.590765));
+        lngMap.put("Boomerang",new LatLng(50.447407, 30.514459));
+        lngMap.put("Orbeabikes",new LatLng(50.431902, 30.545349));
+        lngMap.put("Boomerang",new LatLng(50.447407, 30.514459));
 
 
         return lngMap.get(tag);
