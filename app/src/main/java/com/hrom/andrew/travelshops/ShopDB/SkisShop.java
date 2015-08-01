@@ -87,7 +87,7 @@ public class SkisShop extends SportShop{
         listAdressWebSite.add("http://skimag.com.ua/gornye-lyzhi/");
         listAdressWebSite.add("http://sport.stylus.com.ua/ru/products/skiing/index.html");
         listAdressWebSite.add("http://shlem.com.ua/zimniy-sport/lizhi");
-        listAdressWebSite.add("http://a-sport.in.ua/category/background_skis-head/");
+        listAdressWebSite.add("http://a-sport.in.ua/");
         //listAdressWebSite.add("http://profirider.com.ua/shop/category/gornye-lyzhi");//Львів
         listAdressWebSite.add("http://skaut.com.ua/market/zima/lyzhi");
         listAdressWebSite.add("http://ru.gorgany.com/begovye-lyzhi");
