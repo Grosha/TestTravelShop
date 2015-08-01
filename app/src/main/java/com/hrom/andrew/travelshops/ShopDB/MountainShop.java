@@ -16,7 +16,7 @@ public class MountainShop extends SportShop {
         siteShops.add("Ель-капітан");
         siteShops.add("Команда Екс");
         siteShops.add("X-zone");
-        siteShops.add("Горгани");
+        siteShops.add("Gorgany");
         siteShops.add("Adrenalin");
         siteShops.add("Подорож");
         siteShops.add("Номад");
