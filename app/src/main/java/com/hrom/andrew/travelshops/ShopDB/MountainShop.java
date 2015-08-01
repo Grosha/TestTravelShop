@@ -15,14 +15,13 @@ public class MountainShop extends SportShop {
         siteShops.add("Атлантида");
         siteShops.add("Ель-капітан");
         siteShops.add("Команда Екс");
-        siteShops.add("X-zone");
+        siteShops.add("X-Zone");
         siteShops.add("Gorgany");
         siteShops.add("Adrenalin");
         siteShops.add("Подорож");
         siteShops.add("Номад");
         siteShops.add("Ордана");
         siteShops.add("Skimarket");
-        siteShops.add("Екстремалів нема");
         siteShops.add("Бізон");
         siteShops.add("Expert");
         siteShops.add("Мультіспорт");
@@ -49,7 +48,6 @@ public class MountainShop extends SportShop {
         imageShops.add(R.drawable.icon_nomad);
         imageShops.add(R.drawable.icon_ordana);
         imageShops.add(R.drawable.web_);
-        imageShops.add(R.drawable.icon_extremalov);
         imageShops.add(R.drawable.icon_bizon);
         imageShops.add(R.drawable.icon_expert_centre);
         imageShops.add(R.drawable.icon_multisport);
@@ -76,7 +74,6 @@ public class MountainShop extends SportShop {
         listAdressWebSite.add("http://nomad.com.ua/");
         listAdressWebSite.add("http://ordana.com/");
         listAdressWebSite.add("http://skimarket.com.ua/");
-        listAdressWebSite.add("http://www.extremalov.net/");
         listAdressWebSite.add("http://bizon.com.ua/");
         listAdressWebSite.add("http://www.expert-centre.com.ua/");
         listAdressWebSite.add("http://multisport.com.ua/");
