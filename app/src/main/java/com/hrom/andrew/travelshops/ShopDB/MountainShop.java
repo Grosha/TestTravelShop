@@ -22,7 +22,7 @@ public class MountainShop extends SportShop {
         siteShops.add("Номад");
         siteShops.add("Ордана");
         siteShops.add("Skimarket");
-        siteShops.add("Бізон");
+        siteShops.add("Bizon");
         siteShops.add("Expert");
         siteShops.add("Мультіспорт");
         siteShops.add("Траверс");
