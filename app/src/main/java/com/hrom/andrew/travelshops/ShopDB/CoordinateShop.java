@@ -67,6 +67,21 @@ public class CoordinateShop {/*
         lngMap.put("X-zone",new LatLng(50.505654, 30.499259));
         lngMap.put("Волоцюга",new LatLng(50.443533, 30.481032));
         lngMap.put("Волоцюга",new LatLng(50.457773, 30.628396));
+        lngMap.put("Велопланета",new LatLng(50.398618, 30.642655));
+        lngMap.put("Велопланета",new LatLng(50.440254, 30.498177));
+        lngMap.put("Велопланета",new LatLng(50.391293, 30.502093));
+        lngMap.put("Keeperstore",new LatLng(50.457392, 30.408287));
+        lngMap.put("Keeperstore",new LatLng(50.492545, 30.524735));
+        lngMap.put("GoFree",new LatLng(50.462922, 30.505031));
+        lngMap.put("Megadrive",new LatLng(50.455630, 30.632330));
+        lngMap.put("Skimag",new LatLng(50.422951, 30.476367));
+        lngMap.put("Cube",new LatLng(50.450221, 30.441169));
+        lngMap.put("Cube",new LatLng(50.492527, 30.523963));
+        lngMap.put("Cube",new LatLng(50.408115, 30.621231));
+        lngMap.put("Cube",new LatLng(50.395037, 30.619531));
+        lngMap.put("Adrenalin",new LatLng(50.493061, 30.522811));
+        lngMap.put("Scott",new LatLng(50.466486, 30.524502));
+        lngMap.put("Boardshop",new LatLng(50.418970, 30.494732));
 
 
         return lngMap.get(tag);
