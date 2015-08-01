@@ -49,7 +49,24 @@ public class CoordinateShop {/*
         lngMap.put("Ekip Sport",new LatLng(50.448420, 30.590765));
         lngMap.put("Boomerang",new LatLng(50.447407, 30.514459));
         lngMap.put("Orbeabikes",new LatLng(50.431902, 30.545349));
-        lngMap.put("Boomerang",new LatLng(50.447407, 30.514459));
+        lngMap.put("Expert",new LatLng(50.471401, 30.516282));
+        lngMap.put("Veloonline",new LatLng(50.492576, 30.524215));
+        lngMap.put("Veloonline",new LatLng(50.450213, 30.441193));
+        lngMap.put("Veloonline",new LatLng(50.408072, 30.621206));
+        lngMap.put("Veloonline",new LatLng(50.395035, 30.619525));
+        lngMap.put("Veloonline",new LatLng(50.429222, 30.356038));
+        lngMap.put("Modena Sport",new LatLng(50.457553, 30.429757));
+        lngMap.put("Porover",new LatLng(50.421438, 30.514886));
+        lngMap.put("Команда Екс",new LatLng(50.457013, 30.437231));
+        lngMap.put("Skirental",new LatLng(50.436006, 30.474220));
+        lngMap.put("Protest",new LatLng(50.432273, 30.515644));
+        lngMap.put("Спорт Самміт",new LatLng(50.431901, 30.545336));
+        lngMap.put("Fischersports",new LatLng(50.457392, 30.408287));
+        lngMap.put("Specialized",new LatLng(50.442553, 30.435033));
+        lngMap.put("Ель-капітан",new LatLng(50.445292, 30.449709));
+        lngMap.put("X-zone",new LatLng(50.505654, 30.499259));
+        lngMap.put("Волоцюга",new LatLng(50.443533, 30.481032));
+        lngMap.put("Волоцюга",new LatLng(50.457773, 30.628396));
 
 
         return lngMap.get(tag);
