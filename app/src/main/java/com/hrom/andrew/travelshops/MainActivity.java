@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.hrom.andrew.travelshops.Fragments.BikeFragment;
-import com.hrom.andrew.travelshops.Fragments.Map;
+import com.hrom.andrew.travelshops.Fragments.MapActivity;
 import com.hrom.andrew.travelshops.Fragments.MapsFragment;
 import com.hrom.andrew.travelshops.Fragments.MountainFragment;
 import com.hrom.andrew.travelshops.Fragments.SkisFragment;
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
                         switch (i) {
                             case 0:
-                                Intent intent = new Intent(getApplicationContext(),Map.class);
+                                Intent intent = new Intent(getApplicationContext(),MapActivity.class);
                                 startActivity(intent);
                                 break;
                             case 2:

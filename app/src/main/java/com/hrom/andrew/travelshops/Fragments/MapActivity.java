@@ -12,7 +12,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.hrom.andrew.travelshops.R;
 
-public class Map extends Activity {
+public class MapActivity extends Activity {
     static final LatLng HAMBURG = new LatLng(53.558, 9.927);
     static final LatLng KIEL = new LatLng(53.551, 9.993);
     private GoogleMap map;
