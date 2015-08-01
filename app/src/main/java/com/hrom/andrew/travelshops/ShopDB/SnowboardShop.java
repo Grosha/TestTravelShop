@@ -28,7 +28,7 @@ public class SnowboardShop extends SportShop {
         siteShops.add("Keeperstore");
         siteShops.add("Gorgany");
         siteShops.add("Kant");
-        siteShops.add("Ekip-sport");
+        siteShops.add("Ekip sport");
         return siteShops;
     }
 
