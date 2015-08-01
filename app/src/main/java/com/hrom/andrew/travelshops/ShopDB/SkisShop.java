@@ -11,7 +11,7 @@ public class SkisShop extends SportShop{
     public List<String> getListShops() {
         List<String> siteShops = new ArrayList<>();
         siteShops.add("Modena Sport");
-        siteShops.add("Екстрім Стайл");
+        siteShops.add("Екстрем Стайл");
         siteShops.add("Kant");
         siteShops.add("Sportzone");
         siteShops.add("X-Zone");
