@@ -19,8 +19,6 @@ import com.hrom.andrew.travelshops.ShopDB.CoordinateShop;
 public class MapActivity extends Activity {
     private static final String NAMEFRAGMENT = "FRAGMENT";
     static final LatLng KYEV = new LatLng(50.447968, 30.507971);
-    static final LatLng KIEL = new LatLng(50.451692, 30.383927);
-    private GoogleMap map;
     private CoordinateShop shop = new CoordinateShop();
     private BikeShop bike = new BikeShop();
 
@@ -28,15 +26,15 @@ public class MapActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_maps);
-        map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
+        GoogleMap map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
                 .getMap();
 
         if (map != null) {
             Marker hamburg = map.addMarker(new MarkerOptions().position(KYEV)
                     .title("KYEV"));
             for (int i = 0; i < bike.getListShops().size(); i++) {
+                Log.d(NAMEFRAGMENT, String.valueOf(bike.getListShops().get(i)));
                 Log.d(NAMEFRAGMENT, String.valueOf(shop.getCoordinate(bike.getListShops().get(i))));
-                Toast.makeText(this, String.valueOf(shop.getCoordinate(bike.getListShops().get(i))), Toast.LENGTH_LONG);
                 if (shop.getCoordinate(bike.getListShops().get(i))==null) {
                     continue;
                 } else {
@@ -49,15 +47,6 @@ public class MapActivity extends Activity {
                                             .fromResource(bike.getIconShops().get(i))));
                 }
             }
-
-            /*Marker hamburg = map.addMarker(new MarkerOptions().position(KYEV)
-                    .title("Hamburg"));
-            Marker kiel = map.addMarker(new MarkerOptions()
-                    .position(KIEL)
-                    .title("Kiel")
-                    .snippet("Kiel is cool")
-                    .icon(BitmapDescriptorFactory
-                            .fromResource(R.drawable.ic_group_work_black_18dp)));*/
         }
 
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(KYEV, 15));
