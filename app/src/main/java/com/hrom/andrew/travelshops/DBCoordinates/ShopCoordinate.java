@@ -1,19 +1,22 @@
-package com.hrom.andrew.travelshops.ShopDB;
+package com.hrom.andrew.travelshops.DBCoordinates;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CoordinateShop {/*
-    private String nameShop;
 
-    public CoordinateShop(String nameShop) {
-        this.nameShop = nameShop;
-    }
-*/
-    public LatLng getCoordinate(String tag){
-        Map<String, LatLng> lngMap = new HashMap<>();
+public class ShopCoordinate {
+
+
+    public Collection<LatLng> getCoordinate(String tag){
+        //Map<String, LatLng> lngMap = new HashMap<>();
+        Multimap<String, LatLng> lngMap =  ArrayListMultimap.create();
+
         lngMap.put("Bizon",new LatLng(50.457181, 30.475242));
         lngMap.put("Gofree",new LatLng(50.463088, 30.505062));
         lngMap.put("Ордана",new LatLng(50.631794, 30.422878));
