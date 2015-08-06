@@ -13,13 +13,21 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.hrom.andrew.travelshops.DBCoordinates.CityCoordinate;
+import com.hrom.andrew.travelshops.DBCoordinates.ShopCoordinate;
 import com.hrom.andrew.travelshops.R;
+import com.hrom.andrew.travelshops.ShopDB.BikeShop;
 
-public class MapsFragment extends Fragment{
+import java.util.Collection;
+
+public class MapsFragment extends Fragment {
     private GoogleMap googleMap;
     private SupportMapFragment mapFragment;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,26 +40,46 @@ public class MapsFragment extends Fragment{
 
         mapFragment = SupportMapFragment.newInstance();
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        transaction.add(R.id.map,mapFragment).commit();
-
+        transaction.add(R.id.map, mapFragment).commit();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
-        LatLng KYEV = new LatLng(50.447968, 30.507971);
+        ShopCoordinate shop = new ShopCoordinate();
+        BikeShop bike = new BikeShop();
 
         if (googleMap == null) {
             googleMap = mapFragment.getMap();
-            googleMap.addMarker(new MarkerOptions()
-                    .title("Sydney")
-                    .snippet("The most populous city in Australia.")
-                    .position(KYEV));
+            Marker city = googleMap.addMarker(new MarkerOptions().position(CityCoordinate.KYEV)
+                    .title("KYEV"));
+            for (int i = 0; i < bike.getListShops().size(); i++) {
+                Collection<LatLng> colecLng = shop.getCoordinate(bike.getListShops().get(i));
+
+            /*Log.d(NAMEFRAGMENT, String.valueOf(bike.getListShops().get(i)));
+            Log.d(NAMEFRAGMENT, String.valueOf(colecLng));*/
+
+                if (shop.getCoordinate(bike.getListShops().get(i)) == null) {
+                    if (i != bike.getListShops().size() - 1) {
+                        continue;
+                    } else break;
+                } else {
+                    for (LatLng latLng : colecLng) {
+                        Marker shopMarker = googleMap.addMarker(
+                                new MarkerOptions()
+                                        .position(latLng)
+                                        .title(bike.getListShops().get(i))
+                                        .snippet("Kiel is cool")
+                                        .icon(BitmapDescriptorFactory
+                                                .fromResource(bike.getIconShops().get(i))));
+                    }
+                }
+
+            }
         }
 
         googleMap.setMyLocationEnabled(true);
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(KYEV, 13));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(CityCoordinate.KYEV, 13));
         googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
     }
 }
