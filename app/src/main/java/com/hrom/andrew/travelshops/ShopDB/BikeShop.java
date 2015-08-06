@@ -15,6 +15,7 @@ public class BikeShop extends SportShop {
         siteShops.add("Groosha");
         siteShops.add("Велопланета");
         siteShops.add("Specialized");
+        siteShops.add("ВелоДом");
         siteShops.add("Veloonline");
         siteShops.add("Velomoto");
         siteShops.add("Porover");
@@ -40,6 +41,7 @@ public class BikeShop extends SportShop {
         imageShops.add(R.drawable.icon_groosha);
         imageShops.add(R.drawable.icon_veloplaneta);
         imageShops.add(R.drawable.icon_specialized);
+        imageShops.add(R.drawable.icon_velodom);
         imageShops.add(R.drawable.icon_veloonline);
         imageShops.add(R.drawable.icon_velomoto);
         imageShops.add(R.drawable.icon_porover);
@@ -65,6 +67,7 @@ public class BikeShop extends SportShop {
         listAdressWebSite.add("http://groosha.ua/catalog/velosipedy_i_roliki/");
         listAdressWebSite.add("http://veloplaneta.com.ua/");
         listAdressWebSite.add("http://www.specialized.com.ua/");
+        listAdressWebSite.add("http://velodom.kiev.ua/");
         listAdressWebSite.add("http://www.veloonline.com/");
         listAdressWebSite.add("http://www.velomoto.kiev.ua/");
         listAdressWebSite.add("http://porover.com/");
