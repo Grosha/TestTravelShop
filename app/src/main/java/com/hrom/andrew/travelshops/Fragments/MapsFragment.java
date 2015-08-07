@@ -11,8 +11,6 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -22,13 +20,13 @@ import com.hrom.andrew.travelshops.DBCoordinates.CityCoordinate;
 import com.hrom.andrew.travelshops.DBCoordinates.ShopCoordinate;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.BikeShop;
+import com.hrom.andrew.travelshops.TrashActivity.MyTag;
 
 import java.util.Collection;
 
 public class MapsFragment extends Fragment {
     private GoogleMap googleMap;
     private SupportMapFragment mapFragment;
-    private static final String NAMEFRAGMENT = "FRAGMENT";
 
     @Nullable
     @Override
@@ -58,8 +56,8 @@ public class MapsFragment extends Fragment {
             for (int i = 0; i < bike.getListShops().size(); i++) {
                 Collection<LatLng> colecLng = shop.getCoordinate(bike.getListShops().get(i));
 
-            Log.d(NAMEFRAGMENT, String.valueOf(bike.getListShops().get(i)));
-            Log.d(NAMEFRAGMENT, String.valueOf(colecLng));
+            Log.d(MyTag.NAMEFRAGMENT, String.valueOf(bike.getListShops().get(i)));
+            Log.d(MyTag.NAMEFRAGMENT, String.valueOf(colecLng));
 
                 if (shop.getCoordinate(bike.getListShops().get(i)) == null) {
                     //if (i != bike.getListShops().size() - 1) {
