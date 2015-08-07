@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import java.util.Collection;
 public class MapsFragment extends Fragment {
     private GoogleMap googleMap;
     private SupportMapFragment mapFragment;
+    private static final String NAMEFRAGMENT = "FRAGMENT";
 
     @Nullable
     @Override
@@ -56,13 +58,13 @@ public class MapsFragment extends Fragment {
             for (int i = 0; i < bike.getListShops().size(); i++) {
                 Collection<LatLng> colecLng = shop.getCoordinate(bike.getListShops().get(i));
 
-            /*Log.d(NAMEFRAGMENT, String.valueOf(bike.getListShops().get(i)));
-            Log.d(NAMEFRAGMENT, String.valueOf(colecLng));*/
+            Log.d(NAMEFRAGMENT, String.valueOf(bike.getListShops().get(i)));
+            Log.d(NAMEFRAGMENT, String.valueOf(colecLng));
 
                 if (shop.getCoordinate(bike.getListShops().get(i)) == null) {
-                    if (i != bike.getListShops().size() - 1) {
+                    //if (i != bike.getListShops().size() - 1) {
                         continue;
-                    } else break;
+                    //} else break;
                 } else {
                     for (LatLng latLng : colecLng) {
                         Marker shopMarker = googleMap.addMarker(
