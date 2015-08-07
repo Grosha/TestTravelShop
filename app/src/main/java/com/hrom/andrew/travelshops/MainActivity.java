@@ -58,6 +58,48 @@ public class MainActivity extends AppCompatActivity {
                 .withDisplayBelowToolbar(false)
                 .withTranslucentStatusBar(true)
                 .withActionBarDrawerToggleAnimated(true)
+                .withOnDrawerListener(new Drawer.OnDrawerListener() {
+                    @Override
+                    public void onDrawerOpened(View view) {
+
+                    }
+
+                    @Override
+                    public void onDrawerClosed(View view) {
+
+                        if (clickedItem >= 0) {
+                            transaction = manager.beginTransaction();
+                            switch (clickedItem) {
+                                case 0:
+                                    Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+                                    startActivity(intent);
+                                    break;
+                                case 2:
+                                    transaction.replace(R.id.container, new MountainFragment());
+                                    break;
+                                case 3:
+                                    transaction.replace(R.id.container, new SkisFragment());
+                                    break;
+                                case 4:
+                                    transaction.replace(R.id.container, new SnowboardFragment());
+                                    break;
+                                case 5:
+                                    transaction.replace(R.id.container, new BikeFragment());
+                                    break;
+                                case 6:
+                                    transaction.replace(R.id.container, new MapsFragment());
+                                    break;
+                            }
+                            transaction.commit();
+                            clickedItem = -1;
+                        }
+                    }
+
+                    @Override
+                    public void onDrawerSlide(View view, float v) {
+
+                    }
+                })
                 .addDrawerItems(new PrimaryDrawerItem()
                                 .withName("All links")
                                 .withIdentifier(1)
@@ -83,11 +125,11 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public boolean onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
-                        transaction = manager.beginTransaction();
-
+                        clickedItem = i;
+                        /*transaction = manager.beginTransaction();
                         switch (i) {
                             case 0:
-                                Intent intent = new Intent(getApplicationContext(),MapActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), MapActivity.class);
                                 startActivity(intent);
                                 break;
                             case 2:
@@ -106,13 +148,15 @@ public class MainActivity extends AppCompatActivity {
                                 transaction.replace(R.id.container, new MapsFragment());
                                 break;
                         }
-                        transaction.commit();
+                        transaction.commit();*/
                         drawer.closeDrawer();
                         return true;
                     }
                 })
                 .build();
     }
+
+    int clickedItem = -1;
 
     private AccountHeader creatAccountHeader() {
         return new AccountHeaderBuilder()
