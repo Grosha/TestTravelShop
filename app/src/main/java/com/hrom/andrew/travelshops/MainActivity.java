@@ -26,7 +26,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 public class MainActivity extends AppCompatActivity {
 
     private Drawer drawer;
-    private static final String NAMEFRAGMENT = "FRAGMENT";
+
 
     private android.support.v4.app.FragmentManager manager;
     private android.support.v4.app.FragmentTransaction transaction;
