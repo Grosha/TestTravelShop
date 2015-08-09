@@ -13,6 +13,7 @@ import com.hrom.andrew.travelshops.Fragments.MapsFragment;
 import com.hrom.andrew.travelshops.Fragments.MountainFragment;
 import com.hrom.andrew.travelshops.Fragments.SkisFragment;
 import com.hrom.andrew.travelshops.Fragments.SnowboardFragment;
+import com.hrom.andrew.travelshops.TrashActivity.SwipeMountain;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.accountswitcher.AccountHeader;
@@ -26,8 +27,6 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 public class MainActivity extends AppCompatActivity {
 
     private Drawer drawer;
-
-
     private android.support.v4.app.FragmentManager manager;
     private android.support.v4.app.FragmentTransaction transaction;
 
@@ -76,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                                     break;
                                 case 2:
                                     transaction.replace(R.id.container, new MountainFragment());
+                                    //transaction.replace(R.id.container, new SwipeMountain());
                                     break;
                                 case 3:
                                     transaction.replace(R.id.container, new SkisFragment());
