@@ -197,7 +197,6 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_search:
                 transaction.replace(R.id.container, new MapsFragment());
-                Toast.makeText(this, "search", Toast.LENGTH_SHORT).show();
                 transaction.commit();
                 return true;
             /*case R.id.action_settings:
