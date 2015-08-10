@@ -2,5 +2,7 @@
     <string name="app_name">TravelShops</string>
     <string name="title_activity_travel">TravelShops</string>
     <string name="API_KEY">AIzaSyCO7xM6RwZOaR9-Fiyo_2Uqy5UtNSPEr7Q</string>
+    <string name="action_search">action_search</string>
+    <string name="action_settings">action_settings</string>
     <!--<string name="API_KEY">AIzaSyA_nVxpN7JMawRTyOv71ASmXpRoxmhd1HQ</string>-->
 </resources>
