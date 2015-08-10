@@ -4,8 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.hrom.andrew.travelshops.Fragments.BikeFragment;
 import com.hrom.andrew.travelshops.Fragments.MapActivity;
@@ -44,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initializeNavigatorDrawer(toolbar);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void initializeNavigatorDrawer(Toolbar toolbar) {
@@ -176,5 +181,30 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         getDelegate().onDestroy();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_toolbar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        transaction = manager.beginTransaction();
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                transaction.replace(R.id.container, new MapsFragment());
+                Toast.makeText(this, "search", Toast.LENGTH_SHORT).show();
+                transaction.commit();
+                return true;
+            /*case R.id.action_settings:
+                openSettings();
+                return true;*/
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
