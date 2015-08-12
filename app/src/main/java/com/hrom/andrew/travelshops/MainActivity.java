@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                                 .withName("Snowboard")
                                 .withIcon(R.drawable.snowboarder_18),
                         new SecondaryDrawerItem()
-                                .withName("BikePage")
+                                .withName("Bike")
                                 .withIcon(R.drawable.bicycle_icon_18),
                         new SecondaryDrawerItem()
                                 .withName("Maps")
