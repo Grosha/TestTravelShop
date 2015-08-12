@@ -10,13 +10,14 @@ import android.widget.SimpleAdapter;
 
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.MountainShop;
+import com.hrom.andrew.travelshops.TrashActivity.MyTag;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class MountainFragment extends ListFragment {
-    public final static String TAG = "Mountain";
+    public final static String TAG = MyTag.TAG_MOUNTAIN;
     private MountainShop mountainShop = new MountainShop();
 
     @Override

@@ -10,13 +10,14 @@ import android.widget.SimpleAdapter;
 
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.SnowboardShop;
+import com.hrom.andrew.travelshops.TrashActivity.MyTag;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class SnowboardFragment extends ListFragment {
-    public final static String TAG = "Bike";
+    public final static String TAG = MyTag.TAG_SNOWBOARD;
     private SnowboardShop snowboardShop = new SnowboardShop();
 
     @Override

@@ -10,13 +10,14 @@ import android.widget.SimpleAdapter;
 
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.BikeShop;
+import com.hrom.andrew.travelshops.TrashActivity.MyTag;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class BikeFragment extends ListFragment {
-    public final static String TAG = "Bike";
+    public final static String TAG = MyTag.TAG_BIKE;
     private BikeShop bikeShop = new BikeShop();
 
     @Override
