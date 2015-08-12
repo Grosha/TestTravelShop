@@ -48,6 +48,25 @@ public class MapsFragment extends Fragment {
         super.onResume();
         ShopCoordinate shop = new ShopCoordinate();
         BikeShop bike = new BikeShop();
+        Log.d(MyTag.TEST, "TEST");
+        Log.d(MyTag.TEST, String.valueOf(getFragmentManager().findFragmentByTag(MountainFragment.TAG)));
+        Fragment fragment = getFragmentManager().findFragmentById(R.id.container);
+        Log.d(MyTag.TEST, String.valueOf(MountainFragment.TAG));
+        Log.d(MyTag.TEST, String.valueOf(fragment.getClass().getName()));
+        Log.d(MyTag.TEST, String.valueOf(getFragmentManager().findFragmentByTag(MyTag.TAG_SKIS)));
+        Log.d(MyTag.TEST, String.valueOf(getFragmentManager().findFragmentByTag(MyTag.TAG_BIKE)));
+        Log.d(MyTag.TEST, String.valueOf(getFragmentManager().findFragmentByTag(MyTag.TAG_SNOWBOARD)));
+
+        if (getFragmentManager().findFragmentByTag(MyTag.TAG_MOUNTAIN) != null) {
+            Log.d(MyTag.TEST, MyTag.TAG_MOUNTAIN);
+        } else if (getFragmentManager().findFragmentByTag(MyTag.TAG_SKIS) != null) {
+            Log.d(MyTag.TEST, MyTag.TAG_SKIS);
+        } else if (getFragmentManager().findFragmentByTag(MyTag.TAG_SNOWBOARD) != null) {
+            Log.d(MyTag.TEST, MyTag.TAG_SNOWBOARD);
+        } else if (getFragmentManager().findFragmentByTag(MyTag.TAG_BIKE) != null) {
+            Log.d(MyTag.TEST, MyTag.TAG_BIKE);
+        }
+
 
         if (googleMap == null) {
             googleMap = mapFragment.getMap();
@@ -56,12 +75,12 @@ public class MapsFragment extends Fragment {
             for (int i = 0; i < bike.getListShops().size(); i++) {
                 Collection<LatLng> colecLng = shop.getCoordinate(bike.getListShops().get(i));
 
-            Log.d(MyTag.NAMEFRAGMENT, String.valueOf(bike.getListShops().get(i)));
-            Log.d(MyTag.NAMEFRAGMENT, String.valueOf(colecLng));
+                Log.d(MyTag.NAMEFRAGMENT, String.valueOf(bike.getListShops().get(i)));
+                Log.d(MyTag.NAMEFRAGMENT, String.valueOf(colecLng));
 
                 if (shop.getCoordinate(bike.getListShops().get(i)) == null) {
                     //if (i != bike.getListShops().size() - 1) {
-                        continue;
+                    continue;
                     //} else break;
                 } else {
                     for (LatLng latLng : colecLng) {
