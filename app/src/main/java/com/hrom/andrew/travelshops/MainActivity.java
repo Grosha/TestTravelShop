@@ -17,6 +17,7 @@ import com.hrom.andrew.travelshops.Fragments.MapsFragment;
 import com.hrom.andrew.travelshops.Fragments.MountainFragment;
 import com.hrom.andrew.travelshops.Fragments.SkisFragment;
 import com.hrom.andrew.travelshops.Fragments.SnowboardFragment;
+import com.hrom.andrew.travelshops.TrashActivity.RetainedFragment;
 import com.hrom.andrew.travelshops.TrashActivity.SwipeMountain;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -31,6 +32,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 public class MainActivity extends AppCompatActivity {
 
     private Drawer drawer;
+    private RetainedFragment retainedFragment;
     private android.support.v4.app.FragmentManager manager;
     private android.support.v4.app.FragmentTransaction transaction;
 
@@ -81,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                                 case 2:
                                     transaction.replace(R.id.container, new MountainFragment());
                                     //transaction.replace(R.id.container, new SwipeMountain());
+                                    //retainedFragment = (RetainedFragment)manager.findFragmentByTag("");
                                     break;
                                 case 3:
                                     transaction.replace(R.id.container, new SkisFragment());
@@ -193,6 +196,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
+
         transaction = manager.beginTransaction();
         switch (item.getItemId()) {
             case R.id.action_search:
