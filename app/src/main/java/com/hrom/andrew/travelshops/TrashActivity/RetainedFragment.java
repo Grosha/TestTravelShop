@@ -1,10 +1,12 @@
 package com.hrom.andrew.travelshops.TrashActivity;
 
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 
-public class RetainedFragment extends Fragment{
-    private Fragment fragment;
+import com.hrom.andrew.travelshops.Fragments.MountainFragment;
+
+public class RetainedFragment extends Fragment {
+    private MountainFragment mountainFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -12,11 +14,11 @@ public class RetainedFragment extends Fragment{
         setRetainInstance(true);
     }
 
-    public void setFragment(Fragment fragment) {
-        this.fragment = fragment;
+    public void setFragment(MountainFragment fragment) {
+        this.mountainFragment = fragment;
     }
 
-    public Fragment getFragment() {
-        return fragment;
+    public MountainFragment getFragment() {
+        return mountainFragment;
     }
 }
