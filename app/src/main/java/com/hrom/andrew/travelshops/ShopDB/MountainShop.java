@@ -30,6 +30,7 @@ public class MountainShop extends SportShop {
         siteShops.add("Командор");
         siteShops.add("GoFree");
         siteShops.add("Драйв Спорт");
+        siteShops.add("Каприкорн");
         return siteShops;
     }
 
@@ -56,6 +57,7 @@ public class MountainShop extends SportShop {
         imageShops.add(R.drawable.icon_commandor);
         imageShops.add(R.drawable.icon_gofree);
         imageShops.add(R.drawable.icon_drive_sport);
+        imageShops.add(R.drawable.icon_capricorn);
         return imageShops;
     }
 
@@ -82,6 +84,7 @@ public class MountainShop extends SportShop {
         listAdressWebSite.add("http://www.commandor.com.ua/");
         listAdressWebSite.add("http://www.gofree.com.ua/");
         listAdressWebSite.add("http://ru.drive-sport.com.ua/");
+        listAdressWebSite.add("http://www.capricorn.com.ua/");
         return listAdressWebSite.get(position);
     }
 
