@@ -3,8 +3,10 @@ package com.hrom.andrew.travelshops.Fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,18 +22,30 @@ import com.hrom.andrew.travelshops.DBCoordinates.CityCoordinate;
 import com.hrom.andrew.travelshops.DBCoordinates.ShopCoordinate;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.BikeShop;
+import com.hrom.andrew.travelshops.ShopDB.MountainShop;
 import com.hrom.andrew.travelshops.TrashActivity.MyTag;
 
 import java.util.Collection;
 
 public class MapsFragment extends Fragment {
+    private static View view;
     private GoogleMap googleMap;
     private SupportMapFragment mapFragment;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.layout_maps, container, false);
+        //return inflater.inflate(R.layout.layout_maps, container, false);
+        if (view != null) {
+            ViewGroup parent = (ViewGroup) view.getParent();
+            if (parent != null)
+                parent.removeView(view);
+        }
+        try {
+            view = inflater.inflate(R.layout.layout_maps, container, false);
+        } catch (InflateException e) {
+        }
+        return view;
     }
 
     @Override
