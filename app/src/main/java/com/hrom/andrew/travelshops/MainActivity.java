@@ -2,8 +2,10 @@ package com.hrom.andrew.travelshops;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,6 +19,8 @@ import com.hrom.andrew.travelshops.Fragments.MapsFragment;
 import com.hrom.andrew.travelshops.Fragments.MountainFragment;
 import com.hrom.andrew.travelshops.Fragments.SkisFragment;
 import com.hrom.andrew.travelshops.Fragments.SnowboardFragment;
+import com.hrom.andrew.travelshops.ShopDB.MountainShop;
+import com.hrom.andrew.travelshops.TrashActivity.MyTag;
 import com.hrom.andrew.travelshops.TrashActivity.RetainedFragment;
 import com.hrom.andrew.travelshops.TrashActivity.SwipeMountain;
 import com.mikepenz.materialdrawer.Drawer;
@@ -33,8 +37,13 @@ public class MainActivity extends AppCompatActivity {
 
     private Drawer drawer;
     private RetainedFragment retainedFragment;
+    private MountainFragment mountainFragment;
+    private BikeFragment bikeFragment;
+    private SnowboardFragment snowboardFragment;
+    private SkisFragment skisFragment;
     private android.support.v4.app.FragmentManager manager;
     private android.support.v4.app.FragmentTransaction transaction;
+    private int clickedItem = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,37 +143,12 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public boolean onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
                         clickedItem = i;
-                        /*transaction = manager.beginTransaction();
-                        switch (i) {
-                            case 0:
-                                Intent intent = new Intent(getApplicationContext(), MapActivity.class);
-                                startActivity(intent);
-                                break;
-                            case 2:
-                                transaction.replace(R.id.container, new MountainFragment());
-                                break;
-                            case 3:
-                                transaction.replace(R.id.container, new SkisFragment());
-                                break;
-                            case 4:
-                                transaction.replace(R.id.container, new SnowboardFragment());
-                                break;
-                            case 5:
-                                transaction.replace(R.id.container, new BikeFragment());
-                                break;
-                            case 6:
-                                transaction.replace(R.id.container, new MapsFragment());
-                                break;
-                        }
-                        transaction.commit();*/
                         drawer.closeDrawer();
                         return true;
                     }
                 })
                 .build();
     }
-
-    int clickedItem = -1;
 
     private AccountHeader creatAccountHeader() {
         return new AccountHeaderBuilder()
@@ -200,8 +184,19 @@ public class MainActivity extends AppCompatActivity {
         transaction = manager.beginTransaction();
         switch (item.getItemId()) {
             case R.id.action_search:
-                transaction.replace(R.id.container, new MapsFragment());
-                transaction.commit();
+                /*mountainFragment = (MountainFragment) manager.findFragmentByTag(MyTag.TAG_MOUNTAIN);
+                snowboardFragment = (SnowboardFragment) manager.findFragmentByTag(MyTag.TAG_SNOWBOARD);
+                skisFragment = (SkisFragment) manager.findFragmentByTag(MyTag.TAG_SKIS);
+                bikeFragment = (BikeFragment) manager.findFragmentByTag(MyTag.TAG_BIKE);
+
+                retainedFragment.setFragment(new MountainFragment());
+                retainedFragment = (RetainedFragment) manager.findFragmentByTag(MyTag.TAG_MOUNTAIN);
+                if (retainedFragment.equals(mountainFragment)){
+                    Log.d(MyTag.TEST, "equals");
+                }*/
+
+                transaction.replace(R.id.container, new MapsFragment()).commit();
+                //transaction.commit();
                 return true;
             /*case R.id.action_settings:
                 openSettings();
