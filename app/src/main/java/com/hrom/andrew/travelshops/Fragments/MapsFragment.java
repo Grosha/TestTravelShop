@@ -1,18 +1,25 @@
 package com.hrom.andrew.travelshops.Fragments;
 
+import android.graphics.Point;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.Interpolator;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.Projection;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -26,7 +33,6 @@ import com.hrom.andrew.travelshops.TrashActivity.MyTag;
 import java.util.Collection;
 
 public class MapsFragment extends Fragment {
-    private static View view;
     private SupportMapFragment mapFragment;
     private GoogleMap mGoogleMap;
 
@@ -34,16 +40,6 @@ public class MapsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.layout_maps, container, false);
-      /*  if (view != null) {
-            ViewGroup parent = (ViewGroup) view.getParent();
-            if (parent != null)
-                parent.removeView(view);
-        }
-        try {
-            view = inflater.inflate(R.layout.layout_maps, container, false);
-        } catch (InflateException e) {
-        }
-        return view;*/
     }
 
     @Override
@@ -61,18 +57,55 @@ public class MapsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
     }
 
-    GoogleMap.OnMyLocationChangeListener onMyLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
+    private GoogleMap.OnMyLocationChangeListener onMyLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
         @Override
         public void onMyLocationChange(Location location) {
-            if(location != null){
+            if (location != null) {
                 Log.d(MyTag.TEST, "LOCATION NOT NULL");
                 LatLng target = new LatLng(location.getLatitude(), location.getLongitude());
-                Marker myLoc = mGoogleMap.addMarker(new MarkerOptions().position(target)
-                        .title("ME"));
+                Marker myLoc = mGoogleMap.addMarker(new MarkerOptions()
+                        .position(target)
+                        .title("ME")
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)))                        ;
+                //fromResource(R.drawable.ic_navigation_black_18dp))
             }
+        }
+    };
+
+    private GoogleMap.OnMarkerClickListener markerClickListener = new GoogleMap.OnMarkerClickListener() {
+        @Override
+        public boolean onMarkerClick(final Marker marker) {
+            final Handler handler = new Handler();
+
+            final long startTime = SystemClock.uptimeMillis();
+            final long duration = 2000;
+
+            Projection proj = mGoogleMap.getProjection();
+            final LatLng markerLatLng = marker.getPosition();
+            Point startPoint = proj.toScreenLocation(markerLatLng);
+            startPoint.offset(0, -100);
+            final LatLng startLatLng = proj.fromScreenLocation(startPoint);
+
+            final Interpolator interpolator = new BounceInterpolator();
+
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    long elapsed = SystemClock.uptimeMillis() - startTime;
+                    float t = interpolator.getInterpolation((float) elapsed / duration);
+                    double lng = t * markerLatLng.longitude + (1 - t) * startLatLng.longitude;
+                    double lat = t * markerLatLng.latitude + (1 - t) * startLatLng.latitude;
+                    marker.setPosition(new LatLng(lat, lng));
+
+                    if (t < 1.0) {
+                        // Post again 16ms later.
+                        handler.postDelayed(this, 16);
+                    }
+                }
+            });
+            return false;
         }
     };
 
@@ -118,11 +151,9 @@ public class MapsFragment extends Fragment {
                 }
             }
 
-
+            googleMap.setOnMarkerClickListener(markerClickListener);
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(CityCoordinate.KYEV, 13));
             googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
         }
     };
-
-
 }
