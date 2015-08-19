@@ -19,7 +19,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.Projection;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -35,6 +34,7 @@ import java.util.Collection;
 public class MapsFragment extends Fragment {
     private SupportMapFragment mapFragment;
     private GoogleMap mGoogleMap;
+    private Marker marker;
 
     @Nullable
     @Override
@@ -62,18 +62,35 @@ public class MapsFragment extends Fragment {
     private GoogleMap.OnMyLocationChangeListener onMyLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
         @Override
         public void onMyLocationChange(Location location) {
+            Marker myNewMarker = null;
             if (location != null) {
                 Log.d(MyTag.TEST, "LOCATION NOT NULL");
                 LatLng target = new LatLng(location.getLatitude(), location.getLongitude());
-                Marker myLoc = mGoogleMap.addMarker(new MarkerOptions()
+                if (marker != null) {
+                    marker.remove();
+                    myNewMarker = mGoogleMap.addMarker(new MarkerOptions()
+                            .position(target)
+                            .title("ME")
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                }
+                marker = mGoogleMap.addMarker(new MarkerOptions()
                         .position(target)
                         .title("ME")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)))                        ;
-                //fromResource(R.drawable.ic_navigation_black_18dp))
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                if (myNewMarker != null) {
+                    myNewMarker.remove();
+                }
+                /*mGoogleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                    @Override
+                    public void onInfoWindowClick(Marker marker) {
+                        marker.remove();
+                    }
+                });*/
             }
         }
     };
 
+    //animation bounce
     private GoogleMap.OnMarkerClickListener markerClickListener = new GoogleMap.OnMarkerClickListener() {
         @Override
         public boolean onMarkerClick(final Marker marker) {
