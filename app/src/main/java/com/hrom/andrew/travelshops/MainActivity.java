@@ -177,6 +177,11 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    private void clickOnMap (View v){
+        transaction = manager.beginTransaction();
+        transaction.replace(R.id.container, new MapsFragment()).commit();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
