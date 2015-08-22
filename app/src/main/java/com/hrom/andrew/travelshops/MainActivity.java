@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.hrom.andrew.travelshops.Fragments.BikeFragment;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private android.support.v4.app.FragmentManager manager;
     private android.support.v4.app.FragmentTransaction transaction;
     private int clickedItem = -1;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initializeNavigatorDrawer(toolbar);
+
+        progressBar = (ProgressBar)findViewById(R.id.progress_bar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -86,8 +90,8 @@ public class MainActivity extends AppCompatActivity {
                             transaction = manager.beginTransaction();
                             switch (clickedItem) {
                                 case 0:
-                                    Intent intent = new Intent(getApplicationContext(), MapActivity.class);
-                                    startActivity(intent);
+                                    /*Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+                                    startActivity(intent);*/
                                     break;
                                 case 2:
                                     transaction.replace(R.id.container, new MountainFragment());
@@ -205,4 +209,5 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 }
