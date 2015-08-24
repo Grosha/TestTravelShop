@@ -30,7 +30,9 @@ public class WebViewFragment extends Fragment {
 
         webView.setWebViewClient(new MyWebClent(progressBar));
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("http://www.lavina.com.ua/");
+        webView.getSettings().setSupportZoom(true);
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.loadUrl("http://seeski.visit.ua/");
     }
 
 }
