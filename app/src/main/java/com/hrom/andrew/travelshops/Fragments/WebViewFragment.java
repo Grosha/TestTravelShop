@@ -25,6 +25,8 @@ public class WebViewFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        String url = getArguments().getString("POSIT_");
+
         webView = (WebView) getActivity().findViewById(R.id.webView);
         progressBar = (ProgressBar) getActivity().findViewById(R.id.webProgressBar);
 
@@ -32,7 +34,9 @@ public class WebViewFragment extends Fragment {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setSupportZoom(true);
         webView.getSettings().setBuiltInZoomControls(true);
-        webView.loadUrl("http://seeski.visit.ua/");
+        if (url != null || !url.isEmpty()) {
+            webView.loadUrl(url);
+        }
     }
 
 }

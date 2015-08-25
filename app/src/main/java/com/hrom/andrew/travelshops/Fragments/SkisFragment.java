@@ -56,6 +56,10 @@ public class SkisFragment extends ListFragment {
         /*Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(skisShop.getLinkShop(position)));
         startActivity(intent);*/
 
-        getFragmentManager().beginTransaction().replace(R.id.container, new WebViewFragment()).commit();
+        WebViewFragment fragment = new WebViewFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("POSIT_", skisShop.getLinkShop(position));
+        fragment.setArguments(bundle);
+        getFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
     }
 }
