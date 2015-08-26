@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hrom.andrew.travelshops">
+    package="com.hrom.andrew.travelshops"
+    android:versionCode="1"
+    android:versionName="Develop">
 
     <permission
         android:name="com.vogella.android.locationapi.maps.permission.MAPS_RECEIVE"
