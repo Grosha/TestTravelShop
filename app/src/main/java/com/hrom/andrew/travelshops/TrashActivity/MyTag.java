@@ -4,6 +4,7 @@ public class MyTag {
     public static final String NAMEFRAGMENT = "FRAGMENT";
     public static final String TEST = "TAG_NAME_FRAGMENT";
     public static final String PROGRESS = "PROGRESS";
+    public static final String WEB = "WEB";
     public static String TAG_MOUNTAIN = "1";
     public static String TAG_SKIS = "2";
     public static String TAG_SNOWBOARD = "3";

@@ -10,6 +10,7 @@ import android.webkit.WebView;
 import android.widget.ProgressBar;
 
 import com.hrom.andrew.travelshops.R;
+import com.hrom.andrew.travelshops.TrashActivity.MyTag;
 import com.hrom.andrew.travelshops.TrashActivity.MyWebClent;
 
 public class WebViewFragment extends Fragment {
@@ -25,7 +26,7 @@ public class WebViewFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String url = getArguments().getString("POSIT_");
+        String url = getArguments().getString(MyTag.WEB);
 
         webView = (WebView) getActivity().findViewById(R.id.webView);
         progressBar = (ProgressBar) getActivity().findViewById(R.id.webProgressBar);

@@ -53,13 +53,14 @@ public class SkisFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        /*Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(skisShop.getLinkShop(position)));
-        startActivity(intent);*/
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(skisShop.getLinkShop(position)));
+        startActivity(intent);
 
-        WebViewFragment fragment = new WebViewFragment();
+        //відкриття сайте через свій веб в фрагменті
+        /*WebViewFragment fragment = new WebViewFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("POSIT_", skisShop.getLinkShop(position));
+        bundle.putString(MyTag.WEB, skisShop.getLinkShop(position));
         fragment.setArguments(bundle);
-        getFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+        getFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();*/
     }
 }
