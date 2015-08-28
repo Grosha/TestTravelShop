@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:indeterminateDrawable="@drawable/progress_bar_1_"
+        android:indeterminateDrawable="@drawable/progress_bar_3_"
         android:indeterminateOnly="true" />
 
 </RelativeLayout>

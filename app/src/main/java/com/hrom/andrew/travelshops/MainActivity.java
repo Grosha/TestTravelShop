@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                                 .withIcon(R.drawable.bicycle_icon_18),
                         new SecondaryDrawerItem()
                                 .withName("Maps")
-                                .withIcon(R.drawable.ic_room_black_18dp)
+                                .withIcon(R.drawable.ic_google_maps_24)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
 

@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.Interpolator;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -33,6 +34,7 @@ import java.util.Collection;
 
 public class MapsFragment extends Fragment {
     private SupportMapFragment mapFragment;
+    private ProgressBar progressBar;
     private GoogleMap mGoogleMap;
     private Marker marker;
 
@@ -46,8 +48,11 @@ public class MapsFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        progressBar = (ProgressBar) getActivity().findViewById(R.id.webProgressBar);
+        progressBar.setVisibility(ProgressBar.VISIBLE);
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         if (mapFragment == null) {
+
             mapFragment.newInstance();
             getFragmentManager().beginTransaction().replace(R.id.map, mapFragment).commit();
         }
@@ -129,8 +134,9 @@ public class MapsFragment extends Fragment {
     private OnMapReadyCallback onMapReadyCallback = new OnMapReadyCallback() {
         @Override
         public void onMapReady(GoogleMap googleMap) {
-            mGoogleMap = googleMap;
 
+            mGoogleMap = googleMap;
+            progressBar.setVisibility(ProgressBar.GONE);
             googleMap.setOnMyLocationChangeListener(onMyLocationChangeListener);
 
             ShopCoordinate shop = new ShopCoordinate();
