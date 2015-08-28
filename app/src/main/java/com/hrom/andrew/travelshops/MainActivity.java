@@ -181,6 +181,10 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    public void setLastFragmentTag(String tag) {
+        RetainedFragment.setClassName(tag);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items

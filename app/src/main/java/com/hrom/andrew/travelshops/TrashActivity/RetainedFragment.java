@@ -6,19 +6,13 @@ import android.support.v4.app.Fragment;
 import com.hrom.andrew.travelshops.Fragments.MountainFragment;
 
 public class RetainedFragment extends Fragment {
-    private MountainFragment mountainFragment;
+    private static String className = "";
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setRetainInstance(true);
+    public static String getClassName() {
+        return className;
     }
 
-    public void setFragment(MountainFragment fragment) {
-        this.mountainFragment = fragment;
-    }
-
-    public MountainFragment getFragment() {
-        return mountainFragment;
+    public static void setClassName(String className) {
+        RetainedFragment.className = className;
     }
 }

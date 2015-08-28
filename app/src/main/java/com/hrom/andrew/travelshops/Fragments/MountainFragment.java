@@ -11,6 +11,7 @@ import android.widget.SimpleAdapter;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.MountainShop;
 import com.hrom.andrew.travelshops.TrashActivity.MyTag;
+import com.hrom.andrew.travelshops.TrashActivity.RetainedFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;

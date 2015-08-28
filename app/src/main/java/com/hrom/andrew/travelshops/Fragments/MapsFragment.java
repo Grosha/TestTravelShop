@@ -26,11 +26,15 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.hrom.andrew.travelshops.DBCoordinates.CityCoordinate;
 import com.hrom.andrew.travelshops.DBCoordinates.ShopCoordinate;
+import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.BikeShop;
 import com.hrom.andrew.travelshops.TrashActivity.MyTag;
+import com.hrom.andrew.travelshops.TrashActivity.RetainedFragment;
 
 import java.util.Collection;
+
+import static com.hrom.andrew.travelshops.Fragments.BikeFragment.*;
 
 public class MapsFragment extends Fragment {
     private SupportMapFragment mapFragment;
@@ -48,6 +52,10 @@ public class MapsFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        if (RetainedFragment.getClassName().equals(BikeFragment.TAG)) {
+
+
+        }
         progressBar = (ProgressBar) getActivity().findViewById(R.id.webProgressBar);
         progressBar.setVisibility(ProgressBar.VISIBLE);
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
