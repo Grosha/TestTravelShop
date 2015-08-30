@@ -32,7 +32,7 @@ public class ProgresBarAsyncTask extends AsyncTask<Void, Integer, Void> {
 
     @Override
     protected Void doInBackground(Void... params) {
-        while (idFragment != MyTag.TAG_MAP){
+        while (idFragment != MyTag.TAG_MAP_){
             idFragment++;
             publishProgress(idFragment);
             SystemClock.sleep(500);

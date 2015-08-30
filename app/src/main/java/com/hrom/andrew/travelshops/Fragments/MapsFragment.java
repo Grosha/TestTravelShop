@@ -1,7 +1,9 @@
 package com.hrom.andrew.travelshops.Fragments;
 
+import android.annotation.TargetApi;
 import android.graphics.Point;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -29,9 +31,15 @@ import com.hrom.andrew.travelshops.DBCoordinates.ShopCoordinate;
 import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.BikeShop;
+import com.hrom.andrew.travelshops.ShopDB.MountainShop;
+import com.hrom.andrew.travelshops.ShopDB.SkisShop;
+import com.hrom.andrew.travelshops.ShopDB.SnowboardShop;
+import com.hrom.andrew.travelshops.ShopDB.SportShop;
 import com.hrom.andrew.travelshops.TrashActivity.MyTag;
 import com.hrom.andrew.travelshops.TrashActivity.RetainedFragment;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Collection;
 
 import static com.hrom.andrew.travelshops.Fragments.BikeFragment.*;
@@ -41,6 +49,7 @@ public class MapsFragment extends Fragment {
     private ProgressBar progressBar;
     private GoogleMap mGoogleMap;
     private Marker marker;
+    private SportShop sportShop;
 
     @Nullable
     @Override
@@ -52,12 +61,31 @@ public class MapsFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if (RetainedFragment.getClassName().equals(BikeFragment.TAG)) {
-
-
+        if (RetainedFragment.getClassName().contains(MyTag.TAG_BIKE)){
+            Log.d(MyTag.TEST, "bike");
+            sportShop = new BikeShop();
+        }else if (RetainedFragment.getClassName().contains(MyTag.TAG_MOUNTAIN)){
+            Log.d(MyTag.TEST, "montain");
+            sportShop = new MountainShop();
+        }else if (RetainedFragment.getClassName().contains(MyTag.TAG_SKIS)){
+            Log.d(MyTag.TEST, "ski");
+            sportShop = new SkisShop();
+        }else if (RetainedFragment.getClassName().contains(MyTag.TAG_SNOWBOARD)){
+            Log.d(MyTag.TEST, "snow");
+            sportShop = new SnowboardShop();
         }
+
+        /*switch (RetainedFragment.getClassName()){
+            case "class com.hrom.andrew.travelshops.Fragments.BikeFragment":
+                Log.d(MyTag.TEST, "bike");
+            case "class com.hrom.andrew.travelshops.Fragments.MountainFragment":
+                Log.d(MyTag.TEST, "mountain");
+        }*/
+
+        //прогрес бар для мапи
         progressBar = (ProgressBar) getActivity().findViewById(R.id.webProgressBar);
         progressBar.setVisibility(ProgressBar.VISIBLE);
+
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         if (mapFragment == null) {
 
@@ -105,6 +133,7 @@ public class MapsFragment extends Fragment {
 
     //animation bounce
     private GoogleMap.OnMarkerClickListener markerClickListener = new GoogleMap.OnMarkerClickListener() {
+        @TargetApi(Build.VERSION_CODES.DONUT)
         @Override
         public boolean onMarkerClick(final Marker marker) {
             final Handler handler = new Handler();
@@ -148,7 +177,7 @@ public class MapsFragment extends Fragment {
             googleMap.setOnMyLocationChangeListener(onMyLocationChangeListener);
 
             ShopCoordinate shop = new ShopCoordinate();
-            BikeShop bike = new BikeShop();
+
             Log.d(MyTag.TEST, "TEST");
 
             if (googleMap != null) {
@@ -157,13 +186,13 @@ public class MapsFragment extends Fragment {
                 Marker city = googleMap.addMarker(new MarkerOptions().position(CityCoordinate.KYEV)
                         .title("KYEV"));
 
-                for (int i = 0; i < bike.getListShops().size(); i++) {
-                    Collection<LatLng> colecLng = shop.getCoordinate(bike.getListShops().get(i));
+                for (int i = 0; i < sportShop.getListShops().size(); i++) {
+                    Collection<LatLng> colecLng = shop.getCoordinate(sportShop.getListShops().get(i));
 
-                    Log.d(MyTag.NAMEFRAGMENT, String.valueOf(bike.getListShops().get(i)));
+                    Log.d(MyTag.NAMEFRAGMENT, String.valueOf(sportShop.getListShops().get(i)));
                     Log.d(MyTag.NAMEFRAGMENT, String.valueOf(colecLng));
 
-                    if (shop.getCoordinate(bike.getListShops().get(i)) == null) {
+                    if (shop.getCoordinate(sportShop.getListShops().get(i)) == null) {
                         //if (i != bike.getListShops().size() - 1) {
                         continue;
                         //} else break;
@@ -172,10 +201,10 @@ public class MapsFragment extends Fragment {
                             Marker shopMarker = googleMap.addMarker(
                                     new MarkerOptions()
                                             .position(latLng)
-                                            .title(bike.getListShops().get(i))
+                                            .title(sportShop.getListShops().get(i))
                                             .snippet("Kiel is cool")
                                             .icon(BitmapDescriptorFactory
-                                                    .fromResource(bike.getIconShops().get(i))));
+                                                    .fromResource(sportShop.getIconShops().get(i))));
                         }
                     }
 

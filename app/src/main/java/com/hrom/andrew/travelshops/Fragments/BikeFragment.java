@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -25,7 +26,10 @@ public class BikeFragment extends ListFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         List<HashMap<String, String>> listBikeShop = new ArrayList<>();
+
         ((MainActivity) getActivity()).setLastFragmentTag(this.getClass().toString());
+        //((MainActivity) getActivity()).setLastFragmentTag(TAG);
+        Log.d(MyTag.TEST, this.getClass().toString());
 
         for (int i = 0; i < bikeShop.getListShops().size(); i++) {
             HashMap<String, String> hm = new HashMap<>();

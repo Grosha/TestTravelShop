@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 
+import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.SkisShop;
 import com.hrom.andrew.travelshops.TrashActivity.MyTag;
@@ -32,6 +33,8 @@ public class SkisFragment extends ListFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         List<HashMap<String, String>> listBikeShop = new ArrayList<>();
+
+        ((MainActivity) getActivity()).setLastFragmentTag(this.getClass().toString());
 
         for (int i = 0; i < skisShop.getListShops().size(); i++) {
             HashMap<String, String> hm = new HashMap<>();

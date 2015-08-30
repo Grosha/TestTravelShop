@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.MountainShop;
 import com.hrom.andrew.travelshops.TrashActivity.MyTag;
@@ -25,6 +26,8 @@ public class MountainFragment extends ListFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         List<HashMap<String, String>> listMountainShop = new ArrayList<>();
+
+        ((MainActivity) getActivity()).setLastFragmentTag(this.getClass().toString());
 
         for (int i = 0; i < mountainShop.getListShops().size(); i++) {
             HashMap<String, String> hm = new HashMap<>();
