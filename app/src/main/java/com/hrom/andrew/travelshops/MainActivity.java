@@ -14,6 +14,9 @@ import android.widget.AdapterView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.Target;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.hrom.andrew.travelshops.Fragments.BikeFragment;
 import com.hrom.andrew.travelshops.Fragments.MapActivity;
 import com.hrom.andrew.travelshops.Fragments.MapsFragment;
@@ -37,15 +40,17 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 public class MainActivity extends AppCompatActivity {
 
     private Drawer drawer;
-    private RetainedFragment retainedFragment;
     private MountainFragment mountainFragment;
     private BikeFragment bikeFragment;
     private SnowboardFragment snowboardFragment;
     private SkisFragment skisFragment;
     private android.support.v4.app.FragmentManager manager;
     private android.support.v4.app.FragmentTransaction transaction;
+    private ShowcaseView showcaseView;
+    private Target targetButMap, targetClickList;
+    private int numberItem = 0;
     private int clickedItem = -1;
-    private ProgressBar progressBar;
+    //private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +67,21 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         initializeNavigatorDrawer(toolbar);
 
-        progressBar = (ProgressBar)findViewById(R.id.progress_bar);
+        targetButMap = new ViewTarget(R.id.action_search, this);
+        targetClickList = new ViewTarget(R.id.travelList, this);
+
+        showcaseView = new ShowcaseView.Builder(this)
+                .setTarget(Target.NONE)
+                //.hideOnTouchOutside()
+                /*.setOnClickListener()*/
+                .setContentText(R.color.md_red_200)
+                .setContentTitle("MY Tutorial")
+                .setContentText("AbuDabi")
+                .setStyle(R.color.background_material_dark)
+                .build();
+        showcaseView.setButtonText("I GOT IT");
+
+        //progressBar = (ProgressBar)findViewById(R.id.progress_bar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -96,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
                                 case 2:
                                     transaction.replace(R.id.container, new MountainFragment());
                                     //transaction.replace(R.id.container, new SwipeMountain());
-                                    //retainedFragment = (RetainedFragment)manager.findFragmentByTag("");
                                     break;
                                 case 3:
                                     transaction.replace(R.id.container, new SkisFragment());
@@ -192,19 +210,7 @@ public class MainActivity extends AppCompatActivity {
         transaction = manager.beginTransaction();
         switch (item.getItemId()) {
             case R.id.action_search:
-                /*mountainFragment = (MountainFragment) manager.findFragmentByTag(MyTag.TAG_MOUNTAIN);
-                snowboardFragment = (SnowboardFragment) manager.findFragmentByTag(MyTag.TAG_SNOWBOARD);
-                skisFragment = (SkisFragment) manager.findFragmentByTag(MyTag.TAG_SKIS);
-                bikeFragment = (BikeFragment) manager.findFragmentByTag(MyTag.TAG_BIKE);
-
-                retainedFragment.setFragment(new MountainFragment());
-                retainedFragment = (RetainedFragment) manager.findFragmentByTag(MyTag.TAG_MOUNTAIN);
-                if (retainedFragment.equals(mountainFragment)){
-                    Log.d(MyTag.TEST, "equals");
-                }*/
-
                 transaction.replace(R.id.container, new MapsFragment()).commit();
-                //transaction.commit();
                 return true;
             /*case R.id.action_settings:
                 openSettings();
@@ -212,6 +218,25 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void tutorial(View view) {
+        switch (numberItem) {
+            case 0:
+                showcaseView.setShowcase(targetButMap, true);
+                showcaseView.setContentTitle("Map");
+                showcaseView.setButtonText("Bike Map");
+                break;
+            case 1:
+                showcaseView.setShowcase(targetClickList, true);
+                showcaseView.setContentTitle("A");
+                showcaseView.setButtonText("BikeAAAAAAAAA Map");
+                break;
+            case 2:
+                showcaseView.hide();
+                break;
+        }
+        numberItem++;
     }
 
 }
