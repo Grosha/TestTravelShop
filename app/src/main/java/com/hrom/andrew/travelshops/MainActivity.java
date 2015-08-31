@@ -74,10 +74,9 @@ public class MainActivity extends AppCompatActivity {
                 .setTarget(Target.NONE)
                 //.hideOnTouchOutside()
                 /*.setOnClickListener()*/
-                .setContentText(R.color.md_red_200)
                 .setContentTitle("MY Tutorial")
                 .setContentText("AbuDabi")
-                .setStyle(R.color.background_material_dark)
+                .setStyle(R.style.CustomShowcaseTheme2)
                 .build();
         showcaseView.setButtonText("I GOT IT");
 

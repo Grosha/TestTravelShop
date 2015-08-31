@@ -11,4 +11,23 @@
         <item name="colorPrimaryDark">#148065</item>
     </style>
 
+    <style name="CustomShowcaseTheme" parent="ShowcaseView.Light">
+        <item name="sv_backgroundColor">#3300A621</item>
+        <item name="sv_showcaseColor">#00801A</item>
+        <item name="sv_buttonText">Hide</item>
+        <item name="sv_tintButtonColor">false</item>
+    </style>
+
+    <style name="CustomShowcaseTheme2" parent="ShowcaseView.Light">
+        <item name="sv_backgroundColor">#E44E533A</item>
+        <item name="sv_showcaseColor">#25467A</item>
+        <item name="sv_buttonText">Close</item>
+    </style>
+
+    <style name="CustomShowcaseTheme3" parent="ShowcaseView">
+        <item name="sv_backgroundColor">#330066FF</item>
+        <item name="sv_showcaseColor">#00801A</item>
+        <item name="sv_buttonText">Close</item>
+    </style>
+
 </resources>
