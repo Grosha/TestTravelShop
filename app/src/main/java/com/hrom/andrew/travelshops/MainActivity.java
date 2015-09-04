@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ActionViewTarget;
 import com.github.amlcurran.showcaseview.targets.Target;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.hrom.andrew.travelshops.Fragments.BikeFragment;
@@ -73,7 +74,12 @@ public class MainActivity extends AppCompatActivity {
         showcaseView = new ShowcaseView.Builder(this)
                 .setTarget(Target.NONE)
                 //.hideOnTouchOutside()
-                /*.setOnClickListener()*/
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        tutorial(v);
+                    }
+                })
                 .setContentTitle("MY Tutorial")
                 .setContentText("AbuDabi")
                 .setStyle(R.style.CustomShowcaseTheme2)
@@ -221,12 +227,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void tutorial(View view) {
         switch (numberItem) {
-            case 0:
+            case 1:
                 showcaseView.setShowcase(targetButMap, true);
                 showcaseView.setContentTitle("Map");
                 showcaseView.setButtonText("Bike Map");
                 break;
-            case 1:
+            case 0:
                 showcaseView.setShowcase(targetClickList, true);
                 showcaseView.setContentTitle("A");
                 showcaseView.setButtonText("BikeAAAAAAAAA Map");
