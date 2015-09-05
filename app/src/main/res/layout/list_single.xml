@@ -9,7 +9,8 @@
             android:id="@+id/imgForList"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_gravity="center_vertical" />
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp" />
 
         <TextView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/textForList"
@@ -23,6 +24,15 @@
             android:textColor="#fffbffbe"
             android:textSize="24sp"
             android:textStyle="bold"></TextView>
+
+        <ImageView
+            android:id="@+id/imgForMyList"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_column="2"
+            android:layout_gravity="center_vertical"
+            android:onClick="sh"
+            android:layout_marginLeft="15dp" />
 
     </TableRow>
 </TableLayout>

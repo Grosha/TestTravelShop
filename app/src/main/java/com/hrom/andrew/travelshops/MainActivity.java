@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                                 .withIcon(R.drawable.snowboarder_18),
                         new SecondaryDrawerItem()
                                 .withName("Bike")
-                                .withIcon(R.drawable.bicycle_icon_18),
+                                .withIcon(R.drawable.ic_directions_bike_black_18dp),
                         new SecondaryDrawerItem()
                                 .withName("Maps")
                                 .withIcon(R.drawable.ic_map_black_36dp)
@@ -212,6 +212,10 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void sh(View v){
+        Toast.makeText(getApplicationContext(), "sdsdsd", Toast.LENGTH_LONG).show();
     }
 
 }

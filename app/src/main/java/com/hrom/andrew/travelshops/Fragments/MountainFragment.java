@@ -34,11 +34,12 @@ public class MountainFragment extends ListFragment {
 
             hm.put("img", Integer.toString(mountainShop.getIconShops().get(i)));
             hm.put("txt", mountainShop.getListShops().get(i));
+            hm.put("imgMy", Integer.toString(R.drawable.ic_control_point_black_24dp));
             listMountainShop.add(hm);
         }
 
-        String[] from = {"img", "txt"};
-        int[] to = {R.id.imgForList, R.id.textForList};
+        String[] from = {"img", "txt", "imgMy"};
+        int[] to = {R.id.imgForList, R.id.textForList, R.id.imgForMyList};
 
         SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), listMountainShop, R.layout.list_single, from, to);
         setListAdapter(adapter);

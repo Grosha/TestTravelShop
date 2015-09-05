@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
@@ -36,15 +37,32 @@ public class BikeFragment extends ListFragment {
 
             hm.put("img", Integer.toString(bikeShop.getIconShops().get(i)));
             hm.put("txt", bikeShop.getListShops().get(i));
+            hm.put("imgMy", Integer.toString(R.drawable.ic_control_point_black_24dp));
             listBikeShop.add(hm);
         }
 
-        String[] from = {"img", "txt"};
-        int[] to = {R.id.imgForList, R.id.textForList};
+        String[] from = {"img", "txt", "imgMy"};
+        int[] to = {R.id.imgForList, R.id.textForList, R.id.imgForMyList};
 
         SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), listBikeShop, R.layout.list_single, from, to);
         setListAdapter(adapter);
+
         view.setBackgroundResource(R.drawable.background_bike_2);
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.imgForList:
+                        break;
+                    case R.id.textForList:;
+                        break;
+                    case R.id.imgForMyList:
+                        Toast.makeText(getActivity().getApplicationContext(), "sdsdsd", Toast.LENGTH_LONG).show();
+                      break;
+              }
+            }
+        });
     }
 
     @Override
@@ -52,5 +70,19 @@ public class BikeFragment extends ListFragment {
         super.onListItemClick(l, v, position, id);
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(bikeShop.getLinkShop(position)));
         startActivity(intent);
+        /*Intent intent;
+        switch (v.getId()) {
+            case R.id.imgForList:
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(bikeShop.getLinkShop(position)));
+                startActivity(intent);
+                break;
+            case R.id.textForList:
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(bikeShop.getLinkShop(position)));
+                startActivity(intent);
+                break;
+            case R.id.imgForMyList:
+                Toast.makeText(getActivity().getApplicationContext(), "sdsdsd", Toast.LENGTH_LONG).show();
+                break;
+        }*/
     }
 }
