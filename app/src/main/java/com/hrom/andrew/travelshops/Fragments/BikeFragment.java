@@ -48,21 +48,6 @@ public class BikeFragment extends ListFragment {
         setListAdapter(adapter);
 
         view.setBackgroundResource(R.drawable.background_bike_2);
-
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.imgForList:
-                        break;
-                    case R.id.textForList:;
-                        break;
-                    case R.id.imgForMyList:
-                        Toast.makeText(getActivity().getApplicationContext(), "sdsdsd", Toast.LENGTH_LONG).show();
-                      break;
-              }
-            }
-        });
     }
 
     @Override
@@ -70,19 +55,5 @@ public class BikeFragment extends ListFragment {
         super.onListItemClick(l, v, position, id);
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(bikeShop.getLinkShop(position)));
         startActivity(intent);
-        /*Intent intent;
-        switch (v.getId()) {
-            case R.id.imgForList:
-                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(bikeShop.getLinkShop(position)));
-                startActivity(intent);
-                break;
-            case R.id.textForList:
-                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(bikeShop.getLinkShop(position)));
-                startActivity(intent);
-                break;
-            case R.id.imgForMyList:
-                Toast.makeText(getActivity().getApplicationContext(), "sdsdsd", Toast.LENGTH_LONG).show();
-                break;
-        }*/
     }
 }
