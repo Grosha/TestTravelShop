@@ -46,6 +46,7 @@ public class CustomAdapter extends ArrayAdapter {
         imgIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Log.d(MyTag.TEST, "1");
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(bikeShop.getLinkShop(position)));
                 view.getContext().startActivity(intent);
