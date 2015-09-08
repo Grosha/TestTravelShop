@@ -214,8 +214,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void sh(View v){
-        Toast.makeText(getApplicationContext(), "sdsdsd", Toast.LENGTH_LONG).show();
-    }
-
 }

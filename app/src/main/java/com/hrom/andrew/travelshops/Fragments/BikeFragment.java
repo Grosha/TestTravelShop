@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.BikeShop;
+import com.hrom.andrew.travelshops.TrashActivity.CustomAdapter;
 import com.hrom.andrew.travelshops.TrashActivity.MyTag;
 
 import java.util.ArrayList;
@@ -41,19 +42,21 @@ public class BikeFragment extends ListFragment {
             listBikeShop.add(hm);
         }
 
-        String[] from = {"img", "txt", "imgMy"};
+        /*String[] from = {"img", "txt", "imgMy"};
         int[] to = {R.id.imgForList, R.id.textForList, R.id.imgForMyList};
-
-        SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), listBikeShop, R.layout.list_single, from, to);
-        setListAdapter(adapter);
+*/
+        /*SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), listBikeShop, R.layout.list_single, from, to);
+        setListAdapter(adapter);*/
+        CustomAdapter customAdapter = new CustomAdapter(getActivity().getBaseContext(),R.layout.list_single,listBikeShop);
+        setListAdapter(customAdapter);
 
         view.setBackgroundResource(R.drawable.background_bike_2);
     }
 
-    @Override
+    /*@Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(bikeShop.getLinkShop(position)));
         startActivity(intent);
-    }
+    }*/
 }

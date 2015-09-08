@@ -10,6 +10,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center_vertical"
+            android:background="?android:attr/selectableItemBackground"
             android:layout_marginLeft="10dp" />
 
         <TextView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -23,7 +24,8 @@
             android:text="TextView"
             android:textColor="#fffbffbe"
             android:textSize="24sp"
-            android:textStyle="bold"></TextView>
+            android:background="?android:attr/selectableItemBackground"
+            android:textStyle="bold"/>
 
         <ImageView
             android:id="@+id/imgForMyList"
@@ -31,7 +33,7 @@
             android:layout_height="30dp"
             android:layout_column="2"
             android:layout_gravity="center_vertical"
-            android:onClick="sh"
+            android:background="?android:attr/selectableItemBackground"
             android:layout_marginLeft="15dp" />
 
     </TableRow>
