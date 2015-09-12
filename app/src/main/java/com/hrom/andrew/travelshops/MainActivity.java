@@ -211,19 +211,7 @@ public class MainActivity extends AppCompatActivity {
         transaction = manager.beginTransaction();
         switch (item.getItemId()) {
             case R.id.action_search:
-                /*mountainFragment = (MountainFragment) manager.findFragmentByTag(MyTag.TAG_MOUNTAIN);
-                snowboardFragment = (SnowboardFragment) manager.findFragmentByTag(MyTag.TAG_SNOWBOARD);
-                skisFragment = (SkisFragment) manager.findFragmentByTag(MyTag.TAG_SKIS);
-                bikeFragment = (BikeFragment) manager.findFragmentByTag(MyTag.TAG_BIKE);
-
-                retainedFragment.setFragment(new MountainFragment());
-                retainedFragment = (RetainedFragment) manager.findFragmentByTag(MyTag.TAG_MOUNTAIN);
-                if (retainedFragment.equals(mountainFragment)){
-                    Log.d(MyTag.TEST, "equals");
-                }*/
-
-                transaction.replace(R.id.container, new MapsFragment()).commit();
-                //transaction.commit();
+                transaction.replace(R.id.container, new MapsFragment()).addToBackStack("map").commit();
                 return true;
             /*case R.id.action_settings:
                 openSettings();
