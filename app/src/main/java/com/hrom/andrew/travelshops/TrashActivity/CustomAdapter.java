@@ -2,6 +2,7 @@ package com.hrom.andrew.travelshops.TrashActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,7 +19,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class CustomAdapter extends ArrayAdapter {
-    private final List object;
+    private List object;
+    private Context context;
     private ImageView imgIcon;
     private TextView nameShop;
     private ImageView imgPlus;
@@ -27,6 +29,7 @@ public class CustomAdapter extends ArrayAdapter {
     public CustomAdapter(Context context, int resource, List objects) {
         super(context, resource, objects);
         this.object = objects;
+        this.context = context;
     }
 
     @Override
@@ -66,6 +69,8 @@ public class CustomAdapter extends ArrayAdapter {
             @Override
             public void onClick(View v) {
                 Log.d(MyTag.TEST, "3");
+                SharedPreference sp = new SharedPreference();
+                sp.save(context,"BIKE");
             }
         });
 

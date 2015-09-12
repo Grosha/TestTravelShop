@@ -3,20 +3,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/imgForList"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_column="0"
             android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
             android:background="?android:attr/selectableItemBackground"
-            android:layout_marginLeft="10dp" />
+            android:backgroundTint="@color/abc_primary_text_disable_only_material_dark" />
 
         <TextView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/textForList"
             android:layout_width="262dp"
             android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:background="?android:attr/selectableItemBackground"
             android:gravity="left"
             android:paddingBottom="10dp"
             android:paddingLeft="30dp"
@@ -24,8 +30,7 @@
             android:text="TextView"
             android:textColor="#fffbffbe"
             android:textSize="24sp"
-            android:background="?android:attr/selectableItemBackground"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/imgForMyList"
@@ -33,8 +38,8 @@
             android:layout_height="30dp"
             android:layout_column="2"
             android:layout_gravity="center_vertical"
-            android:background="?android:attr/selectableItemBackground"
-            android:layout_marginLeft="15dp" />
+            android:layout_marginLeft="10dp"
+            android:background="?android:attr/selectableItemBackground" />
 
     </TableRow>
 </TableLayout>

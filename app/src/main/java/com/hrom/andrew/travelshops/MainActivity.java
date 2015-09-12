@@ -23,6 +23,7 @@ import com.hrom.andrew.travelshops.Fragments.SnowboardFragment;
 import com.hrom.andrew.travelshops.ShopDB.MountainShop;
 import com.hrom.andrew.travelshops.TrashActivity.MyTag;
 import com.hrom.andrew.travelshops.TrashActivity.RetainedFragment;
+import com.hrom.andrew.travelshops.TrashActivity.SharedPreference;
 import com.hrom.andrew.travelshops.TrashActivity.SwipeMountain;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         initializeNavigatorDrawer(toolbar);
 
-        progressBar = (ProgressBar)findViewById(R.id.progress_bar);
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -206,8 +207,7 @@ public class MainActivity extends AppCompatActivity {
                 transaction.replace(R.id.container, new MapsFragment()).commit();
                 //transaction.commit();
                 return true;
-            /*case R.id.action_settings:
-                openSettings();
+           /* case R.id.action_settings:
                 return true;*/
             default:
                 return super.onOptionsItemSelected(item);
