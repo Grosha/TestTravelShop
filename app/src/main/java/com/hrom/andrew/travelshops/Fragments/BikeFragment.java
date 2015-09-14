@@ -47,7 +47,7 @@ public class BikeFragment extends ListFragment {
 */
         /*SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), listBikeShop, R.layout.list_single, from, to);
         setListAdapter(adapter);*/
-        CustomAdapter customAdapter = new CustomAdapter(getActivity().getBaseContext(),R.layout.list_single,listBikeShop);
+        CustomAdapter customAdapter = new CustomAdapter(getActivity().getBaseContext(), R.layout.list_single, listBikeShop);
         setListAdapter(customAdapter);
 
         view.setBackgroundResource(R.drawable.background_bike_2);
@@ -59,4 +59,12 @@ public class BikeFragment extends ListFragment {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(bikeShop.getLinkShop(position)));
         startActivity(intent);
     }*/
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getActivity() != null) {
+            getActivity().setTitle("Bike");
+        }
+    }
 }

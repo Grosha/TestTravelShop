@@ -66,4 +66,12 @@ public class SkisFragment extends ListFragment {
         fragment.setArguments(bundle);
         getFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getActivity() != null) {
+            getActivity().setTitle("Ski");
+        }
+    }
 }

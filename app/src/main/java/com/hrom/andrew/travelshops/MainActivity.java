@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private android.support.v4.app.FragmentTransaction transaction;
     private int clickedItem = -1;
     private ProgressBar progressBar;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +60,16 @@ public class MainActivity extends AppCompatActivity {
 
         manager = getSupportFragmentManager();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initializeNavigatorDrawer(toolbar);
 
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    public Toolbar getToolbar() {
+        return toolbar;
     }
 
     private void initializeNavigatorDrawer(Toolbar toolbar) {

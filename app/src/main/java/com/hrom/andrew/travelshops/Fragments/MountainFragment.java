@@ -53,4 +53,12 @@ public class MountainFragment extends ListFragment {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(mountainShop.getLinkShop(position)));
         startActivity(intent);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getActivity() != null) {
+            getActivity().setTitle("Mountain");
+        }
+    }
 }
