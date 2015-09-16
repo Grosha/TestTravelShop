@@ -168,9 +168,9 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (drawer != null && drawer.isDrawerOpen()) {
             drawer.closeDrawer();
-        } else /*super.onBackPressed();*/
-
-            if (doubleBackToExitPressedOnce) {
+        } else if(getSupportFragmentManager().getBackStackEntryCount()>0){
+            getSupportFragmentManager().popBackStack();
+        } else if (doubleBackToExitPressedOnce) {
                 super.onBackPressed();
                 return;
             } else {
