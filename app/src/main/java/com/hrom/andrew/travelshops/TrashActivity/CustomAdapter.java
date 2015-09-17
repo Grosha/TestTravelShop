@@ -75,6 +75,7 @@ public class CustomAdapter extends ArrayAdapter {
                 Shop shop = new Shop();
                 shop.setIconShop(bikeShop.getIconShops().get(position));
                 shop.setNameShop(bikeShop.getListShops().get(position));
+
                 shop.setUrl(bikeShop.getLinkShop((position)));
 
                 Log.d(MyTag.TEST, new Gson().toJson(shop));
