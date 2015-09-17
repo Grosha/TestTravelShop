@@ -12,8 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.BikeShop;
+import com.hrom.andrew.travelshops.ShopDB.Shop;
 
 import java.util.HashMap;
 import java.util.List;
@@ -69,7 +71,15 @@ public class CustomAdapter extends ArrayAdapter {
             @Override
             public void onClick(View v) {
                 Log.d(MyTag.TEST, "3");
-                PrefUtil.save(getContext(), "BIKE");
+                //PrefUtil.save(getContext(), bikeShop.getListShops().get(position));
+                Shop shop = new Shop();
+                shop.setIconShop(bikeShop.getIconShops().get(position));
+                shop.setNameShop(bikeShop.getListShops().get(position));
+                shop.setUrl(bikeShop.getLinkShop((position)));
+
+                Log.d(MyTag.TEST, new Gson().toJson(shop));
+                PrefUtil.save(getContext(), new Gson().toJson(shop));
+
 
                 v.postDelayed(new Runnable() {
                     @Override

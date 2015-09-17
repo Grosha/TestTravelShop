@@ -30,7 +30,6 @@ public class BikeFragment extends ListFragment {
         List<HashMap<String, String>> listBikeShop = new ArrayList<>();
 
         ((MainActivity) getActivity()).setLastFragmentTag(this.getClass().toString());
-        //((MainActivity) getActivity()).setLastFragmentTag(TAG);
         Log.d(MyTag.TEST, this.getClass().toString());
 
         for (int i = 0; i < bikeShop.getListShops().size(); i++) {
