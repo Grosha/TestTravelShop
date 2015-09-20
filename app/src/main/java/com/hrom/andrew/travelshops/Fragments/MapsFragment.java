@@ -31,6 +31,7 @@ import com.hrom.andrew.travelshops.DBCoordinates.ShopCoordinate;
 import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.BikeShop;
+import com.hrom.andrew.travelshops.ShopDB.FavoriteShop;
 import com.hrom.andrew.travelshops.ShopDB.MountainShop;
 import com.hrom.andrew.travelshops.ShopDB.SkisShop;
 import com.hrom.andrew.travelshops.ShopDB.SnowboardShop;
@@ -73,6 +74,9 @@ public class MapsFragment extends Fragment {
         }else if (RetainedFragment.getClassName().contains(MyTag.TAG_SNOWBOARD)){
             Log.d(MyTag.TEST, "snow");
             sportShop = new SnowboardShop();
+        }else if (RetainedFragment.getClassName().contains(MyTag.TAG_FAVORITE_LIST)){
+            Log.d(MyTag.TEST, "favorite");
+            sportShop = new FavoriteShop();
         }
 
         /*switch (RetainedFragment.getClassName()){

@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ProgressBar;
 
 import com.hrom.andrew.travelshops.Fragments.BikeFragment;
+import com.hrom.andrew.travelshops.Fragments.FavoriteListFragment;
 import com.hrom.andrew.travelshops.Fragments.MapsFragment;
 import com.hrom.andrew.travelshops.Fragments.MountainFragment;
 import com.hrom.andrew.travelshops.Fragments.SkisFragment;
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                             transaction = manager.beginTransaction();
                             switch (clickedItem) {
                                 case 0:
+                                    transaction.replace(R.id.container, new FavoriteListFragment());
                                     /*Intent intent = new Intent(getApplicationContext(), MapActivity.class);
                                     startActivity(intent);*/
                                     break;

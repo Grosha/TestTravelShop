@@ -27,6 +27,7 @@ public class CustomAdapter extends ArrayAdapter {
     private TextView nameShop;
     private ImageView imgPlus;
     private BikeShop bikeShop = new BikeShop();
+    private HashMap<String, String> hash;
 
     public CustomAdapter(Context context, int resource, List objects) {
         super(context, resource, objects);
@@ -37,7 +38,7 @@ public class CustomAdapter extends ArrayAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         final View view = LayoutInflater.from(getContext()).inflate(R.layout.list_single, null);
-        HashMap<String, String> hash = (HashMap<String, String>) object.get(position);
+        hash = (HashMap<String, String>) object.get(position);
 
         imgIcon = (ImageView) view.findViewById(R.id.imgForList);
         imgIcon.setImageResource(Integer.parseInt(hash.get("img")));
@@ -85,9 +86,13 @@ public class CustomAdapter extends ArrayAdapter {
                 v.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getContext(), PrefUtil.getValue(getContext()), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), PrefUtil.getValue(getContext()), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), PrefUtil.getValueList(getContext()).toString() +
+                                " " + PrefUtil.getValueList(getContext()).size(), Toast.LENGTH_SHORT).show();
                     }
                 }, 1000);
+                imgPlus = (ImageView) view.findViewById(R.id.imgForMyList);
+                imgPlus.setImageResource(R.drawable.ic_group_work_black_18dp);
             }
         });
 

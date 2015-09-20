@@ -9,6 +9,7 @@ public class MyTag {
     public static String TAG_SKIS = "SkisFragment";
     public static String TAG_SNOWBOARD = "SnowboardFragment";
     public static String TAG_BIKE = "BikeFragment";
+    public static String TAG_FAVORITE_LIST = "FavoriteListFragment";
     public static String TAG_MAP = "MapsFragment";
     public static int TAG_MAP_ = 4;
 }
