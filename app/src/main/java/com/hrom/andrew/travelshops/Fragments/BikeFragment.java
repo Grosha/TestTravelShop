@@ -1,5 +1,6 @@
 package com.hrom.andrew.travelshops.Fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.BikeShop;
+import com.hrom.andrew.travelshops.ShopDB.FavoriteShop;
 import com.hrom.andrew.travelshops.TrashActivity.CustomAdapter;
 import com.hrom.andrew.travelshops.TrashActivity.MyTag;
 
@@ -23,6 +25,13 @@ import java.util.List;
 public class BikeFragment extends ListFragment {
     public final static String TAG = MyTag.TAG_BIKE;
     private BikeShop bikeShop = new BikeShop();
+    private FavoriteShop favoriteShop;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        favoriteShop = new FavoriteShop(activity);
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -37,7 +46,11 @@ public class BikeFragment extends ListFragment {
 
             hm.put("img", Integer.toString(bikeShop.getIconShops().get(i)));
             hm.put("txt", bikeShop.getListShops().get(i));
-            hm.put("imgMy", Integer.toString(R.drawable.ic_control_point_black_24dp));
+            if (favoriteShop.getListShops().contains(bikeShop.getListShops().get(i))) {
+                hm.put("imgMy", Integer.toString(R.drawable.ic_group_work_black_18dp));
+            } else {
+                hm.put("imgMy", Integer.toString(R.drawable.ic_control_point_black_24dp));
+            }
             listBikeShop.add(hm);
         }
 

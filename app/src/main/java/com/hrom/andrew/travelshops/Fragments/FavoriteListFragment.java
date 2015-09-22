@@ -35,16 +35,12 @@ public class FavoriteListFragment extends ListFragment {
         List<HashMap<String, String>> listFavoriteShops = new ArrayList<>();
         ((MainActivity) getActivity()).setLastFragmentTag(this.getClass().toString());
 
-        int size = favoriteShop.getListShops().size();
-
-        Log.d(TAG, "onViewCreated  = " + size);
-
         for (int i = 0; i < favoriteShop.getListShops().size(); i++) {
             HashMap<String, String> hm = new HashMap<>();
 
             hm.put("img", Integer.toString(favoriteShop.getIconShops().get(i)));
             hm.put("txt", favoriteShop.getListShops().get(i));
-            hm.put("imgMy", Integer.toString(R.drawable.ic_control_point_black_24dp));
+            hm.put("imgMy", Integer.toString(R.drawable.ic_group_work_black_18dp));
             listFavoriteShops.add(hm);
         }
 

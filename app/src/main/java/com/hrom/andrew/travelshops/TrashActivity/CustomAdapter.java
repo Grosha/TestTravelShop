@@ -91,6 +91,8 @@ public class CustomAdapter extends ArrayAdapter {
                                 " " + PrefUtil.getValueList(getContext()).size(), Toast.LENGTH_SHORT).show();
                     }
                 }, 1000);
+
+
                 imgPlus = (ImageView) view.findViewById(R.id.imgForMyList);
                 imgPlus.setImageResource(R.drawable.ic_group_work_black_18dp);
             }
