@@ -76,7 +76,7 @@ public class MapsFragment extends Fragment {
             sportShop = new SnowboardShop();
         }else if (RetainedFragment.getClassName().contains(MyTag.TAG_FAVORITE_LIST)){
             Log.d(MyTag.TEST, "favorite");
-            sportShop = new FavoriteShop();
+            sportShop = new FavoriteShop(getActivity());
         }
 
         /*switch (RetainedFragment.getClassName()){

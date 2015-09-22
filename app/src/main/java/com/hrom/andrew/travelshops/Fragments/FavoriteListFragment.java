@@ -1,5 +1,6 @@
 package com.hrom.andrew.travelshops.Fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -19,7 +20,13 @@ import java.util.Set;
 
 public class FavoriteListFragment extends ListFragment {
     public final static String TAG = MyTag.TAG_FAVORITE_LIST;
-    private FavoriteShop favoriteShop = new FavoriteShop();
+    private FavoriteShop favoriteShop;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        favoriteShop = new FavoriteShop(activity);
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -27,6 +34,10 @@ public class FavoriteListFragment extends ListFragment {
 
         List<HashMap<String, String>> listFavoriteShops = new ArrayList<>();
         ((MainActivity) getActivity()).setLastFragmentTag(this.getClass().toString());
+
+        int size = favoriteShop.getListShops().size();
+
+        Log.d(TAG, "onViewCreated  = " + size);
 
         for (int i = 0; i < favoriteShop.getListShops().size(); i++) {
             HashMap<String, String> hm = new HashMap<>();

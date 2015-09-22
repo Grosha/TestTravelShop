@@ -1,7 +1,10 @@
 package com.hrom.andrew.travelshops.ShopDB;
 
+import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.hrom.andrew.travelshops.TrashActivity.MyTag;
 import com.hrom.andrew.travelshops.TrashActivity.PrefUtil;
 
@@ -13,12 +16,17 @@ public class FavoriteShop extends SportShop {
     private List<String> siteShops = new ArrayList<>();
     private List<Integer> imageShops = new ArrayList<>();
     private ArrayList<String> listAdressWebSite = new ArrayList<>();
-    private Set<String> gsonList = PrefUtil.getValueList(this);
+        private Set<String> gsonList;
+
+
+    public FavoriteShop(Context context) {
+        gsonList = PrefUtil.getValueList(context);
+        listGson();
+    }
 
     @Override
     public List<String> getListShops() {
-        listGson();
-        return siteShops;
+                return siteShops;
     }
 
     @Override
@@ -31,30 +39,13 @@ public class FavoriteShop extends SportShop {
         return listAdressWebSite.get(position);
     }
 
-    private String getVelue(String value) {
-        String[] trueValue = value.split(":");
-        if (trueValue.length > 2) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(trueValue[trueValue.length - 2]).append(":").append(trueValue[trueValue.length - 1]);
-            return stringBuilder.toString();
-        } else return trueValue[trueValue.length - 1];
-    }
-
     public void listGson() {
         for (String s : gsonList) {
-            Log.d(MyTag.TEST, s);
-            String[] element = s.replace("\"", "").replace("}", "").split(",");
-            Log.d(MyTag.TEST, element[0]);
-            Log.d(MyTag.TEST, element[1]);
-            Log.d(MyTag.TEST, element[2]);
+            Shop shop = new Gson().fromJson(s, Shop.class);
 
-            Log.d(MyTag.TEST, getVelue(element[0]));
-            Log.d(MyTag.TEST, getVelue(element[1]));
-            Log.d(MyTag.TEST, getVelue(element[2]));
-
-            imageShops.add(Integer.valueOf(getVelue(element[0])));
-            siteShops.add(getVelue(element[1]));
-            listAdressWebSite.add(getVelue(element[2]));
+            imageShops.add(shop.getIconShop());
+            siteShops.add(shop.getNameShop());
+            listAdressWebSite.add(shop.getUrl());
         }
     }
 }
