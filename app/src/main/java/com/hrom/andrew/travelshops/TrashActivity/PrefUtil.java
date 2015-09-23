@@ -16,29 +16,25 @@ public class PrefUtil {
     public static void save(Context context, String text) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
-        Set<String> myList = preferences.getStringSet(PRES_KEY,new HashSet<String>());
+        Set<String> myList = preferences.getStringSet(PRES_KEY, new HashSet<String>());
         myList.add(text);
-        editor.putStringSet(PRES_KEY,myList);
+        editor.putStringSet(PRES_KEY, myList);
         editor.apply();
     }
 
-    public static Set<String> getValueList(Context context){
+    public static Set<String> getValueList(Context context) {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
         Set<String> myList = new HashSet<>();
-        myList=settings.getStringSet(PRES_KEY, null);
+        myList = settings.getStringSet(PRES_KEY, null);
         return myList;
     }
 
-
-    public static String getValue(Context context) {
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
-        String text = settings.getString(PRES_KEY, null);
-        String text1 = text;
-        /*for (int i = 0; i < bikeShop.getListShops().size(); i++) {
-            if (bikeShop.getListShops().get(i).equals(text)) {
-                text1 = bikeShop.getLinkShop(i) ;
-            }
-        }*/
-        return text;
+    public static void remove(Context context, String text) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        Set<String> myList = preferences.getStringSet(PRES_KEY, new HashSet<String>());
+        myList.remove(text);
+        editor.putStringSet(PRES_KEY, myList);
+        editor.apply();
     }
 }

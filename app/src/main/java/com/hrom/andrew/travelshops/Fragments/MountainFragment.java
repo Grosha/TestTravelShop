@@ -1,5 +1,6 @@
 package com.hrom.andrew.travelshops.Fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,7 +11,9 @@ import android.widget.SimpleAdapter;
 
 import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
+import com.hrom.andrew.travelshops.ShopDB.FavoriteShop;
 import com.hrom.andrew.travelshops.ShopDB.MountainShop;
+import com.hrom.andrew.travelshops.TrashActivity.CustomAdapter;
 import com.hrom.andrew.travelshops.TrashActivity.MyTag;
 import com.hrom.andrew.travelshops.TrashActivity.RetainedFragment;
 
@@ -21,6 +24,13 @@ import java.util.List;
 public class MountainFragment extends ListFragment {
     public final static String TAG = MyTag.TAG_MOUNTAIN;
     private MountainShop mountainShop = new MountainShop();
+    private FavoriteShop favoriteShop;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        favoriteShop = new FavoriteShop(activity);
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -34,25 +44,33 @@ public class MountainFragment extends ListFragment {
 
             hm.put("img", Integer.toString(mountainShop.getIconShops().get(i)));
             hm.put("txt", mountainShop.getListShops().get(i));
-            hm.put("imgMy", Integer.toString(R.drawable.ic_control_point_black_24dp));
+            //hm.put("imgMy", Integer.toString(R.drawable.ic_control_point_black_24dp));
+            if (favoriteShop.getListShops().contains(mountainShop.getListShops().get(i))) {
+                hm.put("imgMy", Integer.toString(R.drawable.ic_group_work_black_18dp));
+            } else {
+                hm.put("imgMy", Integer.toString(R.drawable.ic_control_point_black_24dp));
+            }
             listMountainShop.add(hm);
         }
 
-        String[] from = {"img", "txt", "imgMy"};
+        /*String[] from = {"img", "txt", "imgMy"};
         int[] to = {R.id.imgForList, R.id.textForList, R.id.imgForMyList};
 
         SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), listMountainShop, R.layout.list_single, from, to);
-        setListAdapter(adapter);
+        setListAdapter(adapter);*/
+
+        CustomAdapter customAdapter = new CustomAdapter(getActivity().getBaseContext(), R.layout.list_single, listMountainShop);
+        setListAdapter(customAdapter);
 
         view.setBackgroundResource(R.drawable.background_mountain);
     }
 
-    @Override
+    /*@Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(mountainShop.getLinkShop(position)));
         startActivity(intent);
-    }
+    }*/
 
     @Override
     public void onResume() {

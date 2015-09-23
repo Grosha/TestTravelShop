@@ -89,8 +89,6 @@ public class MainActivity extends AppCompatActivity {
                             switch (clickedItem) {
                                 case 0:
                                     transaction.replace(R.id.container, new FavoriteListFragment());
-                                    /*Intent intent = new Intent(getApplicationContext(), MapActivity.class);
-                                    startActivity(intent);*/
                                     break;
                                 case 2:
                                     transaction.replace(R.id.container, new MountainFragment());
@@ -121,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .addDrawerItems(new PrimaryDrawerItem()
-                                .withName("All links")
+                                .withName("Favorite shops")
                                 .withIdentifier(1)
                                 .withIcon(R.drawable.ic_group_work_black_18dp),
                         new DividerDrawerItem(),

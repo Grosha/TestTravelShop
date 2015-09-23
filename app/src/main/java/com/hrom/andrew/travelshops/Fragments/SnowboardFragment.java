@@ -1,5 +1,6 @@
 package com.hrom.andrew.travelshops.Fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,7 +11,9 @@ import android.widget.SimpleAdapter;
 
 import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
+import com.hrom.andrew.travelshops.ShopDB.FavoriteShop;
 import com.hrom.andrew.travelshops.ShopDB.SnowboardShop;
+import com.hrom.andrew.travelshops.TrashActivity.CustomAdapter;
 import com.hrom.andrew.travelshops.TrashActivity.MyTag;
 
 import java.util.ArrayList;
@@ -20,11 +23,18 @@ import java.util.List;
 public class SnowboardFragment extends ListFragment {
     public final static String TAG = MyTag.TAG_SNOWBOARD;
     private SnowboardShop snowboardShop = new SnowboardShop();
+    private FavoriteShop favoriteShop;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        favoriteShop = new FavoriteShop(activity);
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        List<HashMap<String, String>> listBikeShop = new ArrayList<>();
+        List<HashMap<String, String>> listSnowShop = new ArrayList<>();
 
         ((MainActivity) getActivity()).setLastFragmentTag(this.getClass().toString());
 
@@ -33,24 +43,31 @@ public class SnowboardFragment extends ListFragment {
 
             hm.put("img", Integer.toString(snowboardShop.getIconShops().get(i)));
             hm.put("txt", snowboardShop.getListShops().get(i));
-            listBikeShop.add(hm);
+            if (favoriteShop.getListShops().contains(snowboardShop.getListShops().get(i))) {
+                hm.put("imgMy", Integer.toString(R.drawable.ic_group_work_black_18dp));
+            } else {
+                hm.put("imgMy", Integer.toString(R.drawable.ic_control_point_black_24dp));
+            }
+            listSnowShop.add(hm);
         }
 
-        String[] from = {"img", "txt"};
+        /*String[] from = {"img", "txt"};
         int[] to = {R.id.imgForList, R.id.textForSnowboard};
 
-        SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), listBikeShop, R.layout.list_for_snowboard, from, to);
-        setListAdapter(adapter);
+        SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), listSnowShop, R.layout.list_for_snowboard, from, to);
+        setListAdapter(adapter);*/
+        CustomAdapter customAdapter = new CustomAdapter(getActivity().getBaseContext(), R.layout.list_single, listSnowShop);
+        setListAdapter(customAdapter);
 
         view.setBackgroundResource(R.drawable.background_snowboard_2);
     }
 
-    @Override
+    /*@Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(snowboardShop.getLinkShop(position)));
         startActivity(intent);
-    }
+    }*/
 
     @Override
     public void onResume() {

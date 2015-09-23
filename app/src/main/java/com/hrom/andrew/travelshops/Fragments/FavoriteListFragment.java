@@ -44,26 +44,6 @@ public class FavoriteListFragment extends ListFragment {
             listFavoriteShops.add(hm);
         }
 
-        /*Set<String> gsonList = PrefUtil.getValueList(getActivity());
-        for (String s : gsonList) {
-            Log.d(MyTag.TEST, s);
-            String[] element = s.replace("\"", "").replace("}", "").split(",");
-            Log.d(MyTag.TEST, element[0]);
-            Log.d(MyTag.TEST, element[1]);
-            Log.d(MyTag.TEST, element[2]);
-
-            HashMap<String, String> hm = new HashMap<>();
-            Log.d(MyTag.TEST, getVelue(element[0]));
-            Log.d(MyTag.TEST, getVelue(element[1]));
-            Log.d(MyTag.TEST, getVelue(element[2]));
-
-            hm.put("img", getVelue(element[0]));
-            hm.put("txt", getVelue(element[1]));
-            hm.put("imgMy", String.valueOf(R.drawable.ic_group_work_black_18dp));
-
-            listFavoriteShops.add(hm);
-        }*/
-
         CustomAdapter customAdapter = new CustomAdapter(getActivity().getBaseContext(), R.layout.list_single, listFavoriteShops);
         setListAdapter(customAdapter);
 
@@ -77,14 +57,4 @@ public class FavoriteListFragment extends ListFragment {
             getActivity().setTitle("Favorite shops");
         }
     }
-
-    private String getVelue(String value) {
-        String[] trueValue = value.split(":");
-        if (trueValue.length > 2) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(trueValue[trueValue.length-2]).append(":").append(trueValue[trueValue.length-1]);
-            return stringBuilder.toString();
-        } else return trueValue[trueValue.length-1];
-    }
-
 }
