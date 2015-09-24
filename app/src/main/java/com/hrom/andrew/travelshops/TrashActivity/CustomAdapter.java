@@ -113,6 +113,7 @@ public class CustomAdapter extends ArrayAdapter {
                 String item = new Gson().toJson(shop);
                 Log.d(MyTag.TEST, item);
 
+
                 if (PrefUtil.getValueList(getContext()).contains(item)) {
                     PrefUtil.remove(getContext(), item);
                     imgPlus = (ImageView) view.findViewById(R.id.imgForMyList);

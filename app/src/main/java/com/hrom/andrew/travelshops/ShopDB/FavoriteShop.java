@@ -9,6 +9,7 @@ import com.hrom.andrew.travelshops.TrashActivity.MyTag;
 import com.hrom.andrew.travelshops.TrashActivity.PrefUtil;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -16,7 +17,7 @@ public class FavoriteShop extends SportShop {
     private List<String> siteShops = new ArrayList<>();
     private List<Integer> imageShops = new ArrayList<>();
     private ArrayList<String> listAdressWebSite = new ArrayList<>();
-        private Set<String> gsonList;
+    private Set<String> gsonList;
 
 
     public FavoriteShop(Context context) {
@@ -26,7 +27,7 @@ public class FavoriteShop extends SportShop {
 
     @Override
     public List<String> getListShops() {
-                return siteShops;
+        return siteShops;
     }
 
     @Override
@@ -40,12 +41,14 @@ public class FavoriteShop extends SportShop {
     }
 
     public void listGson() {
-        for (String s : gsonList) {
-            Shop shop = new Gson().fromJson(s, Shop.class);
-
-            imageShops.add(shop.getIconShop());
-            siteShops.add(shop.getNameShop());
-            listAdressWebSite.add(shop.getUrl());
-        }
+        if (gsonList == null) {
+            gsonList = new HashSet<>();
+        } else
+            for (String s : gsonList) {
+                Shop shop = new Gson().fromJson(s, Shop.class);
+                imageShops.add(shop.getIconShop());
+                siteShops.add(shop.getNameShop());
+                listAdressWebSite.add(shop.getUrl());
+            }
     }
 }

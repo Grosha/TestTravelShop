@@ -11,7 +11,6 @@ import java.util.Set;
 
 public class PrefUtil {
     public static final String PRES_KEY = "SHOP";
-    private static BikeShop bikeShop = new BikeShop();
 
     public static void save(Context context, String text) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -25,7 +24,7 @@ public class PrefUtil {
     public static Set<String> getValueList(Context context) {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
         Set<String> myList = new HashSet<>();
-        myList = settings.getStringSet(PRES_KEY, null);
+        myList = settings.getStringSet(PRES_KEY, myList);
         return myList;
     }
 
