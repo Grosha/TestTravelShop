@@ -36,24 +36,25 @@ public class CustomAdapter extends ArrayAdapter {
     private BikeShop bikeShop = new BikeShop();
     private SportShop sportShop;
     private HashMap<String, String> hash;
+    private List<String> items;
 
     public CustomAdapter(Context context, int resource, List objects) {
         super(context, resource, objects);
         this.object = objects;
 
-        if (RetainedFragment.getClassName().contains(MyTag.TAG_BIKE)){
+        if (RetainedFragment.getClassName().contains(MyTag.TAG_BIKE)) {
             Log.d(MyTag.TEST, "bike");
             sportShop = new BikeShop();
-        }else if (RetainedFragment.getClassName().contains(MyTag.TAG_MOUNTAIN)){
+        } else if (RetainedFragment.getClassName().contains(MyTag.TAG_MOUNTAIN)) {
             Log.d(MyTag.TEST, "montain");
             sportShop = new MountainShop();
-        }else if (RetainedFragment.getClassName().contains(MyTag.TAG_SKIS)){
+        } else if (RetainedFragment.getClassName().contains(MyTag.TAG_SKIS)) {
             Log.d(MyTag.TEST, "ski");
             sportShop = new SkisShop();
-        }else if (RetainedFragment.getClassName().contains(MyTag.TAG_SNOWBOARD)){
+        } else if (RetainedFragment.getClassName().contains(MyTag.TAG_SNOWBOARD)) {
             Log.d(MyTag.TEST, "snow");
             sportShop = new SnowboardShop();
-        }else if (RetainedFragment.getClassName().contains(MyTag.TAG_FAVORITE_LIST)){
+        } else if (RetainedFragment.getClassName().contains(MyTag.TAG_FAVORITE_LIST)) {
             Log.d(MyTag.TEST, "favorite");
             sportShop = new FavoriteShop(context);
         }
@@ -102,9 +103,6 @@ public class CustomAdapter extends ArrayAdapter {
             public void onClick(View v) {
                 Log.d(MyTag.TEST, "3");
                 Shop shop = new Shop();
-                /*shop.setIconShop(bikeShop.getIconShops().get(position));
-                shop.setNameShop(bikeShop.getListShops().get(position));
-                shop.setUrl(bikeShop.getLinkShop((position)))*/;
 
                 shop.setIconShop(sportShop.getIconShops().get(position));
                 shop.setNameShop(sportShop.getListShops().get(position));
@@ -137,4 +135,10 @@ public class CustomAdapter extends ArrayAdapter {
 
         return view;
     }
+
+    public void swapItems(List<String> items) {
+        this.items = items;
+        notifyDataSetChanged();
+    }
+
 }

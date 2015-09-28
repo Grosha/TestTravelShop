@@ -1,7 +1,10 @@
 package com.hrom.andrew.travelshops;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,6 +13,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ProgressBar;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.hrom.andrew.travelshops.Fragments.BikeFragment;
 import com.hrom.andrew.travelshops.Fragments.FavoriteListFragment;
 import com.hrom.andrew.travelshops.Fragments.MapsFragment;
@@ -58,6 +64,37 @@ public class MainActivity extends AppCompatActivity {
 
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("77AB095C50F526A0914479291F8868DB")
+                .build();
+
+        mAdView.loadAd(adRequest);
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                super.onAdFailedToLoad(errorCode);
+                //
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                //
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                super.onAdLeftApplication();
+                //
+            }
+        });
+
+
     }
 
     public Toolbar getToolbar() {
@@ -175,6 +212,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_toolbar, menu);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -188,23 +230,11 @@ public class MainActivity extends AppCompatActivity {
 
         transaction = manager.beginTransaction();
         switch (item.getItemId()) {
-            case R.id.action_search:
-                /*mountainFragment = (MountainFragment) manager.findFragmentByTag(MyTag.TAG_MOUNTAIN);
-                snowboardFragment = (SnowboardFragment) manager.findFragmentByTag(MyTag.TAG_SNOWBOARD);
-                skisFragment = (SkisFragment) manager.findFragmentByTag(MyTag.TAG_SKIS);
-                bikeFragment = (BikeFragment) manager.findFragmentByTag(MyTag.TAG_BIKE);
-
-                retainedFragment.setFragment(new MountainFragment());
-                retainedFragment = (RetainedFragment) manager.findFragmentByTag(MyTag.TAG_MOUNTAIN);
-                if (retainedFragment.equals(mountainFragment)){
-                    Log.d(MyTag.TEST, "equals");
-                }*/
-
+            case R.id.action_map:
                 transaction.replace(R.id.container, new MapsFragment()).commit();
-                //transaction.commit();
                 return true;
-           /* case R.id.action_settings:
-                return true;*/
+            case R.id.action_search:
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

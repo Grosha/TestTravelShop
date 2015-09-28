@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
 import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.BikeShop;
@@ -38,6 +41,11 @@ public class BikeFragment extends ListFragment {
         super.onViewCreated(view, savedInstanceState);
         List<HashMap<String, String>> listBikeShop = new ArrayList<>();
 
+        AdRequest request = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("77AB095C50F526A0914479291F8868DB")
+                .build();
+
         ((MainActivity) getActivity()).setLastFragmentTag(this.getClass().toString());
         Log.d(MyTag.TEST, this.getClass().toString());
 
@@ -63,6 +71,8 @@ public class BikeFragment extends ListFragment {
         setListAdapter(customAdapter);
 
         view.setBackgroundResource(R.drawable.background_bike_2);
+
+        getListView().addFooterView(createListFooter());
     }
 
     /*@Override
@@ -79,5 +89,11 @@ public class BikeFragment extends ListFragment {
             getActivity().setTitle("Bike");
         }
     }
+    private View createListFooter() {
+        View res = new View(getActivity());
+        res.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, getActivity().getResources().getDimensionPixelOffset(R.dimen.list_item_height)));
+        return res;
+    }
+
 }
 
