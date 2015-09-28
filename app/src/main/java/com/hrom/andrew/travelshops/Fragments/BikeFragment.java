@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class BikeFragment extends ListFragment {
+public class BikeFragment extends CategoryFragment {
     public final static String TAG = MyTag.TAG_BIKE;
     private BikeShop bikeShop = new BikeShop();
     private FavoriteShop favoriteShop;
@@ -39,40 +39,9 @@ public class BikeFragment extends ListFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        List<HashMap<String, String>> listBikeShop = new ArrayList<>();
+        createListShop(view, bikeShop, favoriteShop, R.drawable.background_bike_2, R.layout.list_single);
 
-        AdRequest request = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice("77AB095C50F526A0914479291F8868DB")
-                .build();
-
-        ((MainActivity) getActivity()).setLastFragmentTag(this.getClass().toString());
-        Log.d(MyTag.TEST, this.getClass().toString());
-
-        for (int i = 0; i < bikeShop.getListShops().size(); i++) {
-            HashMap<String, String> hm = new HashMap<>();
-
-            hm.put("img", Integer.toString(bikeShop.getIconShops().get(i)));
-            hm.put("txt", bikeShop.getListShops().get(i));
-            if (favoriteShop.getListShops().contains(bikeShop.getListShops().get(i))) {
-                hm.put("imgMy", Integer.toString(R.drawable.ic_group_work_black_18dp));
-            } else {
-                hm.put("imgMy", Integer.toString(R.drawable.ic_control_point_black_24dp));
-            }
-            listBikeShop.add(hm);
-        }
-
-        /*String[] from = {"img", "txt", "imgMy"};
-        int[] to = {R.id.imgForList, R.id.textForList, R.id.imgForMyList};
-*/
-        /*SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), listBikeShop, R.layout.list_single, from, to);
-        setListAdapter(adapter);*/
-        CustomAdapter customAdapter = new CustomAdapter(getActivity().getBaseContext(), R.layout.list_single, listBikeShop);
-        setListAdapter(customAdapter);
-
-        view.setBackgroundResource(R.drawable.background_bike_2);
-
-        getListView().addFooterView(createListFooter());
+        //getListView().addFooterView(createListFooter());
     }
 
     /*@Override
@@ -89,11 +58,12 @@ public class BikeFragment extends ListFragment {
             getActivity().setTitle("Bike");
         }
     }
-    private View createListFooter() {
+
+    /*private View createListFooter() {
         View res = new View(getActivity());
         res.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, getActivity().getResources().getDimensionPixelOffset(R.dimen.list_item_height)));
         return res;
-    }
+    }*/
 
 }
 

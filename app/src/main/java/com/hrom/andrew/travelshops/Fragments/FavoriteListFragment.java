@@ -46,7 +46,7 @@ public class FavoriteListFragment extends ListFragment {
         setListAdapter(customAdapter);
 
         if (favoriteShop.getListShops().size() == 0) {
-            view.setBackgroundResource(R.drawable.no_added_favorite_shops);
+            view.setBackgroundResource(R.drawable.background_bike_1);
         } else {
             view.setBackgroundResource(R.drawable.background_bike_2);
         }
@@ -58,7 +58,7 @@ public class FavoriteListFragment extends ListFragment {
         if (getActivity() != null) {
             getActivity().setTitle("Favorite shops");
         }
-        customAdapter.swapItems(favoriteShop.getListShops());
+        //customAdapter.swapItems(favoriteShop.getListShops());
 
     }
 
