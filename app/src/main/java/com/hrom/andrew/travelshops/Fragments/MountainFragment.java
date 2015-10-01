@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MountainFragment extends ListFragment {
+public class MountainFragment extends CategoryFragment {
     public final static String TAG = MyTag.TAG_MOUNTAIN;
     private MountainShop mountainShop = new MountainShop();
     private FavoriteShop favoriteShop;
@@ -35,7 +35,9 @@ public class MountainFragment extends ListFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        List<HashMap<String, String>> listMountainShop = new ArrayList<>();
+        createListShop(view, mountainShop, favoriteShop, R.drawable.background_mountain, R.layout.list_single);
+
+        /*List<HashMap<String, String>> listMountainShop = new ArrayList<>();
 
         ((MainActivity) getActivity()).setLastFragmentTag(this.getClass().toString());
 
@@ -53,16 +55,16 @@ public class MountainFragment extends ListFragment {
             listMountainShop.add(hm);
         }
 
-        /*String[] from = {"img", "txt", "imgMy"};
+        *//*String[] from = {"img", "txt", "imgMy"};
         int[] to = {R.id.imgForList, R.id.textForList, R.id.imgForMyList};
 
         SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), listMountainShop, R.layout.list_single, from, to);
-        setListAdapter(adapter);*/
+        setListAdapter(adapter);*//*
 
         CustomAdapter customAdapter = new CustomAdapter(getActivity().getBaseContext(), R.layout.list_single, listMountainShop);
         setListAdapter(customAdapter);
 
-        view.setBackgroundResource(R.drawable.background_mountain);
+        view.setBackgroundResource(R.drawable.background_mountain);*/
     }
 
     /*@Override

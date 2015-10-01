@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class SkisFragment extends ListFragment {
+public class SkisFragment extends CategoryFragment {
     public final static String TAG = MyTag.TAG_SKIS;
     private SkisShop skisShop = new SkisShop();
     private FavoriteShop favoriteShop;
@@ -42,7 +42,9 @@ public class SkisFragment extends ListFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        List<HashMap<String, String>> listSkiShop = new ArrayList<>();
+        createListShop(view, skisShop, favoriteShop, R.drawable.background_skis, R.layout.list_for_snowboard);
+
+        /*List<HashMap<String, String>> listSkiShop = new ArrayList<>();
 
         ((MainActivity) getActivity()).setLastFragmentTag(this.getClass().toString());
 
@@ -59,15 +61,15 @@ public class SkisFragment extends ListFragment {
             listSkiShop.add(hm);
         }
 
-        /*String[] from = {"img", "txt"};
+        *//*String[] from = {"img", "txt"};
         int[] to = {R.id.imgForList, R.id.textForSnowboard};
 
         SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), listBikeShop, R.layout.list_for_snowboard, from, to);
-        setListAdapter(adapter);*/
+        setListAdapter(adapter);*//*
         CustomAdapter customAdapter = new CustomAdapter(getActivity().getBaseContext(), R.layout.list_single, listSkiShop);
         setListAdapter(customAdapter);
 
-        view.setBackgroundResource(R.drawable.background_skis);
+        view.setBackgroundResource(R.drawable.background_skis);*/
     }
 
     /*@Override

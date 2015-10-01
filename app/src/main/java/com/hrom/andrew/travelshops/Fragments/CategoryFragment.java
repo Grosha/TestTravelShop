@@ -8,15 +8,9 @@ import android.widget.AbsListView;
 
 import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
-import com.hrom.andrew.travelshops.ShopDB.BikeShop;
-import com.hrom.andrew.travelshops.ShopDB.FavoriteShop;
-import com.hrom.andrew.travelshops.ShopDB.MountainShop;
-import com.hrom.andrew.travelshops.ShopDB.SkisShop;
-import com.hrom.andrew.travelshops.ShopDB.SnowboardShop;
 import com.hrom.andrew.travelshops.ShopDB.SportShop;
 import com.hrom.andrew.travelshops.TrashActivity.CustomAdapter;
 import com.hrom.andrew.travelshops.TrashActivity.MyTag;
-import com.hrom.andrew.travelshops.TrashActivity.RetainedFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,8 +18,6 @@ import java.util.List;
 
 public class CategoryFragment extends ListFragment {
     private List<HashMap<String, String>> listShop;
-    private SportShop sportShop;
-
 
     public View createListShop(View view, SportShop shop, SportShop shopFav, int background, int list) {
 
@@ -49,13 +41,15 @@ public class CategoryFragment extends ListFragment {
         CustomAdapter customAdapter = new CustomAdapter(getActivity().getBaseContext(), list, listShop);
         setListAdapter(customAdapter);
 
-        if (getTypeShop().equals(shopFav)) {
+        if (shop.equals(shopFav)) {
             if (shopFav.getListShops().size() == 0) {
                 view.setBackgroundResource(R.drawable.background_bike_1);
             } else {
                 view.setBackgroundResource(background);
             }
-        } else view.setBackgroundResource(background);
+        } else {
+            view.setBackgroundResource(background);
+        }
 
         getListView().addFooterView(createListFooter());
 
@@ -66,25 +60,5 @@ public class CategoryFragment extends ListFragment {
         View res = new View(getActivity());
         res.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, getActivity().getResources().getDimensionPixelOffset(R.dimen.list_item_height)));
         return res;
-    }
-
-    public SportShop getTypeShop() {
-        if (RetainedFragment.getClassName().contains(MyTag.TAG_BIKE)) {
-            Log.d(MyTag.TEST, "bike");
-            sportShop = new BikeShop();
-        } else if (RetainedFragment.getClassName().contains(MyTag.TAG_MOUNTAIN)) {
-            Log.d(MyTag.TEST, "montain");
-            sportShop = new MountainShop();
-        } else if (RetainedFragment.getClassName().contains(MyTag.TAG_SKIS)) {
-            Log.d(MyTag.TEST, "ski");
-            sportShop = new SkisShop();
-        } else if (RetainedFragment.getClassName().contains(MyTag.TAG_SNOWBOARD)) {
-            Log.d(MyTag.TEST, "snow");
-            sportShop = new SnowboardShop();
-        } else if (RetainedFragment.getClassName().contains(MyTag.TAG_FAVORITE_LIST)) {
-            Log.d(MyTag.TEST, "favorite");
-            sportShop = new FavoriteShop(getActivity());
-        }
-        return sportShop;
     }
 }
