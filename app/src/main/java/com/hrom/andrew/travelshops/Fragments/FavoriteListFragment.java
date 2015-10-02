@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class FavoriteListFragment extends ListFragment {
+public class FavoriteListFragment extends CategoryFragment {
     public final static String TAG = MyTag.TAG_FAVORITE_LIST;
     private FavoriteShop favoriteShop;
     private CustomAdapter customAdapter;
@@ -29,8 +29,9 @@ public class FavoriteListFragment extends ListFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        createListShop(view, favoriteShop, favoriteShop, R.drawable.background_bike_2, R.layout.list_single);
 
-        List<HashMap<String, String>> listFavoriteShops = new ArrayList<>();
+        /*List<HashMap<String, String>> listFavoriteShops = new ArrayList<>();
         ((MainActivity) getActivity()).setLastFragmentTag(this.getClass().toString());
 
         for (int i = 0; i < favoriteShop.getListShops().size(); i++) {
@@ -49,7 +50,7 @@ public class FavoriteListFragment extends ListFragment {
             view.setBackgroundResource(R.drawable.background_bike_1);
         } else {
             view.setBackgroundResource(R.drawable.background_bike_2);
-        }
+        }*/
     }
 
     @Override
