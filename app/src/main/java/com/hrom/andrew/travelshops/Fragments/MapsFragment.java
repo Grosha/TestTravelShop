@@ -79,13 +79,6 @@ public class MapsFragment extends Fragment {
             sportShop = new FavoriteShop(getActivity());
         }
 
-        /*switch (RetainedFragment.getClassName()){
-            case "class com.hrom.andrew.travelshops.Fragments.BikeFragment":
-                Log.d(MyTag.TEST, "bike");
-            case "class com.hrom.andrew.travelshops.Fragments.MountainFragment":
-                Log.d(MyTag.TEST, "mountain");
-        }*/
-
         //прогрес бар для мапи
         progressBar = (ProgressBar) getActivity().findViewById(R.id.webProgressBar);
         progressBar.setVisibility(ProgressBar.VISIBLE);
@@ -206,7 +199,7 @@ public class MapsFragment extends Fragment {
                                     new MarkerOptions()
                                             .position(latLng)
                                             .title(sportShop.getListShops().get(i))
-                                            .snippet("Kiel is cool")
+                                            .snippet(sportShop.getLinkShop(i).substring(7,sportShop.getLinkShop(i).length()-1))
                                             .icon(BitmapDescriptorFactory
                                                     .fromResource(sportShop.getIconShops().get(i))));
                         }
