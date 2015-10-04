@@ -1,27 +1,35 @@
 package com.hrom.andrew.travelshops;
 
 import android.app.SearchManager;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ProgressBar;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.hrom.andrew.travelshops.Fragments.BikeFragment;
 import com.hrom.andrew.travelshops.Fragments.FavoriteListFragment;
 import com.hrom.andrew.travelshops.Fragments.MapsFragment;
 import com.hrom.andrew.travelshops.Fragments.MountainFragment;
 import com.hrom.andrew.travelshops.Fragments.SkisFragment;
 import com.hrom.andrew.travelshops.Fragments.SnowboardFragment;
+import com.hrom.andrew.travelshops.TrashActivity.IntermediaryActivity;
+import com.hrom.andrew.travelshops.TrashActivity.MyTag;
 import com.hrom.andrew.travelshops.TrashActivity.RetainedFragment;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -33,19 +41,16 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends IntermediaryActivity {
 
     private Drawer drawer;
-    private RetainedFragment retainedFragment;
-    private MountainFragment mountainFragment;
-    private BikeFragment bikeFragment;
-    private SnowboardFragment snowboardFragment;
-    private SkisFragment skisFragment;
     private android.support.v4.app.FragmentManager manager;
     private android.support.v4.app.FragmentTransaction transaction;
     private int clickedItem = -1;
     private ProgressBar progressBar;
     private Toolbar toolbar;
+    private int count = 1;
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,37 +70,36 @@ public class MainActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         AdView mAdView = (AdView) findViewById(R.id.adView);
+        admobBanner(mAdView);
 
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice("77AB095C50F526A0914479291F8868DB")
-                .addTestDevice("280C6F51A33084036DA3033F54CDE388")
-                .build();
 
-        mAdView.loadAd(adRequest);
-        mAdView.setAdListener(new AdListener() {
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-5331719326093705/1909164471");
+
+        mInterstitialAd.loadAd(testDevices());
+        mInterstitialAd.setAdListener(new AdListener() {
             @Override
-            public void onAdFailedToLoad(int errorCode) {
-                super.onAdFailedToLoad(errorCode);
-                //
+            public void onAdClosed() {
+                super.onAdClosed();
             }
 
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
-                //
+                mInterstitialAd.loadAd(testDevices());
             }
 
             @Override
             public void onAdLeftApplication() {
                 super.onAdLeftApplication();
-                //
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                super.onAdFailedToLoad(errorCode);
             }
         });
-
-
     }
 
     public Toolbar getToolbar() {
@@ -131,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
                                 case 2:
                                     transaction.replace(R.id.container, new MountainFragment());
                                     //transaction.replace(R.id.container, new SwipeMountain());
-                                    //retainedFragment = (RetainedFragment)manager.findFragmentByTag("");
                                     break;
                                 case 3:
                                     transaction.replace(R.id.container, new SkisFragment());
@@ -181,8 +184,22 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public boolean onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
-                        clickedItem = i;
-                        drawer.closeDrawer();
+                        Log.d(MyTag.TEST, String.valueOf(count));
+                        if (count % 5 == 0) {
+                            if (mInterstitialAd.isLoaded()) {
+                                mInterstitialAd.show();
+                                clickedItem = i;
+                                drawer.closeDrawer();
+                            } else {
+                                clickedItem = i;
+                                drawer.closeDrawer();
+                            }
+                        } else {
+                            clickedItem = i;
+                            drawer.closeDrawer();
+
+                        }
+                        count++;
                         return true;
                     }
                 })
@@ -217,6 +234,23 @@ public class MainActivity extends AppCompatActivity {
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+        SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
+            public boolean onQueryTextChange(String newText) {
+                // this is your adapter that will be filtered
+                return true;
+            }
+
+            public boolean onQueryTextSubmit(String query) {
+                //Here u can get the value "query" which is entered in the search box.
+                if (!query.isEmpty()) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=" + query));
+                    startActivity(intent);
+                }
+                return true;
+            }
+        };
+        searchView.setOnQueryTextListener(queryTextListener);
 
         return super.onCreateOptionsMenu(menu);
     }
