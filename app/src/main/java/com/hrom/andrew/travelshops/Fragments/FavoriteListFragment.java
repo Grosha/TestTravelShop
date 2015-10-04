@@ -2,23 +2,16 @@ package com.hrom.andrew.travelshops.Fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
 import android.view.View;
 
-import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.FavoriteShop;
 import com.hrom.andrew.travelshops.TrashActivity.CustomAdapter;
 import com.hrom.andrew.travelshops.TrashActivity.MyTag;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 public class FavoriteListFragment extends CategoryFragment {
     public final static String TAG = MyTag.TAG_FAVORITE_LIST;
     private FavoriteShop favoriteShop;
-    private CustomAdapter customAdapter;
 
     @Override
     public void onAttach(Activity activity) {
