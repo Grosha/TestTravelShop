@@ -1,8 +1,10 @@
 package com.hrom.andrew.travelshops.Fragments;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.graphics.Point;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -62,19 +64,19 @@ public class MapsFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if (RetainedFragment.getClassName().contains(MyTag.TAG_BIKE)){
+        if (RetainedFragment.getClassName().contains(MyTag.TAG_BIKE)) {
             Log.d(MyTag.TEST, "bike");
             sportShop = new BikeShop();
-        }else if (RetainedFragment.getClassName().contains(MyTag.TAG_MOUNTAIN)){
+        } else if (RetainedFragment.getClassName().contains(MyTag.TAG_MOUNTAIN)) {
             Log.d(MyTag.TEST, "montain");
             sportShop = new MountainShop();
-        }else if (RetainedFragment.getClassName().contains(MyTag.TAG_SKIS)){
+        } else if (RetainedFragment.getClassName().contains(MyTag.TAG_SKIS)) {
             Log.d(MyTag.TEST, "ski");
             sportShop = new SkisShop();
-        }else if (RetainedFragment.getClassName().contains(MyTag.TAG_SNOWBOARD)){
+        } else if (RetainedFragment.getClassName().contains(MyTag.TAG_SNOWBOARD)) {
             Log.d(MyTag.TEST, "snow");
             sportShop = new SnowboardShop();
-        }else if (RetainedFragment.getClassName().contains(MyTag.TAG_FAVORITE_LIST)){
+        } else if (RetainedFragment.getClassName().contains(MyTag.TAG_FAVORITE_LIST)) {
             Log.d(MyTag.TEST, "favorite");
             sportShop = new FavoriteShop(getActivity());
         }
@@ -199,7 +201,7 @@ public class MapsFragment extends Fragment {
                                     new MarkerOptions()
                                             .position(latLng)
                                             .title(sportShop.getListShops().get(i))
-                                            .snippet(sportShop.getLinkShop(i).substring(7,sportShop.getLinkShop(i).length()-1))
+                                            .snippet(getUrl(i))
                                             .icon(BitmapDescriptorFactory
                                                     .fromResource(sportShop.getIconShops().get(i))));
                         }
@@ -208,9 +210,21 @@ public class MapsFragment extends Fragment {
                 }
             }
 
+            googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                @Override
+                public void onInfoWindowClick(Marker marker) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(marker.getSnippet()));
+                    view.getContext().startActivity(intent);
+                }
+            });
+
             googleMap.setOnMarkerClickListener(markerClickListener);
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(CityCoordinate.KYEV, 13));
             googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
         }
     };
+
+    private String getUrl(int i) {
+        return sportShop.getLinkShop(i).substring(7, sportShop.getLinkShop(i).length() - 1);
+    }
 }
