@@ -130,6 +130,43 @@ public class MapsFragment extends Fragment {
         }
     };
 
+   /* //animation bounce
+    private GoogleMap.OnMarkerClickListener markerClickListener = new GoogleMap.OnMarkerClickListener() {
+        @TargetApi(Build.VERSION_CODES.DONUT)
+        @Override
+        public boolean onMarkerClick(final Marker marker) {
+            final Handler handler = new Handler();
+
+            final long startTime = SystemClock.uptimeMillis();
+            final long duration = 2000;
+
+            Projection proj = mGoogleMap.getProjection();
+            final LatLng markerLatLng = marker.getPosition();
+            Point startPoint = proj.toScreenLocation(markerLatLng);
+            startPoint.offset(0, -100);
+            final LatLng startLatLng = proj.fromScreenLocation(startPoint);
+
+            final Interpolator interpolator = new BounceInterpolator();
+
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    long elapsed = SystemClock.uptimeMillis() - startTime;
+                    float t = interpolator.getInterpolation((float) elapsed / duration);
+                    double lng = t * markerLatLng.longitude + (1 - t) * startLatLng.longitude;
+                    double lat = t * markerLatLng.latitude + (1 - t) * startLatLng.latitude;
+                    marker.setPosition(new LatLng(lat, lng));
+
+                    if (t < 1.0) {
+                        // Post again 16ms later.
+                        handler.postDelayed(this, 16);
+                    }
+                }
+            });
+            return false;
+        }
+    };*/
+
     private OnMapReadyCallback onMapReadyCallback = new OnMapReadyCallback() {
         @Override
         public void onMapReady(GoogleMap googleMap) {
@@ -173,17 +210,19 @@ public class MapsFragment extends Fragment {
                 }
             }
 
+
+            //googleMap.setOnMarkerClickListener(markerClickListener);
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(CityCoordinate.KYEV, 13));
+            googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
+
             googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
                 @Override
                 public void onInfoWindowClick(Marker marker) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(marker.getSnippet()));
-                    view.getContext().startActivity(intent);
+                    Log.d(MyTag.TEST, marker.getSnippet());
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + marker.getSnippet()));
+                    startActivity(intent);
                 }
             });
-
-            googleMap.setOnMarkerClickListener(markerClickListener);
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(CityCoordinate.KYEV, 13));
-            googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
         }
     };
 
