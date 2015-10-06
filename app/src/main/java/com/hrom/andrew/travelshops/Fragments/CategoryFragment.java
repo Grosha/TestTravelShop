@@ -1,5 +1,7 @@
 package com.hrom.andrew.travelshops.Fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +13,7 @@ import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.SportShop;
 import com.hrom.andrew.travelshops.TrashActivity.CustomAdapter;
 import com.hrom.andrew.travelshops.TrashActivity.MyTag;
+import com.hrom.andrew.travelshops.TrashActivity.OnPlusButtonClickListenner;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,6 +43,14 @@ public class CategoryFragment extends ListFragment {
         }
         CustomAdapter customAdapter = new CustomAdapter(getActivity().getBaseContext(), list, listShop);
         setListAdapter(customAdapter);
+        customAdapter.setOnPlusClickListenner(new OnPlusButtonClickListenner() {
+            @Override
+            public void onPlusClick(String url) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+                //
+            }
+        });
 
         if (shop.equals(shopFav)) {
             if (shopFav.getListShops().size() == 0) {

@@ -34,6 +34,7 @@ public class CustomAdapter extends ArrayAdapter {
     private SportShop sportShop;
     private HashMap<String, String> hash;
     private List<String> items;
+    private OnPlusButtonClickListenner listenner;
 
     public CustomAdapter(Context context, int resource, List objects) {
         super(context, resource, objects);
@@ -57,6 +58,10 @@ public class CustomAdapter extends ArrayAdapter {
         }
     }
 
+    public void setOnPlusClickListenner(OnPlusButtonClickListenner listenner){
+        this.listenner = listenner;
+    }
+
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         final View view = LayoutInflater.from(getContext()).inflate(R.layout.list_single, null);
@@ -75,8 +80,12 @@ public class CustomAdapter extends ArrayAdapter {
             @Override
             public void onClick(View v) {
                 Log.d(MyTag.TEST, "1");
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(sportShop.getLinkShop(position)));
-                view.getContext().startActivity(intent);
+                /*Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(sportShop.getLinkShop(position)));
+                view.getContext().startActivity(intent);*/
+
+                if (listenner!=null){
+                    listenner.onPlusClick(sportShop.getLinkShop(position));
+                }
 
                 /*WebViewFragment fragment = new WebViewFragment();
                 Bundle bundle = new Bundle();
