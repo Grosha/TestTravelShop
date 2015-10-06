@@ -9,6 +9,7 @@ import com.google.android.gms.ads.InterstitialAd;
 
 public class IntermediaryActivity extends AppCompatActivity {
     private AdRequest adRequest;
+    protected InterstitialAd mInterstitialAd;
 
     protected AdRequest testDevices() {
         adRequest = new AdRequest.Builder()
@@ -42,7 +43,7 @@ public class IntermediaryActivity extends AppCompatActivity {
         });
     }
 
-    protected void admobInterstitial(InterstitialAd mInterstitialAd) {
+    protected void admobInterstitial() {
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId("ca-app-pub-5331719326093705/1909164471");
 

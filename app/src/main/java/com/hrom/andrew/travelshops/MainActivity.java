@@ -50,7 +50,7 @@ public class MainActivity extends IntermediaryActivity {
     private ProgressBar progressBar;
     private Toolbar toolbar;
     private int count = 1;
-    private InterstitialAd mInterstitialAd;
+    //private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,34 +72,7 @@ public class MainActivity extends IntermediaryActivity {
 
         AdView mAdView = (AdView) findViewById(R.id.adView);
         admobBanner(mAdView);
-
-
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-5331719326093705/1909164471");
-
-        mInterstitialAd.loadAd(testDevices());
-        mInterstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdClosed() {
-                super.onAdClosed();
-            }
-
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                mInterstitialAd.loadAd(testDevices());
-            }
-
-            @Override
-            public void onAdLeftApplication() {
-                super.onAdLeftApplication();
-            }
-
-            @Override
-            public void onAdFailedToLoad(int errorCode) {
-                super.onAdFailedToLoad(errorCode);
-            }
-        });
+        admobInterstitial();
     }
 
     public Toolbar getToolbar() {
@@ -190,6 +163,7 @@ public class MainActivity extends IntermediaryActivity {
                                 mInterstitialAd.show();
                                 clickedItem = i;
                                 drawer.closeDrawer();
+                                count = 0;
                             } else {
                                 clickedItem = i;
                                 drawer.closeDrawer();
