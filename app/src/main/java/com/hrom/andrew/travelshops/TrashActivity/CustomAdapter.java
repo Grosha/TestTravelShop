@@ -58,7 +58,7 @@ public class CustomAdapter extends ArrayAdapter {
         }
     }
 
-    public void setOnPlusClickListenner(OnPlusButtonClickListenner listenner){
+    public void setOnPlusClickListenner(OnPlusButtonClickListenner listenner) {
         this.listenner = listenner;
     }
 
@@ -80,10 +80,7 @@ public class CustomAdapter extends ArrayAdapter {
             @Override
             public void onClick(View v) {
                 Log.d(MyTag.TEST, "1");
-                /*Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(sportShop.getLinkShop(position)));
-                view.getContext().startActivity(intent);*/
-
-                if (listenner!=null){
+                if (listenner != null) {
                     listenner.onPlusClick(sportShop.getLinkShop(position));
                 }
 
@@ -99,8 +96,9 @@ public class CustomAdapter extends ArrayAdapter {
             @Override
             public void onClick(View v) {
                 Log.d(MyTag.TEST, "2");
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(sportShop.getLinkShop(position)));
-                view.getContext().startActivity(intent);
+                if (listenner != null) {
+                    listenner.onPlusClick(sportShop.getLinkShop(position));
+                }
             }
         });
 

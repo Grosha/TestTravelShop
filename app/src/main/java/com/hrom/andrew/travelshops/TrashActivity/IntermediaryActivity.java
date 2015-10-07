@@ -10,6 +10,7 @@ import com.google.android.gms.ads.InterstitialAd;
 public class IntermediaryActivity extends AppCompatActivity {
     private AdRequest adRequest;
     protected InterstitialAd mInterstitialAd;
+    protected int countInterstitial = 1;
 
     protected AdRequest testDevices() {
         adRequest = new AdRequest.Builder()
@@ -70,5 +71,11 @@ public class IntermediaryActivity extends AppCompatActivity {
                 super.onAdFailedToLoad(errorCode);
             }
         });
+    }
+
+    public void showInterstitial() {
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
     }
 }

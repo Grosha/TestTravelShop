@@ -49,8 +49,6 @@ public class MainActivity extends IntermediaryActivity {
     private int clickedItem = -1;
     private ProgressBar progressBar;
     private Toolbar toolbar;
-    private int count = 1;
-    //private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,23 +155,28 @@ public class MainActivity extends IntermediaryActivity {
 
                     @Override
                     public boolean onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
-                        Log.d(MyTag.TEST, String.valueOf(count));
-                        if (count % 5 == 0) {
-                            if (mInterstitialAd.isLoaded()) {
+                        Log.d(MyTag.TEST, String.valueOf(countInterstitial));
+                        if (countInterstitial % 5 == 0) {
+                            showInterstitial();
+                            countInterstitial = 0;
+                            /*if (mInterstitialAd.isLoaded()) {
                                 mInterstitialAd.show();
                                 clickedItem = i;
                                 drawer.closeDrawer();
-                                count = 0;
+                                countInterstitial = 0;
                             } else {
                                 clickedItem = i;
                                 drawer.closeDrawer();
-                            }
+                            }*/
                         } else {
                             clickedItem = i;
                             drawer.closeDrawer();
 
                         }
-                        count++;
+                        countInterstitial++;
+
+                        clickedItem = i;
+                        drawer.closeDrawer();
                         return true;
                     }
                 })

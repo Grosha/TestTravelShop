@@ -21,6 +21,7 @@ import java.util.List;
 
 public class CategoryFragment extends ListFragment {
     private List<HashMap<String, String>> listShop;
+    private int countInterstitial = 1;
 
     public View createListShop(View view, SportShop shop, SportShop shopFav, int background, int list) {
 
@@ -41,14 +42,25 @@ public class CategoryFragment extends ListFragment {
             }
             listShop.add(hm);
         }
+
+        getListView().addFooterView(createListFooter());
+
         CustomAdapter customAdapter = new CustomAdapter(getActivity().getBaseContext(), list, listShop);
         setListAdapter(customAdapter);
         customAdapter.setOnPlusClickListenner(new OnPlusButtonClickListenner() {
             @Override
             public void onPlusClick(String url) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(intent);
-                //
+                Intent intent;
+                if (countInterstitial % 5 == 0) {
+                    ((MainActivity) getActivity()).showInterstitial();
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    startActivity(intent);
+                    countInterstitial = 0;
+                } else {
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    startActivity(intent);
+                    countInterstitial++;
+                }
             }
         });
 
@@ -62,7 +74,6 @@ public class CategoryFragment extends ListFragment {
             view.setBackgroundResource(background);
         }
 
-        getListView().addFooterView(createListFooter());
 
         return view;
     }
