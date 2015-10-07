@@ -3,8 +3,18 @@ package com.hrom.andrew.travelshops.TrashActivity;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+
+import com.mikepenz.materialdrawer.Drawer;
 
 public class ConvertSizeImage {
+
+    public static Drawable convertBitmapToDraweble(Resources resourse, int background) {
+        Bitmap bitmap = BitmapFactory.decodeResource(resourse, background);
+        BitmapDrawable drawable = new BitmapDrawable(resourse, bitmap);
+        return drawable;
+    }
 
     public static int calculateInSampleSize(
             BitmapFactory.Options options, int reqWidth, int reqHeight) {
