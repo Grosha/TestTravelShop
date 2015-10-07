@@ -14,6 +14,7 @@ import com.hrom.andrew.travelshops.ShopDB.SportShop;
 import com.hrom.andrew.travelshops.TrashActivity.CustomAdapter;
 import com.hrom.andrew.travelshops.TrashActivity.MyTag;
 import com.hrom.andrew.travelshops.TrashActivity.OnPlusButtonClickListenner;
+import com.hrom.andrew.travelshops.TrashActivity.PrefUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,15 +52,17 @@ public class CategoryFragment extends ListFragment {
             @Override
             public void onPlusClick(String url) {
                 Intent intent;
-                if (countInterstitial % 5 == 0) {
+                Log.d(MyTag.TEST, String.valueOf(countInterstitial));
+                if (PrefUtil.getCountInterstitial(getActivity().getBaseContext()) % 5 == 0) {
                     ((MainActivity) getActivity()).showInterstitial();
                     intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     startActivity(intent);
-                    countInterstitial = 0;
+                    countInterstitial = 1;
+                    PrefUtil.save(getActivity().getBaseContext(),countInterstitial);
                 } else {
                     intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     startActivity(intent);
-                    countInterstitial++;
+                    PrefUtil.save(getActivity().getBaseContext(),countInterstitial++);
                 }
             }
         });
