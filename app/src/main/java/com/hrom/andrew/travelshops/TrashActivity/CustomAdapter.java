@@ -79,7 +79,7 @@ public class CustomAdapter extends ArrayAdapter {
         imgIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(MyTag.TEST, "1");
+                Log.d(MyTag.TEST, "one");
                 if (listenner != null) {
                     listenner.onPlusClick(sportShop.getLinkShop(position));
                 }
@@ -95,7 +95,7 @@ public class CustomAdapter extends ArrayAdapter {
         nameShop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(MyTag.TEST, "2");
+                Log.d(MyTag.TEST, "two");
                 if (listenner != null) {
                     listenner.onPlusClick(sportShop.getLinkShop(position));
                 }
@@ -105,7 +105,7 @@ public class CustomAdapter extends ArrayAdapter {
         imgPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(MyTag.TEST, "3");
+                Log.d(MyTag.TEST, "three");
                 Shop shop = new Shop();
 
                 shop.setIconShop(sportShop.getIconShops().get(position));

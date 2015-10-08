@@ -2,6 +2,7 @@ package com.hrom.andrew.travelshops.Fragments;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +23,13 @@ import java.util.List;
 
 public class CategoryFragment extends ListFragment {
     private List<HashMap<String, String>> listShop;
-    private int countInterstitial = 1;
+    private int countInterstitial = 0;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        countInterstitial = PrefUtil.getCountInterstitial(getActivity().getBaseContext());
+    }
 
     public View createListShop(View view, SportShop shop, SportShop shopFav, int background, int list) {
 
@@ -52,17 +59,18 @@ public class CategoryFragment extends ListFragment {
             @Override
             public void onPlusClick(String url) {
                 Intent intent;
-                Log.d(MyTag.TEST, String.valueOf(countInterstitial));
+                PrefUtil.save(getActivity().getBaseContext(), ++countInterstitial);
+                Log.d(MyTag.TEST, String.valueOf(PrefUtil.getCountInterstitial(getActivity().getBaseContext())));
+
                 if (PrefUtil.getCountInterstitial(getActivity().getBaseContext()) % 5 == 0) {
                     ((MainActivity) getActivity()).showInterstitial();
                     intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     startActivity(intent);
-                    countInterstitial = 1;
-                    PrefUtil.save(getActivity().getBaseContext(),countInterstitial);
+                    countInterstitial = 0;
+                    //PrefUtil.save(getActivity().getBaseContext(), countInterstitial);
                 } else {
                     intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     startActivity(intent);
-                    PrefUtil.save(getActivity().getBaseContext(),countInterstitial++);
                 }
             }
         });

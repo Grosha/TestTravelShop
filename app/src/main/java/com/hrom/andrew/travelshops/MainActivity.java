@@ -120,8 +120,13 @@ public class MainActivity extends IntermediaryActivity {
                                     transaction.replace(R.id.container, new MapsFragment());
                                     break;
                             }
-                            transaction.commit();
-                            clickedItem = -1;
+                            try {
+                                transaction.commit();
+                                clickedItem = -1;
+                            } catch (IllegalStateException e) {
+
+                            }
+
                         }
                     }
 
@@ -158,7 +163,9 @@ public class MainActivity extends IntermediaryActivity {
                         Log.d(MyTag.TEST, String.valueOf(countInterstitial));
                         if (countInterstitial % 5 == 0) {
                             showInterstitial();
-                            countInterstitial = 0;
+                            clickedItem = i;
+                            drawer.closeDrawer();
+                            countInterstitial = 1;
                             /*if (mInterstitialAd.isLoaded()) {
                                 mInterstitialAd.show();
                                 clickedItem = i;
@@ -171,12 +178,9 @@ public class MainActivity extends IntermediaryActivity {
                         } else {
                             clickedItem = i;
                             drawer.closeDrawer();
-
+                            countInterstitial++;
                         }
-                        countInterstitial++;
 
-                        clickedItem = i;
-                        drawer.closeDrawer();
                         return true;
                     }
                 })

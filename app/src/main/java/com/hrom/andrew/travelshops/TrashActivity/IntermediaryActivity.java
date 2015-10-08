@@ -1,6 +1,7 @@
 package com.hrom.andrew.travelshops.TrashActivity;
 
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -53,12 +54,12 @@ public class IntermediaryActivity extends AppCompatActivity {
             @Override
             public void onAdClosed() {
                 super.onAdClosed();
+                mInterstitialAd.loadAd(testDevices());
             }
 
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
-
             }
 
             @Override
@@ -74,7 +75,9 @@ public class IntermediaryActivity extends AppCompatActivity {
     }
 
     public void showInterstitial() {
+        Log.d(MyTag.TEST, "load");
         if (mInterstitialAd.isLoaded()) {
+            Log.d(MyTag.TEST, "show");
             mInterstitialAd.show();
         }
     }

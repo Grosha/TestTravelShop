@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class PrefUtil {
     public static final String PRES_KEY_SHOP = "SHOP";
-    public static final String PRES_KEY_INTERSTITIAL = "SHOP";
+    public static final String PRES_KEY_INTERSTITIAL = "INTERSTITIAL";
 
     public static void save(Context context, String text) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -40,7 +40,7 @@ public class PrefUtil {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt(PRES_KEY_INTERSTITIAL, countInterstitial);
-        editor.apply();
+        editor.commit();
     }
 
     public static int getCountInterstitial(Context context) {
