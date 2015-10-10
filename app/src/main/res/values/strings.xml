@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">TravelShops</string>
-    <string name="title_activity_travel">TravelShops</string>
+    <string name="app_name">FreeRideX</string>
+    <string name="title_activity_travel">FreeRideX</string>
     <string name="API_KEY">AIzaSyCO7xM6RwZOaR9-Fiyo_2Uqy5UtNSPEr7Q</string>
     <string name="action_map">Map</string>
     <string name="action_search">search</string>
