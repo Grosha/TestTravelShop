@@ -23,6 +23,7 @@ import com.hrom.andrew.travelshops.Fragments.MountainFragment;
 import com.hrom.andrew.travelshops.Fragments.SkisFragment;
 import com.hrom.andrew.travelshops.Fragments.SnowboardFragment;
 import com.hrom.andrew.travelshops.TrashActivity.IntermediaryActivity;
+import com.hrom.andrew.travelshops.TrashActivity.PrefUtil;
 import com.hrom.andrew.travelshops.TrashActivity.StringVariables;
 import com.hrom.andrew.travelshops.TrashActivity.RetainedFragment;
 import com.mikepenz.materialdrawer.Drawer;
@@ -120,7 +121,6 @@ public class MainActivity extends IntermediaryActivity {
                             } catch (IllegalStateException e) {
 
                             }
-
                         }
                     }
 
@@ -154,25 +154,16 @@ public class MainActivity extends IntermediaryActivity {
 
                     @Override
                     public boolean onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
-                        Log.d(StringVariables.TEST, String.valueOf(countInterstitial));
-                        if (countInterstitial % 5 == 0) {
+                        PrefUtil.save(getBaseContext(), ++countInterstitial, StringVariables.PRES_KEY_INTERSTITIAL_DRAWER);
+                        //Log.d(StringVariables.TEST, String.valueOf(PrefUtil.getCountInterstitial(getBaseContext(), StringVariables.PRES_KEY_INTERSTITIAL_DRAWER)));
+                        if (PrefUtil.getCountInterstitial(getBaseContext(), StringVariables.PRES_KEY_INTERSTITIAL_DRAWER) % 5 == 0) {
                             showInterstitial();
                             clickedItem = i;
                             drawer.closeDrawer();
-                            countInterstitial = 1;
-                            /*if (mInterstitialAd.isLoaded()) {
-                                mInterstitialAd.show();
-                                clickedItem = i;
-                                drawer.closeDrawer();
-                                countInterstitial = 0;
-                            } else {
-                                clickedItem = i;
-                                drawer.closeDrawer();
-                            }*/
+                            PrefUtil.save(getApplication(), 0, StringVariables.PRES_KEY_INTERSTITIAL_DRAWER);
                         } else {
                             clickedItem = i;
                             drawer.closeDrawer();
-                            countInterstitial++;
                         }
 
                         return true;

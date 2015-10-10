@@ -28,7 +28,7 @@ public class CategoryFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        countInterstitial = PrefUtil.getCountInterstitial(getActivity().getBaseContext());
+        countInterstitial = PrefUtil.getCountInterstitial(getActivity().getBaseContext(), StringVariables.PRES_KEY_INTERSTITIAL_WEB);
     }
 
     public View createListShop(View view, SportShop shop, SportShop shopFav, int background, int list) {
@@ -59,15 +59,15 @@ public class CategoryFragment extends ListFragment {
             @Override
             public void onPlusClick(String url) {
                 Intent intent;
-                PrefUtil.save(getActivity().getBaseContext(), ++countInterstitial);
-                Log.d(StringVariables.TEST, String.valueOf(PrefUtil.getCountInterstitial(getActivity().getBaseContext())));
+                PrefUtil.save(getActivity().getBaseContext(), ++countInterstitial, StringVariables.PRES_KEY_INTERSTITIAL_WEB);
+                Log.d(StringVariables.TEST, String.valueOf(PrefUtil.getCountInterstitial(getActivity().getBaseContext(), StringVariables.PRES_KEY_INTERSTITIAL_WEB)));
 
-                if (PrefUtil.getCountInterstitial(getActivity().getBaseContext()) % 5 == 0) {
+                if (PrefUtil.getCountInterstitial(getActivity().getBaseContext(), StringVariables.PRES_KEY_INTERSTITIAL_WEB) % 5 == 0) {
                     ((MainActivity) getActivity()).showInterstitial();
+                    countInterstitial = 0;
+                    PrefUtil.save(getActivity().getBaseContext(), countInterstitial, StringVariables.PRES_KEY_INTERSTITIAL_WEB);
                     intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     startActivity(intent);
-                    countInterstitial = 0;
-                    //PrefUtil.save(getActivity().getBaseContext(), countInterstitial);
                 } else {
                     intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     startActivity(intent);

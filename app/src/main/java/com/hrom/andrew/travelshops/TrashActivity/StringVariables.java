@@ -13,5 +13,6 @@ public class StringVariables {
     public static final String TAG_MAP = "MapsFragment";
     public static int TAG_MAP_ = 4;
     public static final String PRES_KEY_SHOP = "SHOP";
-    public static final String PRES_KEY_INTERSTITIAL = "INTERSTITIAL";
+    public static final String PRES_KEY_INTERSTITIAL_WEB = "INTERSTITIAL_WEB";
+    public static final String PRES_KEY_INTERSTITIAL_DRAWER = "INTERSTITIAL_DRAWER";
 }

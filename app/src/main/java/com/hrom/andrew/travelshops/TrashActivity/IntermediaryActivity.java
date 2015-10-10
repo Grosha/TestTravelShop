@@ -1,5 +1,7 @@
 package com.hrom.andrew.travelshops.TrashActivity;
 
+import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -11,7 +13,13 @@ import com.google.android.gms.ads.InterstitialAd;
 public class IntermediaryActivity extends AppCompatActivity {
     private AdRequest adRequest;
     protected InterstitialAd mInterstitialAd;
-    protected int countInterstitial = 1;
+    protected int countInterstitial = 0;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
+        countInterstitial = PrefUtil.getCountInterstitial(getBaseContext(), StringVariables.PRES_KEY_INTERSTITIAL_WEB);
+    }
 
     protected AdRequest testDevices() {
         adRequest = new AdRequest.Builder()
