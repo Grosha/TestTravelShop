@@ -6,11 +6,10 @@ import android.view.View;
 
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.FavoriteShop;
-import com.hrom.andrew.travelshops.TrashActivity.CustomAdapter;
-import com.hrom.andrew.travelshops.TrashActivity.MyTag;
+import com.hrom.andrew.travelshops.TrashActivity.StringVariables;
 
 public class FavoriteListFragment extends CategoryFragment {
-    public final static String TAG = MyTag.TAG_FAVORITE_LIST;
+    public final static String TAG = StringVariables.TAG_FAVORITE_LIST;
     private FavoriteShop favoriteShop;
 
     @Override

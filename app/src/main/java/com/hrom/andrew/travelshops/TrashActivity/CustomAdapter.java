@@ -1,8 +1,6 @@
 package com.hrom.andrew.travelshops.TrashActivity;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,20 +38,20 @@ public class CustomAdapter extends ArrayAdapter {
         super(context, resource, objects);
         this.object = objects;
 
-        if (RetainedFragment.getClassName().contains(MyTag.TAG_BIKE)) {
-            Log.d(MyTag.TEST, "bike");
+        if (RetainedFragment.getClassName().contains(StringVariables.TAG_BIKE)) {
+            Log.d(StringVariables.TEST, "bike");
             sportShop = new BikeShop();
-        } else if (RetainedFragment.getClassName().contains(MyTag.TAG_MOUNTAIN)) {
-            Log.d(MyTag.TEST, "montain");
+        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_MOUNTAIN)) {
+            Log.d(StringVariables.TEST, "montain");
             sportShop = new MountainShop();
-        } else if (RetainedFragment.getClassName().contains(MyTag.TAG_SKIS)) {
-            Log.d(MyTag.TEST, "ski");
+        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SKIS)) {
+            Log.d(StringVariables.TEST, "ski");
             sportShop = new SkisShop();
-        } else if (RetainedFragment.getClassName().contains(MyTag.TAG_SNOWBOARD)) {
-            Log.d(MyTag.TEST, "snow");
+        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SNOWBOARD)) {
+            Log.d(StringVariables.TEST, "snow");
             sportShop = new SnowboardShop();
-        } else if (RetainedFragment.getClassName().contains(MyTag.TAG_FAVORITE_LIST)) {
-            Log.d(MyTag.TEST, "favorite");
+        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_FAVORITE_LIST)) {
+            Log.d(StringVariables.TEST, "favorite");
             sportShop = new FavoriteShop(context);
         }
     }
@@ -79,14 +77,14 @@ public class CustomAdapter extends ArrayAdapter {
         imgIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(MyTag.TEST, "one");
+                Log.d(StringVariables.TEST, "one");
                 if (listenner != null) {
                     listenner.onPlusClick(sportShop.getLinkShop(position));
                 }
 
                 /*WebViewFragment fragment = new WebViewFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString(MyTag.WEB, sportShop.getLinkShop(position));
+                bundle.putString(StringVariables.WEB, sportShop.getLinkShop(position));
                 fragment.setArguments(bundle);
                 getFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();*/
             }
@@ -95,7 +93,7 @@ public class CustomAdapter extends ArrayAdapter {
         nameShop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(MyTag.TEST, "two");
+                Log.d(StringVariables.TEST, "two");
                 if (listenner != null) {
                     listenner.onPlusClick(sportShop.getLinkShop(position));
                 }
@@ -105,7 +103,7 @@ public class CustomAdapter extends ArrayAdapter {
         imgPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(MyTag.TEST, "three");
+                Log.d(StringVariables.TEST, "three");
                 Shop shop = new Shop();
 
                 shop.setIconShop(sportShop.getIconShops().get(position));
@@ -113,7 +111,7 @@ public class CustomAdapter extends ArrayAdapter {
                 shop.setUrl(sportShop.getLinkShop((position)));
 
                 String item = new Gson().toJson(shop);
-                Log.d(MyTag.TEST, item);
+                Log.d(StringVariables.TEST, item);
 
 
                 if (PrefUtil.getValueList(getContext()).contains(item)) {

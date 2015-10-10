@@ -75,9 +75,9 @@ public class IntermediaryActivity extends AppCompatActivity {
     }
 
     public void showInterstitial() {
-        Log.d(MyTag.TEST, "load");
+        Log.d(StringVariables.TEST, "load");
         if (mInterstitialAd.isLoaded()) {
-            Log.d(MyTag.TEST, "show");
+            Log.d(StringVariables.TEST, "show");
             mInterstitialAd.show();
         }
     }

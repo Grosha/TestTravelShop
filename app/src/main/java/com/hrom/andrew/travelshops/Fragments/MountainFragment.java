@@ -6,10 +6,10 @@ import android.view.View;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.FavoriteShop;
 import com.hrom.andrew.travelshops.ShopDB.MountainShop;
-import com.hrom.andrew.travelshops.TrashActivity.MyTag;
+import com.hrom.andrew.travelshops.TrashActivity.StringVariables;
 
 public class MountainFragment extends CategoryFragment {
-    public final static String TAG = MyTag.TAG_MOUNTAIN;
+    public final static String TAG = StringVariables.TAG_MOUNTAIN;
     private MountainShop mountainShop = new MountainShop();
     private FavoriteShop favoriteShop;
 

@@ -1,28 +1,20 @@
 package com.hrom.andrew.travelshops.Fragments;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
-import android.graphics.Point;
 import android.location.Location;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.BounceInterpolator;
-import android.view.animation.Interpolator;
 import android.widget.ProgressBar;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.Projection;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -30,7 +22,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.hrom.andrew.travelshops.DBCoordinates.CityCoordinate;
 import com.hrom.andrew.travelshops.DBCoordinates.ShopCoordinate;
-import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.BikeShop;
 import com.hrom.andrew.travelshops.ShopDB.FavoriteShop;
@@ -38,14 +29,10 @@ import com.hrom.andrew.travelshops.ShopDB.MountainShop;
 import com.hrom.andrew.travelshops.ShopDB.SkisShop;
 import com.hrom.andrew.travelshops.ShopDB.SnowboardShop;
 import com.hrom.andrew.travelshops.ShopDB.SportShop;
-import com.hrom.andrew.travelshops.TrashActivity.MyTag;
+import com.hrom.andrew.travelshops.TrashActivity.StringVariables;
 import com.hrom.andrew.travelshops.TrashActivity.RetainedFragment;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Collection;
-
-import static com.hrom.andrew.travelshops.Fragments.BikeFragment.*;
 
 public class MapsFragment extends Fragment {
     private SupportMapFragment mapFragment;
@@ -64,20 +51,20 @@ public class MapsFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if (RetainedFragment.getClassName().contains(MyTag.TAG_BIKE)) {
-            Log.d(MyTag.TEST, "bike");
+        if (RetainedFragment.getClassName().contains(StringVariables.TAG_BIKE)) {
+            Log.d(StringVariables.TEST, "bike");
             sportShop = new BikeShop();
-        } else if (RetainedFragment.getClassName().contains(MyTag.TAG_MOUNTAIN)) {
-            Log.d(MyTag.TEST, "montain");
+        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_MOUNTAIN)) {
+            Log.d(StringVariables.TEST, "montain");
             sportShop = new MountainShop();
-        } else if (RetainedFragment.getClassName().contains(MyTag.TAG_SKIS)) {
-            Log.d(MyTag.TEST, "ski");
+        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SKIS)) {
+            Log.d(StringVariables.TEST, "ski");
             sportShop = new SkisShop();
-        } else if (RetainedFragment.getClassName().contains(MyTag.TAG_SNOWBOARD)) {
-            Log.d(MyTag.TEST, "snow");
+        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SNOWBOARD)) {
+            Log.d(StringVariables.TEST, "snow");
             sportShop = new SnowboardShop();
-        } else if (RetainedFragment.getClassName().contains(MyTag.TAG_FAVORITE_LIST)) {
-            Log.d(MyTag.TEST, "favorite");
+        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_FAVORITE_LIST)) {
+            Log.d(StringVariables.TEST, "favorite");
             sportShop = new FavoriteShop(getActivity());
         }
 
@@ -104,7 +91,7 @@ public class MapsFragment extends Fragment {
         public void onMyLocationChange(Location location) {
             Marker myNewMarker = null;
             if (location != null) {
-                Log.d(MyTag.TEST, "LOCATION NOT NULL");
+                Log.d(StringVariables.TEST, "LOCATION NOT NULL");
                 LatLng target = new LatLng(location.getLatitude(), location.getLongitude());
                 if (marker != null) {
                     marker.remove();
@@ -177,7 +164,7 @@ public class MapsFragment extends Fragment {
 
             ShopCoordinate shop = new ShopCoordinate();
 
-            Log.d(MyTag.TEST, "TEST");
+            Log.d(StringVariables.TEST, "TEST");
 
             if (googleMap != null) {
                 googleMap.setMyLocationEnabled(true);
@@ -188,8 +175,8 @@ public class MapsFragment extends Fragment {
                 for (int i = 0; i < sportShop.getListShops().size(); i++) {
                     Collection<LatLng> colecLng = shop.getCoordinate(sportShop.getListShops().get(i));
 
-                    Log.d(MyTag.NAMEFRAGMENT, String.valueOf(sportShop.getListShops().get(i)));
-                    Log.d(MyTag.NAMEFRAGMENT, String.valueOf(colecLng));
+                    Log.d(StringVariables.NAMEFRAGMENT, String.valueOf(sportShop.getListShops().get(i)));
+                    Log.d(StringVariables.NAMEFRAGMENT, String.valueOf(colecLng));
 
                     if (shop.getCoordinate(sportShop.getListShops().get(i)) == null) {
                         //if (i != bike.getListShops().size() - 1) {
@@ -218,7 +205,7 @@ public class MapsFragment extends Fragment {
             googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
                 @Override
                 public void onInfoWindowClick(Marker marker) {
-                    Log.d(MyTag.TEST, marker.getSnippet());
+                    Log.d(StringVariables.TEST, marker.getSnippet());
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + marker.getSnippet()));
                     startActivity(intent);
                 }

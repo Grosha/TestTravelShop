@@ -13,7 +13,7 @@ import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.SportShop;
 import com.hrom.andrew.travelshops.TrashActivity.CustomAdapter;
-import com.hrom.andrew.travelshops.TrashActivity.MyTag;
+import com.hrom.andrew.travelshops.TrashActivity.StringVariables;
 import com.hrom.andrew.travelshops.TrashActivity.OnPlusButtonClickListenner;
 import com.hrom.andrew.travelshops.TrashActivity.PrefUtil;
 
@@ -36,7 +36,7 @@ public class CategoryFragment extends ListFragment {
         listShop = new ArrayList<>();
 
         ((MainActivity) getActivity()).setLastFragmentTag(this.getClass().toString());
-        Log.d(MyTag.TEST, this.getClass().toString());
+        Log.d(StringVariables.TEST, this.getClass().toString());
 
         for (int i = 0; i < shop.getListShops().size(); i++) {
             HashMap<String, String> hm = new HashMap<>();
@@ -60,7 +60,7 @@ public class CategoryFragment extends ListFragment {
             public void onPlusClick(String url) {
                 Intent intent;
                 PrefUtil.save(getActivity().getBaseContext(), ++countInterstitial);
-                Log.d(MyTag.TEST, String.valueOf(PrefUtil.getCountInterstitial(getActivity().getBaseContext())));
+                Log.d(StringVariables.TEST, String.valueOf(PrefUtil.getCountInterstitial(getActivity().getBaseContext())));
 
                 if (PrefUtil.getCountInterstitial(getActivity().getBaseContext()) % 5 == 0) {
                     ((MainActivity) getActivity()).showInterstitial();

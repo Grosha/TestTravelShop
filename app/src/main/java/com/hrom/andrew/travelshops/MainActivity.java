@@ -1,12 +1,10 @@
 package com.hrom.andrew.travelshops;
 
 import android.app.SearchManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -14,14 +12,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ProgressBar;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
 import com.hrom.andrew.travelshops.Fragments.BikeFragment;
 import com.hrom.andrew.travelshops.Fragments.FavoriteListFragment;
 import com.hrom.andrew.travelshops.Fragments.MapsFragment;
@@ -29,7 +23,7 @@ import com.hrom.andrew.travelshops.Fragments.MountainFragment;
 import com.hrom.andrew.travelshops.Fragments.SkisFragment;
 import com.hrom.andrew.travelshops.Fragments.SnowboardFragment;
 import com.hrom.andrew.travelshops.TrashActivity.IntermediaryActivity;
-import com.hrom.andrew.travelshops.TrashActivity.MyTag;
+import com.hrom.andrew.travelshops.TrashActivity.StringVariables;
 import com.hrom.andrew.travelshops.TrashActivity.RetainedFragment;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -160,7 +154,7 @@ public class MainActivity extends IntermediaryActivity {
 
                     @Override
                     public boolean onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
-                        Log.d(MyTag.TEST, String.valueOf(countInterstitial));
+                        Log.d(StringVariables.TEST, String.valueOf(countInterstitial));
                         if (countInterstitial % 5 == 0) {
                             showInterstitial();
                             clickedItem = i;

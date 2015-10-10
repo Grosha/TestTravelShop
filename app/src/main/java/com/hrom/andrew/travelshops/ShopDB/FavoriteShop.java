@@ -1,11 +1,8 @@
 package com.hrom.andrew.travelshops.ShopDB;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
 
 import com.google.gson.Gson;
-import com.hrom.andrew.travelshops.TrashActivity.MyTag;
 import com.hrom.andrew.travelshops.TrashActivity.PrefUtil;
 
 import java.util.ArrayList;
