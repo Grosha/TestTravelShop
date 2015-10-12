@@ -22,6 +22,7 @@ import com.hrom.andrew.travelshops.Fragments.MapsFragment;
 import com.hrom.andrew.travelshops.Fragments.MountainFragment;
 import com.hrom.andrew.travelshops.Fragments.SkisFragment;
 import com.hrom.andrew.travelshops.Fragments.SnowboardFragment;
+import com.hrom.andrew.travelshops.TrashActivity.GoogleAnalyticsVariable;
 import com.hrom.andrew.travelshops.TrashActivity.IntermediaryActivity;
 import com.hrom.andrew.travelshops.TrashActivity.PrefUtil;
 import com.hrom.andrew.travelshops.TrashActivity.StringVariables;
@@ -97,6 +98,7 @@ public class MainActivity extends IntermediaryActivity {
                             switch (clickedItem) {
                                 case 0:
                                     transaction.replace(R.id.container, new FavoriteListFragment());
+                                    tracker(GoogleAnalyticsVariable.DRAWER_CATEGORY, GoogleAnalyticsVariable.DRAWER_ACTION, GoogleAnalyticsVariable.DRAWER_LABEL_FAVORITE);
                                     break;
                                 case 2:
                                     transaction.replace(R.id.container, new MountainFragment());
