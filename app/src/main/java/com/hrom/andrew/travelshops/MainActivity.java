@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,8 +21,9 @@ import com.hrom.andrew.travelshops.Fragments.MapsFragment;
 import com.hrom.andrew.travelshops.Fragments.MountainFragment;
 import com.hrom.andrew.travelshops.Fragments.SkisFragment;
 import com.hrom.andrew.travelshops.Fragments.SnowboardFragment;
-import com.hrom.andrew.travelshops.TrashActivity.GoogleAnalyticsVariable;
+import com.hrom.andrew.travelshops.TrashActivity.AnalyticsEvent;
 import com.hrom.andrew.travelshops.TrashActivity.IntermediaryActivity;
+import com.hrom.andrew.travelshops.TrashActivity.MyApplication;
 import com.hrom.andrew.travelshops.TrashActivity.PrefUtil;
 import com.hrom.andrew.travelshops.TrashActivity.StringVariables;
 import com.hrom.andrew.travelshops.TrashActivity.RetainedFragment;
@@ -98,7 +98,7 @@ public class MainActivity extends IntermediaryActivity {
                             switch (clickedItem) {
                                 case 0:
                                     transaction.replace(R.id.container, new FavoriteListFragment());
-                                    tracker(GoogleAnalyticsVariable.DRAWER_CATEGORY, GoogleAnalyticsVariable.DRAWER_ACTION, GoogleAnalyticsVariable.DRAWER_LABEL_FAVORITE);
+                                    MyApplication.get().sendEvent(AnalyticsEvent.DRAWER_CATEGORY, AnalyticsEvent.DRAWER_ACTION, AnalyticsEvent.DRAWER_LABEL_FAVORITE);
                                     break;
                                 case 2:
                                     transaction.replace(R.id.container, new MountainFragment());

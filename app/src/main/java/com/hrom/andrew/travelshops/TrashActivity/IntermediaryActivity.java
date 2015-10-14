@@ -16,7 +16,6 @@ public class IntermediaryActivity extends AppCompatActivity {
     private AdRequest adRequest;
     protected InterstitialAd mInterstitialAd;
     protected int countInterstitial = 0;
-    protected Tracker tracker;
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
@@ -24,8 +23,6 @@ public class IntermediaryActivity extends AppCompatActivity {
 
         countInterstitial = PrefUtil.getCountInterstitial(getBaseContext(), StringVariables.PRES_KEY_INTERSTITIAL_WEB);
 
-        AnalyticsApplication application = (AnalyticsApplication) getApplication();
-        tracker = application.getTracker();
     }
 
     protected AdRequest testDevices() {
@@ -94,19 +91,6 @@ public class IntermediaryActivity extends AppCompatActivity {
         if (mInterstitialAd.isLoaded()) {
             Log.d(StringVariables.TEST, "show");
             mInterstitialAd.show();
-        }
-    }
-
-    protected void tracker(String category, String action, String label) {
-        tracker.send(new HitBuilders.EventBuilder()
-                .setCategory(category)
-                .setAction(action)
-                .setLabel(label)
-                .build());
-        if (!action.isEmpty() & !category.isEmpty()) {
-            Log.d(StringVariables.TEST, "Category " + category + ", action " + action);
-        } else if (!label.isEmpty() & !action.isEmpty() & !category.isEmpty()) {
-            Log.d(StringVariables.TEST, "Category " + category + ", action " + action + ", label " + label);
         }
     }
 }

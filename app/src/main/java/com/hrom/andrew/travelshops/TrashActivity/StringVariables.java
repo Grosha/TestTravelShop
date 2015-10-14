@@ -3,6 +3,7 @@ package com.hrom.andrew.travelshops.TrashActivity;
 public class StringVariables {
     public static final String NAMEFRAGMENT = "FRAGMENT";
     public static final String TEST = "TAG_NAME_FRAGMENT";
+    public static final String EventSender = "EventSender";
     public static final String PROGRESS = "PROGRESS";
     public static final String WEB = "WEB";
     public static final String TAG_MOUNTAIN = "MountainFragment";

@@ -1,6 +1,6 @@
 package com.hrom.andrew.travelshops.TrashActivity;
 
-public class GoogleAnalyticsVariable {
+public class AnalyticsEvent {
     //for app
     public static final String CATEGORY_OPEN_APP = "FreeRideX open";
 
