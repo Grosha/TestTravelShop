@@ -4,17 +4,13 @@ import android.app.Application;
 import android.util.Log;
 
 import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 
 public class MyApplication extends Application {
-    private AnalyticsTrackers analyticsTrackers;
     private static MyApplication singleton;
-
 
     public static MyApplication get() {
         return singleton;
     }
-
 
     @Override
     public void onCreate() {
