@@ -26,10 +26,10 @@ public class MyApplication extends Application {
                 .setLabel(label)
                 .build());
 
-        if (label.isEmpty()) {
-            Log.d(StringVariables.EventSender, "category " + category + ", action " + action);
+        if (label==null) {
+            Log.d(StringVariables.EventSender, "category: " + category + ", action: " + action);
         } else if (!label.isEmpty() & !action.isEmpty() & !category.isEmpty()) {
-            Log.d(StringVariables.EventSender, "category " + category + ", action " + action + ", label " + label);
+            Log.d(StringVariables.EventSender, "category: " + category + ", action: " + action + ", label: " + label);
         }
     }
 }

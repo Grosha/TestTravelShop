@@ -2,7 +2,8 @@ package com.hrom.andrew.travelshops.TrashActivity;
 
 public class AnalyticsEvent {
     //for app
-    public static final String CATEGORY_OPEN_APP = "FreeRideX open";
+    public static final String CATEGORY_APPLICATION = "Application";
+    public static final String ACTION_APPLICATION = "FreeRideX open";
 
     //for drawer
     public static final String DRAWER_CATEGORY = "Drawer";

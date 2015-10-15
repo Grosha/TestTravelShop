@@ -51,6 +51,11 @@ public class MainActivity extends IntermediaryActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
 
+        MyApplication.get().sendEvent(
+                AnalyticsEvent.CATEGORY_APPLICATION,
+                AnalyticsEvent.ACTION_APPLICATION,
+                null);
+
         transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, new MountainFragment());
         transaction.commit();
