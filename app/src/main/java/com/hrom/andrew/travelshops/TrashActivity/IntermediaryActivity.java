@@ -36,17 +36,20 @@ public class IntermediaryActivity extends AppCompatActivity {
 
     protected void admobBanner(AdView mAdView) {
         mAdView.loadAd(testDevices());
+
         mAdView.setAdListener(new AdListener() {
             @Override
             public void onAdFailedToLoad(int errorCode) {
                 super.onAdFailedToLoad(errorCode);
                 //
+
             }
 
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
                 //
+                MyApplication.get().sendEvent(AnalyticsEvent.ADMOB_CATEGORY, AnalyticsEvent.ADMOB_ACTION, AnalyticsEvent.ADMOB_BANNER_LABEL);
             }
 
             @Override
@@ -91,6 +94,7 @@ public class IntermediaryActivity extends AppCompatActivity {
         if (mInterstitialAd.isLoaded()) {
             Log.d(StringVariables.TEST, "show");
             mInterstitialAd.show();
+            MyApplication.get().sendEvent(AnalyticsEvent.ADMOB_CATEGORY, AnalyticsEvent.ADMOB_ACTION, AnalyticsEvent.ADMOB_INRESTITIAL_LABEL);
         }
     }
 }
