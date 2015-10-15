@@ -29,6 +29,7 @@ public class SnowboardShop extends SportShop {
         siteShops.add("Gorgany");
         siteShops.add("Kant");
         siteShops.add("Ekip sport");
+        siteShops.add("NorthWall");
         return siteShops;
     }
 
@@ -55,6 +56,7 @@ public class SnowboardShop extends SportShop {
         imageShops.add(R.drawable.icon_gorgany);
         imageShops.add(R.drawable.icon_kant);
         imageShops.add(R.drawable.icon_ekip_sport);
+        imageShops.add(R.drawable.icon_northwall);
         return imageShops;
     }
 
@@ -81,6 +83,7 @@ public class SnowboardShop extends SportShop {
         listAdressWebSite.add("http://www.gorgany.com/snoubordyng");
         listAdressWebSite.add("http://kant.ua/category-snoubordy/snoubordy/");
         listAdressWebSite.add("http://ekip-sport.com.ua/category/snoubordy_2/");
+        listAdressWebSite.add("http://northwall.com.ua/");
         return listAdressWebSite.get(position);
     }
 }

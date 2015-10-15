@@ -31,6 +31,8 @@ public class MountainShop extends SportShop {
         siteShops.add("GoFree");
         siteShops.add("Драйв Спорт");
         siteShops.add("Каприкорн");
+        siteShops.add("Terra Incognita");
+        siteShops.add("NorthWall");
         return siteShops;
     }
 
@@ -58,6 +60,8 @@ public class MountainShop extends SportShop {
         imageShops.add(R.drawable.icon_gofree);
         imageShops.add(R.drawable.icon_drive_sport);
         imageShops.add(R.drawable.icon_capricorn);
+        imageShops.add(R.drawable.icon_terraincognita);
+        imageShops.add(R.drawable.icon_northwall);
         return imageShops;
     }
 
@@ -85,6 +89,8 @@ public class MountainShop extends SportShop {
         listAdressWebSite.add("http://www.gofree.com.ua/");
         listAdressWebSite.add("http://ru.drive-sport.com.ua/");
         listAdressWebSite.add("http://www.capricorn.com.ua/");
+        listAdressWebSite.add("http://terraincognita.ua/ukr/");
+        listAdressWebSite.add("http://northwall.com.ua/");
         return listAdressWebSite.get(position);
     }
 
