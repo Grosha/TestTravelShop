@@ -47,7 +47,6 @@ public class MapsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         return inflater.inflate(R.layout.layout_maps, container, false);
     }
 
@@ -58,23 +57,38 @@ public class MapsFragment extends Fragment {
         if (RetainedFragment.getClassName().contains(StringVariables.TAG_BIKE)) {
             Log.d(StringVariables.TEST, "bike");
             sportShop = new BikeShop();
-            MyApplication.get().sendEvent(AnalyticsEvent.MAP_CATEGORY,AnalyticsEvent.MAP_OPEN_ACTION,AnalyticsEvent.MAP_LABEL_BIKE);
+            MyApplication.get().sendEvent(
+                    AnalyticsEvent.MAP_CATEGORY,
+                    AnalyticsEvent.MAP_OPEN_ACTION,
+                    AnalyticsEvent.MAP_LABEL_BIKE);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_MOUNTAIN)) {
             Log.d(StringVariables.TEST, "montain");
             sportShop = new MountainShop();
-            MyApplication.get().sendEvent(AnalyticsEvent.MAP_CATEGORY,AnalyticsEvent.MAP_OPEN_ACTION,AnalyticsEvent.MAP_LABEL_MOUNTAIN);
+            MyApplication.get().sendEvent(
+                    AnalyticsEvent.MAP_CATEGORY,
+                    AnalyticsEvent.MAP_OPEN_ACTION,
+                    AnalyticsEvent.MAP_LABEL_MOUNTAIN);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SKIS)) {
             Log.d(StringVariables.TEST, "ski");
             sportShop = new SkisShop();
-            MyApplication.get().sendEvent(AnalyticsEvent.MAP_CATEGORY,AnalyticsEvent.MAP_OPEN_ACTION,AnalyticsEvent.MAP_LABEL_SKI);
+            MyApplication.get().sendEvent(
+                    AnalyticsEvent.MAP_CATEGORY,
+                    AnalyticsEvent.MAP_OPEN_ACTION,
+                    AnalyticsEvent.MAP_LABEL_SKI);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SNOWBOARD)) {
             Log.d(StringVariables.TEST, "snow");
             sportShop = new SnowboardShop();
-            MyApplication.get().sendEvent(AnalyticsEvent.MAP_CATEGORY,AnalyticsEvent.MAP_OPEN_ACTION,AnalyticsEvent.MAP_LABEL_SNOWBOARD);
+            MyApplication.get().sendEvent(
+                    AnalyticsEvent.MAP_CATEGORY,
+                    AnalyticsEvent.MAP_OPEN_ACTION,
+                    AnalyticsEvent.MAP_LABEL_SNOWBOARD);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_FAVORITE_LIST)) {
             Log.d(StringVariables.TEST, "favorite");
             sportShop = new FavoriteShop(getActivity());
-            MyApplication.get().sendEvent(AnalyticsEvent.MAP_CATEGORY,AnalyticsEvent.MAP_OPEN_ACTION,AnalyticsEvent.MAP_LABEL_FAVORITE);
+            MyApplication.get().sendEvent(
+                    AnalyticsEvent.MAP_CATEGORY,
+                    AnalyticsEvent.MAP_OPEN_ACTION,
+                    AnalyticsEvent.MAP_LABEL_FAVORITE);
         }
 
         //прогрес бар для мапи
@@ -217,7 +231,10 @@ public class MapsFragment extends Fragment {
                     Log.d(StringVariables.TEST, marker.getSnippet());
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + marker.getSnippet()));
                     startActivity(intent);
-                    MyApplication.get().sendEvent(AnalyticsEvent.MAP_CATEGORY, AnalyticsEvent.MAP_SHOP_ACTION, marker.getSnippet());
+                    MyApplication.get().sendEvent(
+                            AnalyticsEvent.MAP_CATEGORY,
+                            AnalyticsEvent.MAP_SHOP_ACTION,
+                            marker.getSnippet());
                 }
             });
         }

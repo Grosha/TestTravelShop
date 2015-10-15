@@ -14,6 +14,12 @@ public class AnalyticsEvent {
     public static final String DRAWER_LABEL_BIKE = "Bike";
     public static final String DRAWER_LABEL_MAP = "Map";
 
+    //toolbox
+    public static final String TOOLBOX_CATEGORY = "Toolbox";
+    public static final String TOOLBOX_ACTION = "Click";
+    public static final String TOOLBOX_LABEL_MAP = "Map";
+    public static final String TOOLBOX_LABEL_SEARCH = "Search";
+
     //for map
     public static final String MAP_CATEGORY = "Map";
     public static final String MAP_OPEN_ACTION = "Open";

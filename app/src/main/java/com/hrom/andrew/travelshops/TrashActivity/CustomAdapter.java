@@ -80,6 +80,10 @@ public class CustomAdapter extends ArrayAdapter {
                 Log.d(StringVariables.TEST, "one");
                 if (listenner != null) {
                     listenner.onPlusClick(sportShop.getLinkShop(position));
+                    MyApplication.get().sendEvent(
+                            AnalyticsEvent.SHOP_CATEGORY,
+                            AnalyticsEvent.SHOP_ACTION,
+                            AnalyticsEvent.SHOP_ICON_LABEL);
                 }
 
                 /*WebViewFragment fragment = new WebViewFragment();
@@ -96,6 +100,10 @@ public class CustomAdapter extends ArrayAdapter {
                 Log.d(StringVariables.TEST, "two");
                 if (listenner != null) {
                     listenner.onPlusClick(sportShop.getLinkShop(position));
+                    MyApplication.get().sendEvent(
+                            AnalyticsEvent.SHOP_CATEGORY,
+                            AnalyticsEvent.SHOP_ACTION,
+                            AnalyticsEvent.SHOP_NAME_LABEL);
                 }
             }
         });
@@ -118,10 +126,18 @@ public class CustomAdapter extends ArrayAdapter {
                     PrefUtil.remove(getContext(), item);
                     imgPlus = (ImageView) view.findViewById(R.id.imgForMyList);
                     imgPlus.setImageResource(R.drawable.ic_control_point_black_24dp);
+                    MyApplication.get().sendEvent(
+                            AnalyticsEvent.SHOP_CATEGORY,
+                            AnalyticsEvent.SHOP_ACTION,
+                            AnalyticsEvent.SHOP_ADD_TO_FAVORITE_LABEL);
                 } else {
                     PrefUtil.save(getContext(), item);
                     imgPlus = (ImageView) view.findViewById(R.id.imgForMyList);
                     imgPlus.setImageResource(R.drawable.ic_group_work_black_18dp);
+                    MyApplication.get().sendEvent(
+                            AnalyticsEvent.SHOP_CATEGORY,
+                            AnalyticsEvent.SHOP_ACTION,
+                            AnalyticsEvent.SHOP_DELETE_FROM_FAVORITE_LABEL);
                 }
 
                 v.postDelayed(new Runnable() {

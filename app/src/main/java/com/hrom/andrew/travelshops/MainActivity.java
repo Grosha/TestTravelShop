@@ -98,28 +98,46 @@ public class MainActivity extends IntermediaryActivity {
                             switch (clickedItem) {
                                 case 0:
                                     transaction.replace(R.id.container, new FavoriteListFragment());
-                                    MyApplication.get().sendEvent(AnalyticsEvent.DRAWER_CATEGORY, AnalyticsEvent.DRAWER_ACTION, AnalyticsEvent.DRAWER_LABEL_FAVORITE);
+                                    MyApplication.get().sendEvent(
+                                            AnalyticsEvent.DRAWER_CATEGORY,
+                                            AnalyticsEvent.DRAWER_ACTION,
+                                            AnalyticsEvent.DRAWER_LABEL_FAVORITE);
                                     break;
                                 case 2:
                                     transaction.replace(R.id.container, new MountainFragment());
                                     //transaction.replace(R.id.container, new SwipeMountain());
-                                    MyApplication.get().sendEvent(AnalyticsEvent.DRAWER_CATEGORY, AnalyticsEvent.DRAWER_ACTION, AnalyticsEvent.DRAWER_LABEL_MOUNTAIN);
+                                    MyApplication.get().sendEvent(
+                                            AnalyticsEvent.DRAWER_CATEGORY,
+                                            AnalyticsEvent.DRAWER_ACTION,
+                                            AnalyticsEvent.DRAWER_LABEL_MOUNTAIN);
                                     break;
                                 case 3:
                                     transaction.replace(R.id.container, new SkisFragment());
-                                    MyApplication.get().sendEvent(AnalyticsEvent.DRAWER_CATEGORY, AnalyticsEvent.DRAWER_ACTION, AnalyticsEvent.DRAWER_LABEL_SKI);
+                                    MyApplication.get().sendEvent(
+                                            AnalyticsEvent.DRAWER_CATEGORY,
+                                            AnalyticsEvent.DRAWER_ACTION,
+                                            AnalyticsEvent.DRAWER_LABEL_SKI);
                                     break;
                                 case 4:
                                     transaction.replace(R.id.container, new SnowboardFragment());
-                                    MyApplication.get().sendEvent(AnalyticsEvent.DRAWER_CATEGORY, AnalyticsEvent.DRAWER_ACTION, AnalyticsEvent.DRAWER_LABEL_SNOWBOARD);
+                                    MyApplication.get().sendEvent(
+                                            AnalyticsEvent.DRAWER_CATEGORY,
+                                            AnalyticsEvent.DRAWER_ACTION,
+                                            AnalyticsEvent.DRAWER_LABEL_SNOWBOARD);
                                     break;
                                 case 5:
                                     transaction.replace(R.id.container, new BikeFragment());
-                                    MyApplication.get().sendEvent(AnalyticsEvent.DRAWER_CATEGORY, AnalyticsEvent.DRAWER_ACTION, AnalyticsEvent.DRAWER_LABEL_BIKE);
+                                    MyApplication.get().sendEvent(
+                                            AnalyticsEvent.DRAWER_CATEGORY,
+                                            AnalyticsEvent.DRAWER_ACTION,
+                                            AnalyticsEvent.DRAWER_LABEL_BIKE);
                                     break;
                                 case 6:
                                     transaction.replace(R.id.container, new MapsFragment());
-                                    MyApplication.get().sendEvent(AnalyticsEvent.DRAWER_CATEGORY, AnalyticsEvent.DRAWER_ACTION, AnalyticsEvent.DRAWER_LABEL_MAP);
+                                    MyApplication.get().sendEvent(
+                                            AnalyticsEvent.DRAWER_CATEGORY,
+                                            AnalyticsEvent.DRAWER_ACTION,
+                                            AnalyticsEvent.DRAWER_LABEL_MAP);
                                     break;
                             }
                             try {
@@ -240,9 +258,16 @@ public class MainActivity extends IntermediaryActivity {
         switch (item.getItemId()) {
             case R.id.action_map:
                 transaction.replace(R.id.container, new MapsFragment()).commit();
-                MyApplication.get().sendEvent(AnalyticsEvent.DRAWER_CATEGORY, AnalyticsEvent.DRAWER_ACTION, AnalyticsEvent.DRAWER_LABEL_MAP);
+                MyApplication.get().sendEvent(
+                        AnalyticsEvent.TOOLBOX_CATEGORY,
+                        AnalyticsEvent.TOOLBOX_ACTION,
+                        AnalyticsEvent.TOOLBOX_LABEL_MAP);
                 return true;
             case R.id.action_search:
+                MyApplication.get().sendEvent(
+                        AnalyticsEvent.TOOLBOX_CATEGORY,
+                        AnalyticsEvent.TOOLBOX_ACTION,
+                        AnalyticsEvent.TOOLBOX_LABEL_SEARCH);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
