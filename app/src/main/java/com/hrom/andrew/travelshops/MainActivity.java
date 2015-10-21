@@ -3,6 +3,7 @@ package com.hrom.andrew.travelshops;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -160,9 +161,11 @@ public class MainActivity extends IntermediaryActivity {
                     }
                 })
                 .addDrawerItems(new PrimaryDrawerItem()
-                                .withName("Favorite shops")
                                 .withIdentifier(1)
-                                .withIcon(R.drawable.ic_group_work_black_18dp),
+                                .withName("Favorite shops")
+                                .withTextColor(R.color.new_color)
+                                .withIcon(R.drawable.ic_group_work_black_18dp)
+                                .withIconColor(R.color.red_dr),
                         new DividerDrawerItem(),
                         new SecondaryDrawerItem()
                                 .withName("Mountain")
@@ -205,7 +208,7 @@ public class MainActivity extends IntermediaryActivity {
     private AccountHeader creatAccountHeader() {
         return new AccountHeaderBuilder()
                 .withActivity(this)
-                .withHeaderBackground(R.drawable.header_1)
+                .withHeaderBackground(R.drawable.fon)
                 .build();
     }
 
