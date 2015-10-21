@@ -22,7 +22,7 @@ public class MountainFragment extends CategoryFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        createListShop(view, mountainShop, favoriteShop, R.drawable.background_mountain, R.layout.list_single);
+        createListShop(view, mountainShop, favoriteShop, R.drawable.bgr_mountain, R.layout.list_single);
 
         /*List<HashMap<String, String>> listMountainShop = new ArrayList<>();
 

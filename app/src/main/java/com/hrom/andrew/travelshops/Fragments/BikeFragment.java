@@ -22,7 +22,7 @@ public class BikeFragment extends CategoryFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        createListShop(view, bikeShop, favoriteShop, R.drawable.background_bike_2, R.layout.list_single);
+        createListShop(view, bikeShop, favoriteShop, R.drawable.bgr_bike, R.layout.list_single);
 
         //getListView().addFooterView(createListFooter());
     }

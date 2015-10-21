@@ -24,7 +24,7 @@ public class SkisFragment extends CategoryFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        createListShop(view, skisShop, favoriteShop, R.drawable.background_skis, R.layout.list_for_snowboard);
+        createListShop(view, skisShop, favoriteShop, R.drawable.bgr_ski, R.layout.list_for_snowboard);
 
         /*List<HashMap<String, String>> listSkiShop = new ArrayList<>();
 

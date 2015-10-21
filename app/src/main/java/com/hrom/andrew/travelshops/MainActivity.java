@@ -165,7 +165,7 @@ public class MainActivity extends IntermediaryActivity {
                                 .withName("Favorite shops")
                                 .withTextColor(R.color.new_color)
                                 .withIcon(R.drawable.ic_group_work_black_18dp)
-                                .withIconColor(R.color.red_dr),
+                                ,
                         new DividerDrawerItem(),
                         new SecondaryDrawerItem()
                                 .withName("Mountain")
@@ -241,7 +241,7 @@ public class MainActivity extends IntermediaryActivity {
             }
 
             public boolean onQueryTextSubmit(String query) {
-                //Here u can get the value "query" which is entered in the search box.
+                //Here u can get the value "query" which is entered in the ic_search box.
                 if (!query.isEmpty()) {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=" + query));
                     startActivity(intent);

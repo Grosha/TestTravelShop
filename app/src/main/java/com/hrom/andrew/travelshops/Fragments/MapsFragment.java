@@ -32,6 +32,7 @@ import com.hrom.andrew.travelshops.ShopDB.SportShop;
 import com.hrom.andrew.travelshops.TrashActivity.AnalyticsEvent;
 import com.hrom.andrew.travelshops.TrashActivity.AnalyticsTrackers;
 import com.hrom.andrew.travelshops.TrashActivity.MyApplication;
+import com.hrom.andrew.travelshops.TrashActivity.MyBitMap;
 import com.hrom.andrew.travelshops.TrashActivity.StringVariables;
 import com.hrom.andrew.travelshops.TrashActivity.RetainedFragment;
 
@@ -116,20 +117,27 @@ public class MapsFragment extends Fragment {
             if (location != null) {
                 Log.d(StringVariables.TEST, "LOCATION NOT NULL");
                 LatLng target = new LatLng(location.getLatitude(), location.getLongitude());
-                if (marker != null) {
-                    marker.remove();
-                    myNewMarker = mGoogleMap.addMarker(new MarkerOptions()
+
+                try {
+                    if (marker != null) {
+                        marker.remove();
+                        myNewMarker = mGoogleMap.addMarker(new MarkerOptions()
+                                .position(target)
+                                .title("ME")
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_flag)));
+                    }
+                    marker = mGoogleMap.addMarker(new MarkerOptions()
                             .position(target)
                             .title("ME")
-                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_flag)));
+                    /*.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));*/
+                    if (myNewMarker != null) {
+                        myNewMarker.remove();
+                    }
+                } catch (IllegalArgumentException e) {
+
                 }
-                marker = mGoogleMap.addMarker(new MarkerOptions()
-                        .position(target)
-                        .title("ME")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-                if (myNewMarker != null) {
-                    myNewMarker.remove();
-                }
+
                 /*mGoogleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
                     @Override
                     public void onInfoWindowClick(Marker marker) {

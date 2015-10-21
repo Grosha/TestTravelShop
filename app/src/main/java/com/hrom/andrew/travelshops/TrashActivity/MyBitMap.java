@@ -1,9 +1,12 @@
 package com.hrom.andrew.travelshops.TrashActivity;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -14,32 +17,37 @@ public class MyBitMap extends View {
 
     public MyBitMap(Context context) {
         super(context);
-        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.web_);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawBitmap(bitmap, 0f, 0f, null);
-        canvas.drawBitmap(bitmap, (canvas.getHeight() / 2), (canvas.getWidth() / 2), null);
+        /*canvas.drawBitmap(bitmap, 0f, 0f, null);
+        canvas.drawBitmap(bitmap, (canvas.getHeight() / 2), (canvas.getWidth() / 2), null);*/
 
-        /*Bitmap cs = null;
+        bitmap = null;
+        try {
 
-        int width, height = 0;
+            bitmap = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888);
+            canvas = new Canvas(bitmap);
+            Resources res = getResources();
 
-        if(c.getWidth() > s.getWidth()) {
-            width = c.getWidth() + s.getWidth();
-            height = c.getHeight();
-        } else {
-            width = s.getWidth() + s.getWidth();
-            height = c.getHeight();
+
+            Bitmap bitmap1 = BitmapFactory.decodeResource(res, R.drawable.ic_map_2); //blue
+
+            Bitmap bitmap2 = BitmapFactory.decodeResource(res, R.drawable.icon_bizon); //green
+            Drawable drawable1 = new BitmapDrawable(bitmap1);
+            Drawable drawable2 = new BitmapDrawable(bitmap2);
+
+
+            drawable1.setBounds(100, 100, 400, 400);
+            drawable2.setBounds(150, 150, 350, 350);
+            drawable1.draw(canvas);
+            drawable2.draw(canvas);
+
+
+        } catch (Exception e) {
         }
-
-        cs = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-
-        Canvas comboImage = new Canvas(cs);
-
-        comboImage.drawBitmap(c, 0f, 0f, null);
-        comboImage.drawBitmap(s, c.getWidth(), 0f, null);*/
+        //return bitmap;
     }
 }
