@@ -165,7 +165,7 @@ public class MainActivity extends IntermediaryActivity {
                                 .withName("Favorite shops")
                                 .withTextColor(R.color.new_color)
                                 .withIcon(R.drawable.ic_group_work_black_18dp)
-                                ,
+                        ,
                         new DividerDrawerItem(),
                         new SecondaryDrawerItem()
                                 .withName("Mountain")
@@ -181,7 +181,8 @@ public class MainActivity extends IntermediaryActivity {
                                 .withIcon(R.drawable.ic_directions_bike_black_18dp),
                         new SecondaryDrawerItem()
                                 .withName("Maps")
-                                .withIcon(R.drawable.ic_map_black_36dp)
+                                .withIcon(R.drawable.ic_map_black_36dp),
+                        new SecondaryDrawerItem()
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
 
@@ -202,6 +203,7 @@ public class MainActivity extends IntermediaryActivity {
                         return true;
                     }
                 })
+                .withFooter(R.layout.footer)
                 .build();
     }
 

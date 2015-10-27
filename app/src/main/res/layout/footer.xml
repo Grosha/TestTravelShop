@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/footer_drawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e3efff"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/footer_drawer_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/imageView"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/imageView"
+            android:layout_gravity="center_horizontal"
+            android:text="Invite your friends to the app!"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#8e8c8f"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/footer_drawer_image"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageVK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_vk" />
+
+        <ImageView
+            android:id="@+id/imageTW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_tw" />
+
+        <ImageView
+            android:id="@+id/imageG"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_g" />
+
+        <ImageView
+            android:id="@+id/imageF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_f" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
