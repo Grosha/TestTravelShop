@@ -164,23 +164,27 @@ public class MainActivity extends IntermediaryActivity {
                                 .withIdentifier(1)
                                 .withName("Favorite shops")
                                 .withTextColor(R.color.new_color)
-                                .withIcon(R.drawable.ic_group_work_black_18dp)
-                        ,
+                                .withIcon(R.drawable.ic_group_work_black_18dp),
                         new DividerDrawerItem(),
                         new SecondaryDrawerItem()
                                 .withName("Mountain")
+                                .withTextColor(R.color.new_color)
                                 .withIcon(R.drawable.ic_filter_hdr_black_18dp),
                         new SecondaryDrawerItem()
                                 .withName("Skis")
+                                .withTextColor(R.color.new_color)
                                 .withIcon(R.drawable.skiing_18),
                         new SecondaryDrawerItem()
                                 .withName("Snowboard")
+                                .withTextColor(R.color.new_color)
                                 .withIcon(R.drawable.snowboarder_18),
                         new SecondaryDrawerItem()
                                 .withName("Bike")
+                                .withTextColor(R.color.new_color)
                                 .withIcon(R.drawable.ic_directions_bike_black_18dp),
                         new SecondaryDrawerItem()
                                 .withName("Maps")
+                                .withTextColor(R.color.new_color)
                                 .withIcon(R.drawable.ic_map_black_36dp),
                         new SecondaryDrawerItem()
                 )
