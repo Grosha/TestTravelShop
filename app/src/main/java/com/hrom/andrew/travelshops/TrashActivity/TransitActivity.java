@@ -10,7 +10,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 
-public class IntermediaryActivity extends AppCompatActivity {
+public class TransitActivity extends AppCompatActivity {
     private AdRequest adRequest;
     protected InterstitialAd mInterstitialAd;
     protected int countInterstitial = 0;

@@ -3,7 +3,6 @@ package com.hrom.andrew.travelshops;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -23,7 +22,7 @@ import com.hrom.andrew.travelshops.Fragments.MountainFragment;
 import com.hrom.andrew.travelshops.Fragments.SkisFragment;
 import com.hrom.andrew.travelshops.Fragments.SnowboardFragment;
 import com.hrom.andrew.travelshops.TrashActivity.AnalyticsEvent;
-import com.hrom.andrew.travelshops.TrashActivity.IntermediaryActivity;
+import com.hrom.andrew.travelshops.TrashActivity.TransitActivity;
 import com.hrom.andrew.travelshops.TrashActivity.MyApplication;
 import com.hrom.andrew.travelshops.TrashActivity.PrefUtil;
 import com.hrom.andrew.travelshops.TrashActivity.StringVariables;
@@ -38,7 +37,7 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 
-public class MainActivity extends IntermediaryActivity {
+public class MainActivity extends TransitActivity {
 
     private Drawer drawer;
     private android.support.v4.app.FragmentManager manager;
@@ -165,7 +164,7 @@ public class MainActivity extends IntermediaryActivity {
                                 .withName("Favorite shops")
                                 .withTextColor(R.color.new_color)
                                 .withIcon(R.drawable.ic_group_work_black_18dp),
-                        new DividerDrawerItem(),
+                        new DividerDrawerItem(),//забрати пізніше
                         new SecondaryDrawerItem()
                                 .withName("Mountain")
                                 .withTextColor(R.color.new_color)
@@ -185,8 +184,7 @@ public class MainActivity extends IntermediaryActivity {
                         new SecondaryDrawerItem()
                                 .withName("Maps")
                                 .withTextColor(R.color.new_color)
-                                .withIcon(R.drawable.ic_map_black_36dp),
-                        new SecondaryDrawerItem()
+                                .withIcon(R.drawable.ic_map_black_36dp)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
 
@@ -237,7 +235,7 @@ public class MainActivity extends IntermediaryActivity {
         menuInflater.inflate(R.menu.menu_toolbar, menu);
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_google).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
         SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
@@ -277,7 +275,7 @@ public class MainActivity extends IntermediaryActivity {
                         AnalyticsEvent.TOOLBOX_ACTION,
                         AnalyticsEvent.TOOLBOX_LABEL_MAP);
                 return true;
-            case R.id.action_search:
+            case R.id.action_google:
                 MyApplication.get().sendEvent(
                         AnalyticsEvent.TOOLBOX_CATEGORY,
                         AnalyticsEvent.TOOLBOX_ACTION,
