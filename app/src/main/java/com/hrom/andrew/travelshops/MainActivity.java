@@ -27,10 +27,10 @@ import com.hrom.andrew.travelshops.TrashActivity.MyApplication;
 import com.hrom.andrew.travelshops.TrashActivity.PrefUtil;
 import com.hrom.andrew.travelshops.TrashActivity.StringVariables;
 import com.hrom.andrew.travelshops.TrashActivity.RetainedFragment;
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.accountswitcher.AccountHeader;
-import com.mikepenz.materialdrawer.accountswitcher.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
@@ -86,7 +86,7 @@ public class MainActivity extends TransitActivity {
                 .withActivity(this)
                 .withToolbar(toolbar)
                 .withAccountHeader(header)
-                .withDisplayBelowToolbar(false)
+                .withDisplayBelowStatusBar(false)
                 .withTranslucentStatusBar(true)
                 .withActionBarDrawerToggleAnimated(true)
                 .withOnDrawerListener(new Drawer.OnDrawerListener() {
@@ -162,33 +162,49 @@ public class MainActivity extends TransitActivity {
                 .addDrawerItems(new PrimaryDrawerItem()
                                 .withIdentifier(1)
                                 .withName("Favorite shops")
-                                .withTextColor(R.color.new_color)
+                                .withTextColorRes(R.color.new_color)
                                 .withIcon(R.drawable.ic_group_work_black_18dp),
                         new DividerDrawerItem(),//забрати пізніше
                         new SecondaryDrawerItem()
                                 .withName("Mountain")
-                                .withTextColor(R.color.new_color)
+                                .withTextColorRes(R.color.new_color)
                                 .withIcon(R.drawable.ic_filter_hdr_black_18dp),
                         new SecondaryDrawerItem()
                                 .withName("Skis")
-                                .withTextColor(R.color.new_color)
+                                .withTextColorRes(R.color.new_color)
                                 .withIcon(R.drawable.skiing_18),
                         new SecondaryDrawerItem()
                                 .withName("Snowboard")
-                                .withTextColor(R.color.new_color)
+                                .withTextColorRes(R.color.new_color)
                                 .withIcon(R.drawable.snowboarder_18),
                         new SecondaryDrawerItem()
                                 .withName("Bike")
-                                .withTextColor(R.color.new_color)
+                                .withTextColorRes(R.color.new_color)
                                 .withIcon(R.drawable.ic_directions_bike_black_18dp),
                         new SecondaryDrawerItem()
                                 .withName("Maps")
-                                .withTextColor(R.color.new_color)
+                                .withTextColorRes(R.color.new_color)
                                 .withIcon(R.drawable.ic_map_black_36dp)
                 )
-                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener(){
 
                     @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        PrefUtil.save(getBaseContext(), ++countInterstitial, StringVariables.PRES_KEY_INTERSTITIAL_DRAWER);
+                        //Log.d(StringVariables.TEST, String.valueOf(PrefUtil.getCountInterstitial(getBaseContext(), StringVariables.PRES_KEY_INTERSTITIAL_DRAWER)));
+                        if (PrefUtil.getCountInterstitial(getBaseContext(), StringVariables.PRES_KEY_INTERSTITIAL_DRAWER) % 5 == 0) {
+                            showInterstitial();
+                            clickedItem = position;
+                            drawer.closeDrawer();
+                            PrefUtil.save(getApplication(), 0, StringVariables.PRES_KEY_INTERSTITIAL_DRAWER);
+                        } else {
+                            clickedItem = position;
+                            drawer.closeDrawer();
+                        }
+                        return false;
+                    }
+
+                    /*@Override
                     public boolean onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
                         PrefUtil.save(getBaseContext(), ++countInterstitial, StringVariables.PRES_KEY_INTERSTITIAL_DRAWER);
                         //Log.d(StringVariables.TEST, String.valueOf(PrefUtil.getCountInterstitial(getBaseContext(), StringVariables.PRES_KEY_INTERSTITIAL_DRAWER)));
@@ -203,9 +219,9 @@ public class MainActivity extends TransitActivity {
                         }
 
                         return true;
-                    }
+                    }*/
                 })
-                .withFooter(R.layout.footer)
+                .withStickyFooter(R.layout.footer)
                 .build();
     }
 
@@ -235,7 +251,7 @@ public class MainActivity extends TransitActivity {
         menuInflater.inflate(R.menu.menu_toolbar, menu);
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_google).getActionView();
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
         SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
@@ -275,7 +291,7 @@ public class MainActivity extends TransitActivity {
                         AnalyticsEvent.TOOLBOX_ACTION,
                         AnalyticsEvent.TOOLBOX_LABEL_MAP);
                 return true;
-            case R.id.action_google:
+            case R.id.action_search:
                 MyApplication.get().sendEvent(
                         AnalyticsEvent.TOOLBOX_CATEGORY,
                         AnalyticsEvent.TOOLBOX_ACTION,
