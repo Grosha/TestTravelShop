@@ -10,8 +10,8 @@ import android.webkit.WebView;
 import android.widget.ProgressBar;
 
 import com.hrom.andrew.travelshops.R;
-import com.hrom.andrew.travelshops.TrashActivity.StringVariables;
-import com.hrom.andrew.travelshops.TrashActivity.MyWebClent;
+import com.hrom.andrew.travelshops.trash.StringVariables;
+import com.hrom.andrew.travelshops.trash.MyWebClent;
 
 public class WebViewFragment extends Fragment {
     private WebView webView;

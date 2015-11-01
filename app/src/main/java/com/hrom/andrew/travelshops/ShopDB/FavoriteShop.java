@@ -3,7 +3,7 @@ package com.hrom.andrew.travelshops.ShopDB;
 import android.content.Context;
 
 import com.google.gson.Gson;
-import com.hrom.andrew.travelshops.TrashActivity.PrefUtil;
+import com.hrom.andrew.travelshops.trash.PrefUtil;
 
 import java.util.ArrayList;
 import java.util.HashSet;

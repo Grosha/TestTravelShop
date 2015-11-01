@@ -6,7 +6,7 @@ import android.view.View;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.FavoriteShop;
 import com.hrom.andrew.travelshops.ShopDB.SnowboardShop;
-import com.hrom.andrew.travelshops.TrashActivity.StringVariables;
+import com.hrom.andrew.travelshops.trash.StringVariables;
 
 public class SnowboardFragment extends CategoryFragment {
     public final static String TAG = StringVariables.TAG_SNOWBOARD;

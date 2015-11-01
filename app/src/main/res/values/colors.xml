@@ -2,4 +2,10 @@
 <resources>
     <color name="colorPrimary">#1b3683</color>
     <color name="colorPrimaryDark">#142a66</color>
+    <color name="colorFavoriteSection">#f6505a</color>
+    <color name="colorMountainSection">#f8a626</color>
+    <color name="colorSkiSection">#17b558</color>
+    <color name="colorSnowboardSection">#13cad0</color>
+    <color name="colorBikeSection">#875cb5</color>
+    <color name="colorMapSection">#1b3683</color>
 </resources>

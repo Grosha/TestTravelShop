@@ -12,10 +12,10 @@ import android.widget.AbsListView;
 import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.SportShop;
-import com.hrom.andrew.travelshops.TrashActivity.CustomAdapter;
-import com.hrom.andrew.travelshops.TrashActivity.StringVariables;
-import com.hrom.andrew.travelshops.TrashActivity.OnPlusButtonClickListenner;
-import com.hrom.andrew.travelshops.TrashActivity.PrefUtil;
+import com.hrom.andrew.travelshops.trash.CustomAdapter;
+import com.hrom.andrew.travelshops.trash.StringVariables;
+import com.hrom.andrew.travelshops.trash.OnPlusButtonClickListenner;
+import com.hrom.andrew.travelshops.trash.PrefUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -7,11 +7,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ProgressBar;
 
 import com.google.android.gms.ads.AdView;
@@ -21,19 +21,19 @@ import com.hrom.andrew.travelshops.Fragments.MapsFragment;
 import com.hrom.andrew.travelshops.Fragments.MountainFragment;
 import com.hrom.andrew.travelshops.Fragments.SkisFragment;
 import com.hrom.andrew.travelshops.Fragments.SnowboardFragment;
-import com.hrom.andrew.travelshops.TrashActivity.AnalyticsEvent;
-import com.hrom.andrew.travelshops.TrashActivity.TransitActivity;
-import com.hrom.andrew.travelshops.TrashActivity.MyApplication;
-import com.hrom.andrew.travelshops.TrashActivity.PrefUtil;
-import com.hrom.andrew.travelshops.TrashActivity.StringVariables;
-import com.hrom.andrew.travelshops.TrashActivity.RetainedFragment;
+import com.hrom.andrew.travelshops.custom_drawer.CustomSecondaryDrawerItem;
+import com.hrom.andrew.travelshops.google_analytics.AnalyticsEvent;
+import com.hrom.andrew.travelshops.custom_drawer.CustomPrimaryDrawerItem;
+import com.hrom.andrew.travelshops.trash.TransitActivity;
+import com.hrom.andrew.travelshops.trash.MyApplication;
+import com.hrom.andrew.travelshops.trash.PrefUtil;
+import com.hrom.andrew.travelshops.trash.StringVariables;
+import com.hrom.andrew.travelshops.trash.RetainedFragment;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
-import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 
@@ -101,8 +101,9 @@ public class MainActivity extends TransitActivity {
                         if (clickedItem >= 0) {
                             transaction = manager.beginTransaction();
                             switch (clickedItem) {
-                                case 0:
+                                case 1:
                                     transaction.replace(R.id.container, new FavoriteListFragment());
+                                    Log.d(StringVariables.TEST, String.valueOf(clickedItem));
                                     MyApplication.get().sendEvent(
                                             AnalyticsEvent.DRAWER_CATEGORY,
                                             AnalyticsEvent.DRAWER_ACTION,
@@ -111,6 +112,7 @@ public class MainActivity extends TransitActivity {
                                 case 2:
                                     transaction.replace(R.id.container, new MountainFragment());
                                     //transaction.replace(R.id.container, new SwipeMountain());
+                                    Log.d(StringVariables.TEST, String.valueOf(clickedItem));
                                     MyApplication.get().sendEvent(
                                             AnalyticsEvent.DRAWER_CATEGORY,
                                             AnalyticsEvent.DRAWER_ACTION,
@@ -118,6 +120,7 @@ public class MainActivity extends TransitActivity {
                                     break;
                                 case 3:
                                     transaction.replace(R.id.container, new SkisFragment());
+                                    Log.d(StringVariables.TEST, String.valueOf(clickedItem));
                                     MyApplication.get().sendEvent(
                                             AnalyticsEvent.DRAWER_CATEGORY,
                                             AnalyticsEvent.DRAWER_ACTION,
@@ -125,6 +128,7 @@ public class MainActivity extends TransitActivity {
                                     break;
                                 case 4:
                                     transaction.replace(R.id.container, new SnowboardFragment());
+                                    Log.d(StringVariables.TEST, String.valueOf(clickedItem));
                                     MyApplication.get().sendEvent(
                                             AnalyticsEvent.DRAWER_CATEGORY,
                                             AnalyticsEvent.DRAWER_ACTION,
@@ -159,34 +163,39 @@ public class MainActivity extends TransitActivity {
 
                     }
                 })
-                .addDrawerItems(new PrimaryDrawerItem()
+                .addDrawerItems(new CustomPrimaryDrawerItem()
+                                .withBackgroundRes(R.color.colorFavoriteSection)
                                 .withIdentifier(1)
                                 .withName("Favorite shops")
                                 .withTextColorRes(R.color.new_color)
-                                .withIcon(R.drawable.ic_group_work_black_18dp),
-                        new DividerDrawerItem(),//забрати пізніше
-                        new SecondaryDrawerItem()
+                                .withIcon(R.drawable.ic_favorite),
+                        new CustomSecondaryDrawerItem()
+                                .withBackgroundRes(R.color.colorMountainSection)
                                 .withName("Mountain")
                                 .withTextColorRes(R.color.new_color)
-                                .withIcon(R.drawable.ic_filter_hdr_black_18dp),
-                        new SecondaryDrawerItem()
+                                .withIcon(R.drawable.ic_mountins),
+                        new CustomSecondaryDrawerItem()
+                                .withBackgroundRes(R.color.colorSkiSection)
                                 .withName("Skis")
                                 .withTextColorRes(R.color.new_color)
-                                .withIcon(R.drawable.skiing_18),
-                        new SecondaryDrawerItem()
+                                .withIcon(R.drawable.ic_skis),
+                        new CustomSecondaryDrawerItem()
+                                .withBackgroundRes(R.color.colorSnowboardSection)
                                 .withName("Snowboard")
                                 .withTextColorRes(R.color.new_color)
-                                .withIcon(R.drawable.snowboarder_18),
-                        new SecondaryDrawerItem()
+                                .withIcon(R.drawable.ic_snowboard),
+                        new CustomSecondaryDrawerItem()
+                                .withBackgroundRes(R.color.colorBikeSection)
                                 .withName("Bike")
                                 .withTextColorRes(R.color.new_color)
-                                .withIcon(R.drawable.ic_directions_bike_black_18dp),
-                        new SecondaryDrawerItem()
+                                .withIcon(R.drawable.ic_bike),
+                        new CustomSecondaryDrawerItem()
+                                .withBackgroundRes(R.color.colorMapSection)
                                 .withName("Maps")
                                 .withTextColorRes(R.color.new_color)
-                                .withIcon(R.drawable.ic_map_black_36dp)
+                                .withIcon(R.drawable.ic_map)
                 )
-                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener(){
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
 
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
@@ -203,23 +212,6 @@ public class MainActivity extends TransitActivity {
                         }
                         return false;
                     }
-
-                    /*@Override
-                    public boolean onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
-                        PrefUtil.save(getBaseContext(), ++countInterstitial, StringVariables.PRES_KEY_INTERSTITIAL_DRAWER);
-                        //Log.d(StringVariables.TEST, String.valueOf(PrefUtil.getCountInterstitial(getBaseContext(), StringVariables.PRES_KEY_INTERSTITIAL_DRAWER)));
-                        if (PrefUtil.getCountInterstitial(getBaseContext(), StringVariables.PRES_KEY_INTERSTITIAL_DRAWER) % 5 == 0) {
-                            showInterstitial();
-                            clickedItem = i;
-                            drawer.closeDrawer();
-                            PrefUtil.save(getApplication(), 0, StringVariables.PRES_KEY_INTERSTITIAL_DRAWER);
-                        } else {
-                            clickedItem = i;
-                            drawer.closeDrawer();
-                        }
-
-                        return true;
-                    }*/
                 })
                 .withStickyFooter(R.layout.footer)
                 .build();
@@ -253,7 +245,6 @@ public class MainActivity extends TransitActivity {
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
         SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
             public boolean onQueryTextChange(String newText) {
                 // this is your adapter that will be filtered

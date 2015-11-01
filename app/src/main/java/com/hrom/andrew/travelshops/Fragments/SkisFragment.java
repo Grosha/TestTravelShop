@@ -8,7 +8,7 @@ import android.view.View;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.FavoriteShop;
 import com.hrom.andrew.travelshops.ShopDB.SkisShop;
-import com.hrom.andrew.travelshops.TrashActivity.StringVariables;
+import com.hrom.andrew.travelshops.trash.StringVariables;
 
 public class SkisFragment extends CategoryFragment {
     public final static String TAG = StringVariables.TAG_SKIS;
