@@ -37,6 +37,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Fragments.MapActivity" />
+        <activity android:name=".trash.TestBitmap" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
