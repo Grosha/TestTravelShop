@@ -24,6 +24,8 @@ import com.hrom.andrew.travelshops.Fragments.SnowboardFragment;
 import com.hrom.andrew.travelshops.custom_drawer.CustomSecondaryDrawerItem;
 import com.hrom.andrew.travelshops.google_analytics.AnalyticsEvent;
 import com.hrom.andrew.travelshops.custom_drawer.CustomPrimaryDrawerItem;
+import com.hrom.andrew.travelshops.trash.MyBitMap;
+import com.hrom.andrew.travelshops.trash.TestBitmap;
 import com.hrom.andrew.travelshops.trash.TransitActivity;
 import com.hrom.andrew.travelshops.trash.MyApplication;
 import com.hrom.andrew.travelshops.trash.PrefUtil;
@@ -221,6 +223,7 @@ public class MainActivity extends TransitActivity {
         return new AccountHeaderBuilder()
                 .withActivity(this)
                 .withHeaderBackground(R.drawable.fon)
+                .withPaddingBelowHeader(false)
                 .build();
     }
 
@@ -287,6 +290,10 @@ public class MainActivity extends TransitActivity {
                         AnalyticsEvent.TOOLBOX_CATEGORY,
                         AnalyticsEvent.TOOLBOX_ACTION,
                         AnalyticsEvent.TOOLBOX_LABEL_SEARCH);
+                return true;
+            case R.id.action_bitmap:
+                Intent intent = new Intent(this, TestBitmap.class);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

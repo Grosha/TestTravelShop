@@ -1,6 +1,8 @@
 package com.hrom.andrew.travelshops.Fragments;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -31,6 +33,7 @@ import com.hrom.andrew.travelshops.ShopDB.SnowboardShop;
 import com.hrom.andrew.travelshops.ShopDB.SportShop;
 import com.hrom.andrew.travelshops.google_analytics.AnalyticsEvent;
 import com.hrom.andrew.travelshops.trash.MyApplication;
+import com.hrom.andrew.travelshops.trash.MyBitMap;
 import com.hrom.andrew.travelshops.trash.StringVariables;
 import com.hrom.andrew.travelshops.trash.RetainedFragment;
 
@@ -42,6 +45,7 @@ public class MapsFragment extends Fragment {
     private GoogleMap mGoogleMap;
     private Marker marker;
     private SportShop sportShop;
+    private Bitmap location = null;
 
     @Nullable
     @Override
@@ -54,6 +58,7 @@ public class MapsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         if (RetainedFragment.getClassName().contains(StringVariables.TAG_BIKE)) {
+            location = BitmapFactory.decodeResource(getResources(), R.drawable.ic_map_4);
             Log.d(StringVariables.TEST, "bike");
             sportShop = new BikeShop();
             MyApplication.get().sendEvent(
@@ -61,6 +66,7 @@ public class MapsFragment extends Fragment {
                     AnalyticsEvent.MAP_OPEN_ACTION,
                     AnalyticsEvent.MAP_LABEL_BIKE);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_MOUNTAIN)) {
+            location = BitmapFactory.decodeResource(getResources(), R.drawable.ic_map_1);
             Log.d(StringVariables.TEST, "montain");
             sportShop = new MountainShop();
             MyApplication.get().sendEvent(
@@ -68,6 +74,7 @@ public class MapsFragment extends Fragment {
                     AnalyticsEvent.MAP_OPEN_ACTION,
                     AnalyticsEvent.MAP_LABEL_MOUNTAIN);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SKIS)) {
+            location = BitmapFactory.decodeResource(getResources(), R.drawable.ic_map_2);
             Log.d(StringVariables.TEST, "ski");
             sportShop = new SkisShop();
             MyApplication.get().sendEvent(
@@ -75,6 +82,7 @@ public class MapsFragment extends Fragment {
                     AnalyticsEvent.MAP_OPEN_ACTION,
                     AnalyticsEvent.MAP_LABEL_SKI);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SNOWBOARD)) {
+            location = BitmapFactory.decodeResource(getResources(), R.drawable.ic_map_3);
             Log.d(StringVariables.TEST, "snow");
             sportShop = new SnowboardShop();
             MyApplication.get().sendEvent(
@@ -82,6 +90,7 @@ public class MapsFragment extends Fragment {
                     AnalyticsEvent.MAP_OPEN_ACTION,
                     AnalyticsEvent.MAP_LABEL_SNOWBOARD);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_FAVORITE_LIST)) {
+            location = BitmapFactory.decodeResource(getResources(), R.drawable.ic_map_5);
             Log.d(StringVariables.TEST, "favorite");
             sportShop = new FavoriteShop(getActivity());
             MyApplication.get().sendEvent(
@@ -198,6 +207,8 @@ public class MapsFragment extends Fragment {
             if (googleMap != null) {
                 googleMap.setMyLocationEnabled(true);
 
+                Bitmap icon = null;
+
                 Marker city = googleMap.addMarker(new MarkerOptions().position(CityCoordinate.KYEV)
                         .title("KYEV"));
 
@@ -213,13 +224,16 @@ public class MapsFragment extends Fragment {
                         //} else break;
                     } else {
                         for (LatLng latLng : colecLng) {
+
+                            icon = BitmapFactory.decodeResource(getResources(), sportShop.getIconShops().get(i));
                             Marker shopMarker = googleMap.addMarker(
                                     new MarkerOptions()
                                             .position(latLng)
                                             .title(sportShop.getListShops().get(i))
                                             .snippet(getUrl(i))
                                             .icon(BitmapDescriptorFactory
-                                                    .fromResource(sportShop.getIconShops().get(i))));
+                                                    .fromBitmap(MyBitMap.getBitmap(location, icon))))
+                                                    /*.fromResource(sportShop.getIconShops().get(i))))*/;
                         }
                     }
 
