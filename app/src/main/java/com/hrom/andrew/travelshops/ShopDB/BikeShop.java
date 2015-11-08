@@ -35,9 +35,9 @@ public class BikeShop extends SportShop {
     @Override
     public List<Integer> getIconShops() {
         List<Integer> imageShops = new ArrayList<>();
-        imageShops.add(R.drawable.web_);
+        imageShops.add(R.drawable.icon_universal);
         imageShops.add(R.drawable.icon_extrim_style);
-        imageShops.add(R.drawable.web_);
+        imageShops.add(R.drawable.icon_universal);
         imageShops.add(R.drawable.icon_groosha);
         imageShops.add(R.drawable.icon_veloplaneta);
         imageShops.add(R.drawable.icon_specialized);
@@ -48,12 +48,12 @@ public class BikeShop extends SportShop {
         imageShops.add(R.drawable.icon_rider_co);
         imageShops.add(R.drawable.icon_cube);
         imageShops.add(R.drawable.icon_velohit);
-        imageShops.add(R.drawable.web_);
+        imageShops.add(R.drawable.icon_universal);
         imageShops.add(R.drawable.icon_velostar);
         imageShops.add(R.drawable.icon_veloviva);
         imageShops.add(R.drawable.icon_scott);
         imageShops.add(R.drawable.icon_bikemotive);
-        imageShops.add(R.drawable.web_);
+        imageShops.add(R.drawable.icon_universal);
         imageShops.add(R.drawable.icon_megadrive);
         return imageShops;
     }

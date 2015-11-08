@@ -67,7 +67,7 @@ public class ShopCoordinate {
         lngMap.put("Fischersports",new LatLng(50.457392, 30.408287));
         lngMap.put("Specialized",new LatLng(50.442553, 30.435033));
         lngMap.put("Ель-капітан",new LatLng(50.445292, 30.449709));
-        lngMap.put("X-zone",new LatLng(50.505654, 30.499259));
+        lngMap.put("X-Zone",new LatLng(50.505654, 30.499259));
         lngMap.put("Волоцюга",new LatLng(50.443533, 30.481032));
         lngMap.put("Волоцюга",new LatLng(50.457773, 30.628396));
         lngMap.put("Велопланета",new LatLng(50.398618, 30.642655));

@@ -21,6 +21,11 @@ public class CustomPrimaryDrawerItem extends PrimaryDrawerItem/* implements IDra
     }
 
     @Override
+    public int getLayoutRes() {
+        return super.getLayoutRes();
+    }
+
+    @Override
     public void bindView(RecyclerView.ViewHolder holder) {
         super.bindView(holder);
 

@@ -44,28 +44,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/ic_vk" />
+            android:src="@drawable/ic_vk"
+            android:clickable="true" />
 
         <ImageView
             android:id="@+id/imageTW"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/ic_tw" />
+            android:src="@drawable/ic_tw"
+            android:clickable="true" />
 
         <ImageView
             android:id="@+id/imageG"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/ic_g" />
+            android:src="@drawable/ic_g"
+            android:clickable="true" />
 
         <ImageView
             android:id="@+id/imageF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/ic_f" />
+            android:src="@drawable/ic_f"
+            android:clickable="true" />
 
     </LinearLayout>
 

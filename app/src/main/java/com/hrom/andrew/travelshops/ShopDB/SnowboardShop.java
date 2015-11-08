@@ -46,12 +46,12 @@ public class SnowboardShop extends SportShop {
         imageShops.add(R.drawable.icon_shlem);
         imageShops.add(R.drawable.icon_board_club);
         imageShops.add(R.drawable.icon_playsport);
-        imageShops.add(R.drawable.web_);
+        imageShops.add(R.drawable.icon_universal);
         imageShops.add(R.drawable.icon_extreme_stock);
         imageShops.add(R.drawable.icon_x_zone);
         imageShops.add(R.drawable.icon_kingsize);
         imageShops.add(R.drawable.icon_sportzone);
-        imageShops.add(R.drawable.web_);
+        imageShops.add(R.drawable.icon_universal);
         imageShops.add(R.drawable.icon_keeperstore);
         imageShops.add(R.drawable.icon_gorgany);
         imageShops.add(R.drawable.icon_kant);

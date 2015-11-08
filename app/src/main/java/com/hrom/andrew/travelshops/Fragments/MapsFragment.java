@@ -90,7 +90,7 @@ public class MapsFragment extends Fragment {
                     AnalyticsEvent.MAP_OPEN_ACTION,
                     AnalyticsEvent.MAP_LABEL_SNOWBOARD);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_FAVORITE_LIST)) {
-            location = BitmapFactory.decodeResource(getResources(), R.drawable.ic_map_5);
+            location = BitmapFactory.decodeResource(getResources(), R.drawable.ic_map_6);
             Log.d(StringVariables.TEST, "favorite");
             sportShop = new FavoriteShop(getActivity());
             MyApplication.get().sendEvent(
@@ -255,6 +255,18 @@ public class MapsFragment extends Fragment {
                             AnalyticsEvent.MAP_CATEGORY,
                             AnalyticsEvent.MAP_SHOP_ACTION,
                             marker.getSnippet());
+                }
+            });
+            googleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+                @Override
+                public View getInfoWindow(Marker marker) {
+                    return null;
+                }
+
+                @Override
+                public View getInfoContents(Marker marker) {
+
+                    return null;
                 }
             });
         }

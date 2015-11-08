@@ -40,7 +40,7 @@ public class MountainShop extends SportShop {
     public List<Integer> getIconShops() {
         List<Integer> imageShops = new ArrayList<>();
         imageShops.add(R.drawable.icon_azimut);
-        imageShops.add(R.drawable.web_);
+        imageShops.add(R.drawable.icon_universal);
         imageShops.add(R.drawable.icon_atlantida);
         imageShops.add(R.drawable.icon_el_cap);
         imageShops.add(R.drawable.icon_ex);
@@ -50,7 +50,7 @@ public class MountainShop extends SportShop {
         imageShops.add(R.drawable.icon_podoroj);
         imageShops.add(R.drawable.icon_nomad);
         imageShops.add(R.drawable.icon_ordana);
-        imageShops.add(R.drawable.web_);
+        imageShops.add(R.drawable.icon_universal);
         imageShops.add(R.drawable.icon_bizon);
         imageShops.add(R.drawable.icon_expert_centre);
         imageShops.add(R.drawable.icon_multisport);

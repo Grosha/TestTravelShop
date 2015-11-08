@@ -43,7 +43,7 @@ public class SkisShop extends SportShop{
     @Override
     public List<Integer> getIconShops() {
         List<Integer> imageShops = new ArrayList<>();
-        imageShops.add(R.drawable.web_);
+        imageShops.add(R.drawable.icon_universal);
         imageShops.add(R.drawable.icon_extrim_style);
         imageShops.add(R.drawable.icon_kant);
         imageShops.add(R.drawable.icon_sportzone);
@@ -54,7 +54,7 @@ public class SkisShop extends SportShop{
         imageShops.add(R.drawable.icon_skimag);
         imageShops.add(R.drawable.icon_sport_stylus);
         imageShops.add(R.drawable.icon_shlem);
-        imageShops.add(R.drawable.web_);
+        imageShops.add(R.drawable.icon_universal);
         //imageShops.add(R.drawable.icon_profirider);//Львів
         imageShops.add(R.drawable.icon_skaut);
         imageShops.add(R.drawable.icon_gorgany);
