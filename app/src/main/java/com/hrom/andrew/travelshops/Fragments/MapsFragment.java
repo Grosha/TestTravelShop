@@ -32,6 +32,7 @@ import com.hrom.andrew.travelshops.ShopDB.SkisShop;
 import com.hrom.andrew.travelshops.ShopDB.SnowboardShop;
 import com.hrom.andrew.travelshops.ShopDB.SportShop;
 import com.hrom.andrew.travelshops.google_analytics.AnalyticsEvent;
+import com.hrom.andrew.travelshops.trash.CustomInfoWindowAdapter;
 import com.hrom.andrew.travelshops.trash.MyApplication;
 import com.hrom.andrew.travelshops.trash.MyBitMap;
 import com.hrom.andrew.travelshops.trash.StringVariables;
@@ -257,18 +258,7 @@ public class MapsFragment extends Fragment {
                             marker.getSnippet());
                 }
             });
-            googleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-                @Override
-                public View getInfoWindow(Marker marker) {
-                    return null;
-                }
-
-                @Override
-                public View getInfoContents(Marker marker) {
-
-                    return null;
-                }
-            });
+            googleMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(getContext()));
         }
     };
 
