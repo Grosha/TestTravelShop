@@ -10,24 +10,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="55dp"
-        android:layout_marginRight="55dp">
+        android:layout_marginRight="55dp"
+        android:gravity="center_horizontal">
 
-        <ImageView
+       <!-- <ImageView
             android:id="@+id/icon_info_window"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="40dp"
-            android:src="@drawable/icon_universal" />
+            android:src="@drawable/icon_universal" />-->
 
         <TextView
             android:id="@+id/name_shop_info_window"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="26dp"
-            android:layout_marginStart="26dp"
-            android:layout_toEndOf="@+id/icon_info_window"
-            android:layout_toRightOf="@+id/icon_info_window"
             android:text="Adasdasdasdas"
             android:textSize="16sp"
             android:textStyle="bold"

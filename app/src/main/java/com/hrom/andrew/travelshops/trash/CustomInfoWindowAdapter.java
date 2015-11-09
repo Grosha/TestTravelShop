@@ -25,7 +25,7 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
     @Override
     public View getInfoContents(Marker marker) {
 
-        ImageView iconShop = (ImageView) myContentsView.findViewById(R.id.icon_info_window);
+        //ImageView iconShop = (ImageView) myContentsView.findViewById(R.id.icon_info_window);
         TextView shopName = (TextView) myContentsView.findViewById(R.id.name_shop_info_window);
         shopName.setText(marker.getTitle());
         TextView shopSite = (TextView) myContentsView.findViewById(R.id.site_shop_info_window);
