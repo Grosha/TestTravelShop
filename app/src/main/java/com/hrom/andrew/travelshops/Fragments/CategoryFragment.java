@@ -44,9 +44,9 @@ public class CategoryFragment extends ListFragment {
             hm.put("img", Integer.toString(shop.getIconShops().get(i)));
             hm.put("txt", shop.getListShops().get(i));
             if (shopFav.getListShops().contains(shop.getListShops().get(i))) {
-                hm.put("imgMy", Integer.toString(R.drawable.ic_group_work_black_18dp));
+                hm.put("imgMy", Integer.toString(R.drawable.ic_like));
             } else {
-                hm.put("imgMy", Integer.toString(R.drawable.ic_control_point_black_24dp));
+                hm.put("imgMy", Integer.toString(R.drawable.ic_like2));
             }
             listShop.add(hm);
         }
