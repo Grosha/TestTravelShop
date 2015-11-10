@@ -25,7 +25,7 @@
             android:layout_centerVertical="true"
             android:layout_marginTop="5dp"
             android:textColor="@color/md_black_1000"
-            android:text="Adasdasdasdas"
+            android:text="Adasdasdasas"
             android:textSize="16sp"
             android:textStyle="bold" />
 
