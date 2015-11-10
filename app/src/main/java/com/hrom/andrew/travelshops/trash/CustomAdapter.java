@@ -126,7 +126,7 @@ public class CustomAdapter extends ArrayAdapter {
                 if (PrefUtil.getValueList(getContext()).contains(item)) {
                     PrefUtil.remove(getContext(), item);
                     imgPlus = (ImageView) view.findViewById(R.id.imgForMyList);
-                    imgPlus.setImageResource(R.drawable.ic_control_point_black_24dp);
+                    imgPlus.setImageResource(R.drawable.ic_like2);
                     MyApplication.get().sendEvent(
                             AnalyticsEvent.SHOP_CATEGORY,
                             AnalyticsEvent.SHOP_ACTION,
@@ -134,21 +134,21 @@ public class CustomAdapter extends ArrayAdapter {
                 } else {
                     PrefUtil.save(getContext(), item);
                     imgPlus = (ImageView) view.findViewById(R.id.imgForMyList);
-                    imgPlus.setImageResource(R.drawable.ic_group_work_black_18dp);
+                    imgPlus.setImageResource(R.drawable.ic_like);
                     MyApplication.get().sendEvent(
                             AnalyticsEvent.SHOP_CATEGORY,
                             AnalyticsEvent.SHOP_ACTION,
                             AnalyticsEvent.SHOP_DELETE_FROM_FAVORITE_LABEL);
                 }
 
-                v.postDelayed(new Runnable() {
+                /*v.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         //Toast.makeText(getContext(), PrefUtil.getValue(getContext()), Toast.LENGTH_SHORT).show();
                         Toast.makeText(getContext(), PrefUtil.getValueList(getContext()).toString() +
                                 " " + PrefUtil.getValueList(getContext()).size(), Toast.LENGTH_SHORT).show();
                     }
-                }, 1000);
+                }, 1000);*/
             }
         });
 
