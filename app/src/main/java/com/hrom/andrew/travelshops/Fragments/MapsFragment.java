@@ -132,11 +132,13 @@ public class MapsFragment extends Fragment {
                         myNewMarker = mGoogleMap.addMarker(new MarkerOptions()
                                 .position(target)
                                 .title("ME")
+                                .snippet("")
                                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_flag_test)));
                     }
                     marker = mGoogleMap.addMarker(new MarkerOptions()
                             .position(target)
                             .title("ME")
+                            .snippet("")
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_flag)));
                     /*.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));*/
                     if (myNewMarker != null) {
@@ -249,6 +251,7 @@ public class MapsFragment extends Fragment {
             googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
                 @Override
                 public void onInfoWindowClick(Marker marker) {
+                    Log.d(StringVariables.TEST, marker.getTitle());
                     Log.d(StringVariables.TEST, marker.getSnippet());
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + marker.getSnippet()));
                     startActivity(intent);
@@ -263,6 +266,9 @@ public class MapsFragment extends Fragment {
     };
 
     private String getUrl(int i) {
-        return sportShop.getLinkShop(i).substring(7, sportShop.getLinkShop(i).length() - 1);
+        String site = sportShop.getLinkShop(i).substring(7, sportShop.getLinkShop(i).length() - 1);
+        if (site.indexOf("/") > 0) {
+            return site.substring(0, site.indexOf("/"));
+        } else return site.substring(0, site.length());
     }
 }
