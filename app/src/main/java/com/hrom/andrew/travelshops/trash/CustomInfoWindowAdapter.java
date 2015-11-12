@@ -1,6 +1,9 @@
 package com.hrom.andrew.travelshops.trash;
 
 import android.content.Context;
+import android.graphics.Paint;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,11 +34,13 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
         if (marker.getTitle() != null) {
             TextView shopName = (TextView) myContentsView.findViewById(R.id.name_shop_info_window);
             shopName.setText(marker.getTitle());
+
             Log.d(StringVariables.TEST, marker.getTitle());
         }
 
         if (marker.getSnippet() != null) {
             TextView shopSite = (TextView) myContentsView.findViewById(R.id.site_shop_info_window);
+            shopSite.setPaintFlags(shopSite.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
             shopSite.setText(marker.getSnippet());
             Log.d(StringVariables.TEST, marker.getSnippet());
         }
