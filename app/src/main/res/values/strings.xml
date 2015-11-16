@@ -10,4 +10,6 @@
     <string name="banner_ad_unit_id">ca-app-pub-5331719326093705/5366465272</string>
     <string name="interstitail_ad_unit_id">ca-app-pub-5331719326093705/5366465272</string>
     <string name="underlinedText"><u><b><i>Site</i></b></u></string>
+    <string name="drawer_open">open drawer</string>
+    <string name="drawer_close">close drawer</string>
 </resources>
