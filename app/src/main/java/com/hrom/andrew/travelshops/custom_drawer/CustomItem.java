@@ -8,83 +8,63 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hrom.andrew.travelshops.R;
+import com.mikepenz.materialdrawer.holder.BadgeStyle;
+import com.mikepenz.materialdrawer.holder.StringHolder;
+import com.mikepenz.materialdrawer.model.BaseDrawerItem;
 import com.mikepenz.materialdrawer.model.BasePrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.ColorfulBadgeable;
+import com.mikepenz.materialdrawer.model.utils.ViewHolderFactory;
 
-public class CustomItem implements IDrawerItem<CustomItem> {
+public class CustomItem extends BasePrimaryDrawerItem<CustomItem> implements ColorfulBadgeable<CustomItem> {
+
     @Override
-    public Object getTag() {
+    public ViewHolderFactory getFactory() {
         return null;
     }
 
     @Override
-    public boolean isEnabled() {
-        return false;
-    }
-
-    @Override
-    public boolean isSelected() {
-        return false;
-    }
-
-    @Override
-    public CustomItem withSetSelected(boolean selected) {
+    public CustomItem withBadgeStyle(BadgeStyle badgeStyle) {
         return null;
     }
 
     @Override
-    public boolean isSelectable() {
-        return false;
+    public BadgeStyle getBadgeStyle() {
+        return null;
     }
 
     @Override
-    public CustomItem withSelectable(boolean selectable) {
+    public CustomItem withBadge(String badge) {
+        return null;
+    }
+
+    @Override
+    public CustomItem withBadge(int badgeRes) {
+        return null;
+    }
+
+    @Override
+    public CustomItem withBadge(StringHolder badgeRes) {
+        return null;
+    }
+
+    @Override
+    public StringHolder getBadge() {
         return null;
     }
 
     @Override
     public String getType() {
-        return "PRIMARY_ITEM";
+        return null;
     }
 
     @Override
     public int getLayoutRes() {
-        return R.layout.drawer_list;
-    }
-
-    @Override
-    public View generateView(Context ctx) {
-        return null;
-    }
-
-    @Override
-    public View generateView(Context ctx, ViewGroup parent) {
-        return null;
-    }
-
-    @Override
-    public RecyclerView.ViewHolder getViewHolder(ViewGroup parent) {
-        return null;
+        return 0;
     }
 
     @Override
     public void bindView(RecyclerView.ViewHolder holder) {
 
-    }
-
-    @Override
-    public boolean equals(Integer id) {
-        return false;
-    }
-
-    @Override
-    public CustomItem withIdentifier(int identifier) {
-        return null;
-    }
-
-    @Override
-    public int getIdentifier() {
-        return 0;
     }
 
     private static class ViewHolder extends RecyclerView.ViewHolder {
@@ -99,4 +79,6 @@ public class CustomItem implements IDrawerItem<CustomItem> {
             this.name = (TextView) view.findViewById(R.id.drawer_category_name);
         }
     }
+
+
 }
