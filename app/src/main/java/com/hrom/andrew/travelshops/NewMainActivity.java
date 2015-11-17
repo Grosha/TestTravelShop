@@ -30,11 +30,13 @@ public class NewMainActivity extends AppCompatActivity {
     private ListView listView;
     private ArrayList<CategoryShops> categoryShops;
     private ListViewAdapter adapter;
+    //private android.support.v4.app.FragmentTransaction transaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_mainlayout);
+        //transaction = getSupportFragmentManager().beginTransaction();
 
         categoryShops = new ArrayList<>();
         findViewById();
@@ -73,12 +75,12 @@ public class NewMainActivity extends AppCompatActivity {
     }
 
     private void setListViewData() {
-        categoryShops.add(new CategoryShops(R.drawable.ic_map_1, "Mountain"));
-        categoryShops.add(new CategoryShops(R.drawable.ic_map_2, "Ski"));
-        categoryShops.add(new CategoryShops(R.drawable.ic_map_3, "Snowboard"));
-        categoryShops.add(new CategoryShops(R.drawable.ic_map_4, "Bike"));
-        categoryShops.add(new CategoryShops(R.drawable.ic_map_5, "Map"));
-        categoryShops.add(new CategoryShops(R.drawable.ic_map_6, "Favorite"));
+        categoryShops.add(new CategoryShops(R.drawable.ic_favorite, "Favorite", R.color.colorFavoriteSection));
+        categoryShops.add(new CategoryShops(R.drawable.ic_mountins, "Mountain", R.color.colorMountainSection));
+        categoryShops.add(new CategoryShops(R.drawable.ic_skis, "Ski", R.color.colorSkiSection));
+        categoryShops.add(new CategoryShops(R.drawable.ic_snowboard, "Snowboard", R.color.colorSnowboardSection));
+        categoryShops.add(new CategoryShops(R.drawable.ic_bike, "Bike", R.color.colorBikeSection));
+        categoryShops.add(new CategoryShops(R.drawable.ic_map, "Map", R.color.colorMapSection));
     }
 
     private void setListViewHeader() {
@@ -101,19 +103,23 @@ public class NewMainActivity extends AppCompatActivity {
 
     public void updateNewMainLayout(CategoryShops categoryShops) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        /*transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, new MountainFragment());
+        transaction.commit();*/
+
 
         switch (categoryShops.getImageId()) {
-            case R.drawable.ic_map_1:
+            case R.drawable.ic_mountins:
                 transaction.replace(R.id.container, new MountainFragment());
-            case R.drawable.ic_map_2:
+            case R.drawable.ic_skis:
                 transaction.replace(R.id.container, new SkisFragment());
-            case R.drawable.ic_map_3:
+            case R.drawable.ic_snowboard:
                 transaction.replace(R.id.container, new SnowboardFragment());
-            case R.drawable.ic_map_4:
+            case R.drawable.ic_bike:
                 transaction.replace(R.id.container, new BikeFragment());
-            case R.drawable.ic_map_5:
+            case R.drawable.ic_map:
                 transaction.replace(R.id.container, new MapsFragment());
-            case R.drawable.ic_map_6:
+            case R.drawable.ic_favorite:
                 transaction.replace(R.id.container, new FavoriteListFragment());
         }
 

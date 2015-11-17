@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hrom.andrew.travelshops.MainActivity;
@@ -43,6 +44,7 @@ public class ListViewAdapter extends ArrayAdapter<CategoryShops> {
 
         holder.icon.setImageResource(getItem(position).getImageId());
         holder.name.setText(getItem(position).getCategoryName());
+        holder.linearLayout.setBackgroundColor(convertView.getResources().getColor(getItem(position).getColorId()));
 
         convertView.setOnClickListener(onClickListener(position));
 
@@ -53,10 +55,12 @@ public class ListViewAdapter extends ArrayAdapter<CategoryShops> {
     private class ViewHolder {
         private ImageView icon;
         private TextView name;
+        private LinearLayout linearLayout;
 
         public ViewHolder(View v) {
             icon = (ImageView) v.findViewById(R.id.drawer_category_icon);
             name = (TextView) v.findViewById(R.id.drawer_category_name);
+            linearLayout = (LinearLayout) v.findViewById(R.id.colorDrawerIcon);
         }
     }
 
