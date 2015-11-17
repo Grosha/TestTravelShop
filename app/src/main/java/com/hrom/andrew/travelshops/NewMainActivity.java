@@ -7,6 +7,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
@@ -19,6 +20,7 @@ import com.hrom.andrew.travelshops.Fragments.SkisFragment;
 import com.hrom.andrew.travelshops.Fragments.SnowboardFragment;
 import com.hrom.andrew.travelshops.NewDrawer.CategoryShops;
 import com.hrom.andrew.travelshops.NewDrawer.ListViewAdapter;
+import com.hrom.andrew.travelshops.trash.StringVariables;
 
 import java.util.ArrayList;
 
@@ -30,13 +32,20 @@ public class NewMainActivity extends AppCompatActivity {
     private ListView listView;
     private ArrayList<CategoryShops> categoryShops;
     private ListViewAdapter adapter;
-    //private android.support.v4.app.FragmentTransaction transaction;
+    private android.support.v4.app.FragmentManager manager;
+    private android.support.v4.app.FragmentTransaction transaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_mainlayout);
-        //transaction = getSupportFragmentManager().beginTransaction();
+
+        manager = getSupportFragmentManager();
+        transaction = manager.beginTransaction();
+
+        /*transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, new MountainFragment());
+        transaction.commit();*/
 
         categoryShops = new ArrayList<>();
         findViewById();
@@ -102,25 +111,24 @@ public class NewMainActivity extends AppCompatActivity {
     }
 
     public void updateNewMainLayout(CategoryShops categoryShops) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        /*transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, new MountainFragment());
-        transaction.commit();*/
-
-
+        //FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        Log.d(StringVariables.TEST, "updateNewMainLayout");
+        transaction = manager.beginTransaction();
+        Log.d(StringVariables.TEST, String.valueOf(categoryShops.getImageId()));
+        Log.d(StringVariables.TEST, String.valueOf(R.drawable.ic_mountins));
         switch (categoryShops.getImageId()) {
             case R.drawable.ic_mountins:
-                transaction.replace(R.id.container, new MountainFragment());
+                transaction.replace(R.id.new_container, new MountainFragment());
             case R.drawable.ic_skis:
-                transaction.replace(R.id.container, new SkisFragment());
+                transaction.replace(R.id.new_container, new SkisFragment());
             case R.drawable.ic_snowboard:
-                transaction.replace(R.id.container, new SnowboardFragment());
+                transaction.replace(R.id.new_container, new SnowboardFragment());
             case R.drawable.ic_bike:
-                transaction.replace(R.id.container, new BikeFragment());
+                transaction.replace(R.id.new_container, new BikeFragment());
             case R.drawable.ic_map:
-                transaction.replace(R.id.container, new MapsFragment());
+                transaction.replace(R.id.new_container, new MapsFragment());
             case R.drawable.ic_favorite:
-                transaction.replace(R.id.container, new FavoriteListFragment());
+                transaction.replace(R.id.new_container, new FavoriteListFragment());
         }
 
         transaction.commit();
