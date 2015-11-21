@@ -8,4 +8,7 @@
     <color name="colorSnowboardSection">#13cad0</color>
     <color name="colorBikeSection">#875cb5</color>
     <color name="colorMapSection">#1b3683</color>
+    <color name="colorBlackText">#000000</color>
+    <color name="colorBlueText">#1b3683</color>
+    <color name="colorWhiteText">#ffffff</color>
 </resources>

@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginTop="5dp"
-            android:textColor="@color/md_black_1000"
+            android:textColor="@color/colorBlackText"
             android:text="Adasdasdasas"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -45,7 +45,7 @@
             android:layout_centerVertical="true"
             android:gravity="center"
             android:text="@string/underlinedText"
-            android:textColor="@color/md_blue_700"
+            android:textColor="@color/colorBlueText"
             android:textSize="16sp"
             android:textStyle="bold" />
 

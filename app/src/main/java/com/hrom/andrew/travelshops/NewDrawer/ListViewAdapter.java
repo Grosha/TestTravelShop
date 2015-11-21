@@ -1,8 +1,6 @@
 package com.hrom.andrew.travelshops.NewDrawer;
 
 import android.app.Activity;
-import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hrom.andrew.travelshops.MainActivity;
-import com.hrom.andrew.travelshops.NewMainActivity;
 import com.hrom.andrew.travelshops.R;
 
 import java.util.ArrayList;
@@ -20,10 +17,10 @@ import java.util.List;
 
 public class ListViewAdapter extends ArrayAdapter<CategoryShops> {
 
-    private NewMainActivity activity;
+    private MainActivity activity;
     private ArrayList<CategoryShops> categoryShops;
 
-    public ListViewAdapter(NewMainActivity activity, int resource, ArrayList<CategoryShops> objects) {
+    public ListViewAdapter(MainActivity activity, int resource, ArrayList<CategoryShops> objects) {
         super(activity, resource, objects);
         this.activity = activity;
         this.categoryShops = objects;
@@ -69,7 +66,8 @@ public class ListViewAdapter extends ArrayAdapter<CategoryShops> {
             @Override
             public void onClick(View v) {
 
-                activity.updateNewMainLayout(getItem(position));
+                activity.updateMainLayout(getItem(position));
+                activity.showInterstitial(position);
             }
         };
     }
