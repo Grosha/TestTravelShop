@@ -3,15 +3,22 @@ package com.hrom.andrew.travelshops;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.google.android.gms.ads.AdView;
@@ -21,9 +28,9 @@ import com.hrom.andrew.travelshops.Fragments.MapsFragment;
 import com.hrom.andrew.travelshops.Fragments.MountainFragment;
 import com.hrom.andrew.travelshops.Fragments.SkisFragment;
 import com.hrom.andrew.travelshops.Fragments.SnowboardFragment;
-import com.hrom.andrew.travelshops.custom_drawer.CustomSecondaryDrawerItem;
+import com.hrom.andrew.travelshops.NewDrawer.CategoryShops;
+import com.hrom.andrew.travelshops.NewDrawer.ListViewAdapter;
 import com.hrom.andrew.travelshops.google_analytics.AnalyticsEvent;
-import com.hrom.andrew.travelshops.custom_drawer.CustomPrimaryDrawerItem;
 import com.hrom.andrew.travelshops.trash.MyBitMap;
 import com.hrom.andrew.travelshops.trash.TestBitmap;
 import com.hrom.andrew.travelshops.trash.TransitActivity;
@@ -31,22 +38,20 @@ import com.hrom.andrew.travelshops.trash.MyApplication;
 import com.hrom.andrew.travelshops.trash.PrefUtil;
 import com.hrom.andrew.travelshops.trash.StringVariables;
 import com.hrom.andrew.travelshops.trash.RetainedFragment;
-import com.mikepenz.materialdrawer.AccountHeader;
-import com.mikepenz.materialdrawer.AccountHeaderBuilder;
-import com.mikepenz.materialdrawer.Drawer;
-import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.model.DividerDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends TransitActivity {
 
-    private Drawer drawer;
-    private android.support.v4.app.FragmentManager manager;
-    private android.support.v4.app.FragmentTransaction transaction;
-    private int clickedItem = -1;
     private ProgressBar progressBar;
     private Toolbar toolbar;
+
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle drawerToggle;
+    private ListView listView;
+    private ArrayList<CategoryShops> categoryShops;
+    private ListViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,15 +63,17 @@ public class MainActivity extends TransitActivity {
                 AnalyticsEvent.ACTION_APPLICATION,
                 null);
 
-        transaction = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, new MountainFragment());
         transaction.commit();
 
-        manager = getSupportFragmentManager();
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        initializeNavigatorDrawer(toolbar);
+
+        categoryShops = new ArrayList<>();
+        findViewById();
+        setSupportActionBar(toolbar);
+        initDrawerLayout();
 
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -76,161 +83,132 @@ public class MainActivity extends TransitActivity {
         admobInterstitial();
     }
 
-    public Toolbar getToolbar() {
-        return toolbar;
+    private void findViewById() {
+        listView = (ListView) findViewById(R.id.list);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
     }
 
-    private void initializeNavigatorDrawer(Toolbar toolbar) {
+    private void initDrawerLayout() {
+        setListViewData();
+        setListViewHeader();
+        //Mount listview with adapter
+        adapter = new ListViewAdapter(this, R.layout.drawer_list, categoryShops);
+        listView.setAdapter(adapter);
 
-        AccountHeader header = creatAccountHeader();
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
+                R.string.drawer_open, R.string.drawer_close) {
 
-        drawer = new DrawerBuilder()
-                .withActivity(this)
-                .withToolbar(toolbar)
-                .withAccountHeader(header)
-                .withDisplayBelowStatusBar(false)
-                .withTranslucentStatusBar(true)
-                .withActionBarDrawerToggleAnimated(true)
-                .withOnDrawerListener(new Drawer.OnDrawerListener() {
-                    @Override
-                    public void onDrawerOpened(View view) {
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
 
-                    }
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
 
-                    @Override
-                    public void onDrawerClosed(View view) {
-
-                        if (clickedItem >= 0) {
-                            transaction = manager.beginTransaction();
-                            switch (clickedItem) {
-                                case 1:
-                                    transaction.replace(R.id.container, new FavoriteListFragment());
-                                    Log.d(StringVariables.TEST, String.valueOf(clickedItem));
-                                    MyApplication.get().sendEvent(
-                                            AnalyticsEvent.DRAWER_CATEGORY,
-                                            AnalyticsEvent.DRAWER_ACTION,
-                                            AnalyticsEvent.DRAWER_LABEL_FAVORITE);
-                                    break;
-                                case 2:
-                                    transaction.replace(R.id.container, new MountainFragment());
-                                    //transaction.replace(R.id.container, new SwipeMountain());
-                                    Log.d(StringVariables.TEST, String.valueOf(clickedItem));
-                                    MyApplication.get().sendEvent(
-                                            AnalyticsEvent.DRAWER_CATEGORY,
-                                            AnalyticsEvent.DRAWER_ACTION,
-                                            AnalyticsEvent.DRAWER_LABEL_MOUNTAIN);
-                                    break;
-                                case 3:
-                                    transaction.replace(R.id.container, new SkisFragment());
-                                    Log.d(StringVariables.TEST, String.valueOf(clickedItem));
-                                    MyApplication.get().sendEvent(
-                                            AnalyticsEvent.DRAWER_CATEGORY,
-                                            AnalyticsEvent.DRAWER_ACTION,
-                                            AnalyticsEvent.DRAWER_LABEL_SKI);
-                                    break;
-                                case 4:
-                                    transaction.replace(R.id.container, new SnowboardFragment());
-                                    Log.d(StringVariables.TEST, String.valueOf(clickedItem));
-                                    MyApplication.get().sendEvent(
-                                            AnalyticsEvent.DRAWER_CATEGORY,
-                                            AnalyticsEvent.DRAWER_ACTION,
-                                            AnalyticsEvent.DRAWER_LABEL_SNOWBOARD);
-                                    break;
-                                case 5:
-                                    transaction.replace(R.id.container, new BikeFragment());
-                                    MyApplication.get().sendEvent(
-                                            AnalyticsEvent.DRAWER_CATEGORY,
-                                            AnalyticsEvent.DRAWER_ACTION,
-                                            AnalyticsEvent.DRAWER_LABEL_BIKE);
-                                    break;
-                                case 6:
-                                    transaction.replace(R.id.container, new MapsFragment());
-                                    MyApplication.get().sendEvent(
-                                            AnalyticsEvent.DRAWER_CATEGORY,
-                                            AnalyticsEvent.DRAWER_ACTION,
-                                            AnalyticsEvent.DRAWER_LABEL_MAP);
-                                    break;
-                            }
-                            try {
-                                transaction.commit();
-                                clickedItem = -1;
-                            } catch (IllegalStateException e) {
-
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onDrawerSlide(View view, float v) {
-
-                    }
-                })
-                .addDrawerItems(new CustomPrimaryDrawerItem()
-                                .withBackgroundRes(R.color.colorFavoriteSection)
-                                .withIdentifier(1)
-                                .withName("Favorite shops")
-                                .withTextColorRes(R.color.new_color)
-                                .withIcon(R.drawable.ic_favorite),
-                        new CustomSecondaryDrawerItem()
-                                .withBackgroundRes(R.color.colorMountainSection)
-                                .withName("Mountain")
-                                .withTextColorRes(R.color.new_color)
-                                .withIcon(R.drawable.ic_mountins),
-                        new CustomSecondaryDrawerItem()
-                                .withBackgroundRes(R.color.colorSkiSection)
-                                .withName("Skis")
-                                .withTextColorRes(R.color.new_color)
-                                .withIcon(R.drawable.ic_skis),
-                        new CustomSecondaryDrawerItem()
-                                .withBackgroundRes(R.color.colorSnowboardSection)
-                                .withName("Snowboard")
-                                .withTextColorRes(R.color.new_color)
-                                .withIcon(R.drawable.ic_snowboard),
-                        new CustomSecondaryDrawerItem()
-                                .withBackgroundRes(R.color.colorBikeSection)
-                                .withName("Bike")
-                                .withTextColorRes(R.color.new_color)
-                                .withIcon(R.drawable.ic_bike),
-                        new CustomSecondaryDrawerItem()
-                                .withBackgroundRes(R.color.colorMapSection)
-                                .withName("Maps")
-                                .withTextColorRes(R.color.new_color)
-                                .withIcon(R.drawable.ic_map)
-                )
-                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-
-                    @Override
-                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        PrefUtil.save(getBaseContext(), ++countInterstitial, StringVariables.PRES_KEY_INTERSTITIAL_DRAWER);
-                        //Log.d(StringVariables.TEST, String.valueOf(PrefUtil.getCountInterstitial(getBaseContext(), StringVariables.PRES_KEY_INTERSTITIAL_DRAWER)));
-                        if (PrefUtil.getCountInterstitial(getBaseContext(), StringVariables.PRES_KEY_INTERSTITIAL_DRAWER) % 5 == 0) {
-                            showInterstitial();
-                            clickedItem = position;
-                            drawer.closeDrawer();
-                            PrefUtil.save(getApplication(), 0, StringVariables.PRES_KEY_INTERSTITIAL_DRAWER);
-                        } else {
-                            clickedItem = position;
-                            drawer.closeDrawer();
-                        }
-                        return false;
-                    }
-                })
-                .withStickyFooter(R.layout.footer)
-                .build();
+            }
+        };
+        drawerLayout.setDrawerListener(drawerToggle);
     }
 
-    private AccountHeader creatAccountHeader() {
-        return new AccountHeaderBuilder()
-                .withActivity(this)
-                .withHeaderBackground(R.drawable.fon)
-                .withPaddingBelowHeader(false)
-                .build();
+    private void setListViewData() {
+        categoryShops.add(new CategoryShops(R.drawable.ic_favorite, "Favorite", R.color.colorFavoriteSection));
+        categoryShops.add(new CategoryShops(R.drawable.ic_mountins, "Mountain", R.color.colorMountainSection));
+        categoryShops.add(new CategoryShops(R.drawable.ic_skis, "Ski", R.color.colorSkiSection));
+        categoryShops.add(new CategoryShops(R.drawable.ic_snowboard, "Snowboard", R.color.colorSnowboardSection));
+        categoryShops.add(new CategoryShops(R.drawable.ic_bike, "Bike", R.color.colorBikeSection));
+        categoryShops.add(new CategoryShops(R.drawable.ic_map, "Map", R.color.colorMapSection));
+    }
+
+    private void setListViewHeader() {
+        LayoutInflater inflater = getLayoutInflater();
+        View header = inflater.inflate(R.layout.header_listview, listView, false);
+        listView.addHeaderView(header, null, false);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        drawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    public void updateMainLayout(CategoryShops categoryShops) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        switch (categoryShops.getImageId()) {
+            case R.drawable.ic_mountins:
+                transaction.replace(R.id.container, new MountainFragment());
+                MyApplication.get().sendEvent(
+                        AnalyticsEvent.DRAWER_CATEGORY,
+                        AnalyticsEvent.DRAWER_ACTION,
+                        AnalyticsEvent.DRAWER_LABEL_MOUNTAIN);
+                break;
+            case R.drawable.ic_skis:
+                transaction.replace(R.id.container, new SkisFragment());
+                MyApplication.get().sendEvent(
+                        AnalyticsEvent.DRAWER_CATEGORY,
+                        AnalyticsEvent.DRAWER_ACTION,
+                        AnalyticsEvent.DRAWER_LABEL_SKI);
+                break;
+            case R.drawable.ic_snowboard:
+                transaction.replace(R.id.container, new SnowboardFragment());
+                MyApplication.get().sendEvent(
+                        AnalyticsEvent.DRAWER_CATEGORY,
+                        AnalyticsEvent.DRAWER_ACTION,
+                        AnalyticsEvent.DRAWER_LABEL_SNOWBOARD);
+                break;
+            case R.drawable.ic_bike:
+                transaction.replace(R.id.container, new BikeFragment());
+                MyApplication.get().sendEvent(
+                        AnalyticsEvent.DRAWER_CATEGORY,
+                        AnalyticsEvent.DRAWER_ACTION,
+                        AnalyticsEvent.DRAWER_LABEL_BIKE);
+                break;
+            case R.drawable.ic_map:
+                transaction.replace(R.id.container, new MapsFragment());
+                MyApplication.get().sendEvent(
+                        AnalyticsEvent.DRAWER_CATEGORY,
+                        AnalyticsEvent.DRAWER_ACTION,
+                        AnalyticsEvent.DRAWER_LABEL_MAP);
+                break;
+            case R.drawable.ic_favorite:
+                transaction.replace(R.id.container, new FavoriteListFragment());
+                MyApplication.get().sendEvent(
+                        AnalyticsEvent.DRAWER_CATEGORY,
+                        AnalyticsEvent.DRAWER_ACTION,
+                        AnalyticsEvent.DRAWER_LABEL_FAVORITE);
+                break;
+        }
+
+        transaction.commit();
+
+        //close navigation drawer after replace fragment
+        drawerLayout.closeDrawers();
+    }
+
+    public void showInterstitial(int position) {
+        PrefUtil.save(getBaseContext(), ++countInterstitial, StringVariables.PRES_KEY_INTERSTITIAL_DRAWER);
+        //Log.d(StringVariables.TEST, String.valueOf(PrefUtil.getCountInterstitial(getBaseContext(), StringVariables.PRES_KEY_INTERSTITIAL_DRAWER)));
+        if (PrefUtil.getCountInterstitial(getBaseContext(), StringVariables.PRES_KEY_INTERSTITIAL_DRAWER) % 5 == 0) {
+            showInterstitial();
+            drawerLayout.closeDrawers();
+            PrefUtil.save(getApplication(), 0, StringVariables.PRES_KEY_INTERSTITIAL_DRAWER);
+        } else {
+            drawerLayout.closeDrawers();
+        }
     }
 
     @Override
     public void onBackPressed() {
-        if (drawer != null && drawer.isDrawerOpen()) {
-            drawer.closeDrawer();
+        if (drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawers();
         } else super.onBackPressed();
     }
 
@@ -276,7 +254,7 @@ public class MainActivity extends TransitActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
 
-        transaction = manager.beginTransaction();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch (item.getItemId()) {
             case R.id.action_map:
                 transaction.replace(R.id.container, new MapsFragment()).commit();
