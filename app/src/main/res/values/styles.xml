@@ -11,5 +11,4 @@
         <item name="colorPrimaryDark">#1b3683</item>
         <item name="android:textColorPrimary">@color/colorWhiteText</item>
     </style>
-
 </resources>

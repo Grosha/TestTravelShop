@@ -12,4 +12,5 @@
     <string name="underlinedText"><u><b><i>Site</i></b></u></string>
     <string name="drawer_open">open drawer</string>
     <string name="drawer_close">close drawer</string>
+    <string name="facebook_app_id">1702229713341432</string>
 </resources>

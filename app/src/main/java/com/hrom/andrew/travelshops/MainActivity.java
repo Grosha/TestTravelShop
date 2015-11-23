@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdView;
 import com.hrom.andrew.travelshops.Fragments.BikeFragment;
@@ -78,8 +79,8 @@ public class MainActivity extends TransitActivity {
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        AdView mAdView = (AdView) findViewById(R.id.adView);
-        admobBanner(mAdView);
+        /*AdView mAdView = (AdView) findViewById(R.id.adView);
+        admobBanner(mAdView);*/
         admobInterstitial();
     }
 
