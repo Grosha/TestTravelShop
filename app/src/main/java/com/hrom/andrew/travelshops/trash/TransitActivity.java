@@ -114,7 +114,7 @@ public class TransitActivity extends AppCompatActivity {
         }
     }
 
-    public void sharedVK(View v) {
+    /*public void sharedVK(View v) {
         Toast.makeText(this, "VK", Toast.LENGTH_SHORT).show();
         ImageView sharingButton = new ImageButton(this);
         sharingButton.setLayoutParams(new ViewGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT));
@@ -150,39 +150,6 @@ public class TransitActivity extends AppCompatActivity {
 
         ShareButton shareButton = (ShareButton) findViewById(R.id.shareButton);
         shareButton.setShareContent(contentLink);
-
-        /*if (counter == 0) {
-            // creates immutable clone of image
-            image = BitmapFactory.decodeResource(getResources(), R.mipmap.main_icon_18);
-
-            //share dialog
-            AlertDialog.Builder shareDialog = new AlertDialog.Builder(this);
-            shareDialog.setTitle("Application 'FreeRideX'");
-            shareDialog.setMessage("This application with Kiev's shops for winter sport, climbing " +
-                    "and traveling. You can open website and show it products. And if you want to " +
-                    "compare some price you can open another shop and check it");
-            shareDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    //share the image to Facebook
-                    SharePhoto photo = new SharePhoto.Builder().setBitmap(image).build();
-                    SharePhotoContent content = new SharePhotoContent.Builder().addPhoto(photo).build();
-                    if (content == null) {
-                        shareButton.setShareContent(content);
-                        counter = 1;
-                        shareButton.performClick();
-                    }
-                }
-            });
-            shareDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
-            shareDialog.show();
-        } else {
-            counter = 0;
-            shareButton.setShareContent(null);
-        }*/
     }
 
     public void sharedGoogle(View v) {
@@ -191,5 +158,5 @@ public class TransitActivity extends AppCompatActivity {
 
     public void sharedTwitter(View v) {
         Toast.makeText(this, "twitter", Toast.LENGTH_SHORT).show();
-    }
+    }*/
 }
