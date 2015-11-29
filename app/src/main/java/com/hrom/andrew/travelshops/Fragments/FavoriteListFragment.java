@@ -21,7 +21,7 @@ public class FavoriteListFragment extends CategoryFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        createListShop(view, favoriteShop, favoriteShop, R.drawable.background_bike_2, R.layout.list_single);
+        createListShop(view, favoriteShop, favoriteShop, R.drawable.f_image, R.layout.list_single);
 
         /*List<HashMap<String, String>> listFavoriteShops = new ArrayList<>();
         ((MainActivity) getActivity()).setLastFragmentTag(this.getClass().toString());

@@ -4,6 +4,7 @@
     <string name="API_KEY">AIzaSyCO7xM6RwZOaR9-Fiyo_2Uqy5UtNSPEr7Q</string>
     <string name="action_map">Map</string>
     <string name="action_search">search</string>
+    <string name="action_share">share</string>
     <string name="action_settings">action_settings</string>
     <!--<string name="API_KEY">AIzaSyCX4L4YkNz6ICbEtwS_lgHiRE8f2ivAFwY</string>-->
     <string name="preference_file_key">com.hrom.andrew.travelshops.PREFERENCE_FILE_KEY</string>

@@ -29,7 +29,7 @@
         android:paddingLeft="30dp"
         android:paddingTop="10dp"
         android:text="TextView"
-        android:textColor="#fffbffbe"
+        android:textColor="@color/colorWhiteText"
         android:textSize="24sp"
         android:textStyle="bold" />
 

@@ -56,6 +56,7 @@ public class CategoryFragment extends ListFragment {
         CustomAdapter customAdapter = new CustomAdapter(getActivity().getBaseContext(), list, listShop);
         setListAdapter(customAdapter);
         customAdapter.setOnPlusClickListenner(new OnPlusButtonClickListenner() {
+
             @Override
             public void onPlusClick(String url) {
                 Intent intent;

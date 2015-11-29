@@ -41,11 +41,11 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
 
-            <include
+            <!--<include
                 layout="@layout/footer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/list" />
+                android:layout_below="@+id/list" />-->
 
         </RelativeLayout>
 

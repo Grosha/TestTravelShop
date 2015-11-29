@@ -59,6 +59,7 @@ public class CustomAdapter extends ArrayAdapter {
 
     public void setOnPlusClickListenner(OnPlusButtonClickListenner listenner) {
         this.listenner = listenner;
+        //notifyDataSetChanged();
     }
 
     @Override
@@ -127,19 +128,24 @@ public class CustomAdapter extends ArrayAdapter {
                     PrefUtil.remove(getContext(), item);
                     imgPlus = (ImageView) view.findViewById(R.id.imgForMyList);
                     imgPlus.setImageResource(R.drawable.ic_like2);
-                    MyApplication.get().sendEvent(
-                            AnalyticsEvent.SHOP_CATEGORY,
-                            AnalyticsEvent.SHOP_ACTION,
-                            AnalyticsEvent.SHOP_ADD_TO_FAVORITE_LABEL);
-                } else {
-                    PrefUtil.save(getContext(), item);
-                    imgPlus = (ImageView) view.findViewById(R.id.imgForMyList);
-                    imgPlus.setImageResource(R.drawable.ic_like);
+                    setNotifyOnChange(true);
+                    Log.d(StringVariables.TEST, "delete");
                     MyApplication.get().sendEvent(
                             AnalyticsEvent.SHOP_CATEGORY,
                             AnalyticsEvent.SHOP_ACTION,
                             AnalyticsEvent.SHOP_DELETE_FROM_FAVORITE_LABEL);
+                } else {
+                    PrefUtil.save(getContext(), item);
+                    imgPlus = (ImageView) view.findViewById(R.id.imgForMyList);
+                    imgPlus.setImageResource(R.drawable.ic_like);
+                    setNotifyOnChange(true);
+                    Log.d(StringVariables.TEST, "add");
+                    MyApplication.get().sendEvent(
+                            AnalyticsEvent.SHOP_CATEGORY,
+                            AnalyticsEvent.SHOP_ACTION,
+                            AnalyticsEvent.SHOP_ADD_TO_FAVORITE_LABEL);
                 }
+
 
                 /*v.postDelayed(new Runnable() {
                     @Override
