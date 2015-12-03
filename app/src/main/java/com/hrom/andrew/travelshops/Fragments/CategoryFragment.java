@@ -95,4 +95,12 @@ public class CategoryFragment extends ListFragment {
         res.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, getActivity().getResources().getDimensionPixelOffset(R.dimen.list_item_height)));
         return res;
     }
+
+    void clicItem(int position) {
+
+        HashMap<String, String> stringStringHashMap = listShop.get(position);
+
+
+    }
+
 }

@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.hrom.andrew.travelshops.R;
@@ -64,7 +63,7 @@ public class CustomAdapter extends ArrayAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final View view = LayoutInflater.from(getContext()).inflate(R.layout.list_single, null);
+        final View view = LayoutInflater.from(getContext()).inflate(R.layout.item_list, null);
         hash = (HashMap<String, String>) object.get(position);
 
         imgIcon = (ImageView) view.findViewById(R.id.imgForList);
@@ -125,6 +124,7 @@ public class CustomAdapter extends ArrayAdapter {
 
 
                 if (PrefUtil.getValueList(getContext()).contains(item)) {
+                    ((HashMap<String, String>) object.get(position)).put("imgMy", Integer.toString(R.drawable.ic_like2));
                     PrefUtil.remove(getContext(), item);
                     imgPlus = (ImageView) view.findViewById(R.id.imgForMyList);
                     imgPlus.setImageResource(R.drawable.ic_like2);
@@ -135,6 +135,7 @@ public class CustomAdapter extends ArrayAdapter {
                             AnalyticsEvent.SHOP_ACTION,
                             AnalyticsEvent.SHOP_DELETE_FROM_FAVORITE_LABEL);
                 } else {
+                    ((HashMap<String, String>) object.get(position)).put("imgMy", Integer.toString(R.drawable.ic_like));
                     PrefUtil.save(getContext(), item);
                     imgPlus = (ImageView) view.findViewById(R.id.imgForMyList);
                     imgPlus.setImageResource(R.drawable.ic_like);
