@@ -75,7 +75,7 @@ public class MainActivity extends TransitActivity {
 
         categoryShops = new ArrayList<>();
         findViewById();
-        setSupportActionBar(toolbar);
+
         initDrawerLayout();
 
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);

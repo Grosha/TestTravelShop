@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.FavoriteShop;
 import com.hrom.andrew.travelshops.ShopDB.SkisShop;
@@ -24,7 +25,7 @@ public class SkisFragment extends CategoryFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        createListShop(view, skisShop, favoriteShop, R.drawable.bgr_ski, R.layout.list_single);
+        createListShop(view, skisShop, favoriteShop, R.drawable.bgr_ski, R.layout.item_list);
 
         /*List<HashMap<String, String>> listSkiShop = new ArrayList<>();
 
@@ -48,7 +49,7 @@ public class SkisFragment extends CategoryFragment {
 
         SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), listBikeShop, R.layout.list_for_snowboard, from, to);
         setListAdapter(adapter);*//*
-        CustomAdapter customAdapter = new CustomAdapter(getActivity().getBaseContext(), R.layout.list_single, listSkiShop);
+        CustomAdapter customAdapter = new CustomAdapter(getActivity().getBaseContext(), R.layout.item_list, listSkiShop);
         setListAdapter(customAdapter);
 
         view.setBackgroundResource(R.drawable.background_skis);*/
@@ -72,7 +73,7 @@ public class SkisFragment extends CategoryFragment {
     public void onResume() {
         super.onResume();
         if (getActivity() != null) {
-            getActivity().setTitle("Ski");
+            ((MainActivity)getActivity()).getSupportActionBar().setTitle("Ski");
         }
     }
 }

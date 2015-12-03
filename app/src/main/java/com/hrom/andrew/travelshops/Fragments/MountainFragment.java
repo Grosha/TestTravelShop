@@ -3,6 +3,8 @@ package com.hrom.andrew.travelshops.Fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.FavoriteShop;
 import com.hrom.andrew.travelshops.ShopDB.MountainShop;
@@ -22,7 +24,7 @@ public class MountainFragment extends CategoryFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        createListShop(view, mountainShop, favoriteShop, R.drawable.bgr_mountain, R.layout.list_single);
+        createListShop(view, mountainShop, favoriteShop, R.drawable.bgr_mountain, R.layout.item_list);
 
         /*List<HashMap<String, String>> listMountainShop = new ArrayList<>();
 
@@ -45,10 +47,10 @@ public class MountainFragment extends CategoryFragment {
         *//*String[] from = {"img", "txt", "imgMy"};
         int[] to = {R.id.imgForList, R.id.textForList, R.id.imgForMyList};
 
-        SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), listMountainShop, R.layout.list_single, from, to);
+        SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), listMountainShop, R.layout.item_list, from, to);
         setListAdapter(adapter);*//*
 
-        CustomAdapter customAdapter = new CustomAdapter(getActivity().getBaseContext(), R.layout.list_single, listMountainShop);
+        CustomAdapter customAdapter = new CustomAdapter(getActivity().getBaseContext(), R.layout.item_list, listMountainShop);
         setListAdapter(customAdapter);
 
         view.setBackgroundResource(R.drawable.background_mountain);*/
@@ -65,7 +67,7 @@ public class MountainFragment extends CategoryFragment {
     public void onResume() {
         super.onResume();
         if (getActivity() != null) {
-            getActivity().setTitle("Mountain");
+            ((MainActivity)getActivity()).getSupportActionBar().setTitle("Mountain");
         }
     }
 }

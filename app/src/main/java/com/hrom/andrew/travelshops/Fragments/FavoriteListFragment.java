@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.FavoriteShop;
 import com.hrom.andrew.travelshops.trash.StringVariables;
@@ -21,7 +22,7 @@ public class FavoriteListFragment extends CategoryFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        createListShop(view, favoriteShop, favoriteShop, R.drawable.f_image, R.layout.list_single);
+        createListShop(view, favoriteShop, favoriteShop, R.drawable.f_image, R.layout.item_list);
 
         /*List<HashMap<String, String>> listFavoriteShops = new ArrayList<>();
         ((MainActivity) getActivity()).setLastFragmentTag(this.getClass().toString());
@@ -35,7 +36,7 @@ public class FavoriteListFragment extends CategoryFragment {
             listFavoriteShops.add(hm);
         }
 
-        customAdapter = new CustomAdapter(getActivity().getBaseContext(), R.layout.list_single, listFavoriteShops);
+        customAdapter = new CustomAdapter(getActivity().getBaseContext(), R.layout.item_list, listFavoriteShops);
         setListAdapter(customAdapter);
 
         if (favoriteShop.getListShops().size() == 0) {
@@ -49,7 +50,7 @@ public class FavoriteListFragment extends CategoryFragment {
     public void onResume() {
         super.onResume();
         if (getActivity() != null) {
-            getActivity().setTitle("Favorite shops");
+            ((MainActivity)getActivity()).getSupportActionBar().setTitle("Favorite shops");
         }
         //customAdapter.swapItems(favoriteShop.getListShops());
 

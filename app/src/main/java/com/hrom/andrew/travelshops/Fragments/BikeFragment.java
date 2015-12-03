@@ -3,6 +3,8 @@ package com.hrom.andrew.travelshops.Fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.BikeShop;
 import com.hrom.andrew.travelshops.ShopDB.FavoriteShop;
@@ -22,7 +24,7 @@ public class BikeFragment extends CategoryFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        createListShop(view, bikeShop, favoriteShop, R.drawable.bgr_bike, R.layout.list_single);
+        createListShop(view, bikeShop, favoriteShop, R.drawable.bgr_bike, R.layout.item_list);
 
         //getListView().addFooterView(createListFooter());
     }
@@ -38,7 +40,7 @@ public class BikeFragment extends CategoryFragment {
     public void onResume() {
         super.onResume();
         if (getActivity() != null) {
-            getActivity().setTitle("Bike");
+            ((MainActivity)getActivity()).getSupportActionBar().setTitle("Bike");
         }
     }
 
