@@ -52,8 +52,6 @@ public class FavoriteListFragment extends CategoryFragment {
         if (getActivity() != null) {
             ((MainActivity)getActivity()).getSupportActionBar().setTitle("Favorite shops");
         }
-        //customAdapter.swapItems(favoriteShop.getListShops());
-
     }
 
 

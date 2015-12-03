@@ -133,13 +133,13 @@ public class MapsFragment extends Fragment {
                                 .position(target)
                                 .title("ME")
                                 .snippet("")
-                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_flag_test)));
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_flag_test1)));
                     }
                     marker = mGoogleMap.addMarker(new MarkerOptions()
                             .position(target)
                             .title("ME")
                             .snippet("")
-                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_flag)));
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_flag_test1)));
                     /*.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));*/
                     if (myNewMarker != null) {
                         myNewMarker.remove();
@@ -235,7 +235,7 @@ public class MapsFragment extends Fragment {
                                             .title(sportShop.getListShops().get(i))
                                             .snippet(getUrl(i))
                                             .icon(BitmapDescriptorFactory
-                                                    .fromBitmap(MyBitMap.getBitmap(location, icon))))
+                                                    .fromBitmap(MyBitMap.getBitmapForMap(location, icon))))
                                                     /*.fromResource(sportShop.getIconShops().get(i))))*/;
                         }
                     }

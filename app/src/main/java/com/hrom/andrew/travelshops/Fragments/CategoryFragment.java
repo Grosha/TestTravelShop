@@ -78,7 +78,8 @@ public class CategoryFragment extends ListFragment {
 
         if (shop.equals(shopFav)) {
             if (shopFav.getListShops().size() == 0) {
-                view.setBackgroundResource(R.drawable.background_bike_1);
+                //view.setBackgroundResource(R.drawable.background_bike_1);
+                view.inflate(getContext(), R.layout.layout_for_favorite_witout_item, null);
             } else {
                 view.setBackgroundResource(background);
             }

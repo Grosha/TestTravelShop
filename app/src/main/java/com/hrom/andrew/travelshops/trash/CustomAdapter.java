@@ -1,6 +1,8 @@
 package com.hrom.andrew.travelshops.trash;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.gson.Gson;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.BikeShop;
@@ -67,7 +70,10 @@ public class CustomAdapter extends ArrayAdapter {
         hash = (HashMap<String, String>) object.get(position);
 
         imgIcon = (ImageView) view.findViewById(R.id.imgForList);
-        imgIcon.setImageResource(Integer.parseInt(hash.get("img")));
+        Bitmap bitmapFon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.white_fon);
+        Bitmap bitmapIconShop = BitmapFactory.decodeResource(getContext().getResources(), Integer.parseInt(hash.get("img")));
+        imgIcon.setImageBitmap(MyBitMap.getBitmapForCategory(bitmapFon, bitmapIconShop));
+        //imgIcon.setImageResource(Integer.parseInt(hash.get("img")));
 
         nameShop = (TextView) view.findViewById(R.id.textForList);
         nameShop.setText(hash.get("txt"));
