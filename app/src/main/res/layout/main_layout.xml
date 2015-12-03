@@ -12,52 +12,63 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/container"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/toolbar"
-            android:layout_weight="0.99"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/adView"
+                android:layout_below="@+id/toolbar"
+                android:layout_weight="0.99"
+                android:orientation="vertical" />
 
             <include
                 android:id="@+id/toolbar"
                 layout="@layout/toolbar" />
 
-        </LinearLayout>
 
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="bottom"
+                ads:adSize="BANNER"
+                ads:adUnitId="@string/banner_ad_unit_id" />
+        </RelativeLayout>
         <!-- navigation drawer -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="left|start"
-            android:background="@android:color/white">
+            android:background="@android:color/white"
+            android:clickable="true">
 
             <ListView
                 android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="442dp"
-                android:scrollbars="none"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                android:scrollbars="none" />
 
             <!--<include
                 layout="@layout/footer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_below="@+id/list" />-->
 
         </RelativeLayout>
 
     </android.support.v4.widget.DrawerLayout>
-
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_ad_unit_id" />
-
-
 </RelativeLayout>
