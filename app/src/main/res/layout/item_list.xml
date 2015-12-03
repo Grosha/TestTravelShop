@@ -30,8 +30,7 @@
         android:paddingTop="10dp"
         android:text="TextView"
         android:textColor="@color/colorWhiteText"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textSize="24sp" />
 
     <ImageView
         android:id="@+id/imgForMyList"
