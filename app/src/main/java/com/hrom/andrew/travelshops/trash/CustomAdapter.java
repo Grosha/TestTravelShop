@@ -11,16 +11,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.gson.Gson;
 import com.hrom.andrew.travelshops.R;
-import com.hrom.andrew.travelshops.ShopDB.BikeShop;
-import com.hrom.andrew.travelshops.ShopDB.FavoriteShop;
-import com.hrom.andrew.travelshops.ShopDB.MountainShop;
-import com.hrom.andrew.travelshops.ShopDB.Shop;
-import com.hrom.andrew.travelshops.ShopDB.SkisShop;
-import com.hrom.andrew.travelshops.ShopDB.SnowboardShop;
-import com.hrom.andrew.travelshops.ShopDB.SportShop;
+import com.hrom.andrew.travelshops.shopDB.BikeShop;
+import com.hrom.andrew.travelshops.shopDB.FavoriteShop;
+import com.hrom.andrew.travelshops.shopDB.MountainShop;
+import com.hrom.andrew.travelshops.shopDB.Shop;
+import com.hrom.andrew.travelshops.shopDB.SkisShop;
+import com.hrom.andrew.travelshops.shopDB.SnowboardShop;
+import com.hrom.andrew.travelshops.shopDB.SportShop;
 import com.hrom.andrew.travelshops.google_analytics.AnalyticsEvent;
 
 import java.util.HashMap;
@@ -28,7 +27,6 @@ import java.util.List;
 
 public class CustomAdapter extends ArrayAdapter {
     private List object;
-
     private ImageView imgIcon;
     private TextView nameShop;
     private ImageView imgPlus;
@@ -61,7 +59,6 @@ public class CustomAdapter extends ArrayAdapter {
 
     public void setOnPlusClickListenner(OnPlusButtonClickListenner listenner) {
         this.listenner = listenner;
-        //notifyDataSetChanged();
     }
 
     @Override
