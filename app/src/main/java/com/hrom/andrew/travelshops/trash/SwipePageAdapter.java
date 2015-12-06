@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.hrom.andrew.travelshops.Fragments.MapsFragment;
-import com.hrom.andrew.travelshops.Fragments.MountainFragment;
+import com.hrom.andrew.travelshops.fragments.MapsFragment;
+import com.hrom.andrew.travelshops.fragments.MountainFragment;
 
 public class SwipePageAdapter extends FragmentPagerAdapter {
     public SwipePageAdapter(FragmentManager fm) {
