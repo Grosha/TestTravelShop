@@ -14,7 +14,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,20 +21,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import com.google.android.gms.ads.AdView;
-import com.hrom.andrew.travelshops.Fragments.BikeFragment;
-import com.hrom.andrew.travelshops.Fragments.FavoriteListFragment;
-import com.hrom.andrew.travelshops.Fragments.MapsFragment;
-import com.hrom.andrew.travelshops.Fragments.MountainFragment;
-import com.hrom.andrew.travelshops.Fragments.SkisFragment;
-import com.hrom.andrew.travelshops.Fragments.SnowboardFragment;
-import com.hrom.andrew.travelshops.NewDrawer.CategoryShops;
-import com.hrom.andrew.travelshops.NewDrawer.ListViewAdapter;
+import com.hrom.andrew.travelshops.fragments.BikeFragment;
+import com.hrom.andrew.travelshops.fragments.FavoriteListFragment;
+import com.hrom.andrew.travelshops.fragments.MapsFragment;
+import com.hrom.andrew.travelshops.fragments.MountainFragment;
+import com.hrom.andrew.travelshops.fragments.SkisFragment;
+import com.hrom.andrew.travelshops.fragments.SnowboardFragment;
+import com.hrom.andrew.travelshops.customAdapterDrawer.ObjectCategoryShops;
+import com.hrom.andrew.travelshops.customAdapterDrawer.ListViewAdapter;
 import com.hrom.andrew.travelshops.google_analytics.AnalyticsEvent;
-import com.hrom.andrew.travelshops.trash.MyBitMap;
-import com.hrom.andrew.travelshops.trash.TestBitmap;
 import com.hrom.andrew.travelshops.trash.TransitActivity;
 import com.hrom.andrew.travelshops.trash.MyApplication;
 import com.hrom.andrew.travelshops.trash.PrefUtil;
@@ -53,7 +48,7 @@ public class MainActivity extends TransitActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private ListView listView;
-    private ArrayList<CategoryShops> categoryShops;
+    private ArrayList<ObjectCategoryShops> objectCategoryShops;
     private ListViewAdapter adapter;
 
     @Override
@@ -73,7 +68,7 @@ public class MainActivity extends TransitActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        categoryShops = new ArrayList<>();
+        objectCategoryShops = new ArrayList<>();
         findViewById();
 
         initDrawerLayout();
@@ -96,7 +91,7 @@ public class MainActivity extends TransitActivity {
         setListViewData();
         setListViewHeader();
         //Mount listview with adapter
-        adapter = new ListViewAdapter(this, R.layout.drawer_list, categoryShops);
+        adapter = new ListViewAdapter(this, R.layout.drawer_list, objectCategoryShops);
         listView.setAdapter(adapter);
 
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
@@ -117,12 +112,12 @@ public class MainActivity extends TransitActivity {
     }
 
     private void setListViewData() {
-        categoryShops.add(new CategoryShops(R.drawable.ic_favorite, "Favorite", R.color.colorFavoriteSection));
-        categoryShops.add(new CategoryShops(R.drawable.ic_mountins, "Mountain", R.color.colorMountainSection));
-        categoryShops.add(new CategoryShops(R.drawable.ic_skis, "Ski", R.color.colorSkiSection));
-        categoryShops.add(new CategoryShops(R.drawable.ic_snowboard, "Snowboard", R.color.colorSnowboardSection));
-        categoryShops.add(new CategoryShops(R.drawable.ic_bike, "Bike", R.color.colorBikeSection));
-        categoryShops.add(new CategoryShops(R.drawable.ic_map, "Map", R.color.colorMapSection));
+        objectCategoryShops.add(new ObjectCategoryShops(R.drawable.ic_favorite, "Favorite", R.color.colorFavoriteSection));
+        objectCategoryShops.add(new ObjectCategoryShops(R.drawable.ic_mountins, "Mountain", R.color.colorMountainSection));
+        objectCategoryShops.add(new ObjectCategoryShops(R.drawable.ic_skis, "Ski", R.color.colorSkiSection));
+        objectCategoryShops.add(new ObjectCategoryShops(R.drawable.ic_snowboard, "Snowboard", R.color.colorSnowboardSection));
+        objectCategoryShops.add(new ObjectCategoryShops(R.drawable.ic_bike, "Bike", R.color.colorBikeSection));
+        objectCategoryShops.add(new ObjectCategoryShops(R.drawable.ic_map, "Map", R.color.colorMapSection));
     }
 
     private void setListViewHeader() {
@@ -143,9 +138,9 @@ public class MainActivity extends TransitActivity {
         drawerToggle.onConfigurationChanged(newConfig);
     }
 
-    public void updateMainLayout(CategoryShops categoryShops) {
+    public void updateMainLayout(ObjectCategoryShops objectCategoryShops) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        switch (categoryShops.getImageId()) {
+        switch (objectCategoryShops.getImageId()) {
             case R.drawable.ic_mountins:
                 transaction.replace(R.id.container, new MountainFragment());
                 MyApplication.get().sendEvent(
