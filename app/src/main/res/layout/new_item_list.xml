@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iconShop"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@+id/textForList"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_vertical"
+        android:layout_toLeftOf="@+id/textForList"
+        android:layout_toStartOf="@+id/textForList"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="10dp" />
+
+    <TextView
+        android:id="@+id/nameShop"
+        android:layout_width="262dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="?android:attr/selectableItemBackground"
+        android:gravity="left"
+        android:paddingBottom="10dp"
+        android:paddingLeft="30dp"
+        android:paddingTop="10dp"
+        android:text="TextView"
+        android:textColor="@color/colorWhiteText"
+        android:textSize="24sp" />
+
+    <!--<ImageView
+        android:id="@+id/imgForMyList"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@+id/textForList"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_vertical"
+        android:layout_toEndOf="@+id/textForList"
+        android:layout_toRightOf="@+id/textForList"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="10dp" />-->
+
+    <CheckBox
+        android:id="@+id/checkBoxFavorite"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@+id/textForList"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_vertical"
+        android:layout_toEndOf="@+id/textForList"
+        android:layout_toRightOf="@+id/textForList"
+        android:padding="10dp"
+        android:button="@drawable/selector_check"/>
+
+</RelativeLayout>
