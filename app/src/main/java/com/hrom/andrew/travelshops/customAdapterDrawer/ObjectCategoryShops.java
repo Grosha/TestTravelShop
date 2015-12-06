@@ -1,11 +1,11 @@
-package com.hrom.andrew.travelshops.NewDrawer;
+package com.hrom.andrew.travelshops.customAdapterDrawer;
 
-public class CategoryShops {
+public class ObjectCategoryShops {
     private int imageId;
     private int colorId;
     private String categoryName;
 
-    public CategoryShops(int imageId, String categoryName, int colorId) {
+    public ObjectCategoryShops(int imageId, String categoryName, int colorId) {
         this.imageId = imageId;
         this.categoryName = categoryName;
         this.colorId = colorId;

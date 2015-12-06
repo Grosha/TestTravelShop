@@ -1,4 +1,4 @@
-package com.hrom.andrew.travelshops.NewDrawer;
+package com.hrom.andrew.travelshops.customAdapterDrawer;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -13,17 +13,16 @@ import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class ListViewAdapter extends ArrayAdapter<CategoryShops> {
+public class ListViewAdapter extends ArrayAdapter<ObjectCategoryShops> {
 
     private MainActivity activity;
-    private ArrayList<CategoryShops> categoryShops;
+    private ArrayList<ObjectCategoryShops> objectCategoryShops;
 
-    public ListViewAdapter(MainActivity activity, int resource, ArrayList<CategoryShops> objects) {
+    public ListViewAdapter(MainActivity activity, int resource, ArrayList<ObjectCategoryShops> objects) {
         super(activity, resource, objects);
         this.activity = activity;
-        this.categoryShops = objects;
+        this.objectCategoryShops = objects;
     }
 
     @Override
@@ -65,7 +64,6 @@ public class ListViewAdapter extends ArrayAdapter<CategoryShops> {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 activity.updateMainLayout(getItem(position));
                 activity.showInterstitial(position);
             }
