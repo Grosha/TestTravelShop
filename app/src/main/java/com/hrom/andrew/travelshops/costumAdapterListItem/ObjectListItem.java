@@ -14,6 +14,7 @@ public class ObjectListItem {
     }
 
     public Boolean getFavoriteShop() {
+
         return favoriteShop;
     }
 
@@ -23,5 +24,10 @@ public class ObjectListItem {
 
     public String getNameShop() {
         return nameShop;
+    }
+
+    public void setFavoriteShop(boolean favoriteShop) {
+        this.favoriteShop = favoriteShop;
+        //real save
     }
 }

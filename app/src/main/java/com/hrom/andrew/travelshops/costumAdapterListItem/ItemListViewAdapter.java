@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,7 +32,7 @@ import java.util.List;
 
 public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
 
-    private ArrayList<ObjectListItem> objectListItems;
+
     private SportShop sportShop;
     private HashMap<String, String> hash;
     private OnPlusButtonClickListenner listenner;
@@ -39,7 +40,6 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
 
     public ItemListViewAdapter(MainActivity activity, int resource, ArrayList<ObjectListItem> objects) {
         super(activity, resource, objects);
-        this.objectListItems = objects;
 
         if (RetainedFragment.getClassName().contains(StringVariables.TAG_BIKE)) {
             Log.d(StringVariables.TEST, "bike");
@@ -64,7 +64,7 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         ViewHolder holder = null;
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -77,6 +77,24 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
         }
 
         holder.icon.setImageResource(getItem(position).getIconShop());
+        holder.icon.setTag(position);
+        holder.favoriteShop.setChecked(getItem(position).getFavoriteShop());
+        holder.favoriteShop.setTag(position);
+        holder.favoriteShop.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                int pos = (Integer) buttonView.getTag();
+                getItem(pos).setFavoriteShop(isChecked);
+                // real save
+            }
+        });
+        holder.icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pos = (Integer) v.getTag();
+                getItem(pos);
+            }
+        });
         holder.name.setText(getItem(position).getNameShop());
 
         convertView.setOnClickListener(onClickListener(position));
