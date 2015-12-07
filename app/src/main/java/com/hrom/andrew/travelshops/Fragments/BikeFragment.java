@@ -6,8 +6,8 @@ import android.view.View;
 
 import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
-import com.hrom.andrew.travelshops.ShopDB.BikeShop;
-import com.hrom.andrew.travelshops.ShopDB.FavoriteShop;
+import com.hrom.andrew.travelshops.shopDB.BikeShop;
+import com.hrom.andrew.travelshops.shopDB.FavoriteShop;
 import com.hrom.andrew.travelshops.trash.StringVariables;
 
 public class BikeFragment extends CategoryFragment {
