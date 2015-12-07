@@ -22,12 +22,12 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
-import com.hrom.andrew.travelshops.fragments.BikeFragment;
-import com.hrom.andrew.travelshops.fragments.FavoriteListFragment;
-import com.hrom.andrew.travelshops.fragments.MapsFragment;
-import com.hrom.andrew.travelshops.fragments.MountainFragment;
-import com.hrom.andrew.travelshops.fragments.SkisFragment;
-import com.hrom.andrew.travelshops.fragments.SnowboardFragment;
+import com.hrom.andrew.travelshops.Fragments.BikeFragment;
+import com.hrom.andrew.travelshops.Fragments.FavoriteListFragment;
+import com.hrom.andrew.travelshops.Fragments.MapsFragment;
+import com.hrom.andrew.travelshops.Fragments.MountainFragment;
+import com.hrom.andrew.travelshops.Fragments.SkisFragment;
+import com.hrom.andrew.travelshops.Fragments.SnowboardFragment;
 import com.hrom.andrew.travelshops.customAdapterDrawer.ObjectCategoryShops;
 import com.hrom.andrew.travelshops.customAdapterDrawer.ListViewAdapter;
 import com.hrom.andrew.travelshops.google_analytics.AnalyticsEvent;
