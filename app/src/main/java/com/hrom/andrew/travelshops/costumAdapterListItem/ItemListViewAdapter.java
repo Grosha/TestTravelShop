@@ -13,8 +13,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
+import com.hrom.andrew.travelshops.ShopDB.Shop;
 import com.hrom.andrew.travelshops.customAdapterDrawer.ObjectCategoryShops;
 import com.hrom.andrew.travelshops.ShopDB.BikeShop;
 import com.hrom.andrew.travelshops.ShopDB.FavoriteShop;
@@ -22,7 +24,10 @@ import com.hrom.andrew.travelshops.ShopDB.MountainShop;
 import com.hrom.andrew.travelshops.ShopDB.SkisShop;
 import com.hrom.andrew.travelshops.ShopDB.SnowboardShop;
 import com.hrom.andrew.travelshops.ShopDB.SportShop;
+import com.hrom.andrew.travelshops.google_analytics.AnalyticsEvent;
+import com.hrom.andrew.travelshops.trash.MyApplication;
 import com.hrom.andrew.travelshops.trash.OnPlusButtonClickListenner;
+import com.hrom.andrew.travelshops.trash.PrefUtil;
 import com.hrom.andrew.travelshops.trash.RetainedFragment;
 import com.hrom.andrew.travelshops.trash.StringVariables;
 
@@ -78,6 +83,19 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
 
         holder.icon.setImageResource(getItem(position).getIconShop());
         holder.icon.setTag(position);
+        holder.icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pos = (Integer) v.getTag();
+                getItem(pos);
+
+                MyApplication.get().sendEvent(
+                        AnalyticsEvent.SHOP_CATEGORY,
+                        AnalyticsEvent.SHOP_ACTION,
+                        AnalyticsEvent.SHOP_ICON_LABEL);
+            }
+        });
+
         holder.favoriteShop.setChecked(getItem(position).getFavoriteShop());
         holder.favoriteShop.setTag(position);
         holder.favoriteShop.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -86,16 +104,46 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
                 int pos = (Integer) buttonView.getTag();
                 getItem(pos).setFavoriteShop(isChecked);
                 // real save
+
+                Shop shop = new Shop();
+
+                shop.setIconShop(sportShop.getIconShops().get(position));
+                shop.setNameShop(sportShop.getListShops().get(position));
+                shop.setUrl(sportShop.getLinkShop((position)));
+
+                String item = new Gson().toJson(shop);
+
+                if (isChecked == true) {
+                    PrefUtil.remove(getContext(), item);
+                    MyApplication.get().sendEvent(
+                            AnalyticsEvent.SHOP_CATEGORY,
+                            AnalyticsEvent.SHOP_ACTION,
+                            AnalyticsEvent.SHOP_DELETE_FROM_FAVORITE_LABEL);
+                } else {
+                    PrefUtil.save(getContext(), item);
+                    MyApplication.get().sendEvent(
+                            AnalyticsEvent.SHOP_CATEGORY,
+                            AnalyticsEvent.SHOP_ACTION,
+                            AnalyticsEvent.SHOP_ADD_TO_FAVORITE_LABEL);
+                }
             }
         });
-        holder.icon.setOnClickListener(new View.OnClickListener() {
+
+
+        holder.name.setText(getItem(position).getNameShop());
+        holder.name.setTag(position);
+        holder.name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int pos = (Integer) v.getTag();
                 getItem(pos);
+
+                MyApplication.get().sendEvent(
+                        AnalyticsEvent.SHOP_CATEGORY,
+                        AnalyticsEvent.SHOP_ACTION,
+                        AnalyticsEvent.SHOP_NAME_LABEL);
             }
         });
-        holder.name.setText(getItem(position).getNameShop());
 
         convertView.setOnClickListener(onClickListener(position));
 
