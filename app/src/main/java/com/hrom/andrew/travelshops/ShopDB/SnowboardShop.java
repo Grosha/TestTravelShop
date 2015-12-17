@@ -9,7 +9,7 @@ public class SnowboardShop extends SportShop {
     @Override
     public List<String> getListShops() {
         List<String> siteShops = new ArrayList<>();
-        siteShops.add("Екстрім Стайл");
+        siteShops.add("Екстрем Стайл");
         siteShops.add("Svoboda");
         siteShops.add("Драйв Спорт");
         siteShops.add("Велопланета");

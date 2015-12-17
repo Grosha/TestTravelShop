@@ -15,6 +15,7 @@ public class MountainShop extends SportShop {
         siteShops.add("Атлантида");
         siteShops.add("Ель-капітан");
         siteShops.add("Команда Екс");
+        siteShops.add("Екстрем Стайл");
         siteShops.add("X-Zone");
         siteShops.add("Gorgany");
         siteShops.add("Adrenalin");
@@ -33,6 +34,7 @@ public class MountainShop extends SportShop {
         siteShops.add("Каприкорн");
         siteShops.add("Terra Incognita");
         siteShops.add("NorthWall");
+        siteShops.add("Вершина");
         return siteShops;
     }
 
@@ -44,6 +46,7 @@ public class MountainShop extends SportShop {
         imageShops.add(R.drawable.icon_atlantida);
         imageShops.add(R.drawable.icon_el_cap);
         imageShops.add(R.drawable.icon_ex);
+        imageShops.add(R.drawable.icon_extrim_style);
         imageShops.add(R.drawable.icon_x_zone);
         imageShops.add(R.drawable.icon_gorgany);
         imageShops.add(R.drawable.icon_adrenalin);
@@ -62,6 +65,7 @@ public class MountainShop extends SportShop {
         imageShops.add(R.drawable.icon_capricorn);
         imageShops.add(R.drawable.icon_terraincognita);
         imageShops.add(R.drawable.icon_northwall);
+        imageShops.add(R.drawable.icon_vershyna);
         return imageShops;
     }
 
@@ -73,6 +77,7 @@ public class MountainShop extends SportShop {
         listAdressWebSite.add("http://atlantida.net.ua/");
         listAdressWebSite.add("http://el-cap.kiev.ua/");
         listAdressWebSite.add("http://ex.com.ua/");
+        listAdressWebSite.add("http://extremstyle.ua/");
         listAdressWebSite.add("http://www.x-zone.com.ua/");
         listAdressWebSite.add("http://www.gorgany.com/");
         listAdressWebSite.add("http://www.adrenalin.kiev.ua/");
@@ -91,6 +96,7 @@ public class MountainShop extends SportShop {
         listAdressWebSite.add("http://www.capricorn.com.ua/");
         listAdressWebSite.add("http://terraincognita.ua/ukr/");
         listAdressWebSite.add("http://northwall.com.ua/");
+        listAdressWebSite.add("http://vershyna.com.ua/");
         return listAdressWebSite.get(position);
     }
 

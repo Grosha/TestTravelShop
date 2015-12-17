@@ -89,6 +89,7 @@ public class ShopCoordinate {
         lngMap.put("Каприкорн",new LatLng(50.438408, 30.520286));
         lngMap.put("Terra Incognita",new LatLng(50.456793, 30.631518));
         lngMap.put("NorthWall",new LatLng(50.439477, 30.511948));
+        lngMap.put("Вершина",new LatLng(50.396460, 30.635951));
 
         return lngMap.get(tag);
     }
