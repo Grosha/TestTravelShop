@@ -3,6 +3,7 @@ package com.hrom.andrew.travelshops.Fragments;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.View;
@@ -78,8 +79,8 @@ public class CategoryFragment extends ListFragment {
 
         if (shop.equals(shopFav)) {
             if (shopFav.getListShops().size() == 0) {
-                //view.setBackgroundResource(R.drawable.background_bike_1);
-                view.inflate(getContext(), R.layout.layout_for_favorite_witout_item, null);
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.container, new EmptyListFragment()).commit();
             } else {
                 view.setBackgroundResource(background);
             }
