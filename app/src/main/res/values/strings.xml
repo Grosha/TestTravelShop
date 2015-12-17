@@ -14,5 +14,5 @@
     <string name="drawer_open">open drawer</string>
     <string name="drawer_close">close drawer</string>
     <string name="facebook_app_id">1702229713341432</string>
-    <string name="text_with_empty_item">Your list with favorite shpos is empty. You can add shop if you click on heart</string>
+    <string name="text_with_empty_item">Your list with favorite shops is empty. You can add shop if you click on heart</string>
 </resources>
