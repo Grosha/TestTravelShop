@@ -13,6 +13,8 @@ import android.widget.AbsListView;
 import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.SportShop;
+import com.hrom.andrew.travelshops.costumAdapterListItem.ItemListViewAdapter;
+import com.hrom.andrew.travelshops.costumAdapterListItem.ObjectListItem;
 import com.hrom.andrew.travelshops.trash.CustomAdapter;
 import com.hrom.andrew.travelshops.trash.StringVariables;
 import com.hrom.andrew.travelshops.trash.OnPlusButtonClickListenner;
@@ -24,6 +26,8 @@ import java.util.List;
 
 public class CategoryFragment extends ListFragment {
     private List<HashMap<String, String>> listShop;
+    private ArrayList<ObjectListItem> objects;
+    private boolean fav = false;
     private int countInterstitial = 0;
 
     @Override
@@ -35,12 +39,19 @@ public class CategoryFragment extends ListFragment {
     public View createListShop(View view, SportShop shop, SportShop shopFav, int background, int list) {
 
         listShop = new ArrayList<>();
+        objects = new ArrayList<>();
 
         ((MainActivity) getActivity()).setLastFragmentTag(this.getClass().toString());
         Log.d(StringVariables.TEST, this.getClass().toString());
 
         for (int i = 0; i < shop.getListShops().size(); i++) {
-            HashMap<String, String> hm = new HashMap<>();
+            if (shopFav.getListShops().contains(shop.getListShops().get(i))) {
+                fav = true;
+            } else fav = false;
+            objects.add(new ObjectListItem(shop.getIconShops().get(i), shop.getListShops().get(i), fav));
+
+
+            /*HashMap<String, String> hm = new HashMap<>();
 
             hm.put("img", Integer.toString(shop.getIconShops().get(i)));
             hm.put("txt", shop.getListShops().get(i));
@@ -49,14 +60,16 @@ public class CategoryFragment extends ListFragment {
             } else {
                 hm.put("imgMy", Integer.toString(R.drawable.ic_like2));
             }
-            listShop.add(hm);
+            listShop.add(hm);*/
         }
 
         getListView().addFooterView(createListFooter());
 
-        CustomAdapter customAdapter = new CustomAdapter(getActivity().getBaseContext(), list, listShop);
-        setListAdapter(customAdapter);
-        customAdapter.setOnPlusClickListenner(new OnPlusButtonClickListenner() {
+        //CustomAdapter customAdapter = new CustomAdapter(getActivity().getBaseContext(), list, listShop);
+        ItemListViewAdapter itemListViewAdapter = new ItemListViewAdapter(getActivity(), list, objects);
+
+        setListAdapter(itemListViewAdapter);
+        itemListViewAdapter.setOnPlusClickListenner(new OnPlusButtonClickListenner() {
 
             @Override
             public void onPlusClick(String url) {

@@ -14,7 +14,6 @@ public class ObjectListItem {
     }
 
     public Boolean getFavoriteShop() {
-
         return favoriteShop;
     }
 

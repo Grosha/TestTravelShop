@@ -7,15 +7,15 @@
         android:id="@+id/iconShop"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_alignBottom="@+id/textForList"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_gravity="center_vertical"
-        android:layout_toLeftOf="@+id/textForList"
-        android:layout_toStartOf="@+id/textForList"
+        android:layout_toStartOf="@+id/nameShop"
         android:background="?android:attr/selectableItemBackground"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:layout_alignBottom="@+id/nameShop"
+        android:layout_toLeftOf="@+id/nameShop" />
 
     <TextView
         android:id="@+id/nameShop"
@@ -49,15 +49,16 @@
     <CheckBox
         android:id="@+id/checkBoxFavorite"
         android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignBottom="@+id/textForList"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_gravity="center_vertical"
-        android:layout_toEndOf="@+id/textForList"
-        android:layout_toRightOf="@+id/textForList"
+        android:layout_toEndOf="@+id/nameShop"
         android:padding="10dp"
-        android:button="@drawable/selector_check"/>
+        android:button="@drawable/selector_check"
+        android:layout_alignBottom="@+id/nameShop"
+        android:layout_toRightOf="@+id/nameShop"
+        android:gravity="clip_horizontal|center|clip_vertical" />
 
 </RelativeLayout>

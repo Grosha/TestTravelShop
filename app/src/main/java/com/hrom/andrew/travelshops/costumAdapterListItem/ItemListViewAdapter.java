@@ -2,6 +2,8 @@ package com.hrom.andrew.travelshops.costumAdapterListItem;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.hrom.andrew.travelshops.MainActivity;
@@ -26,6 +29,7 @@ import com.hrom.andrew.travelshops.ShopDB.SnowboardShop;
 import com.hrom.andrew.travelshops.ShopDB.SportShop;
 import com.hrom.andrew.travelshops.google_analytics.AnalyticsEvent;
 import com.hrom.andrew.travelshops.trash.MyApplication;
+import com.hrom.andrew.travelshops.trash.MyBitMap;
 import com.hrom.andrew.travelshops.trash.OnPlusButtonClickListenner;
 import com.hrom.andrew.travelshops.trash.PrefUtil;
 import com.hrom.andrew.travelshops.trash.RetainedFragment;
@@ -39,13 +43,12 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
 
 
     private SportShop sportShop;
-    private HashMap<String, String> hash;
+    FavoriteShop f;
+    private ObjectListItem objectListItem;
     private OnPlusButtonClickListenner listenner;
-    private MainActivity activity;
 
-    public ItemListViewAdapter(MainActivity activity, int resource, ArrayList<ObjectListItem> objects) {
+    public ItemListViewAdapter(Context activity, int resource, ArrayList<ObjectListItem> objects) {
         super(activity, resource, objects);
-
         if (RetainedFragment.getClassName().contains(StringVariables.TAG_BIKE)) {
             Log.d(StringVariables.TEST, "bike");
             sportShop = new BikeShop();
@@ -62,6 +65,7 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
             Log.d(StringVariables.TEST, "favorite");
             sportShop = new FavoriteShop(activity);
         }
+        f = new FavoriteShop(activity);
     }
 
     public void setOnPlusClickListenner(OnPlusButtonClickListenner listenner) {
@@ -72,7 +76,7 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
     public View getView(final int position, View convertView, ViewGroup parent) {
 
         ViewHolder holder = null;
-        LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.new_item_list, parent, false);
             holder = new ViewHolder(convertView);
@@ -81,7 +85,12 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.icon.setImageResource(getItem(position).getIconShop());
+        Bitmap bitmapFon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.white_fon);
+        Bitmap bitmapIconShop = BitmapFactory.decodeResource(getContext().getResources(), getItem(position).getIconShop());
+
+        holder.icon.setImageBitmap(MyBitMap.getBitmapForCategory(bitmapFon, bitmapIconShop));
+
+        //holder.icon.setImageResource(getItem(position).getIconShop());
         holder.icon.setTag(position);
         holder.icon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,10 +98,13 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
                 int pos = (Integer) v.getTag();
                 getItem(pos);
 
-                MyApplication.get().sendEvent(
-                        AnalyticsEvent.SHOP_CATEGORY,
-                        AnalyticsEvent.SHOP_ACTION,
-                        AnalyticsEvent.SHOP_ICON_LABEL);
+                if (listenner != null) {
+                    listenner.onPlusClick(sportShop.getLinkShop(position));
+                    MyApplication.get().sendEvent(
+                            AnalyticsEvent.SHOP_CATEGORY,
+                            AnalyticsEvent.SHOP_ACTION,
+                            AnalyticsEvent.SHOP_ICON_LABEL);
+                }
             }
         });
 
@@ -104,6 +116,8 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
                 int pos = (Integer) buttonView.getTag();
                 getItem(pos).setFavoriteShop(isChecked);
                 // real save
+                Log.d(StringVariables.TEST, "real save");
+                Log.d(StringVariables.TEST, String.valueOf(f.getListShops().size()));
 
                 Shop shop = new Shop();
 
@@ -114,18 +128,29 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
                 String item = new Gson().toJson(shop);
 
                 if (isChecked == true) {
+                    Log.d(StringVariables.TEST, "save");
                     PrefUtil.remove(getContext(), item);
                     MyApplication.get().sendEvent(
                             AnalyticsEvent.SHOP_CATEGORY,
                             AnalyticsEvent.SHOP_ACTION,
                             AnalyticsEvent.SHOP_DELETE_FROM_FAVORITE_LABEL);
                 } else {
+                    Log.d(StringVariables.TEST, "remove");
                     PrefUtil.save(getContext(), item);
                     MyApplication.get().sendEvent(
                             AnalyticsEvent.SHOP_CATEGORY,
                             AnalyticsEvent.SHOP_ACTION,
                             AnalyticsEvent.SHOP_ADD_TO_FAVORITE_LABEL);
                 }
+
+                buttonView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Toast.makeText(getContext(), PrefUtil.getValue(getContext()), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), PrefUtil.getValueList(getContext()).toString() +
+                                " " + PrefUtil.getValueList(getContext()).size(), Toast.LENGTH_SHORT).show();
+                    }
+                }, 1000);
             }
         });
 
@@ -138,10 +163,13 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
                 int pos = (Integer) v.getTag();
                 getItem(pos);
 
-                MyApplication.get().sendEvent(
-                        AnalyticsEvent.SHOP_CATEGORY,
-                        AnalyticsEvent.SHOP_ACTION,
-                        AnalyticsEvent.SHOP_NAME_LABEL);
+                if(listenner != null) {
+                    listenner.onPlusClick(sportShop.getLinkShop(position));
+                    MyApplication.get().sendEvent(
+                            AnalyticsEvent.SHOP_CATEGORY,
+                            AnalyticsEvent.SHOP_ACTION,
+                            AnalyticsEvent.SHOP_NAME_LABEL);
+                }
             }
         });
 
@@ -166,7 +194,7 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.showInterstitial(position);
+                ((MainActivity) getContext()).showInterstitial(position);
             }
         };
     }
