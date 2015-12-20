@@ -36,15 +36,12 @@ import com.hrom.andrew.travelshops.trash.RetainedFragment;
 import com.hrom.andrew.travelshops.trash.StringVariables;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
 
 
     private SportShop sportShop;
     FavoriteShop f;
-    private ObjectListItem objectListItem;
     private OnPlusButtonClickListenner listenner;
 
     public ItemListViewAdapter(Context activity, int resource, ArrayList<ObjectListItem> objects) {
@@ -87,9 +84,7 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
 
         Bitmap bitmapFon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.white_fon);
         Bitmap bitmapIconShop = BitmapFactory.decodeResource(getContext().getResources(), getItem(position).getIconShop());
-
         holder.icon.setImageBitmap(MyBitMap.getBitmapForCategory(bitmapFon, bitmapIconShop));
-
         //holder.icon.setImageResource(getItem(position).getIconShop());
         holder.icon.setTag(position);
         holder.icon.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +111,6 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
                 int pos = (Integer) buttonView.getTag();
                 getItem(pos).setFavoriteShop(isChecked);
                 // real save
-                Log.d(StringVariables.TEST, "real save");
                 Log.d(StringVariables.TEST, String.valueOf(f.getListShops().size()));
 
                 Shop shop = new Shop();
@@ -127,20 +121,21 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
 
                 String item = new Gson().toJson(shop);
 
-                if (isChecked == true) {
+                if (isChecked) {
                     Log.d(StringVariables.TEST, "save");
-                    PrefUtil.remove(getContext(), item);
-                    MyApplication.get().sendEvent(
-                            AnalyticsEvent.SHOP_CATEGORY,
-                            AnalyticsEvent.SHOP_ACTION,
-                            AnalyticsEvent.SHOP_DELETE_FROM_FAVORITE_LABEL);
-                } else {
-                    Log.d(StringVariables.TEST, "remove");
                     PrefUtil.save(getContext(), item);
                     MyApplication.get().sendEvent(
                             AnalyticsEvent.SHOP_CATEGORY,
                             AnalyticsEvent.SHOP_ACTION,
                             AnalyticsEvent.SHOP_ADD_TO_FAVORITE_LABEL);
+
+                } else {
+                    Log.d(StringVariables.TEST, "remove");
+                    PrefUtil.remove(getContext(), item);
+                    MyApplication.get().sendEvent(
+                            AnalyticsEvent.SHOP_CATEGORY,
+                            AnalyticsEvent.SHOP_ACTION,
+                            AnalyticsEvent.SHOP_DELETE_FROM_FAVORITE_LABEL);
                 }
 
                 buttonView.postDelayed(new Runnable() {
@@ -163,7 +158,7 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
                 int pos = (Integer) v.getTag();
                 getItem(pos);
 
-                if(listenner != null) {
+                if (listenner != null) {
                     listenner.onPlusClick(sportShop.getLinkShop(position));
                     MyApplication.get().sendEvent(
                             AnalyticsEvent.SHOP_CATEGORY,

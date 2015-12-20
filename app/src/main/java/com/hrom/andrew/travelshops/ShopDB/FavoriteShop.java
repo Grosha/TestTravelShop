@@ -1,9 +1,11 @@
 package com.hrom.andrew.travelshops.ShopDB;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.hrom.andrew.travelshops.trash.PrefUtil;
+import com.hrom.andrew.travelshops.trash.StringVariables;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -43,9 +45,11 @@ public class FavoriteShop extends SportShop {
         } else
             for (String s : gsonList) {
                 Shop shop = new Gson().fromJson(s, Shop.class);
-                imageShops.add(shop.getIconShop());
-                siteShops.add(shop.getNameShop());
-                listAdressWebSite.add(shop.getUrl());
+                if (!imageShops.contains(shop.getIconShop())) {
+                    imageShops.add(shop.getIconShop());
+                    siteShops.add(shop.getNameShop());
+                    listAdressWebSite.add(shop.getUrl());
+                }
             }
     }
 }
