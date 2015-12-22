@@ -105,11 +105,12 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
 
         holder.favoriteShop.setChecked(getItem(position).getFavoriteShop());
         holder.favoriteShop.setTag(position);
-        holder.favoriteShop.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        holder.favoriteShop.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                int pos = (Integer) buttonView.getTag();
-                getItem(pos).setFavoriteShop(isChecked);
+            public void onClick(View v) {
+                int pos = (Integer) v.getTag();
+                boolean checked = ((CompoundButton) v).isChecked();
+                getItem(pos).setFavoriteShop(checked);
                 // real save
                 Log.d(StringVariables.TEST, String.valueOf(f.getListShops().size()));
 
@@ -119,9 +120,10 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
                 shop.setNameShop(sportShop.getListShops().get(position));
                 shop.setUrl(sportShop.getLinkShop((position)));
 
+
                 String item = new Gson().toJson(shop);
 
-                if (isChecked) {
+                if (checked) {
                     Log.d(StringVariables.TEST, "save");
                     PrefUtil.save(getContext(), item);
                     MyApplication.get().sendEvent(
@@ -138,7 +140,7 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
                             AnalyticsEvent.SHOP_DELETE_FROM_FAVORITE_LABEL);
                 }
 
-                buttonView.postDelayed(new Runnable() {
+                v.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         //Toast.makeText(getContext(), PrefUtil.getValue(getContext()), Toast.LENGTH_SHORT).show();
