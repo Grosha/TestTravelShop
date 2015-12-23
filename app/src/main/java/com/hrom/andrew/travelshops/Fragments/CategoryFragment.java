@@ -113,7 +113,7 @@ public class CategoryFragment extends ListFragment {
 
     void clicItem(int position) {
 
-        HashMap<String, String> stringStringHashMap = listShop.get(position);
+        HashMap<String, String> stringHashMap = listShop.get(position);
 
 
     }
