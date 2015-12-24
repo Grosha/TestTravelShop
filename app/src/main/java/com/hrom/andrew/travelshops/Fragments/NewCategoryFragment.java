@@ -3,7 +3,6 @@ package com.hrom.andrew.travelshops.Fragments;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.View;
@@ -12,23 +11,24 @@ import android.widget.AbsListView;
 
 import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
+import com.hrom.andrew.travelshops.ShopDB.DataFactory;
 import com.hrom.andrew.travelshops.ShopDB.SportShop;
 import com.hrom.andrew.travelshops.costumAdapterListItem.ItemListViewAdapter;
+import com.hrom.andrew.travelshops.costumAdapterListItem.NewItemListViewAdapter;
+import com.hrom.andrew.travelshops.costumAdapterListItem.NewShop;
 import com.hrom.andrew.travelshops.costumAdapterListItem.ObjectListItem;
-import com.hrom.andrew.travelshops.trash.CustomAdapter;
-import com.hrom.andrew.travelshops.trash.StringVariables;
 import com.hrom.andrew.travelshops.trash.OnPlusButtonClickListenner;
 import com.hrom.andrew.travelshops.trash.PrefUtil;
+import com.hrom.andrew.travelshops.trash.RetainedFragment;
+import com.hrom.andrew.travelshops.trash.StringVariables;
+import com.hrom.andrew.travelshops.trash.Type;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
-public class CategoryFragment extends ListFragment {
-    private List<HashMap<String, String>> listShop;
-    private ArrayList<ObjectListItem> objects;
-    private boolean fav = false;
+public class NewCategoryFragment extends ListFragment {
     private int countInterstitial = 0;
+    private ArrayList<NewShop> listItems;
+    private DataFactory dataFactory;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,40 +36,27 @@ public class CategoryFragment extends ListFragment {
         countInterstitial = PrefUtil.getCountInterstitial(getActivity().getBaseContext(), StringVariables.PRES_KEY_INTERSTITIAL_WEB);
     }
 
-    public View createListShop(View view, SportShop shop, SportShop shopFav, int background, int list) {
-
-        listShop = new ArrayList<>();
-        objects = new ArrayList<>();
+    public View createListShop(View view, NewShop shop, SportShop shopFav, int background, int list) {
 
         ((MainActivity) getActivity()).setLastFragmentTag(this.getClass().toString());
         Log.d(StringVariables.TEST, this.getClass().toString());
 
-        for (int i = 0; i < shop.getListShops().size(); i++) {
-            if (shopFav.getListShops().contains(shop.getListShops().get(i))) {
-                fav = true;
-            } else fav = false;
-            objects.add(new ObjectListItem(shop.getIconShops().get(i), shop.getListShops().get(i), fav));
+        if (RetainedFragment.getClassName().contains(StringVariables.TAG_BIKE)) {
+            listItems = dataFactory.getListShop(Type.Bike);
+        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_MOUNTAIN)) {
+            listItems = dataFactory.getListShop(Type.Mountain);
+        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SKIS)) {
+            listItems = dataFactory.getListShop(Type.Ski);
+        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SNOWBOARD)) {
+            listItems = dataFactory.getListShop(Type.Snowboard);
+        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_FAVORITE_LIST)) {
 
-
-            /*HashMap<String, String> hm = new HashMap<>();
-
-            hm.put("img", Integer.toString(shop.getIconShops().get(i)));
-            hm.put("txt", shop.getListShops().get(i));
-            if (shopFav.getListShops().contains(shop.getListShops().get(i))) {
-                hm.put("imgMy", Integer.toString(R.drawable.ic_like));
-            } else {
-                hm.put("imgMy", Integer.toString(R.drawable.ic_like2));
-            }
-            listShop.add(hm);*/
         }
 
         getListView().addFooterView(createListFooter());
-
-        //CustomAdapter customAdapter = new CustomAdapter(getActivity().getBaseContext(), list, listShop);
-        ItemListViewAdapter itemListViewAdapter = new ItemListViewAdapter(getActivity(), list, objects);
-
-        setListAdapter(itemListViewAdapter);
-        itemListViewAdapter.setOnPlusClickListenner(new OnPlusButtonClickListenner() {
+        NewItemListViewAdapter newItemListViewAdapter = new NewItemListViewAdapter(getActivity(), list, listItems);
+        setListAdapter(newItemListViewAdapter);
+        newItemListViewAdapter.setOnPlusClickListenner(new OnPlusButtonClickListenner() {
 
             @Override
             public void onPlusClick(String url) {
@@ -90,18 +77,6 @@ public class CategoryFragment extends ListFragment {
             }
         });
 
-        if (shop.equals(shopFav)) {
-            if (shopFav.getListShops().size() == 0) {
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.container, new EmptyListFragment()).commit();
-            } else {
-                view.setBackgroundResource(background);
-            }
-        } else {
-            view.setBackgroundResource(background);
-        }
-
-
         return view;
     }
 
@@ -110,5 +85,4 @@ public class CategoryFragment extends ListFragment {
         res.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, getActivity().getResources().getDimensionPixelOffset(R.dimen.list_item_height)));
         return res;
     }
-
 }

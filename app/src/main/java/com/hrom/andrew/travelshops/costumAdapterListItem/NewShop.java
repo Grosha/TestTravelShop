@@ -4,7 +4,6 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class NewShop {
     private int id;
-    private String typeShop;
     private int iconShop;
     private String nameShop;
     private String urlShop;
@@ -30,10 +29,6 @@ public class NewShop {
 
     public int getId() {
         return id;
-    }
-
-    public String getTypeShop() {
-        return typeShop;
     }
 
     public int getIconShop() {
