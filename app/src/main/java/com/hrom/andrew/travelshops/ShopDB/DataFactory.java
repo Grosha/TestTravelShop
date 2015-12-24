@@ -3,10 +3,29 @@ package com.hrom.andrew.travelshops.ShopDB;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.costumAdapterListItem.NewShop;
 import com.hrom.andrew.travelshops.trash.StringVariables;
+import com.hrom.andrew.travelshops.trash.Type;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-public class NewMapShops {
+public class DataFactory {
+
+    public List<NewShop> getListShop(Type typeshop) {
+        ArrayList<NewShop> listShop = new ArrayList<>();
+        switch (typeshop) {
+            case Mountain:
+                return listShop;
+            case Bike:
+                return listShop;
+            case Ski:
+                return listShop;
+            case Snowboard:
+                return listShop;
+        }
+
+    }
+
     public HashMap<NewShop, Integer> hashMapShops() {
         HashMap<NewShop, Integer> listShops = new HashMap<>();
 
