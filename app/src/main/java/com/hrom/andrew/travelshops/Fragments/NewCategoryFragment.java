@@ -3,6 +3,7 @@ package com.hrom.andrew.travelshops.Fragments;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.AbsListView;
 import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.DataFactory;
+import com.hrom.andrew.travelshops.ShopDB.NewFavoriteFactory;
 import com.hrom.andrew.travelshops.ShopDB.SportShop;
 import com.hrom.andrew.travelshops.costumAdapterListItem.ItemListViewAdapter;
 import com.hrom.andrew.travelshops.costumAdapterListItem.NewItemListViewAdapter;
@@ -29,6 +31,7 @@ public class NewCategoryFragment extends ListFragment {
     private int countInterstitial = 0;
     private ArrayList<NewShop> listItems;
     private DataFactory dataFactory;
+    private NewFavoriteFactory favoriteFactory;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,25 +39,35 @@ public class NewCategoryFragment extends ListFragment {
         countInterstitial = PrefUtil.getCountInterstitial(getActivity().getBaseContext(), StringVariables.PRES_KEY_INTERSTITIAL_WEB);
     }
 
-    public View createListShop(View view, NewShop shop, SportShop shopFav, int background, int list) {
+    public View createListShop(View view,int background) {
 
         ((MainActivity) getActivity()).setLastFragmentTag(this.getClass().toString());
         Log.d(StringVariables.TEST, this.getClass().toString());
 
         if (RetainedFragment.getClassName().contains(StringVariables.TAG_BIKE)) {
             listItems = dataFactory.getListShop(Type.Bike);
+            view.setBackgroundResource(background);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_MOUNTAIN)) {
             listItems = dataFactory.getListShop(Type.Mountain);
+            view.setBackgroundResource(background);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SKIS)) {
             listItems = dataFactory.getListShop(Type.Ski);
+            view.setBackgroundResource(background);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SNOWBOARD)) {
             listItems = dataFactory.getListShop(Type.Snowboard);
+            view.setBackgroundResource(background);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_FAVORITE_LIST)) {
-
+            listItems = favoriteFactory.getListFavorite();
+            /*if (shopFav.getListShops().size() == 0) {
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.container, new EmptyListFragment()).commit();
+            } else {
+                view.setBackgroundResource(background);
+            }*/
         }
 
         getListView().addFooterView(createListFooter());
-        NewItemListViewAdapter newItemListViewAdapter = new NewItemListViewAdapter(getActivity(), list, listItems);
+        NewItemListViewAdapter newItemListViewAdapter = new NewItemListViewAdapter(getActivity(), R.layout.item_list, listItems);
         setListAdapter(newItemListViewAdapter);
         newItemListViewAdapter.setOnPlusClickListenner(new OnPlusButtonClickListenner() {
 

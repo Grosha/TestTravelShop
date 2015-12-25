@@ -4,5 +4,6 @@ public enum Type {
     Bike,
     Mountain,
     Snowboard,
-    Ski
+    Ski,
+    All
 }

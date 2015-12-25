@@ -43,7 +43,7 @@ public class NewShop {
         return urlShop;
     }
 
-    public boolean isFavoriteShop() {
+    public boolean getFavoriteShop() {
         return favoriteShop;
     }
 

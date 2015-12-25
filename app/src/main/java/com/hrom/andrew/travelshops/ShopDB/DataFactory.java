@@ -26,6 +26,9 @@ public class DataFactory {
             case Snowboard:
                 listShop = getListSnowBoard();
                 break;
+            case All:
+                listShop = getListAllShops();
+                break;
         }
         return listShop;
     }
@@ -148,5 +151,15 @@ public class DataFactory {
         listSnowBoard.add(new NewShop(321, R.drawable.icon_northwall, "NorthWall", "http://northwall.com.ua/", false));
 
         return listSnowBoard;
+    }
+
+    private ArrayList<NewShop> getListAllShops() {
+        ArrayList<NewShop> listAllShops = new ArrayList<>();
+        listAllShops.addAll(getListBike());
+        listAllShops.addAll(getListMountain());
+        listAllShops.addAll(getListSki());
+        listAllShops.addAll(getListSnowBoard());
+
+        return listAllShops;
     }
 }
