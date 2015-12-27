@@ -9,9 +9,10 @@ import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.NewFavoriteFactory;
 import com.hrom.andrew.travelshops.trash.StringVariables;
 
-public class NewSkiFragment extends NewCategoryFragment {
-    public final static String TAG = StringVariables.TAG_SKIS;
+public class NewFavoriteFragment extends NewCategoryFragment{
+    public final static String TAG = StringVariables.TAG_FAVORITE_LIST;
     private NewFavoriteFactory favoriteFactory;
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -21,14 +22,14 @@ public class NewSkiFragment extends NewCategoryFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        createListShop(view, R.drawable.bgr_ski,favoriteFactory);
+        createListShop(view, R.drawable.f_image,favoriteFactory);
     }
 
     @Override
     public void onResume() {
         super.onResume();
         if (getActivity() != null) {
-            ((MainActivity)getActivity()).getSupportActionBar().setTitle("Ski");
+            ((MainActivity)getActivity()).getSupportActionBar().setTitle("Favorite shops");
         }
     }
 }

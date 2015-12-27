@@ -37,22 +37,25 @@ import java.util.List;
 public class NewItemListViewAdapter extends ArrayAdapter<NewShop> {
     private OnPlusButtonClickListenner listenner;
     private ArrayList<NewShop> listItems;
-    private DataFactory dataFactory;
+    private DataFactory dataFactory = new DataFactory();
     private NewFavoriteFactory favoriteFactory;
 
     public NewItemListViewAdapter(Context context, int resource, List<NewShop> objects) {
         super(context, resource, objects);
-        if (RetainedFragment.getClassName().contains(StringVariables.TAG_BIKE)) {
-            listItems = dataFactory.getListShop(Type.Bike);
-        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_MOUNTAIN)) {
-            listItems = dataFactory.getListShop(Type.Mountain);
-        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SKIS)) {
-            listItems = dataFactory.getListShop(Type.Ski);
-        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SNOWBOARD)) {
-            listItems = dataFactory.getListShop(Type.Snowboard);
-        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_FAVORITE_LIST)) {
-            listItems = favoriteFactory.getListFavorite();
-        }
+        favoriteFactory = new NewFavoriteFactory(context);
+        //if (listItems != null) {
+            if (RetainedFragment.getClassName().contains(StringVariables.TAG_BIKE)) {
+                listItems = dataFactory.getListShop(Type.Bike);
+            } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_MOUNTAIN)) {
+                listItems = dataFactory.getListShop(Type.Mountain);
+            } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SKIS)) {
+                listItems = dataFactory.getListShop(Type.Ski);
+            } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SNOWBOARD)) {
+                listItems = dataFactory.getListShop(Type.Snowboard);
+            } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_FAVORITE_LIST)) {
+                listItems = favoriteFactory.getListFavorite();
+            }
+        //}
     }
 
     @Override
@@ -103,6 +106,7 @@ public class NewItemListViewAdapter extends ArrayAdapter<NewShop> {
                 if (checked) {
                     Log.d(StringVariables.TEST, "save");
                     PrefUtil.save(getContext(), item);
+                    Log.d(StringVariables.TEST, "after save");
                     MyApplication.get().sendEvent(
                             AnalyticsEvent.SHOP_CATEGORY,
                             AnalyticsEvent.SHOP_ACTION,
@@ -121,7 +125,7 @@ public class NewItemListViewAdapter extends ArrayAdapter<NewShop> {
                     @Override
                     public void run() {
                         //Toast.makeText(getContext(), PrefUtil.getValue(getContext()), Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getContext(), PrefUtil.getValueList(getContext()).toString() +
+                        Toast.makeText(getContext(), /*PrefUtil.getValueList(getContext()).toString() +*/
                                 " " + PrefUtil.getValueList(getContext()).size(), Toast.LENGTH_SHORT).show();
                     }
                 }, 1000);

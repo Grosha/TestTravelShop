@@ -30,8 +30,7 @@ import java.util.ArrayList;
 public class NewCategoryFragment extends ListFragment {
     private int countInterstitial = 0;
     private ArrayList<NewShop> listItems;
-    private DataFactory dataFactory;
-    private NewFavoriteFactory favoriteFactory;
+    private DataFactory dataFactory = new DataFactory();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,31 +38,37 @@ public class NewCategoryFragment extends ListFragment {
         countInterstitial = PrefUtil.getCountInterstitial(getActivity().getBaseContext(), StringVariables.PRES_KEY_INTERSTITIAL_WEB);
     }
 
-    public View createListShop(View view,int background) {
+    public View createListShop(View view, int background,NewFavoriteFactory favoriteFactory) {
 
         ((MainActivity) getActivity()).setLastFragmentTag(this.getClass().toString());
         Log.d(StringVariables.TEST, this.getClass().toString());
 
+        /*if (listItems != null) {*/
         if (RetainedFragment.getClassName().contains(StringVariables.TAG_BIKE)) {
             listItems = dataFactory.getListShop(Type.Bike);
+            Log.d(StringVariables.TEST, String.valueOf(listItems.size()));
             view.setBackgroundResource(background);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_MOUNTAIN)) {
             listItems = dataFactory.getListShop(Type.Mountain);
+            Log.d(StringVariables.TEST, String.valueOf(listItems.size()));
             view.setBackgroundResource(background);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SKIS)) {
             listItems = dataFactory.getListShop(Type.Ski);
+            Log.d(StringVariables.TEST, String.valueOf(listItems.size()));
             view.setBackgroundResource(background);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SNOWBOARD)) {
             listItems = dataFactory.getListShop(Type.Snowboard);
             view.setBackgroundResource(background);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_FAVORITE_LIST)) {
             listItems = favoriteFactory.getListFavorite();
-            /*if (shopFav.getListShops().size() == 0) {
+            Log.d(StringVariables.TEST, String.valueOf(listItems.size()));
+            if (listItems.size() == 0) {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.container, new EmptyListFragment()).commit();
             } else {
                 view.setBackgroundResource(background);
-            }*/
+            }
+            //}
         }
 
         getListView().addFooterView(createListFooter());

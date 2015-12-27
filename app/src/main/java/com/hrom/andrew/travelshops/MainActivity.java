@@ -26,6 +26,11 @@ import com.hrom.andrew.travelshops.Fragments.BikeFragment;
 import com.hrom.andrew.travelshops.Fragments.FavoriteListFragment;
 import com.hrom.andrew.travelshops.Fragments.MapsFragment;
 import com.hrom.andrew.travelshops.Fragments.MountainFragment;
+import com.hrom.andrew.travelshops.Fragments.NewBikeFragment;
+import com.hrom.andrew.travelshops.Fragments.NewFavoriteFragment;
+import com.hrom.andrew.travelshops.Fragments.NewMountainFragment;
+import com.hrom.andrew.travelshops.Fragments.NewSkiFragment;
+import com.hrom.andrew.travelshops.Fragments.NewSnowboardFragment;
 import com.hrom.andrew.travelshops.Fragments.SkisFragment;
 import com.hrom.andrew.travelshops.Fragments.SnowboardFragment;
 import com.hrom.andrew.travelshops.customAdapterDrawer.ObjectCategoryShops;
@@ -62,7 +67,7 @@ public class MainActivity extends TransitActivity {
                 null);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, new MountainFragment());
+        transaction.replace(R.id.container, new NewMountainFragment());
         transaction.commit();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -142,28 +147,28 @@ public class MainActivity extends TransitActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch (objectCategoryShops.getImageId()) {
             case R.drawable.ic_mountins:
-                transaction.replace(R.id.container, new MountainFragment());
+                transaction.replace(R.id.container, new NewMountainFragment());
                 MyApplication.get().sendEvent(
                         AnalyticsEvent.DRAWER_CATEGORY,
                         AnalyticsEvent.DRAWER_ACTION,
                         AnalyticsEvent.DRAWER_LABEL_MOUNTAIN);
                 break;
             case R.drawable.ic_skis:
-                transaction.replace(R.id.container, new SkisFragment());
+                transaction.replace(R.id.container, new NewSkiFragment());
                 MyApplication.get().sendEvent(
                         AnalyticsEvent.DRAWER_CATEGORY,
                         AnalyticsEvent.DRAWER_ACTION,
                         AnalyticsEvent.DRAWER_LABEL_SKI);
                 break;
             case R.drawable.ic_snowboard:
-                transaction.replace(R.id.container, new SnowboardFragment());
+                transaction.replace(R.id.container, new NewSnowboardFragment());
                 MyApplication.get().sendEvent(
                         AnalyticsEvent.DRAWER_CATEGORY,
                         AnalyticsEvent.DRAWER_ACTION,
                         AnalyticsEvent.DRAWER_LABEL_SNOWBOARD);
                 break;
             case R.drawable.ic_bike:
-                transaction.replace(R.id.container, new BikeFragment());
+                transaction.replace(R.id.container, new NewBikeFragment());
                 MyApplication.get().sendEvent(
                         AnalyticsEvent.DRAWER_CATEGORY,
                         AnalyticsEvent.DRAWER_ACTION,
@@ -177,7 +182,7 @@ public class MainActivity extends TransitActivity {
                         AnalyticsEvent.DRAWER_LABEL_MAP);
                 break;
             case R.drawable.ic_favorite:
-                transaction.replace(R.id.container, new FavoriteListFragment());
+                transaction.replace(R.id.container, new NewFavoriteFragment());
                 MyApplication.get().sendEvent(
                         AnalyticsEvent.DRAWER_CATEGORY,
                         AnalyticsEvent.DRAWER_ACTION,

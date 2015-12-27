@@ -16,7 +16,7 @@ public class NewFavoriteFactory {
     public final static String TAG = StringVariables.TAG_FAVORITE_LIST;
     private ArrayList<NewShop> listFavorite = new ArrayList<>();
     private Set<String> gsonList;
-    private DataFactory dataFactory;
+    private DataFactory dataFactory = new DataFactory();
 
     public NewFavoriteFactory(Context context) {
         gsonList = PrefUtil.getValueList(context);
@@ -30,7 +30,13 @@ public class NewFavoriteFactory {
             for (String s : gsonList) {
                 int idShop = new Gson().fromJson(s, Integer.class);
                 ArrayList<NewShop> listItems = dataFactory.getListShop(Type.All);
-                listFavorite.add(listItems.get(idShop));
+
+                //хреновий варіант
+                for (int i = 0; i < listItems.size(); i++) {
+                    if (listItems.get(i).getId() == idShop) {
+                        listFavorite.add(listItems.get(i));
+                    }
+                }
             }
     }
 
