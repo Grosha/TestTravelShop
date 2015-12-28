@@ -44,17 +44,17 @@ public class NewItemListViewAdapter extends ArrayAdapter<NewShop> {
         super(context, resource, objects);
         favoriteFactory = new NewFavoriteFactory(context);
         //if (listItems != null) {
-            if (RetainedFragment.getClassName().contains(StringVariables.TAG_BIKE)) {
-                listItems = dataFactory.getListShop(Type.Bike);
-            } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_MOUNTAIN)) {
-                listItems = dataFactory.getListShop(Type.Mountain);
-            } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SKIS)) {
-                listItems = dataFactory.getListShop(Type.Ski);
-            } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SNOWBOARD)) {
-                listItems = dataFactory.getListShop(Type.Snowboard);
-            } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_FAVORITE_LIST)) {
-                listItems = favoriteFactory.getListFavorite();
-            }
+        if (RetainedFragment.getClassName().contains(StringVariables.TAG_BIKE)) {
+            listItems = dataFactory.getListShop(Type.Bike);
+        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_MOUNTAIN)) {
+            listItems = dataFactory.getListShop(Type.Mountain);
+        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SKIS)) {
+            listItems = dataFactory.getListShop(Type.Ski);
+        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SNOWBOARD)) {
+            listItems = dataFactory.getListShop(Type.Snowboard);
+        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_FAVORITE_LIST)) {
+            listItems = favoriteFactory.getListFavorite();
+        }
         //}
     }
 
@@ -98,15 +98,22 @@ public class NewItemListViewAdapter extends ArrayAdapter<NewShop> {
             @Override
             public void onClick(View v) {
                 int pos = (Integer) v.getTag();
+                Log.d(StringVariables.TEST, "before " + getItem(position).getId() + " " + getItem(position).getNameShop() + " " + getItem(position).getFavoriteShop());
                 boolean checked = ((CompoundButton) v).isChecked();
                 getItem(pos).setFavoriteShop(checked);
+                listItems.get(pos).setFavoriteShop(checked);
                 // real save
                 String item = new Gson().toJson(getItem(position).getId());
+                Log.d(StringVariables.TEST, "after " + getItem(position).getId() + " " + getItem(position).getNameShop() + " " + getItem(position).getFavoriteShop());
+
+                for (int i = 0; i < listItems.size(); i++) {
+                    Log.d(StringVariables.TEST, listItems.get(i).getId() + " " + listItems.get(i).getNameShop() + " " + listItems.get(i).getFavoriteShop());
+                }
 
                 if (checked) {
                     Log.d(StringVariables.TEST, "save");
                     PrefUtil.save(getContext(), item);
-                    Log.d(StringVariables.TEST, "after save");
+
                     MyApplication.get().sendEvent(
                             AnalyticsEvent.SHOP_CATEGORY,
                             AnalyticsEvent.SHOP_ACTION,

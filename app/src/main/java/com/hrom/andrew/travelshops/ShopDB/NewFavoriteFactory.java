@@ -1,6 +1,7 @@
 package com.hrom.andrew.travelshops.ShopDB;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.hrom.andrew.travelshops.costumAdapterListItem.NewShop;
@@ -35,6 +36,7 @@ public class NewFavoriteFactory {
                 for (int i = 0; i < listItems.size(); i++) {
                     if (listItems.get(i).getId() == idShop) {
                         listFavorite.add(listItems.get(i));
+                        Log.d(StringVariables.TEST, "get  " + listItems.get(i).getId() + " " + listItems.get(i).getNameShop() + " " + listItems.get(i).getFavoriteShop());
                     }
                 }
             }
