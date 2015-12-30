@@ -35,7 +35,9 @@ public class NewFavoriteFactory {
                 //хреновий варіант
                 for (int i = 0; i < listItems.size(); i++) {
                     if (listItems.get(i).getId() == idShop) {
-                        listFavorite.add(listItems.get(i));
+                        NewShop shop = listItems.get(i);
+                        shop.setFavoriteShop(true);
+                        listFavorite.add(shop);
                         Log.d(StringVariables.TEST, "get  " + listItems.get(i).getId() + " " + listItems.get(i).getNameShop() + " " + listItems.get(i).getFavoriteShop());
                     }
                 }

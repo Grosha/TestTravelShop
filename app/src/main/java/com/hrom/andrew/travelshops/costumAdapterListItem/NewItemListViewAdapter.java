@@ -36,26 +36,12 @@ import java.util.List;
 
 public class NewItemListViewAdapter extends ArrayAdapter<NewShop> {
     private OnPlusButtonClickListenner listenner;
-    private ArrayList<NewShop> listItems;
+
     private DataFactory dataFactory = new DataFactory();
     private NewFavoriteFactory favoriteFactory;
 
     public NewItemListViewAdapter(Context context, int resource, List<NewShop> objects) {
         super(context, resource, objects);
-        favoriteFactory = new NewFavoriteFactory(context);
-        //if (listItems != null) {
-        if (RetainedFragment.getClassName().contains(StringVariables.TAG_BIKE)) {
-            listItems = dataFactory.getListShop(Type.Bike);
-        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_MOUNTAIN)) {
-            listItems = dataFactory.getListShop(Type.Mountain);
-        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SKIS)) {
-            listItems = dataFactory.getListShop(Type.Ski);
-        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SNOWBOARD)) {
-            listItems = dataFactory.getListShop(Type.Snowboard);
-        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_FAVORITE_LIST)) {
-            listItems = favoriteFactory.getListFavorite();
-        }
-        //}
     }
 
     @Override
@@ -83,7 +69,7 @@ public class NewItemListViewAdapter extends ArrayAdapter<NewShop> {
                 getItem(pos);
 
                 if (listenner != null) {
-                    listenner.onPlusClick(listItems.get(position).getUrlShop());
+                    listenner.onPlusClick(getItem(position).getUrlShop());
                     MyApplication.get().sendEvent(
                             AnalyticsEvent.SHOP_CATEGORY,
                             AnalyticsEvent.SHOP_ACTION,
@@ -98,17 +84,13 @@ public class NewItemListViewAdapter extends ArrayAdapter<NewShop> {
             @Override
             public void onClick(View v) {
                 int pos = (Integer) v.getTag();
-                Log.d(StringVariables.TEST, "before " + getItem(position).getId() + " " + getItem(position).getNameShop() + " " + getItem(position).getFavoriteShop());
+                Log.d(StringVariables.TEST, "before " + getItem(pos).getId() + " " + getItem(pos).getNameShop() + " " + getItem(pos).getFavoriteShop());
                 boolean checked = ((CompoundButton) v).isChecked();
                 getItem(pos).setFavoriteShop(checked);
-                listItems.get(pos).setFavoriteShop(checked);
                 // real save
-                String item = new Gson().toJson(getItem(position).getId());
-                Log.d(StringVariables.TEST, "after " + getItem(position).getId() + " " + getItem(position).getNameShop() + " " + getItem(position).getFavoriteShop());
+                String item = new Gson().toJson(getItem(pos).getId());
+                Log.d(StringVariables.TEST, "after " + getItem(pos).getId() + " " + getItem(pos).getNameShop() + " " + getItem(pos).getFavoriteShop());
 
-                for (int i = 0; i < listItems.size(); i++) {
-                    Log.d(StringVariables.TEST, listItems.get(i).getId() + " " + listItems.get(i).getNameShop() + " " + listItems.get(i).getFavoriteShop());
-                }
 
                 if (checked) {
                     Log.d(StringVariables.TEST, "save");
@@ -149,7 +131,7 @@ public class NewItemListViewAdapter extends ArrayAdapter<NewShop> {
                 getItem(pos);
 
                 if (listenner != null) {
-                    listenner.onPlusClick(listItems.get(position).getUrlShop());
+                    listenner.onPlusClick(getItem(position).getUrlShop());
                     MyApplication.get().sendEvent(
                             AnalyticsEvent.SHOP_CATEGORY,
                             AnalyticsEvent.SHOP_ACTION,

@@ -30,6 +30,7 @@ public class DataFactory {
                 listShop = getListAllShops();
                 break;
         }
+
         return listShop;
     }
 

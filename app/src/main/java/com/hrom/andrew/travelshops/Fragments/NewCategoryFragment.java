@@ -26,6 +26,8 @@ import com.hrom.andrew.travelshops.trash.StringVariables;
 import com.hrom.andrew.travelshops.trash.Type;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class NewCategoryFragment extends ListFragment {
     private int countInterstitial = 0;
@@ -42,22 +44,26 @@ public class NewCategoryFragment extends ListFragment {
 
         ((MainActivity) getActivity()).setLastFragmentTag(this.getClass().toString());
         Log.d(StringVariables.TEST, this.getClass().toString());
-
+        Set<String> gsonList = PrefUtil.getValueList(view.getContext());
         /*if (listItems != null) {*/
         if (RetainedFragment.getClassName().contains(StringVariables.TAG_BIKE)) {
             listItems = dataFactory.getListShop(Type.Bike);
+            markFavorite(listItems,gsonList);
             Log.d(StringVariables.TEST, String.valueOf(listItems.size()));
             view.setBackgroundResource(background);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_MOUNTAIN)) {
             listItems = dataFactory.getListShop(Type.Mountain);
+            markFavorite(listItems,gsonList);
             Log.d(StringVariables.TEST, String.valueOf(listItems.size()));
             view.setBackgroundResource(background);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SKIS)) {
             listItems = dataFactory.getListShop(Type.Ski);
+            markFavorite(listItems,gsonList);
             Log.d(StringVariables.TEST, String.valueOf(listItems.size()));
             view.setBackgroundResource(background);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SNOWBOARD)) {
             listItems = dataFactory.getListShop(Type.Snowboard);
+            markFavorite(listItems,gsonList);
             view.setBackgroundResource(background);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_FAVORITE_LIST)) {
             listItems = favoriteFactory.getListFavorite();
@@ -70,7 +76,6 @@ public class NewCategoryFragment extends ListFragment {
             }
             //}
         }
-
         getListView().addFooterView(createListFooter());
         NewItemListViewAdapter newItemListViewAdapter = new NewItemListViewAdapter(getActivity(), R.layout.item_list, listItems);
         setListAdapter(newItemListViewAdapter);
@@ -96,6 +101,15 @@ public class NewCategoryFragment extends ListFragment {
         });
 
         return view;
+    }
+
+    private void markFavorite(List<NewShop> shopList, Set<String > favIds){
+        for (NewShop shop : shopList) {
+            if(favIds.contains(String.valueOf(shop.getId()))){
+                shop.setFavoriteShop(true);
+            }
+        }
+
     }
 
     public View createListFooter() {
