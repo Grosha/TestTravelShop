@@ -45,21 +45,18 @@ public class NewCategoryFragment extends ListFragment {
         ((MainActivity) getActivity()).setLastFragmentTag(this.getClass().toString());
         Log.d(StringVariables.TEST, this.getClass().toString());
         Set<String> gsonList = PrefUtil.getValueList(view.getContext());
-        /*if (listItems != null) {*/
+
         if (RetainedFragment.getClassName().contains(StringVariables.TAG_BIKE)) {
             listItems = dataFactory.getListShop(Type.Bike);
             markFavorite(listItems,gsonList);
-            Log.d(StringVariables.TEST, String.valueOf(listItems.size()));
             view.setBackgroundResource(background);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_MOUNTAIN)) {
             listItems = dataFactory.getListShop(Type.Mountain);
             markFavorite(listItems,gsonList);
-            Log.d(StringVariables.TEST, String.valueOf(listItems.size()));
             view.setBackgroundResource(background);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SKIS)) {
             listItems = dataFactory.getListShop(Type.Ski);
             markFavorite(listItems,gsonList);
-            Log.d(StringVariables.TEST, String.valueOf(listItems.size()));
             view.setBackgroundResource(background);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SNOWBOARD)) {
             listItems = dataFactory.getListShop(Type.Snowboard);
@@ -67,14 +64,12 @@ public class NewCategoryFragment extends ListFragment {
             view.setBackgroundResource(background);
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_FAVORITE_LIST)) {
             listItems = favoriteFactory.getListFavorite();
-            Log.d(StringVariables.TEST, String.valueOf(listItems.size()));
             if (listItems.size() == 0) {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.container, new EmptyListFragment()).commit();
             } else {
                 view.setBackgroundResource(background);
             }
-            //}
         }
         getListView().addFooterView(createListFooter());
         NewItemListViewAdapter newItemListViewAdapter = new NewItemListViewAdapter(getActivity(), R.layout.item_list, listItems);

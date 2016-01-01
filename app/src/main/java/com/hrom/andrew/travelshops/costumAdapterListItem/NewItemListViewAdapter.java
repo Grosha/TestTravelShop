@@ -37,9 +37,6 @@ import java.util.List;
 public class NewItemListViewAdapter extends ArrayAdapter<NewShop> {
     private OnPlusButtonClickListenner listenner;
 
-    private DataFactory dataFactory = new DataFactory();
-    private NewFavoriteFactory favoriteFactory;
-
     public NewItemListViewAdapter(Context context, int resource, List<NewShop> objects) {
         super(context, resource, objects);
     }
@@ -84,13 +81,10 @@ public class NewItemListViewAdapter extends ArrayAdapter<NewShop> {
             @Override
             public void onClick(View v) {
                 int pos = (Integer) v.getTag();
-                Log.d(StringVariables.TEST, "before " + getItem(pos).getId() + " " + getItem(pos).getNameShop() + " " + getItem(pos).getFavoriteShop());
                 boolean checked = ((CompoundButton) v).isChecked();
                 getItem(pos).setFavoriteShop(checked);
                 // real save
                 String item = new Gson().toJson(getItem(pos).getId());
-                Log.d(StringVariables.TEST, "after " + getItem(pos).getId() + " " + getItem(pos).getNameShop() + " " + getItem(pos).getFavoriteShop());
-
 
                 if (checked) {
                     Log.d(StringVariables.TEST, "save");
@@ -110,14 +104,14 @@ public class NewItemListViewAdapter extends ArrayAdapter<NewShop> {
                             AnalyticsEvent.SHOP_DELETE_FROM_FAVORITE_LABEL);
                 }
 
-                v.postDelayed(new Runnable() {
+                /*v.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         //Toast.makeText(getContext(), PrefUtil.getValue(getContext()), Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getContext(), /*PrefUtil.getValueList(getContext()).toString() +*/
+                        Toast.makeText(getContext(), *//*PrefUtil.getValueList(getContext()).toString() +*//*
                                 " " + PrefUtil.getValueList(getContext()).size(), Toast.LENGTH_SHORT).show();
                     }
-                }, 1000);
+                }, 1000);*/
             }
         });
 
