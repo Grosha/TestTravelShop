@@ -12,23 +12,24 @@ import android.widget.AbsListView;
 
 import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
-import com.hrom.andrew.travelshops.ShopDB.SportShop;
+import com.hrom.andrew.travelshops.ShopDB.DataFactory;
+import com.hrom.andrew.travelshops.ShopDB.FavoriteFactory;
 import com.hrom.andrew.travelshops.costumAdapterListItem.ItemListViewAdapter;
-import com.hrom.andrew.travelshops.costumAdapterListItem.ObjectListItem;
-import com.hrom.andrew.travelshops.trash.CustomAdapter;
-import com.hrom.andrew.travelshops.trash.StringVariables;
+import com.hrom.andrew.travelshops.costumAdapterListItem.Shop;
 import com.hrom.andrew.travelshops.trash.OnPlusButtonClickListenner;
 import com.hrom.andrew.travelshops.trash.PrefUtil;
+import com.hrom.andrew.travelshops.trash.RetainedFragment;
+import com.hrom.andrew.travelshops.trash.StringVariables;
+import com.hrom.andrew.travelshops.trash.Type;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 public class CategoryFragment extends ListFragment {
-    private List<HashMap<String, String>> listShop;
-    private ArrayList<ObjectListItem> objects;
-    private boolean fav = false;
     private int countInterstitial = 0;
+    private ArrayList<Shop> listItems;
+    private DataFactory dataFactory = new DataFactory();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,38 +37,39 @@ public class CategoryFragment extends ListFragment {
         countInterstitial = PrefUtil.getCountInterstitial(getActivity().getBaseContext(), StringVariables.PRES_KEY_INTERSTITIAL_WEB);
     }
 
-    public View createListShop(View view, SportShop shop, SportShop shopFav, int background, int list) {
-
-        listShop = new ArrayList<>();
-        objects = new ArrayList<>();
+    public View createListShop(View view, int background,FavoriteFactory favoriteFactory) {
 
         ((MainActivity) getActivity()).setLastFragmentTag(this.getClass().toString());
         Log.d(StringVariables.TEST, this.getClass().toString());
+        Set<String> gsonList = PrefUtil.getValueList(view.getContext());
 
-        for (int i = 0; i < shop.getListShops().size(); i++) {
-            if (shopFav.getListShops().contains(shop.getListShops().get(i))) {
-                fav = true;
-            } else fav = false;
-            objects.add(new ObjectListItem(shop.getIconShops().get(i), shop.getListShops().get(i), fav));
-
-
-            /*HashMap<String, String> hm = new HashMap<>();
-
-            hm.put("img", Integer.toString(shop.getIconShops().get(i)));
-            hm.put("txt", shop.getListShops().get(i));
-            if (shopFav.getListShops().contains(shop.getListShops().get(i))) {
-                hm.put("imgMy", Integer.toString(R.drawable.ic_like));
+        if (RetainedFragment.getClassName().contains(StringVariables.TAG_BIKE)) {
+            listItems = dataFactory.getListShop(Type.Bike);
+            markFavorite(listItems, gsonList);
+            view.setBackgroundResource(background);
+        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_MOUNTAIN)) {
+            listItems = dataFactory.getListShop(Type.Mountain);
+            markFavorite(listItems, gsonList);
+            view.setBackgroundResource(background);
+        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SKIS)) {
+            listItems = dataFactory.getListShop(Type.Ski);
+            markFavorite(listItems, gsonList);
+            view.setBackgroundResource(background);
+        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SNOWBOARD)) {
+            listItems = dataFactory.getListShop(Type.Snowboard);
+            markFavorite(listItems,gsonList);
+            view.setBackgroundResource(background);
+        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_FAVORITE_LIST)) {
+            listItems = favoriteFactory.getListFavorite();
+            if (listItems.size() == 0) {
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.container, new EmptyListFragment()).commit();
             } else {
-                hm.put("imgMy", Integer.toString(R.drawable.ic_like2));
+                view.setBackgroundResource(background);
             }
-            listShop.add(hm);*/
         }
-
         getListView().addFooterView(createListFooter());
-
-        //CustomAdapter customAdapter = new CustomAdapter(getActivity().getBaseContext(), list, listShop);
-        ItemListViewAdapter itemListViewAdapter = new ItemListViewAdapter(getActivity(), list, objects);
-
+        ItemListViewAdapter itemListViewAdapter = new ItemListViewAdapter(getActivity(), R.layout.item_list, listItems);
         setListAdapter(itemListViewAdapter);
         itemListViewAdapter.setOnPlusClickListenner(new OnPlusButtonClickListenner() {
 
@@ -90,19 +92,16 @@ public class CategoryFragment extends ListFragment {
             }
         });
 
-        if (shop.equals(shopFav)) {
-            if (shopFav.getListShops().size() == 0) {
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.container, new EmptyListFragment()).commit();
-            } else {
-                view.setBackgroundResource(background);
+        return view;
+    }
+
+    private void markFavorite(List<Shop> shopList, Set<String > favIds){
+        for (Shop shop : shopList) {
+            if(favIds.contains(String.valueOf(shop.getId()))){
+                shop.setFavoriteShop(true);
             }
-        } else {
-            view.setBackgroundResource(background);
         }
 
-
-        return view;
     }
 
     public View createListFooter() {
@@ -110,5 +109,4 @@ public class CategoryFragment extends ListFragment {
         res.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, getActivity().getResources().getDimensionPixelOffset(R.dimen.list_item_height)));
         return res;
     }
-
 }

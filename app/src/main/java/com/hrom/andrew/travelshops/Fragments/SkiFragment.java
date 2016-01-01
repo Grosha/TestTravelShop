@@ -6,16 +6,16 @@ import android.view.View;
 
 import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
-import com.hrom.andrew.travelshops.ShopDB.NewFavoriteFactory;
+import com.hrom.andrew.travelshops.ShopDB.FavoriteFactory;
 import com.hrom.andrew.travelshops.trash.StringVariables;
 
-public class NewSkiFragment extends NewCategoryFragment {
+public class SkiFragment extends CategoryFragment {
     public final static String TAG = StringVariables.TAG_SKIS;
-    private NewFavoriteFactory favoriteFactory;
+    private FavoriteFactory favoriteFactory;
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        favoriteFactory = new NewFavoriteFactory(activity);
+        favoriteFactory = new FavoriteFactory(activity);
     }
 
     @Override

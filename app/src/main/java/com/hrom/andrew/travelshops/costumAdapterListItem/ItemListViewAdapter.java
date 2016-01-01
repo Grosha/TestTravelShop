@@ -12,61 +12,25 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
-import com.hrom.andrew.travelshops.ShopDB.Shop;
-import com.hrom.andrew.travelshops.customAdapterDrawer.ObjectCategoryShops;
-import com.hrom.andrew.travelshops.ShopDB.BikeShop;
-import com.hrom.andrew.travelshops.ShopDB.FavoriteShop;
-import com.hrom.andrew.travelshops.ShopDB.MountainShop;
-import com.hrom.andrew.travelshops.ShopDB.SkisShop;
-import com.hrom.andrew.travelshops.ShopDB.SnowboardShop;
-import com.hrom.andrew.travelshops.ShopDB.SportShop;
 import com.hrom.andrew.travelshops.google_analytics.AnalyticsEvent;
 import com.hrom.andrew.travelshops.trash.MyApplication;
 import com.hrom.andrew.travelshops.trash.MyBitMap;
 import com.hrom.andrew.travelshops.trash.OnPlusButtonClickListenner;
 import com.hrom.andrew.travelshops.trash.PrefUtil;
-import com.hrom.andrew.travelshops.trash.RetainedFragment;
 import com.hrom.andrew.travelshops.trash.StringVariables;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
-
-
-    private SportShop sportShop;
-    FavoriteShop f;
+public class ItemListViewAdapter extends ArrayAdapter<Shop> {
     private OnPlusButtonClickListenner listenner;
 
-    public ItemListViewAdapter(Context activity, int resource, ArrayList<ObjectListItem> objects) {
-        super(activity, resource, objects);
-        if (RetainedFragment.getClassName().contains(StringVariables.TAG_BIKE)) {
-            Log.d(StringVariables.TEST, "bike");
-            sportShop = new BikeShop();
-        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_MOUNTAIN)) {
-            Log.d(StringVariables.TEST, "montain");
-            sportShop = new MountainShop();
-        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SKIS)) {
-            Log.d(StringVariables.TEST, "ski");
-            sportShop = new SkisShop();
-        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SNOWBOARD)) {
-            Log.d(StringVariables.TEST, "snow");
-            sportShop = new SnowboardShop();
-        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_FAVORITE_LIST)) {
-            Log.d(StringVariables.TEST, "favorite");
-            sportShop = new FavoriteShop(activity);
-        }
-        f = new FavoriteShop(activity);
-    }
-
-    public void setOnPlusClickListenner(OnPlusButtonClickListenner listenner) {
-        this.listenner = listenner;
+    public ItemListViewAdapter(Context context, int resource, List<Shop> objects) {
+        super(context, resource, objects);
     }
 
     @Override
@@ -94,7 +58,7 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
                 getItem(pos);
 
                 if (listenner != null) {
-                    listenner.onPlusClick(sportShop.getLinkShop(position));
+                    listenner.onPlusClick(getItem(position).getUrlShop());
                     MyApplication.get().sendEvent(
                             AnalyticsEvent.SHOP_CATEGORY,
                             AnalyticsEvent.SHOP_ACTION,
@@ -112,20 +76,12 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
                 boolean checked = ((CompoundButton) v).isChecked();
                 getItem(pos).setFavoriteShop(checked);
                 // real save
-                Log.d(StringVariables.TEST, String.valueOf(f.getListShops().size()));
-
-                Shop shop = new Shop();
-
-                shop.setIconShop(sportShop.getIconShops().get(position));
-                shop.setNameShop(sportShop.getListShops().get(position));
-                shop.setUrl(sportShop.getLinkShop((position)));
-
-
-                String item = new Gson().toJson(shop);
+                String item = new Gson().toJson(getItem(pos).getId());
 
                 if (checked) {
                     Log.d(StringVariables.TEST, "save");
                     PrefUtil.save(getContext(), item);
+
                     MyApplication.get().sendEvent(
                             AnalyticsEvent.SHOP_CATEGORY,
                             AnalyticsEvent.SHOP_ACTION,
@@ -140,14 +96,14 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
                             AnalyticsEvent.SHOP_DELETE_FROM_FAVORITE_LABEL);
                 }
 
-                v.postDelayed(new Runnable() {
+                /*v.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         //Toast.makeText(getContext(), PrefUtil.getValue(getContext()), Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getContext(), PrefUtil.getValueList(getContext()).toString() +
+                        Toast.makeText(getContext(), *//*PrefUtil.getValueList(getContext()).toString() +*//*
                                 " " + PrefUtil.getValueList(getContext()).size(), Toast.LENGTH_SHORT).show();
                     }
-                }, 1000);
+                }, 1000);*/
             }
         });
 
@@ -161,7 +117,7 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
                 getItem(pos);
 
                 if (listenner != null) {
-                    listenner.onPlusClick(sportShop.getLinkShop(position));
+                    listenner.onPlusClick(getItem(position).getUrlShop());
                     MyApplication.get().sendEvent(
                             AnalyticsEvent.SHOP_CATEGORY,
                             AnalyticsEvent.SHOP_ACTION,
@@ -173,6 +129,10 @@ public class ItemListViewAdapter extends ArrayAdapter<ObjectListItem> {
         convertView.setOnClickListener(onClickListener(position));
 
         return convertView;
+    }
+
+    public void setOnPlusClickListenner(OnPlusButtonClickListenner listenner) {
+        this.listenner = listenner;
     }
 
     private class ViewHolder {

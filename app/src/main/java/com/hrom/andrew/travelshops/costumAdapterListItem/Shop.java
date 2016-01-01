@@ -2,7 +2,7 @@ package com.hrom.andrew.travelshops.costumAdapterListItem;
 
 import com.google.android.gms.maps.model.LatLng;
 
-public class NewShop {
+public class Shop {
     private int id;
     private int iconShop;
     private String nameShop;
@@ -11,7 +11,7 @@ public class NewShop {
     private LatLng coordinateCity;
     private LatLng coordinateShop;
 
-    public NewShop(int id, int iconShop, String nameShop, String urlShop, boolean favoriteShop) {
+    public Shop(int id, int iconShop, String nameShop, String urlShop, boolean favoriteShop) {
         this.id = id;
         this.iconShop = iconShop;
         this.nameShop = nameShop;

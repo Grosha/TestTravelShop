@@ -24,17 +24,10 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.hrom.andrew.travelshops.DBCoordinates.CityCoordinate;
 import com.hrom.andrew.travelshops.DBCoordinates.ShopCoordinate;
-import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
-import com.hrom.andrew.travelshops.ShopDB.BikeShop;
 import com.hrom.andrew.travelshops.ShopDB.DataFactory;
-import com.hrom.andrew.travelshops.ShopDB.FavoriteShop;
-import com.hrom.andrew.travelshops.ShopDB.MountainShop;
-import com.hrom.andrew.travelshops.ShopDB.NewFavoriteFactory;
-import com.hrom.andrew.travelshops.ShopDB.SkisShop;
-import com.hrom.andrew.travelshops.ShopDB.SnowboardShop;
-import com.hrom.andrew.travelshops.ShopDB.SportShop;
-import com.hrom.andrew.travelshops.costumAdapterListItem.NewShop;
+import com.hrom.andrew.travelshops.ShopDB.FavoriteFactory;
+import com.hrom.andrew.travelshops.costumAdapterListItem.Shop;
 import com.hrom.andrew.travelshops.google_analytics.AnalyticsEvent;
 import com.hrom.andrew.travelshops.trash.CustomInfoWindowAdapter;
 import com.hrom.andrew.travelshops.trash.MyApplication;
@@ -51,11 +44,10 @@ public class MapsFragment extends Fragment {
     private ProgressBar progressBar;
     private GoogleMap mGoogleMap;
     private Marker marker;
-    //private SportShop sportShop;
     private Bitmap location = null;
     private DataFactory dataFactory = new DataFactory();
-    private ArrayList<NewShop> listItems;
-    private NewFavoriteFactory favoriteFactory;
+    private ArrayList<Shop> listItems;
+    private FavoriteFactory favoriteFactory;
 
     @Nullable
     @Override
@@ -80,7 +72,6 @@ public class MapsFragment extends Fragment {
             location = BitmapFactory.decodeResource(getResources(), R.drawable.ic_map_1);
             Log.d(StringVariables.TEST, "montain");
             listItems = dataFactory.getListShop(Type.Mountain);
-            //sportShop = new MountainShop();
             MyApplication.get().sendEvent(
                     AnalyticsEvent.MAP_CATEGORY,
                     AnalyticsEvent.MAP_OPEN_ACTION,
@@ -89,7 +80,6 @@ public class MapsFragment extends Fragment {
             location = BitmapFactory.decodeResource(getResources(), R.drawable.ic_map_2);
             Log.d(StringVariables.TEST, "ski");
             listItems = dataFactory.getListShop(Type.Ski);
-            //sportShop = new SkisShop();
             MyApplication.get().sendEvent(
                     AnalyticsEvent.MAP_CATEGORY,
                     AnalyticsEvent.MAP_OPEN_ACTION,
@@ -98,7 +88,6 @@ public class MapsFragment extends Fragment {
             location = BitmapFactory.decodeResource(getResources(), R.drawable.ic_map_3);
             Log.d(StringVariables.TEST, "snow");
             listItems = dataFactory.getListShop(Type.Snowboard);
-            //sportShop = new SnowboardShop();
             MyApplication.get().sendEvent(
                     AnalyticsEvent.MAP_CATEGORY,
                     AnalyticsEvent.MAP_OPEN_ACTION,
@@ -106,9 +95,8 @@ public class MapsFragment extends Fragment {
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_FAVORITE_LIST)) {
             location = BitmapFactory.decodeResource(getResources(), R.drawable.ic_map_6);
             Log.d(StringVariables.TEST, "favorite");
-            favoriteFactory = new NewFavoriteFactory(getActivity());
+            favoriteFactory = new FavoriteFactory(getActivity());
             listItems = favoriteFactory.getListFavorite();
-            //sportShop = new FavoriteShop(getActivity());
             MyApplication.get().sendEvent(
                     AnalyticsEvent.MAP_CATEGORY,
                     AnalyticsEvent.MAP_OPEN_ACTION,
@@ -253,8 +241,7 @@ public class MapsFragment extends Fragment {
                                             .title(listItems.get(i).getNameShop())
                                             .snippet(getUrl(i))
                                             .icon(BitmapDescriptorFactory
-                                                    .fromBitmap(MyBitMap.getBitmapForMap2(location, icon))))
-                                                    /*.fromResource(sportShop.getIconShops().get(i))))*/;
+                                                    .fromBitmap(MyBitMap.getBitmapForMap2(location, icon))));
                         }
                     }
 
