@@ -46,9 +46,17 @@ public class MyBitMap extends View {
         Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(), bmp1.getConfig());
         Canvas canvas = new Canvas(bmOverlay);
         canvas.drawBitmap(bmp1, new Matrix(), null);
-        bmp2 = getRoundedCroppedBitmap(bmp2, 25);
+        bmp2 = getRoundedCroppedBitmap(bmp2, 55);
         bmp2 = Bitmap.createScaledBitmap(bmp2, bmp1.getWidth() - 2, bmp1.getHeight() - 2, true);
         canvas.drawBitmap(bmp2, 0, 0, null);
+        return bmOverlay;
+    }
+
+    public static Bitmap getBitmapForMap2(Bitmap bmp1, Bitmap bmp2) {
+        Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(), bmp1.getConfig());
+        Canvas canvas = new Canvas(bmOverlay);
+        canvas.drawBitmap(bmp1, new Matrix(), null);
+        canvas.drawBitmap(bmp2, bmp1.getWidth() / 2-23, bmp1.getHeight() / 4-10, null);
         return bmOverlay;
     }
 

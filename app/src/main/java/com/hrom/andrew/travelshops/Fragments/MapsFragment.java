@@ -24,20 +24,26 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.hrom.andrew.travelshops.DBCoordinates.CityCoordinate;
 import com.hrom.andrew.travelshops.DBCoordinates.ShopCoordinate;
+import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.BikeShop;
+import com.hrom.andrew.travelshops.ShopDB.DataFactory;
 import com.hrom.andrew.travelshops.ShopDB.FavoriteShop;
 import com.hrom.andrew.travelshops.ShopDB.MountainShop;
+import com.hrom.andrew.travelshops.ShopDB.NewFavoriteFactory;
 import com.hrom.andrew.travelshops.ShopDB.SkisShop;
 import com.hrom.andrew.travelshops.ShopDB.SnowboardShop;
 import com.hrom.andrew.travelshops.ShopDB.SportShop;
+import com.hrom.andrew.travelshops.costumAdapterListItem.NewShop;
 import com.hrom.andrew.travelshops.google_analytics.AnalyticsEvent;
 import com.hrom.andrew.travelshops.trash.CustomInfoWindowAdapter;
 import com.hrom.andrew.travelshops.trash.MyApplication;
 import com.hrom.andrew.travelshops.trash.MyBitMap;
 import com.hrom.andrew.travelshops.trash.StringVariables;
 import com.hrom.andrew.travelshops.trash.RetainedFragment;
+import com.hrom.andrew.travelshops.trash.Type;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class MapsFragment extends Fragment {
@@ -45,8 +51,11 @@ public class MapsFragment extends Fragment {
     private ProgressBar progressBar;
     private GoogleMap mGoogleMap;
     private Marker marker;
-    private SportShop sportShop;
+    //private SportShop sportShop;
     private Bitmap location = null;
+    private DataFactory dataFactory = new DataFactory();
+    private ArrayList<NewShop> listItems;
+    private NewFavoriteFactory favoriteFactory;
 
     @Nullable
     @Override
@@ -61,7 +70,8 @@ public class MapsFragment extends Fragment {
         if (RetainedFragment.getClassName().contains(StringVariables.TAG_BIKE)) {
             location = BitmapFactory.decodeResource(getResources(), R.drawable.ic_map_4);
             Log.d(StringVariables.TEST, "bike");
-            sportShop = new BikeShop();
+            listItems = dataFactory.getListShop(Type.Bike);
+            //sportShop = new BikeShop();
             MyApplication.get().sendEvent(
                     AnalyticsEvent.MAP_CATEGORY,
                     AnalyticsEvent.MAP_OPEN_ACTION,
@@ -69,7 +79,8 @@ public class MapsFragment extends Fragment {
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_MOUNTAIN)) {
             location = BitmapFactory.decodeResource(getResources(), R.drawable.ic_map_1);
             Log.d(StringVariables.TEST, "montain");
-            sportShop = new MountainShop();
+            listItems = dataFactory.getListShop(Type.Mountain);
+            //sportShop = new MountainShop();
             MyApplication.get().sendEvent(
                     AnalyticsEvent.MAP_CATEGORY,
                     AnalyticsEvent.MAP_OPEN_ACTION,
@@ -77,7 +88,8 @@ public class MapsFragment extends Fragment {
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SKIS)) {
             location = BitmapFactory.decodeResource(getResources(), R.drawable.ic_map_2);
             Log.d(StringVariables.TEST, "ski");
-            sportShop = new SkisShop();
+            listItems = dataFactory.getListShop(Type.Ski);
+            //sportShop = new SkisShop();
             MyApplication.get().sendEvent(
                     AnalyticsEvent.MAP_CATEGORY,
                     AnalyticsEvent.MAP_OPEN_ACTION,
@@ -85,7 +97,8 @@ public class MapsFragment extends Fragment {
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SNOWBOARD)) {
             location = BitmapFactory.decodeResource(getResources(), R.drawable.ic_map_3);
             Log.d(StringVariables.TEST, "snow");
-            sportShop = new SnowboardShop();
+            listItems = dataFactory.getListShop(Type.Snowboard);
+            //sportShop = new SnowboardShop();
             MyApplication.get().sendEvent(
                     AnalyticsEvent.MAP_CATEGORY,
                     AnalyticsEvent.MAP_OPEN_ACTION,
@@ -93,7 +106,9 @@ public class MapsFragment extends Fragment {
         } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_FAVORITE_LIST)) {
             location = BitmapFactory.decodeResource(getResources(), R.drawable.ic_map_6);
             Log.d(StringVariables.TEST, "favorite");
-            sportShop = new FavoriteShop(getActivity());
+            favoriteFactory = new NewFavoriteFactory(getActivity());
+            listItems = favoriteFactory.getListFavorite();
+            //sportShop = new FavoriteShop(getActivity());
             MyApplication.get().sendEvent(
                     AnalyticsEvent.MAP_CATEGORY,
                     AnalyticsEvent.MAP_OPEN_ACTION,
@@ -211,31 +226,34 @@ public class MapsFragment extends Fragment {
                 googleMap.setMyLocationEnabled(true);
 
                 Bitmap icon = null;
+                Bitmap bitmapFon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.white_fon);
 
                 Marker city = googleMap.addMarker(new MarkerOptions().position(CityCoordinate.KYEV)
                         .title("KYEV"));
 
-                for (int i = 0; i < sportShop.getListShops().size(); i++) {
-                    Collection<LatLng> colecLng = shop.getCoordinate(sportShop.getListShops().get(i));
+                for (int i = 0; i < listItems.size(); i++) {
+                    Collection<LatLng> colecLng = shop.getCoordinate(listItems.get(i).getNameShop());
 
-                    Log.d(StringVariables.NAMEFRAGMENT, String.valueOf(sportShop.getListShops().get(i)));
+                    Log.d(StringVariables.NAMEFRAGMENT, String.valueOf(listItems.get(i).getNameShop()));
                     Log.d(StringVariables.NAMEFRAGMENT, String.valueOf(colecLng));
 
-                    if (shop.getCoordinate(sportShop.getListShops().get(i)) == null) {
+                    if (shop.getCoordinate(listItems.get(i).getNameShop()) == null) {
                         //if (i != bike.getListShops().size() - 1) {
                         continue;
                         //} else break;
                     } else {
                         for (LatLng latLng : colecLng) {
 
-                            icon = BitmapFactory.decodeResource(getResources(), sportShop.getIconShops().get(i));
+                            icon = BitmapFactory.decodeResource(getResources(), listItems.get(i).getIconShop());
+                            icon = MyBitMap.getBitmapForMap(bitmapFon, icon);
+
                             Marker shopMarker = googleMap.addMarker(
                                     new MarkerOptions()
                                             .position(latLng)
-                                            .title(sportShop.getListShops().get(i))
+                                            .title(listItems.get(i).getNameShop())
                                             .snippet(getUrl(i))
                                             .icon(BitmapDescriptorFactory
-                                                    .fromBitmap(MyBitMap.getBitmapForMap(location, icon))))
+                                                    .fromBitmap(MyBitMap.getBitmapForMap2(location, icon))))
                                                     /*.fromResource(sportShop.getIconShops().get(i))))*/;
                         }
                     }
@@ -266,7 +284,7 @@ public class MapsFragment extends Fragment {
     };
 
     private String getUrl(int i) {
-        String site = sportShop.getLinkShop(i).substring(7, sportShop.getLinkShop(i).length() - 1);
+        String site = listItems.get(i).getUrlShop().substring(7, listItems.get(i).getUrlShop().length() - 1);
         if (site.indexOf("/") > 0) {
             return site.substring(0, site.indexOf("/"));
         } else return site.substring(0, site.length());
