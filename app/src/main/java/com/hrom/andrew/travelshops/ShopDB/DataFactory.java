@@ -54,6 +54,7 @@ public class DataFactory {
         listBike.add(new Shop(18, R.drawable.icon_bikemotive, "Bikemotive", "http://bikemotive.com.ua/", false));
         listBike.add(new Shop(19, R.drawable.icon_universal, "Велотим", "http://www.veloteam.com.ua/", false));
         listBike.add(new Shop(20, R.drawable.icon_megadrive, "Megadrive", "http://megadrive.kiev.ua/", false));
+        listBike.add(new Shop(21, R.drawable.icon_freestyle, "Freestyle", "http://www.freestyle.org.ua/velosport/", false));
 
         return listBike;
     }
@@ -86,6 +87,7 @@ public class DataFactory {
         listMountain.add(new Shop(123, R.drawable.icon_terraincognita, "Terra Incognita", "http://terraincognita.ua/ukr/", false));
         listMountain.add(new Shop(124, R.drawable.icon_northwall, "NorthWall", "http://northwall.com.ua/", false));
         listMountain.add(new Shop(125, R.drawable.icon_vershyna, "Вершина", "http://vershyna.com.ua/", false));
+        listMountain.add(new Shop(126, R.drawable.icon_freestyle, "Freestyle", "http://www.freestyle.org.ua/", false));
 
         return listMountain;
     }
@@ -116,7 +118,9 @@ public class DataFactory {
         listSki.add(new Shop(222, R.drawable.icon_gofree, "Gofree", "http://www.gofree.com.ua/category/struktura-magazina/gornye-lyzhi", false));
         listSki.add(new Shop(223, R.drawable.icon_lavina, "Lavina", "http://www.lavina.com.ua/lyzhi-s-kreplenijami.html", false));
         listSki.add(new Shop(224, R.drawable.icon_groosha, "Groosha", "http://groosha.ua/catalog/lyzhi/", false));
-        listSki.add(new Shop(224, R.drawable.icon_protest, "Protest", "http://protest.ua/twin-tip-background_skis", false));
+        listSki.add(new Shop(225, R.drawable.icon_protest, "Protest", "http://protest.ua/twin-tip-background_skis", false));
+        listSki.add(new Shop(226, R.drawable.icon_freestyle, "Freestyle", "http://www.freestyle.org.ua/gornye-lyji/", false));
+        listSki.add(new Shop(227, R.drawable.icon_kingsize, "Kingsize", "http://www.kingsize.com.ua/", false));
         //listSki.add(new Shop(224, R.drawable.icon_profirider, "Profi Rider", "http://profirider.com.ua/shop/category/gornye-lyzhi", false));
         //listSki.add(new Shop(224, R.drawable.icon_sport_co, "Sport Continent", "http://sport-co.com.ua/catalog6/", false));
 
@@ -141,12 +145,16 @@ public class DataFactory {
         listSnowBoard.add(new Shop(313, R.drawable.icon_x_zone, "X-Zone", "http://www.x-zone.com.ua/winter.html", false));
         listSnowBoard.add(new Shop(314, R.drawable.icon_kingsize, "Kingsize", "http://www.kingsize.com.ua/", false));
         listSnowBoard.add(new Shop(315, R.drawable.icon_sportzone, "Sportzone", "http://sportzone.com.ua/snoubord", false));
+        listSnowBoard.add(new Shop(325, R.drawable.icon_snow_boarding, "Snow-boarding", "http://www.snow-boarding.com.ua/", false));
         listSnowBoard.add(new Shop(316, R.drawable.icon_universal, "X-board", "http://x-board.com.ua/index.php?cat=2", false));
         listSnowBoard.add(new Shop(317, R.drawable.icon_keeperstore, "Keeperstore", "http://www.keeperstore.com.ua/catalog/snoubord/", false));
         listSnowBoard.add(new Shop(318, R.drawable.icon_gorgany, "Gorgany", "http://www.gorgany.com/snoubordyng", false));
         listSnowBoard.add(new Shop(319, R.drawable.icon_kant, "Kant", "http://kant.ua/category-snoubordy/snoubordy/", false));
         listSnowBoard.add(new Shop(320, R.drawable.icon_ekip_sport, "Ekip sport", "http://ekip-sport.com.ua/category/snoubordy_2/", false));
         listSnowBoard.add(new Shop(321, R.drawable.icon_northwall, "NorthWall", "http://northwall.com.ua/", false));
+        listSnowBoard.add(new Shop(322, R.drawable.icon_freestyle, "Freestyle", "http://www.freestyle.org.ua/snoubord/", false));
+        listSnowBoard.add(new Shop(323, R.drawable.icon_jamstore, "Jamstore", "http://www.jamstore.com.ua/", false));
+        listSnowBoard.add(new Shop(324, R.drawable.icon_snow_shop, "Snow-shop", "http://snow-shop.com.ua/", false));
 
         return listSnowBoard;
     }
