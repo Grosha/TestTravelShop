@@ -92,6 +92,10 @@ public class ShopCoordinate {
         lngMap.put("Вершина",new LatLng(50.396460, 30.635951));
         lngMap.put("Freestyle",new LatLng(50.444100, 30.591815));
         lngMap.put("Jamstore",new LatLng(50.496815, 30.520526));
+        lngMap.put("Turkul",new LatLng(50.457827, 30.490614));
+        lngMap.put("Campsite",new LatLng(50.454661, 30.641806));
+        lngMap.put("8000",new LatLng(50.454723, 30.405954));
+        lngMap.put("8000",new LatLng(50.462179, 30.492109));
 
         return lngMap.get(tag);
     }

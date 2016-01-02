@@ -88,6 +88,9 @@ public class DataFactory {
         listMountain.add(new Shop(124, R.drawable.icon_northwall, "NorthWall", "http://northwall.com.ua/", false));
         listMountain.add(new Shop(125, R.drawable.icon_vershyna, "Вершина", "http://vershyna.com.ua/", false));
         listMountain.add(new Shop(126, R.drawable.icon_freestyle, "Freestyle", "http://www.freestyle.org.ua/", false));
+        listMountain.add(new Shop(127, R.drawable.icon_turkul, "Turkul", "http://turkul.net/", false));
+        listMountain.add(new Shop(128, R.drawable.icon_campsite, "Campsite", "http://campsite.com.ua/", false));
+        listMountain.add(new Shop(129, R.drawable.icon_8000, "8000", "http://www.8000.com.ua/", false));
 
         return listMountain;
     }
