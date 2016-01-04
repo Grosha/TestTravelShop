@@ -7,10 +7,12 @@ import android.content.pm.Signature;
 import android.util.Base64;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
 import com.facebook.FacebookSdk;
 import com.google.android.gms.analytics.HitBuilders;
 import com.hrom.andrew.travelshops.google_analytics.AnalyticsTrackers;
 
+import io.fabric.sdk.android.Fabric;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -24,6 +26,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         singleton = this;
         showHashKod();
         FacebookSdk.sdkInitialize(getApplicationContext());
