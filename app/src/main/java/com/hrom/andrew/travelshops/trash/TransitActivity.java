@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,6 @@ public class TransitActivity extends AppCompatActivity {
     private ShareButton shareButton;
     private Bitmap image;
     private int counter = 0;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {

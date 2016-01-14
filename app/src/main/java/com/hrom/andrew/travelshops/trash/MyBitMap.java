@@ -52,11 +52,12 @@ public class MyBitMap extends View {
         return bmOverlay;
     }
 
-    public static Bitmap getBitmapForMap2(Bitmap bmp1, Bitmap bmp2) {
+    public static Bitmap getBitmapForMap2(Bitmap bmp1, Bitmap bmp2, float pixelRation) {
         Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(), bmp1.getConfig());
         Canvas canvas = new Canvas(bmOverlay);
         canvas.drawBitmap(bmp1, new Matrix(), null);
-        canvas.drawBitmap(bmp2, pxToDp(bmp1.getWidth() / 2 - 5), pxToDp(bmp1.getHeight() / 4+5), null);
+        //canvas.drawBitmap(bmp2, pxToDp(bmp1.getWidth() / 2 - 5), pxToDp(bmp1.getHeight() / 4+5), null);
+        canvas.drawBitmap(bmp2, pixelRation*(bmp1.getWidth() /9), pixelRation*(bmp1.getHeight() /13), null);
         return bmOverlay;
     }
 

@@ -52,6 +52,7 @@ public class MainActivity extends TransitActivity {
     private ListView listView;
     private ArrayList<ObjectCategoryShops> objectCategoryShops;
     private ListViewAdapter adapter;
+    private int pixel = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class MainActivity extends TransitActivity {
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         Log.d(StringVariables.TEST, String.valueOf(metrics.densityDpi));
+        pixel = metrics.densityDpi;
 
         MyApplication.get().sendEvent(
                 AnalyticsEvent.CATEGORY_APPLICATION,
@@ -277,7 +279,7 @@ public class MainActivity extends TransitActivity {
                 Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
                 shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Insert Subject Here");
-                String shareMessage = "Insert message body here."  + "\n\nhttps://play.google.com/store/apps/details?id=com.highlyrecommendedapps.droidkeeper&hl=ru";
+                String shareMessage = "Insert message body here." + "\n\nhttps://play.google.com/store/apps/details?id=com.highlyrecommendedapps.droidkeeper&hl=ru";
                 shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareMessage);
 
                 Bitmap image = BitmapFactory.decodeResource(getResources(), R.mipmap.main_icon_18);
@@ -292,6 +294,10 @@ public class MainActivity extends TransitActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public int getDpi() {
+        return pixel;
     }
 
 }

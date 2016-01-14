@@ -24,6 +24,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.hrom.andrew.travelshops.DBCoordinates.CityCoordinate;
 import com.hrom.andrew.travelshops.DBCoordinates.ShopCoordinate;
+import com.hrom.andrew.travelshops.MainActivity;
 import com.hrom.andrew.travelshops.R;
 import com.hrom.andrew.travelshops.ShopDB.DataFactory;
 import com.hrom.andrew.travelshops.ShopDB.FavoriteFactory;
@@ -48,6 +49,7 @@ public class MapsFragment extends Fragment {
     private DataFactory dataFactory = new DataFactory();
     private ArrayList<Shop> listItems;
     private FavoriteFactory favoriteFactory;
+    private int pixelRation;
 
     @Nullable
     @Override
@@ -102,6 +104,8 @@ public class MapsFragment extends Fragment {
                     AnalyticsEvent.MAP_OPEN_ACTION,
                     AnalyticsEvent.MAP_LABEL_FAVORITE);
         }
+        pixelRation = ((MainActivity) getActivity()).getDpi();
+        Log.d(StringVariables.TEST, String.valueOf(pixelRation) + " pixel");
 
         //прогрес бар для мапи
         progressBar = (ProgressBar) getActivity().findViewById(R.id.webProgressBar);
@@ -241,7 +245,7 @@ public class MapsFragment extends Fragment {
                                             .title(listItems.get(i).getNameShop())
                                             .snippet(getUrl(i))
                                             .icon(BitmapDescriptorFactory
-                                                    .fromBitmap(MyBitMap.getBitmapForMap2(location, icon))));
+                                                    .fromBitmap(MyBitMap.getBitmapForMap2(location, icon, getPixelRation(pixelRation)))));
                         }
                     }
 
@@ -275,5 +279,16 @@ public class MapsFragment extends Fragment {
         if (site.indexOf("/") > 0) {
             return site.substring(0, site.indexOf("/"));
         } else return site.substring(0, site.length());
+    }
+
+    private float getPixelRation(int pixel) {
+        float k = 0;
+        if (pixel <= 160) k = 1;
+        else if (pixel <= 240) k = 1.5f;
+        else if (pixel <= 320) k = 2.0f;
+        else if (pixel <= 640) k = 3.f;
+        else if (pixel > 640) k = 4.0f;
+        Log.d(StringVariables.TEST, String.valueOf("k = " + k));
+        return k;
     }
 }
