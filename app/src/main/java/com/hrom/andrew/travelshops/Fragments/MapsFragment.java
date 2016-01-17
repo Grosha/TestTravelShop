@@ -245,7 +245,7 @@ public class MapsFragment extends Fragment {
                                             .title(listItems.get(i).getNameShop())
                                             .snippet(getUrl(i))
                                             .icon(BitmapDescriptorFactory
-                                                    .fromBitmap(MyBitMap.getBitmapForMap2(location, icon, getPixelRation(pixelRation)))));
+                                                    .fromBitmap(MyBitMap.getBitmapForMap2(location, icon, getPixelRation1(pixelRation)))));
                         }
                     }
 
@@ -290,5 +290,30 @@ public class MapsFragment extends Fragment {
         else if (pixel > 640) k = 4.0f;
         Log.d(StringVariables.TEST, String.valueOf("k = " + k));
         return k;
+    }
+
+    private float[] getPixelRation1(int pixel) {
+        float coordinate[] = new float[2];
+        if (pixel <= 160) {
+            coordinate[0] = 18.0f;
+            coordinate[1] = 16.0f;
+        } else if (pixel <= 240) {
+            coordinate[0] = 18.0f;
+            coordinate[1] = 16.0f;
+        } else if (pixel <= 320) {
+            coordinate[0] = 18.0f;
+            coordinate[1] = 16.0f;
+        } else if (pixel <= 480) {
+            coordinate[0] = 27.0f;
+            coordinate[1] = 24.0f;
+        } else if (pixel <= 640) {
+            coordinate[0] = 41.0f;
+            coordinate[1] = 40.0f;
+        } else {
+            coordinate[0] = 27.0f;
+            coordinate[1] = 24.0f;
+        }
+        Log.d(StringVariables.TEST, String.valueOf("x = " + coordinate[0] + "; y = " + coordinate[1]));
+        return coordinate;
     }
 }

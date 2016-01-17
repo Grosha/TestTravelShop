@@ -15,6 +15,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ScaleDrawable;
 import android.graphics.drawable.ShapeDrawable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Gallery;
 import android.widget.ImageView;
@@ -47,17 +48,19 @@ public class MyBitMap extends View {
         Canvas canvas = new Canvas(bmOverlay);
         canvas.drawBitmap(bmp1, new Matrix(), null);
         bmp2 = getRoundedCroppedBitmap(bmp2, 55);
-        bmp2 = Bitmap.createScaledBitmap(bmp2, bmp1.getWidth()-2, bmp1.getHeight(), true);
+        bmp2 = Bitmap.createScaledBitmap(bmp2, bmp1.getWidth() - 2, bmp1.getHeight(), true);
         canvas.drawBitmap(bmp2, 0, 0, null);
         return bmOverlay;
     }
 
-    public static Bitmap getBitmapForMap2(Bitmap bmp1, Bitmap bmp2, float pixelRation) {
+    public static Bitmap getBitmapForMap2(Bitmap bmp1, Bitmap bmp2, float[] coordinate) {
         Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(), bmp1.getConfig());
         Canvas canvas = new Canvas(bmOverlay);
         canvas.drawBitmap(bmp1, new Matrix(), null);
-        //canvas.drawBitmap(bmp2, pxToDp(bmp1.getWidth() / 2 - 5), pxToDp(bmp1.getHeight() / 4+5), null);
-        canvas.drawBitmap(bmp2, pixelRation*(bmp1.getWidth() /9), pixelRation*(bmp1.getHeight() /13), null);
+        //canvas.drawBitmap(bmp2, pixelRation * (bmp1.getWidth() / 12), pixelRation * (bmp1.getHeight() / 17), null);
+        canvas.drawBitmap(bmp2, coordinate[0], coordinate[1], null);
+        //Log.d(StringVariables.TEST, String.valueOf(pixelRation * (bmp1.getWidth() / 13) + ";" + pixelRation * (bmp1.getHeight() / 19)));
+        Log.d(StringVariables.TEST, String.valueOf(coordinate[0] + ";" + coordinate[1]));
         return bmOverlay;
     }
 
