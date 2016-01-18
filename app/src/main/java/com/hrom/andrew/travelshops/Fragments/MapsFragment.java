@@ -222,6 +222,7 @@ public class MapsFragment extends Fragment {
 
                 Marker city = googleMap.addMarker(new MarkerOptions().position(CityCoordinate.KYEV)
                         .title("KYEV"));
+                Marker shopMarker = null;
 
                 for (int i = 0; i < listItems.size(); i++) {
                     Collection<LatLng> colecLng = shop.getCoordinate(listItems.get(i).getNameShop());
@@ -239,7 +240,7 @@ public class MapsFragment extends Fragment {
                             icon = BitmapFactory.decodeResource(getResources(), listItems.get(i).getIconShop());
                             icon = MyBitMap.getBitmapForMap(bitmapFon, icon);
 
-                            Marker shopMarker = googleMap.addMarker(
+                            shopMarker = googleMap.addMarker(
                                     new MarkerOptions()
                                             .position(latLng)
                                             .title(listItems.get(i).getNameShop())
@@ -254,8 +255,10 @@ public class MapsFragment extends Fragment {
 
 
             //googleMap.setOnMarkerClickListener(markerClickListener);
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(CityCoordinate.KYEV, 13));
-            googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
+            if (marker != null) {
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 13));
+            }
+            googleMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
 
             googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
                 @Override
