@@ -298,8 +298,8 @@ public class MapsFragment extends Fragment {
             coordinate[0] = 18.0f;
             coordinate[1] = 16.0f;
         } else if (pixel <= 240) {
-            coordinate[0] = 18.0f;
-            coordinate[1] = 16.0f;
+            coordinate[0] = 14.0f;
+            coordinate[1] = 12.0f;
         } else if (pixel <= 320) {
             coordinate[0] = 18.0f;
             coordinate[1] = 16.0f;
