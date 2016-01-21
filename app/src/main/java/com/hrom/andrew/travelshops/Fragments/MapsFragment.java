@@ -125,10 +125,11 @@ public class MapsFragment extends Fragment {
         super.onResume();
     }
 
+    private boolean first = false;
     private GoogleMap.OnMyLocationChangeListener onMyLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
         @Override
         public void onMyLocationChange(Location location) {
-            Marker myNewMarker = null;
+
             if (location != null) {
                 Log.d(StringVariables.TEST, "LOCATION NOT NULL");
                 LatLng target = new LatLng(location.getLatitude(), location.getLongitude());
@@ -136,78 +137,33 @@ public class MapsFragment extends Fragment {
                 try {
                     if (marker != null) {
                         marker.remove();
-                        myNewMarker = mGoogleMap.addMarker(new MarkerOptions()
-                                .position(target)
-                                .title("ME")
-                                .snippet("")
-                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_flag_test1)));
                     }
                     marker = mGoogleMap.addMarker(new MarkerOptions()
                             .position(target)
                             .title("ME")
                             .snippet("")
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_flag_test1)));
-                    /*.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));*/
-                    if (myNewMarker != null) {
-                        myNewMarker.remove();
+
+                    if (!first && mGoogleMap != null) {
+                        progressBar.setVisibility(ProgressBar.GONE);
+                        first = true;
+                        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 12));
+                        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
                     }
+
                 } catch (IllegalArgumentException e) {
 
                 }
-
-                /*mGoogleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-                    @Override
-                    public void onInfoWindowClick(Marker marker) {
-                        marker.remove();
-                    }
-                });*/
             }
         }
     };
-
-   /* //animation bounce
-    private GoogleMap.OnMarkerClickListener markerClickListener = new GoogleMap.OnMarkerClickListener() {
-        @TargetApi(Build.VERSION_CODES.DONUT)
-        @Override
-        public boolean onMarkerClick(final Marker marker) {
-            final Handler handler = new Handler();
-
-            final long startTime = SystemClock.uptimeMillis();
-            final long duration = 2000;
-
-            Projection proj = mGoogleMap.getProjection();
-            final LatLng markerLatLng = marker.getPosition();
-            Point startPoint = proj.toScreenLocation(markerLatLng);
-            startPoint.offset(0, -100);
-            final LatLng startLatLng = proj.fromScreenLocation(startPoint);
-
-            final Interpolator interpolator = new BounceInterpolator();
-
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    long elapsed = SystemClock.uptimeMillis() - startTime;
-                    float t = interpolator.getInterpolation((float) elapsed / duration);
-                    double lng = t * markerLatLng.longitude + (1 - t) * startLatLng.longitude;
-                    double lat = t * markerLatLng.latitude + (1 - t) * startLatLng.latitude;
-                    marker.setPosition(new LatLng(lat, lng));
-
-                    if (t < 1.0) {
-                        // Post again 16ms later.
-                        handler.postDelayed(this, 16);
-                    }
-                }
-            });
-            return false;
-        }
-    };*/
 
     private OnMapReadyCallback onMapReadyCallback = new OnMapReadyCallback() {
         @Override
         public void onMapReady(GoogleMap googleMap) {
 
             mGoogleMap = googleMap;
-            progressBar.setVisibility(ProgressBar.GONE);
+
             googleMap.setOnMyLocationChangeListener(onMyLocationChangeListener);
 
             ShopCoordinate shop = new ShopCoordinate();
@@ -253,13 +209,6 @@ public class MapsFragment extends Fragment {
                 }
             }
 
-
-            //googleMap.setOnMarkerClickListener(markerClickListener);
-            if (marker != null) {
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 13));
-            }
-            googleMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
-
             googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
                 @Override
                 public void onInfoWindowClick(Marker marker) {
@@ -274,6 +223,7 @@ public class MapsFragment extends Fragment {
                 }
             });
             googleMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(getContext()));
+
         }
     };
 
