@@ -147,7 +147,7 @@ public class MapsFragment extends Fragment {
                     if (!first && mGoogleMap != null) {
                         progressBar.setVisibility(ProgressBar.GONE);
                         first = true;
-                        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 20));
+                        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 10));
                         mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(13), 2000, null);
                     }
 
@@ -215,13 +215,13 @@ public class MapsFragment extends Fragment {
                 public void onInfoWindowClick(Marker marker) {
                     Log.d(StringVariables.TEST, marker.getTitle());
                     Log.d(StringVariables.TEST, marker.getSnippet());
+                    Intent intent;
                     if (marker.getTitle().contains(StringVariables.CITY_KIEV)) {
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://uk.wikipedia.org/wiki/%D0%9A%D0%B8%D1%97%D0%B2"));
-                        startActivity(intent);
+                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://uk.wikipedia.org/wiki/%D0%9A%D0%B8%D1%97%D0%B2"));
                     } else {
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + marker.getSnippet()));
-                        startActivity(intent);
+                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + marker.getSnippet()));
                     }
+                    startActivity(intent);
                     MyApplication.get().sendEvent(
                             AnalyticsEvent.MAP_CATEGORY,
                             AnalyticsEvent.MAP_SHOP_ACTION,
