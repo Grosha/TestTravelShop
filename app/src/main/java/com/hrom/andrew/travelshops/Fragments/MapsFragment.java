@@ -147,8 +147,8 @@ public class MapsFragment extends Fragment {
                     if (!first && mGoogleMap != null) {
                         progressBar.setVisibility(ProgressBar.GONE);
                         first = true;
-                        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 12));
-                        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
+                        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 20));
+                        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(13), 2000, null);
                     }
 
                 } catch (IllegalArgumentException e) {
@@ -176,8 +176,9 @@ public class MapsFragment extends Fragment {
                 Bitmap icon = null;
                 Bitmap bitmapFon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.white_fon);
 
-                Marker city = googleMap.addMarker(new MarkerOptions().position(CityCoordinate.KYEV)
-                        .title("KYEV"));
+                Marker city = googleMap.addMarker(new MarkerOptions().position(CityCoordinate.KIEV)
+                        .title(StringVariables.CITY_KIEV)
+                        .snippet(StringVariables.CITY_KIEV_SNIPPET));
                 Marker shopMarker = null;
 
                 for (int i = 0; i < listItems.size(); i++) {
@@ -202,7 +203,7 @@ public class MapsFragment extends Fragment {
                                             .title(listItems.get(i).getNameShop())
                                             .snippet(getUrl(i))
                                             .icon(BitmapDescriptorFactory
-                                                    .fromBitmap(MyBitMap.getBitmapForMap2(location, icon, getPixelRation1(pixelRation)))));
+                                                    .fromBitmap(MyBitMap.getBitmapForMap2(location, icon, getStartCoordinate(pixelRation)))));
                         }
                     }
 
@@ -214,8 +215,13 @@ public class MapsFragment extends Fragment {
                 public void onInfoWindowClick(Marker marker) {
                     Log.d(StringVariables.TEST, marker.getTitle());
                     Log.d(StringVariables.TEST, marker.getSnippet());
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + marker.getSnippet()));
-                    startActivity(intent);
+                    if (marker.getTitle().contains(StringVariables.CITY_KIEV)) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://uk.wikipedia.org/wiki/%D0%9A%D0%B8%D1%97%D0%B2"));
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + marker.getSnippet()));
+                        startActivity(intent);
+                    }
                     MyApplication.get().sendEvent(
                             AnalyticsEvent.MAP_CATEGORY,
                             AnalyticsEvent.MAP_SHOP_ACTION,
@@ -245,7 +251,7 @@ public class MapsFragment extends Fragment {
         return k;
     }
 
-    private float[] getPixelRation1(int pixel) {
+    private float[] getStartCoordinate(int pixel) {
         float coordinate[] = new float[2];
         if (pixel <= 160) {
             coordinate[0] = 18.0f;
