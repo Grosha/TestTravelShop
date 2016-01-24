@@ -270,7 +270,7 @@ public class MapsFragment extends Fragment {
             coordinate[1] = 40.0f;
         } else {
             coordinate[0] = 27.0f;
-            coordinate[1] = 24.0f;
+            coordinate[1] = 25.0f;
         }
         Log.d(StringVariables.TEST, String.valueOf("x = " + coordinate[0] + "; y = " + coordinate[1]));
         return coordinate;
