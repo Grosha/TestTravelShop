@@ -96,6 +96,7 @@ public class ShopCoordinate {
         lngMap.put("Campsite",new LatLng(50.454661, 30.641806));
         lngMap.put("8000",new LatLng(50.454723, 30.405954));
         lngMap.put("8000",new LatLng(50.462179, 30.492109));
+        lngMap.put("Alpsport",new LatLng(50.461571, 30.478456));
 
         return lngMap.get(tag);
     }

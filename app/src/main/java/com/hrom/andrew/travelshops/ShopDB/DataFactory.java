@@ -55,6 +55,7 @@ public class DataFactory {
         listBike.add(new Shop(19, R.drawable.icon_universal, "Велотим", "http://www.veloteam.com.ua/", false));
         listBike.add(new Shop(20, R.drawable.icon_megadrive, "Megadrive", "http://megadrive.kiev.ua/", false));
         listBike.add(new Shop(21, R.drawable.icon_freestyle, "Freestyle", "http://www.freestyle.org.ua/velosport/", false));
+        listBike.add(new Shop(22, R.drawable.icon_alpsport, "Alpsport", "http://alpsport.kiev.ua/", false));
 
         return listBike;
     }
@@ -91,6 +92,7 @@ public class DataFactory {
         listMountain.add(new Shop(127, R.drawable.icon_turkul, "Turkul", "http://turkul.net/", false));
         listMountain.add(new Shop(128, R.drawable.icon_campsite, "Campsite", "http://campsite.com.ua/", false));
         listMountain.add(new Shop(129, R.drawable.icon_8000, "8000", "http://www.8000.com.ua/", false));
+        listMountain.add(new Shop(130, R.drawable.icon_alpsport, "Alpsport", "http://alpsport.kiev.ua/", false));
 
         return listMountain;
     }
@@ -125,6 +127,7 @@ public class DataFactory {
         listSki.add(new Shop(226, R.drawable.icon_freestyle, "Freestyle", "http://www.freestyle.org.ua/gornye-lyji/", false));
         listSki.add(new Shop(227, R.drawable.icon_kingsize, "Kingsize", "http://www.kingsize.com.ua/", false));
         listSki.add(new Shop(228, R.drawable.icon_8000, "8000", "http://www.8000.com.ua/", false));
+        listSki.add(new Shop(229, R.drawable.icon_alpsport, "Alpsport", "http://alpsport.kiev.ua/", false));
         //listSki.add(new Shop(224, R.drawable.icon_profirider, "Profi Rider", "http://profirider.com.ua/shop/category/gornye-lyzhi", false));
         //listSki.add(new Shop(224, R.drawable.icon_sport_co, "Sport Continent", "http://sport-co.com.ua/catalog6/", false));
 
