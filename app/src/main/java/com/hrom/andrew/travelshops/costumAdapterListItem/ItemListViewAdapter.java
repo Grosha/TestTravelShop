@@ -63,6 +63,11 @@ public class ItemListViewAdapter extends ArrayAdapter<Shop> {
                             AnalyticsEvent.SHOP_CATEGORY,
                             AnalyticsEvent.SHOP_ACTION,
                             AnalyticsEvent.SHOP_ICON_LABEL);
+
+                    MyApplication.get().sendEvent(
+                            AnalyticsEvent.NAME_SHOP_CATEGORY,
+                            AnalyticsEvent.NAME_SHOP_ACTION,
+                            String.valueOf(getItem(position).getId()));
                 }
             }
         });
@@ -122,6 +127,11 @@ public class ItemListViewAdapter extends ArrayAdapter<Shop> {
                             AnalyticsEvent.SHOP_CATEGORY,
                             AnalyticsEvent.SHOP_ACTION,
                             AnalyticsEvent.SHOP_NAME_LABEL);
+
+                    MyApplication.get().sendEvent(
+                            AnalyticsEvent.ICON_CATEGORY,
+                            AnalyticsEvent.ICON_ACTION,
+                            String.valueOf(getItem(position).getId()));
                 }
             }
         });
