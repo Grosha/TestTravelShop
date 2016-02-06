@@ -3,6 +3,7 @@ package com.hrom.andrew.travelshops.Fragments;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +20,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -123,6 +126,9 @@ public class MapsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        if (getActivity() != null) {
+            ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.map_fragment);
+        }
     }
 
     private boolean first = false;
@@ -139,10 +145,17 @@ public class MapsFragment extends Fragment {
                         marker.remove();
                     }
                     marker = mGoogleMap.addMarker(new MarkerOptions()
-                            .position(target)
-                            .title("ME")
-                            .snippet("")
-                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_flag_test1)));
+                                    .position(target)
+                                    .title(StringVariables.ME)
+                                    .snippet("")
+                            /*.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_flag_test1)).draggable(true)*/);
+
+                    CircleOptions circleOptions = new CircleOptions()
+                            .center(marker.getPosition())
+                            .radius(1000).strokeColor(Color.argb(255, 0, 153, 255))
+                            .fillColor(Color.argb(30, 0, 153, 255)).strokeWidth(2);
+
+                    Circle circle = mGoogleMap.addCircle(circleOptions);
 
                     if (!first && mGoogleMap != null) {
                         progressBar.setVisibility(ProgressBar.GONE);
@@ -215,17 +228,21 @@ public class MapsFragment extends Fragment {
                 public void onInfoWindowClick(Marker marker) {
                     Log.d(StringVariables.TEST, marker.getTitle());
                     Log.d(StringVariables.TEST, marker.getSnippet());
-                    Intent intent;
-                    if (marker.getTitle().contains(StringVariables.CITY_KIEV)) {
-                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://uk.wikipedia.org/wiki/%D0%9A%D0%B8%D1%97%D0%B2"));
-                    } else {
-                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + marker.getSnippet()));
+                    Intent intent = null;
+                    if (intent != null) {
+                        if (marker.getTitle().contains(StringVariables.CITY_KIEV)) {
+                            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://uk.wikipedia.org/wiki/%D0%9A%D0%B8%D1%97%D0%B2"));
+                        } else if (marker.getTitle().contains(StringVariables.ME)) {
+
+                        } else {
+                            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + marker.getSnippet()));
+                        }
+                        startActivity(intent);
+                        MyApplication.get().sendEvent(
+                                AnalyticsEvent.MAP_CATEGORY,
+                                AnalyticsEvent.MAP_SHOP_ACTION,
+                                getShopId(marker.getSnippet()));
                     }
-                    startActivity(intent);
-                    MyApplication.get().sendEvent(
-                            AnalyticsEvent.MAP_CATEGORY,
-                            AnalyticsEvent.MAP_SHOP_ACTION,
-                            marker.getSnippet());
                 }
             });
             googleMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(getContext()));
@@ -238,6 +255,15 @@ public class MapsFragment extends Fragment {
         if (site.indexOf("/") > 0) {
             return site.substring(0, site.indexOf("/"));
         } else return site.substring(0, site.length());
+    }
+
+    private String getShopId(String snippet) {
+        int shopId = 0;
+        for (int i = 0; i < listItems.size(); i++) {
+            if (listItems.get(i).getUrlShop().contains(snippet))
+                shopId = listItems.get(i).getId();
+        }
+        return String.valueOf(shopId);
     }
 
     private float getPixelRation(int pixel) {
