@@ -24,7 +24,7 @@ public class AnalyticsEvent {
     //for map
     public static final String MAP_CATEGORY = "Map";
     public static final String MAP_OPEN_ACTION = "Open";
-    public static final String MAP_SHOP_ACTION = "Click on icon";
+    public static final String MAP_SHOP_ACTION = "Click on InfoWindow";
     public static final String MAP_OPEN_WEB_ACTION = "Click on website shop";
     public static final String MAP_LABEL_FAVORITE = "Favorite shop";
     public static final String MAP_LABEL_MOUNTAIN = "Mountain shop";
