@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">FreeRideX</string>
     <string name="title_activity_travel">FreeRideX</string>
-    <string name="API_KEY">AIzaSyCO7xM6RwZOaR9-Fiyo_2Uqy5UtNSPEr7Q</string>
+    <!--<string name="API_KEY">AIzaSyCO7xM6RwZOaR9-Fiyo_2Uqy5UtNSPEr7Q</string>-->
     <string name="action_map">Map</string>
     <string name="action_search">search</string>
     <string name="action_share">share</string>
     <string name="action_settings">action_settings</string>
-    <!--<string name="API_KEY">AIzaSyCX4L4YkNz6ICbEtwS_lgHiRE8f2ivAFwY</string>-->
+    <string name="API_KEY">AIzaSyByL9twlxY5dhKM1Gr43FxoVuIVlCiHey4</string>
     <string name="preference_file_key">com.hrom.andrew.travelshops.PREFERENCE_FILE_KEY</string>
     <string name="banner_ad_unit_id">ca-app-pub-5331719326093705/5366465272</string>
     <string name="interstitail_ad_unit_id">ca-app-pub-5331719326093705/5366465272</string>
@@ -15,4 +15,10 @@
     <string name="drawer_close">close drawer</string>
     <string name="facebook_app_id">1702229713341432</string>
     <string name="text_with_empty_item">Your list with favorite shops is empty. You can add shop if you click on heart</string>
+    <string name="ski_fragment">Ski</string>
+    <string name="mountain_fragment">Mountain</string>
+    <string name="favorite_fragment">Favorite shops</string>
+    <string name="bike_fragment">Bike</string>
+    <string name="snowboard_fragment">Snowboard</string>
+    <string name="map_fragment">Map</string>
 </resources>
