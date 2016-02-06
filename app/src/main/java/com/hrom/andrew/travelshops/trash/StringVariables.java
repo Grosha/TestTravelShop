@@ -17,10 +17,7 @@ public class StringVariables {
     public static final String PRES_KEY_INTERSTITIAL_WEB = "INTERSTITIAL_WEB";
     public static final String PRES_KEY_INTERSTITIAL_DRAWER = "INTERSTITIAL_DRAWER";
     public static final String CITY_KIEV = "KIEV";
+    public static final String ME = "ME";
     public static final String CITY_KIEV_SNIPPET = "Wiki";
-
-    public static final int TYPE_SHOP_MOUNTAIN = 1;
-    public static final int TYPE_SHOP_SNOWBOARD = 2;
-    public static final int TYPE_SHOP_SKIS = 3;
-    public static final int TYPE_SHOP_BIKE = 4;
+    public static final String URL_GOOGLE_SEARCH = "https://www.google.com/search?q=";
 }
