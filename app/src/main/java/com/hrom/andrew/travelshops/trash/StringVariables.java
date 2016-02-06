@@ -20,4 +20,5 @@ public class StringVariables {
     public static final String ME = "ME";
     public static final String CITY_KIEV_SNIPPET = "Wiki";
     public static final String URL_GOOGLE_SEARCH = "https://www.google.com/search?q=";
+    public static final String URL_KIEV_WIKI = "https://uk.wikipedia.org/wiki/%D0%9A%D0%B8%D1%97%D0%B2";
 }

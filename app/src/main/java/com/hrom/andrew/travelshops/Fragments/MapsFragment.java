@@ -231,7 +231,7 @@ public class MapsFragment extends Fragment {
                     Intent intent = null;
                     if (intent != null) {
                         if (marker.getTitle().contains(StringVariables.CITY_KIEV)) {
-                            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://uk.wikipedia.org/wiki/%D0%9A%D0%B8%D1%97%D0%B2"));
+                            intent = new Intent(Intent.ACTION_VIEW, Uri.parse(StringVariables.URL_KIEV_WIKI));
                         } else if (marker.getTitle().contains(StringVariables.ME)) {
 
                         } else {
