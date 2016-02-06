@@ -29,7 +29,7 @@ public class FavoriteFragment extends CategoryFragment {
     public void onResume() {
         super.onResume();
         if (getActivity() != null) {
-            ((MainActivity)getActivity()).getSupportActionBar().setTitle("Favorite shops");
+            ((MainActivity)getActivity()).getSupportActionBar().setTitle(R.string.favorite_fragment);
         }
     }
 }

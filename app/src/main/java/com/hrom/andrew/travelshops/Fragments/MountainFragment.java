@@ -29,7 +29,7 @@ public class MountainFragment extends CategoryFragment {
     public void onResume() {
         super.onResume();
         if (getActivity() != null) {
-            ((MainActivity) getActivity()).getSupportActionBar().setTitle("Mountain");
+            ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.mountain_fragment);
         }
     }
 }

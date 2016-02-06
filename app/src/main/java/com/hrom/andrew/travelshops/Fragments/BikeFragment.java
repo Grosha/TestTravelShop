@@ -29,7 +29,7 @@ public class BikeFragment extends CategoryFragment {
     public void onResume() {
         super.onResume();
         if (getActivity() != null) {
-            ((MainActivity) getActivity()).getSupportActionBar().setTitle("Bike");
+            ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.bike_fragment);
         }
     }
 }

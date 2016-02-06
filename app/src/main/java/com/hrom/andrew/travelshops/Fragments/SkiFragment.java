@@ -28,7 +28,7 @@ public class SkiFragment extends CategoryFragment {
     public void onResume() {
         super.onResume();
         if (getActivity() != null) {
-            ((MainActivity)getActivity()).getSupportActionBar().setTitle("Ski");
+            ((MainActivity)getActivity()).getSupportActionBar().setTitle(R.string.ski_fragment);
         }
     }
 }

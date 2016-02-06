@@ -29,7 +29,7 @@ public class SnowboardFragment extends CategoryFragment {
     public void onResume() {
         super.onResume();
         if (getActivity() != null) {
-            ((MainActivity) getActivity()).getSupportActionBar().setTitle("Snowboard");
+            ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.snowboard_fragment);
         }
     }
 }
