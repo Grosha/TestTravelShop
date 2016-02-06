@@ -241,7 +241,7 @@ public class MainActivity extends TransitActivity {
             public boolean onQueryTextSubmit(String query) {
                 //Here u can get the value "query" which is entered in the ic_search box.
                 if (!query.isEmpty()) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=" + query));
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(StringVariables.URL_GOOGLE_SEARCH + query));
                     startActivity(intent);
                 }
                 return true;
@@ -263,7 +263,10 @@ public class MainActivity extends TransitActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         switch (item.getItemId()) {
             case R.id.action_map:
-                transaction.replace(R.id.container, new MapsFragment()).commit();
+                transaction
+                        .replace(R.id.container, new MapsFragment())
+                        .addToBackStack(null)
+                        .commit();
                 MyApplication.get().sendEvent(
                         AnalyticsEvent.TOOLBOX_CATEGORY,
                         AnalyticsEvent.TOOLBOX_ACTION,
@@ -282,7 +285,7 @@ public class MainActivity extends TransitActivity {
                 String shareMessage = "Insert message body here." + "\n\nhttps://play.google.com/store/apps/details?id=com.highlyrecommendedapps.droidkeeper&hl=ru";
                 shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareMessage);
 
-                Bitmap image = BitmapFactory.decodeResource(getResources(), R.mipmap.main_icon_18);
+                Bitmap image = BitmapFactory.decodeResource(getResources(), R.mipmap.app_icon);
                 shareIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON, image);
 
                 startActivity(Intent.createChooser(shareIntent, "Insert share chooser title here"));
