@@ -145,15 +145,17 @@ public class MapsFragment extends Fragment {
                         marker.remove();
                     }
                     marker = mGoogleMap.addMarker(new MarkerOptions()
-                                    .position(target)
-                                    .title(StringVariables.ME)
-                                    .snippet("")
-                            /*.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_flag_test1)).draggable(true)*/);
+                            .position(target)
+                            .title(StringVariables.ME)
+                            .snippet("")
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_flag_test1)).draggable(true));
 
                     CircleOptions circleOptions = new CircleOptions()
                             .center(marker.getPosition())
-                            .radius(1000).strokeColor(Color.argb(255, 0, 153, 255))
-                            .fillColor(Color.argb(30, 0, 153, 255)).strokeWidth(2);
+                            .radius(300)
+                            .strokeColor(Color.argb(30, 0, 153, 255))
+                            .fillColor(Color.argb(30, 0, 153, 255))
+                            .strokeWidth(2);
 
                     Circle circle = mGoogleMap.addCircle(circleOptions);
 
