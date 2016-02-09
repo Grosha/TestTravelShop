@@ -278,7 +278,7 @@ public class MainActivity extends TransitActivity {
                         AnalyticsEvent.TOOLBOX_ACTION,
                         AnalyticsEvent.TOOLBOX_LABEL_SEARCH);
                 return true;
-            case R.id.action_share:
+            /*case R.id.action_share:
                 Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
                 shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Insert Subject Here");
@@ -289,7 +289,7 @@ public class MainActivity extends TransitActivity {
                 shareIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON, image);
 
                 startActivity(Intent.createChooser(shareIntent, "Insert share chooser title here"));
-                return true;
+                return true;*/
             /*case R.id.action_bitmap:
                 Intent intent = new Intent(this, TestBitmap.class);
                 startActivity(intent);
