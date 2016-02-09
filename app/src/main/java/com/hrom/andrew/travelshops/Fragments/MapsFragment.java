@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,6 +54,15 @@ public class MapsFragment extends Fragment {
     private ArrayList<Shop> listItems;
     private FavoriteFactory favoriteFactory;
     private int pixelRation;
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Fragment fragment = (getFragmentManager().findFragmentById(R.id.container));
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.remove(fragment);
+        ft.commit();
+    }
 
     @Nullable
     @Override
@@ -152,7 +162,7 @@ public class MapsFragment extends Fragment {
 
                     CircleOptions circleOptions = new CircleOptions()
                             .center(marker.getPosition())
-                            .radius(300)
+                            .radius(500)
                             .strokeColor(Color.argb(30, 0, 153, 255))
                             .fillColor(Color.argb(30, 0, 153, 255))
                             .strokeWidth(2);
@@ -163,7 +173,7 @@ public class MapsFragment extends Fragment {
                         progressBar.setVisibility(ProgressBar.GONE);
                         first = true;
                         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 10));
-                        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(13), 2000, null);
+                        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
                     }
 
                 } catch (IllegalArgumentException e) {
@@ -235,7 +245,7 @@ public class MapsFragment extends Fragment {
                         if (marker.getTitle().contains(StringVariables.CITY_KIEV)) {
                             intent = new Intent(Intent.ACTION_VIEW, Uri.parse(StringVariables.URL_KIEV_WIKI));
                         } else if (marker.getTitle().contains(StringVariables.ME)) {
-
+                            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com.ua/search?q=" + "активний відпочинок"));
                         } else {
                             intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + marker.getSnippet()));
                         }
