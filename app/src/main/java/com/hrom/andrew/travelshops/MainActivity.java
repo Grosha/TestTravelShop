@@ -278,18 +278,18 @@ public class MainActivity extends TransitActivity {
                         AnalyticsEvent.TOOLBOX_ACTION,
                         AnalyticsEvent.TOOLBOX_LABEL_SEARCH);
                 return true;
-            /*case R.id.action_share:
+            case R.id.action_share:
                 Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
-                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Insert Subject Here");
-                String shareMessage = "Insert message body here." + "\n\nhttps://play.google.com/store/apps/details?id=com.highlyrecommendedapps.droidkeeper&hl=ru";
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, StringVariables.TITLE_SUBJECT_SHARE);
+                String shareMessage = StringVariables.MESSAGE_BODY_SHARE + "\n\n"+ StringVariables.URL_FOR_PLAY_MARKET_SHARE;
                 shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareMessage);
 
                 Bitmap image = BitmapFactory.decodeResource(getResources(), R.mipmap.app_icon);
                 shareIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON, image);
 
-                startActivity(Intent.createChooser(shareIntent, "Insert share chooser title here"));
-                return true;*/
+                startActivity(Intent.createChooser(shareIntent, StringVariables.TITLE_SHARE));
+                return true;
             /*case R.id.action_bitmap:
                 Intent intent = new Intent(this, TestBitmap.class);
                 startActivity(intent);

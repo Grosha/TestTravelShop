@@ -21,4 +21,8 @@ public class StringVariables {
     public static final String CITY_KIEV_SNIPPET = "Wiki";
     public static final String URL_GOOGLE_SEARCH = "https://www.google.com/search?q=";
     public static final String URL_KIEV_WIKI = "https://uk.wikipedia.org/wiki/%D0%9A%D0%B8%D1%97%D0%B2";
+    public static final String URL_FOR_PLAY_MARKET_SHARE = "https://play.google.com/store/apps/details?id=com.hrom.andrew.travelshops";
+    public static final String MESSAGE_BODY_SHARE = "Insert message body here.";
+    public static final String TITLE_SHARE = "Insert share chooser title here";
+    public static final String TITLE_SUBJECT_SHARE = "Insert Subject Here";
 }
