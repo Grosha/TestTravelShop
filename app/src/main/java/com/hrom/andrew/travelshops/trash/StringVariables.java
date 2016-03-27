@@ -1,7 +1,7 @@
 package com.hrom.andrew.travelshops.trash;
 
 public class StringVariables {
-    public static final String NAMEFRAGMENT = "FRAGMENT";
+    public static final String NAME_FRAGMENT = "FRAGMENT";
     public static final String TEST = "TAG_NAME_FRAGMENT";
     public static final String EventSender = "EventSender";
     public static final String PROGRESS = "PROGRESS";
