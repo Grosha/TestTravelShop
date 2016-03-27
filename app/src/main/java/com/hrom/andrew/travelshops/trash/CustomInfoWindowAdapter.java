@@ -35,14 +35,14 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
             TextView shopName = (TextView) myContentsView.findViewById(R.id.name_shop_info_window);
             shopName.setText(marker.getTitle());
 
-            Log.d(StringVariables.TEST, marker.getTitle());
+            //Log.d(StringVariables.TEST, marker.getTitle());
         }
 
         if (marker.getSnippet() != null) {
             TextView shopSite = (TextView) myContentsView.findViewById(R.id.site_shop_info_window);
             shopSite.setPaintFlags(shopSite.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
             shopSite.setText(marker.getSnippet());
-            Log.d(StringVariables.TEST, marker.getSnippet());
+            //Log.d(StringVariables.TEST, marker.getSnippet());
         }
 
         return myContentsView;

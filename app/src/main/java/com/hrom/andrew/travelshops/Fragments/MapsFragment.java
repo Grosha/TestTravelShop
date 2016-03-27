@@ -54,6 +54,7 @@ public class MapsFragment extends Fragment {
     private ArrayList<Shop> listItems;
     private FavoriteFactory favoriteFactory;
     private int pixelRation;
+    private Circle circle;
 
     @Override
     public void onDestroyView() {
@@ -145,7 +146,6 @@ public class MapsFragment extends Fragment {
     private GoogleMap.OnMyLocationChangeListener onMyLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
         @Override
         public void onMyLocationChange(Location location) {
-
             if (location != null) {
                 Log.d(StringVariables.TEST, "LOCATION NOT NULL");
                 LatLng target = new LatLng(location.getLatitude(), location.getLongitude());
@@ -153,6 +153,9 @@ public class MapsFragment extends Fragment {
                 try {
                     if (marker != null) {
                         marker.remove();
+                    }
+                    if (circle != null) {
+                        circle.remove();
                     }
                     marker = mGoogleMap.addMarker(new MarkerOptions()
                             .position(target)
@@ -167,7 +170,7 @@ public class MapsFragment extends Fragment {
                             .fillColor(Color.argb(30, 0, 153, 255))
                             .strokeWidth(2);
 
-                    Circle circle = mGoogleMap.addCircle(circleOptions);
+                    circle = mGoogleMap.addCircle(circleOptions);
 
                     if (!first && mGoogleMap != null) {
                         progressBar.setVisibility(ProgressBar.GONE);
@@ -209,8 +212,8 @@ public class MapsFragment extends Fragment {
                 for (int i = 0; i < listItems.size(); i++) {
                     Collection<LatLng> colecLng = shop.getCoordinate(listItems.get(i).getNameShop());
 
-                    Log.d(StringVariables.NAMEFRAGMENT, String.valueOf(listItems.get(i).getNameShop()));
-                    Log.d(StringVariables.NAMEFRAGMENT, String.valueOf(colecLng));
+                    Log.d(StringVariables.NAME_FRAGMENT, String.valueOf(listItems.get(i).getNameShop()));
+                    Log.d(StringVariables.NAME_FRAGMENT, String.valueOf(colecLng));
 
                     if (shop.getCoordinate(listItems.get(i).getNameShop()) == null) {
                         //if (i != bike.getListShops().size() - 1) {
@@ -241,20 +244,24 @@ public class MapsFragment extends Fragment {
                     Log.d(StringVariables.TEST, marker.getTitle());
                     Log.d(StringVariables.TEST, marker.getSnippet());
                     Intent intent = null;
-                    if (intent != null) {
-                        if (marker.getTitle().contains(StringVariables.CITY_KIEV)) {
-                            intent = new Intent(Intent.ACTION_VIEW, Uri.parse(StringVariables.URL_KIEV_WIKI));
-                        } else if (marker.getTitle().contains(StringVariables.ME)) {
-                            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com.ua/search?q=" + "активний відпочинок"));
-                        } else {
-                            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + marker.getSnippet()));
-                        }
-                        startActivity(intent);
-                        MyApplication.get().sendEvent(
-                                AnalyticsEvent.MAP_CATEGORY,
-                                AnalyticsEvent.MAP_SHOP_ACTION,
-                                getShopId(marker.getSnippet()));
+                    if (marker.getTitle().contains(StringVariables.CITY_KIEV)) {
+                        Log.d(StringVariables.TEST, marker.getTitle());
+                        Log.d(StringVariables.TEST, marker.getSnippet());
+                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse(StringVariables.URL_KIEV_WIKI));
+                    } else if (marker.getTitle().contains(StringVariables.ME)) {
+                        Log.d(StringVariables.TEST, marker.getTitle());
+                        Log.d(StringVariables.TEST, marker.getSnippet());
+                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com.ua/search?q=" + "активний відпочинок"));
+                    } else {
+                        Log.d(StringVariables.TEST, marker.getTitle());
+                        Log.d(StringVariables.TEST, marker.getSnippet());
+                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + marker.getSnippet()));
                     }
+                    startActivity(intent);
+                    MyApplication.get().sendEvent(
+                            AnalyticsEvent.MAP_CATEGORY,
+                            AnalyticsEvent.MAP_SHOP_ACTION,
+                            getShopId(marker.getSnippet()));
                 }
             });
             googleMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(getContext()));
