@@ -97,6 +97,7 @@ public class ShopCoordinate {
         lngMap.put("8000",new LatLng(50.454723, 30.405954));
         lngMap.put("8000",new LatLng(50.462179, 30.492109));
         lngMap.put("Alpsport",new LatLng(50.461571, 30.478456));
+        lngMap.put("Protoca",new LatLng(50.449423, 30.475330));
 
         return lngMap.get(tag);
     }

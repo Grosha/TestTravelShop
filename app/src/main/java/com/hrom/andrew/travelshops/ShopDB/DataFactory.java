@@ -56,6 +56,7 @@ public class DataFactory {
         listBike.add(new Shop(20, R.drawable.icon_megadrive, "Megadrive", "http://megadrive.kiev.ua/", false));
         listBike.add(new Shop(21, R.drawable.icon_freestyle, "Freestyle", "http://www.freestyle.org.ua/velosport/", false));
         listBike.add(new Shop(22, R.drawable.icon_alpsport, "Alpsport", "http://alpsport.kiev.ua/", false));
+        listBike.add(new Shop(23, R.drawable.icon_protoca, "Protoca", "http://www.sportsite.com.ua/", false));
 
         return listBike;
     }
@@ -93,6 +94,7 @@ public class DataFactory {
         listMountain.add(new Shop(1028, R.drawable.icon_campsite, "Campsite", "http://campsite.com.ua/", false));
         listMountain.add(new Shop(1029, R.drawable.icon_8000, "8000", "http://www.8000.com.ua/", false));
         listMountain.add(new Shop(1030, R.drawable.icon_alpsport, "Alpsport", "http://alpsport.kiev.ua/", false));
+        listMountain.add(new Shop(1031, R.drawable.icon_fram_equipment, "Fram Equipment", "http://fram-equip.com/uk", false));
 
         return listMountain;
     }
@@ -163,6 +165,7 @@ public class DataFactory {
         listSnowBoard.add(new Shop(3023, R.drawable.icon_jamstore, "Jamstore", "http://www.jamstore.com.ua/", false));
         listSnowBoard.add(new Shop(3024, R.drawable.icon_snow_shop, "Snow-shop", "http://snow-shop.com.ua/", false));
         listSnowBoard.add(new Shop(3025, R.drawable.icon_8000, "8000", "http://www.8000.com.ua/", false));
+        listSnowBoard.add(new Shop(3026, R.drawable.icon_protoca, "Protoca", "http://www.sportsite.com.ua/", false));
 
         return listSnowBoard;
     }
