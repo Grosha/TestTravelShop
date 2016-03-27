@@ -19,12 +19,14 @@ android {
         applicationId "com.hrom.andrew.travelshops"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 3
-        versionName "1.2"
+        versionCode 4
+        versionName "1.3"
+        project.ext.set("archivesBaseName", "FreeRidex - " + defaultConfig.versionName);
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
