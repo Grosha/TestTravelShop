@@ -60,7 +60,7 @@ public class ShopCoordinate {
         lngMap.put("Veloonline",new LatLng(50.429222, 30.356038));
         lngMap.put("Modena Sport",new LatLng(50.457553, 30.429757));
         lngMap.put("Porover",new LatLng(50.421438, 30.514886));
-        lngMap.put("Команда Екс",new LatLng(50.457013, 30.437231));
+        lngMap.put("Команда Екс",new LatLng(50.453313, 30.521716));
         lngMap.put("Skirental",new LatLng(50.436006, 30.474220));
         lngMap.put("Protest",new LatLng(50.432273, 30.515644));
         lngMap.put("Спорт Самміт",new LatLng(50.431901, 30.545336));
@@ -75,7 +75,7 @@ public class ShopCoordinate {
         lngMap.put("Велопланета",new LatLng(50.391293, 30.502093));
         lngMap.put("Keeperstore",new LatLng(50.457392, 30.408287));
         lngMap.put("Keeperstore",new LatLng(50.492545, 30.524735));
-        lngMap.put("GoFree",new LatLng(50.462922, 30.505031));
+        lngMap.put("GoFree",new LatLng(50.436059, 30.474172));
         lngMap.put("Megadrive",new LatLng(50.455630, 30.632330));
         lngMap.put("Skimag",new LatLng(50.422951, 30.476367));
         lngMap.put("Cube",new LatLng(50.450221, 30.441169));
