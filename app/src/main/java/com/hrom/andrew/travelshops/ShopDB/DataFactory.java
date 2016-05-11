@@ -66,7 +66,7 @@ public class DataFactory {
 
         listMountain.add(new Shop(1001, R.drawable.icon_azimut, "Азімут", "http://www.azimut.com.ua/", false));
         listMountain.add(new Shop(1002, R.drawable.icon_universal, "Волоцюга", "http://volocuga.com/", false));
-        listMountain.add(new Shop(1003, R.drawable.icon_atlantida, "Атлантида", "http://atlantida.net.ua/", false));
+        listMountain.add(new Shop(1003, R.drawable.icon_atlantida, "Атлантида", "http://atlantida.in.ua/", false));
         listMountain.add(new Shop(1004, R.drawable.icon_el_cap, "Ель-капітан", "http://el-cap.kiev.ua/", false));
         listMountain.add(new Shop(1005, R.drawable.icon_ex, "Команда Екс", "http://ex.com.ua/", false));
         listMountain.add(new Shop(1006, R.drawable.icon_extrim_style, "Екстрем Стайл", "http://extremstyle.ua/", false));
