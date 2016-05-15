@@ -87,13 +87,13 @@ public class ShopCoordinate {
         lngMap.put("Каприкорн",new LatLng(50.438408, 30.520286));
         lngMap.put("Terra Incognita",new LatLng(50.456793, 30.631518));
         lngMap.put("NorthWall",new LatLng(50.439477, 30.511948));
-        lngMap.put("Вершина",new LatLng(50.396460, 30.635951));
+        lngMap.put("Вершина",new LatLng(50.396472, 30.635960));
         lngMap.put("Freestyle",new LatLng(50.444100, 30.591815));
         lngMap.put("Jamstore",new LatLng(50.496815, 30.520526));
-        lngMap.put("Turkul",new LatLng(50.457827, 30.490614));
-        lngMap.put("Campsite",new LatLng(50.454661, 30.641806));
-        lngMap.put("8000",new LatLng(50.454723, 30.405954));
-        lngMap.put("8000",new LatLng(50.462179, 30.492109));
+        lngMap.put("Turkul",new LatLng(50.457828, 30.490611));
+        lngMap.put("Campsite",new LatLng(50.453858, 30.638744));
+        lngMap.put("8000",new LatLng(50.432397, 30.385242));
+        lngMap.put("8000",new LatLng(50.462142, 30.492207));
         lngMap.put("Alpsport",new LatLng(50.461571, 30.478456));
         lngMap.put("Protoca",new LatLng(50.449423, 30.475330));
 
