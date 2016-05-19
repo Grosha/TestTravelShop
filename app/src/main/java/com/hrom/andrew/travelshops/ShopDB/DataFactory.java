@@ -54,7 +54,7 @@ public class DataFactory {
         listBike.add(new Shop(18, R.drawable.icon_bikemotive, "Bikemotive", "http://bikemotive.com.ua/", false));
         listBike.add(new Shop(19, R.drawable.icon_universal, "Veloteam", "http://www.veloteam.com.ua/", false));
         listBike.add(new Shop(20, R.drawable.icon_megadrive, "Megadrive", "http://megadrive.kiev.ua/", false));
-        listBike.add(new Shop(21, R.drawable.icon_freestyle, "Freestyle", "http://www.freestyle.org.ua/velosport/", false));
+        listBike.add(new Shop(21, R.drawable.icon_freestyle, "Freestyle", "http://www.freestyle.org.ua/", false));
         listBike.add(new Shop(22, R.drawable.icon_alpsport, "Alpsport", "http://alpsport.kiev.ua/", false));
         listBike.add(new Shop(23, R.drawable.icon_protoca, "Protoca", "http://www.sportsite.com.ua/", false));
 
@@ -104,7 +104,7 @@ public class DataFactory {
 
         listSki.add(new Shop(2001, R.drawable.icon_kant, "Kant", "http://kant.ua/lignoe-snariagenie/", false));
         listSki.add(new Shop(2002, R.drawable.icon_universal, "Modena Sport", "http://msport.com.ua/ski/", false));
-        listSki.add(new Shop(2003, R.drawable.icon_extrim_style, "Екстрем Стайл", "http://extremstyle.ua/lyzhi-gornye-catalogs/", false));
+        listSki.add(new Shop(2003, R.drawable.icon_extrim_style, "Екстрем Стайл", "http://extremstyle.ua/", false));
         listSki.add(new Shop(2004, R.drawable.icon_sportzone, "Sportzone", "http://sportzone.com.ua/lyizhi", false));
         listSki.add(new Shop(2005, R.drawable.icon_x_zone, "X-Zone", "http://www.x-zone.com.ua/", false));
         listSki.add(new Shop(2006, R.drawable.icon_adrenalin, "Adrenalin", "http://www.adrenalin.kiev.ua/", false));
@@ -126,7 +126,7 @@ public class DataFactory {
         listSki.add(new Shop(2023, R.drawable.icon_lavina, "Lavina", "http://www.lavina.com.ua/", false));
         listSki.add(new Shop(2024, R.drawable.icon_groosha, "Groosha", "http://groosha.ua/catalog/lyzhi/", false));
         listSki.add(new Shop(2025, R.drawable.icon_protest, "Protest", "http://protest.ua/twin-tip-skis", false));
-        listSki.add(new Shop(2026, R.drawable.icon_freestyle, "Freestyle", "http://www.freestyle.org.ua/gornye-lyji/", false));
+        listSki.add(new Shop(2026, R.drawable.icon_freestyle, "Freestyle", "http://www.freestyle.org.ua/", false));
         listSki.add(new Shop(2027, R.drawable.icon_kingsize, "Kingsize", "http://www.kingsize.com.ua/", false));
         listSki.add(new Shop(2028, R.drawable.icon_8000, "8000", "http://www.8000.com.ua/", false));
         listSki.add(new Shop(2029, R.drawable.icon_alpsport, "Alpsport", "http://alpsport.kiev.ua/", false));
@@ -139,7 +139,7 @@ public class DataFactory {
     private ArrayList<Shop> getListSnowBoard() {
         ArrayList<Shop> listSnowBoard = new ArrayList<>();
 
-        listSnowBoard.add(new Shop(3001, R.drawable.icon_extrim_style, "Екстрем Стайл", "http://extremstyle.ua/doski-catalogs/", false));
+        listSnowBoard.add(new Shop(3001, R.drawable.icon_extrim_style, "Екстрем Стайл", "http://extremstyle.ua/", false));
         listSnowBoard.add(new Shop(3002, R.drawable.icon_svoboda, "Svoboda", "http://snowboard.kiev.ua/shop/", false));
         listSnowBoard.add(new Shop(3003, R.drawable.icon_drive_sport, "Драйв Спорт", "http://ru.drive-sport.com.ua/", false));
         listSnowBoard.add(new Shop(3004, R.drawable.icon_veloplaneta, "Велопланета", "http://veloplaneta.com.ua/catalog/zimnie-tovary/", false));
@@ -161,7 +161,7 @@ public class DataFactory {
         listSnowBoard.add(new Shop(3019, R.drawable.icon_kant, "Kant", "http://kant.ua/snowboads-snariagenie/", false));
         listSnowBoard.add(new Shop(3020, R.drawable.icon_ekip_sport, "Ekip sport", "http://ekip-sport.com.ua/category/snoubordy_2/", false));
         listSnowBoard.add(new Shop(3021, R.drawable.icon_northwall, "NorthWall", "http://northwall.com.ua/", false));
-        listSnowBoard.add(new Shop(3022, R.drawable.icon_freestyle, "Freestyle", "http://www.freestyle.org.ua/snoubord/", false));
+        listSnowBoard.add(new Shop(3022, R.drawable.icon_freestyle, "Freestyle", "http://www.freestyle.org.ua/", false));
         listSnowBoard.add(new Shop(3023, R.drawable.icon_jamstore, "Jamstore", "http://www.jamstore.com.ua/", false));
         listSnowBoard.add(new Shop(3024, R.drawable.icon_snow_shop, "Snow-shop", "http://snow-shop.com.ua/", false));
         listSnowBoard.add(new Shop(3025, R.drawable.icon_8000, "8000", "http://www.8000.com.ua/", false));
