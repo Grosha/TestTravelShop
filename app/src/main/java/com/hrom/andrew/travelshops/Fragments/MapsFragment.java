@@ -1,6 +1,8 @@
 package com.hrom.andrew.travelshops.Fragments;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -8,6 +10,7 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -15,7 +18,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -44,7 +51,7 @@ import com.hrom.andrew.travelshops.trash.Type;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class MapsFragment extends Fragment {
+public class MapsFragment extends Fragment implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private SupportMapFragment mapFragment;
     private ProgressBar progressBar;
     private GoogleMap mGoogleMap;
@@ -55,6 +62,11 @@ public class MapsFragment extends Fragment {
     private FavoriteFactory favoriteFactory;
     private int pixelRation;
     private Circle circle;
+
+    private static int REQUEST_CODE_RECOVER_PLAY_SERVICES = 200;
+
+    private GoogleApiClient mGoogleApiClient;
+    private Location mLastLocation;
 
     @Override
     public void onDestroyView() {
@@ -68,6 +80,9 @@ public class MapsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        if (checkGooglePlayServices()) {
+            buildGoogleApiClient();
+        }
         return inflater.inflate(R.layout.layout_maps, container, false);
     }
 
@@ -199,6 +214,16 @@ public class MapsFragment extends Fragment {
             Log.d(StringVariables.TEST, "TEST");
 
             if (googleMap != null) {
+                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
                 googleMap.setMyLocationEnabled(true);
 
                 Bitmap icon = null;
@@ -319,5 +344,68 @@ public class MapsFragment extends Fragment {
         }
         Log.d(StringVariables.TEST, String.valueOf("x = " + coordinate[0] + "; y = " + coordinate[1]));
         return coordinate;
+    }
+
+    @Override
+    public void onConnected(Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+
+    }
+
+    private boolean checkGooglePlayServices() {
+
+        int checkGooglePlayServices = GooglePlayServicesUtil
+                .isGooglePlayServicesAvailable(getContext());
+        if (checkGooglePlayServices != ConnectionResult.SUCCESS) {
+			/*
+			* google play services is missing or update is required
+			*  return code could be
+			* SUCCESS,
+			* SERVICE_MISSING, SERVICE_VERSION_UPDATE_REQUIRED,
+			* SERVICE_DISABLED, SERVICE_INVALID.
+			*/
+            GooglePlayServicesUtil.getErrorDialog(checkGooglePlayServices,
+                    getActivity(), REQUEST_CODE_RECOVER_PLAY_SERVICES).show();
+
+            return false;
+        }
+
+        return true;
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_RECOVER_PLAY_SERVICES) {
+
+            if (resultCode == 200) {
+                // Make sure the app is not already connected or attempting to connect
+                if (!mGoogleApiClient.isConnecting() &&
+                        !mGoogleApiClient.isConnected()) {
+                    mGoogleApiClient.connect();
+                }
+            } else if (resultCode == 400) {
+                Toast.makeText(getContext(), "Google Play Services must be installed.",Toast.LENGTH_SHORT).show();
+                ((MainActivity) getActivity()).finish();
+            }
+        }
+    }
+
+    protected synchronized void buildGoogleApiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(getContext())
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+
     }
 }
