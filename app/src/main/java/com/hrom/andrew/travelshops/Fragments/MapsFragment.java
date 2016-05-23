@@ -1,18 +1,22 @@
 package com.hrom.andrew.travelshops.Fragments;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +24,6 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -51,7 +52,7 @@ import com.hrom.andrew.travelshops.trash.Type;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class MapsFragment extends Fragment implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class MapsFragment extends Fragment {
     private SupportMapFragment mapFragment;
     private ProgressBar progressBar;
     private GoogleMap mGoogleMap;
@@ -62,11 +63,6 @@ public class MapsFragment extends Fragment implements GoogleApiClient.Connection
     private FavoriteFactory favoriteFactory;
     private int pixelRation;
     private Circle circle;
-
-    private static int REQUEST_CODE_RECOVER_PLAY_SERVICES = 200;
-
-    private GoogleApiClient mGoogleApiClient;
-    private Location mLastLocation;
 
     @Override
     public void onDestroyView() {
@@ -80,8 +76,12 @@ public class MapsFragment extends Fragment implements GoogleApiClient.Connection
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if (checkGooglePlayServices()) {
-            buildGoogleApiClient();
+        // Make sure that GPS is enabled on the device
+        LocationManager mlocManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+        boolean enabled = mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        if (!enabled) {
+            showDialogGPS();
         }
         return inflater.inflate(R.layout.layout_maps, container, false);
     }
@@ -346,66 +346,50 @@ public class MapsFragment extends Fragment implements GoogleApiClient.Connection
         return coordinate;
     }
 
-    @Override
-    public void onConnected(Bundle bundle) {
+    /**
+     * Show a dialog to the user requesting that GPS be enabled
+     */
+    private void showDialogGPS() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
 
-    }
+        // set title
+        alertDialogBuilder.setTitle("Enable GPS");
 
-    @Override
-    public void onConnectionSuspended(int i) {
+        // set dialog message
+        alertDialogBuilder
+                .setMessage("Please enable GPS")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // if this button is clicked do some stuff
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // if this button is clicked, just close
+                        // the dialog box and do nothing
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        if (RetainedFragment.getClassName().contains(StringVariables.TAG_BIKE)) {
+                            transaction.replace(R.id.container, new BikeFragment());
+                        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_MOUNTAIN)) {
+                            transaction.replace(R.id.container, new MountainFragment());
+                        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SKIS)) {
+                            transaction.replace(R.id.container, new SkiFragment());
+                        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_SNOWBOARD)) {
+                            transaction.replace(R.id.container, new SnowboardFragment());
+                        } else if (RetainedFragment.getClassName().contains(StringVariables.TAG_FAVORITE_LIST)) {
+                            transaction.replace(R.id.container, new FavoriteFragment());
+                        }
+                        transaction.commit();
+                        dialog.cancel();
+                    }
+                });
 
-    }
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
 
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-
-    }
-
-    private boolean checkGooglePlayServices() {
-
-        int checkGooglePlayServices = GooglePlayServicesUtil
-                .isGooglePlayServicesAvailable(getContext());
-        if (checkGooglePlayServices != ConnectionResult.SUCCESS) {
-			/*
-			* google play services is missing or update is required
-			*  return code could be
-			* SUCCESS,
-			* SERVICE_MISSING, SERVICE_VERSION_UPDATE_REQUIRED,
-			* SERVICE_DISABLED, SERVICE_INVALID.
-			*/
-            GooglePlayServicesUtil.getErrorDialog(checkGooglePlayServices,
-                    getActivity(), REQUEST_CODE_RECOVER_PLAY_SERVICES).show();
-
-            return false;
-        }
-
-        return true;
-
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_CODE_RECOVER_PLAY_SERVICES) {
-
-            if (resultCode == 200) {
-                // Make sure the app is not already connected or attempting to connect
-                if (!mGoogleApiClient.isConnecting() &&
-                        !mGoogleApiClient.isConnected()) {
-                    mGoogleApiClient.connect();
-                }
-            } else if (resultCode == 400) {
-                Toast.makeText(getContext(), "Google Play Services must be installed.",Toast.LENGTH_SHORT).show();
-                ((MainActivity) getActivity()).finish();
-            }
-        }
-    }
-
-    protected synchronized void buildGoogleApiClient() {
-        mGoogleApiClient = new GoogleApiClient.Builder(getContext())
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
-
+        // show it
+        alertDialog.show();
     }
 }

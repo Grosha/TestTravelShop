@@ -34,6 +34,8 @@ public class TransitActivity extends AppCompatActivity {
     private ShareButton shareButton;
     private Bitmap image;
     private int counter = 0;
+    //protected OnBackPressedListener onBackPressedListener;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
@@ -113,6 +115,28 @@ public class TransitActivity extends AppCompatActivity {
             MyApplication.get().sendEvent(AnalyticsEvent.ADMOB_CATEGORY, AnalyticsEvent.ADMOB_ACTION, AnalyticsEvent.ADMOB_INRESTITIAL_LABEL);
         }
     }
+
+    /*public interface OnBackPressedListener {
+        void doBack();
+    }
+
+    public void setOnBackPressedListener(OnBackPressedListener onBackPressedListener) {
+        this.onBackPressedListener = onBackPressedListener;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (onBackPressedListener != null)
+            onBackPressedListener.doBack();
+        else
+            super.onBackPressed();
+    }
+
+    @Override
+    protected void onDestroy() {
+        onBackPressedListener = null;
+        super.onDestroy();
+    }*/
 
     /*public void sharedVK(View v) {
         Toast.makeText(this, "VK", Toast.LENGTH_SHORT).show();
