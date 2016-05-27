@@ -58,12 +58,14 @@ public class DataFactory {
         listBike.add(new Shop(22, R.drawable.icon_alpsport, "Alpsport", "http://alpsport.kiev.ua/", false));
         listBike.add(new Shop(23, R.drawable.icon_protoca, "Protoca", "http://www.sportsite.com.ua/", false));
 
+
         return listBike;
     }
 
     private ArrayList<Shop> getListMountain() {
         ArrayList<Shop> listMountain = new ArrayList<>();
 
+        listMountain.add(new Shop(1032, R.drawable.icon_osprey_kiev_ua, "Osprey-Kiev", "http://osprey.kiev.ua/", false));
         listMountain.add(new Shop(1001, R.drawable.icon_azimut, "Азімут", "http://www.azimut.com.ua/", false));
         listMountain.add(new Shop(1002, R.drawable.icon_universal, "Волоцюга", "http://volocuga.com/", false));
         listMountain.add(new Shop(1003, R.drawable.icon_atlantida, "Атлантида", "http://atlantida.in.ua/", false));
@@ -72,6 +74,7 @@ public class DataFactory {
         listMountain.add(new Shop(1006, R.drawable.icon_extrim_style, "Екстрем Стайл", "http://extremstyle.ua/", false));
         listMountain.add(new Shop(1007, R.drawable.icon_x_zone, "X-Zone", "http://www.x-zone.com.ua/", false));
         listMountain.add(new Shop(1008, R.drawable.icon_gorgany, "Gorgany", "http://www.gorgany.com/", false));
+        listMountain.add(new Shop(1033, R.drawable.icon_osprey_ua, "Osprey-ua", "http://osprey-ua.com/", false));
         listMountain.add(new Shop(1009, R.drawable.icon_adrenalin, "Adrenalin", "http://www.adrenalin.kiev.ua/", false));
         listMountain.add(new Shop(1010, R.drawable.icon_podoroj, "Подорож", "http://www.podoroj.com.ua/", false));
         listMountain.add(new Shop(1011, R.drawable.icon_nomad, "Номад", "http://nomad.com.ua/", false));
