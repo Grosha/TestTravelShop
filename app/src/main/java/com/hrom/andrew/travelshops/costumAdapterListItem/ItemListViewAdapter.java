@@ -48,58 +48,59 @@ public class ItemListViewAdapter extends ArrayAdapter<Shop> {
 
         Bitmap bitmapFon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.white_fon);
         Bitmap bitmapIconShop = BitmapFactory.decodeResource(getContext().getResources(), getItem(position).getIconShop());
-        holder.icon.setImageBitmap(MyBitMap.getBitmapForCategory(bitmapFon, bitmapIconShop));
-        //holder.icon.setImageResource(getItem(position).getIconShop());
-        holder.icon.setTag(position);
-        holder.icon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int pos = (Integer) v.getTag();
-                getItem(pos);
+        if (holder != null) {
+            holder.icon.setImageBitmap(MyBitMap.getBitmapForCategory(bitmapFon, bitmapIconShop));
+            //holder.icon.setImageResource(getItem(position).getIconShop());
+            holder.icon.setTag(position);
+            holder.icon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = (Integer) v.getTag();
+                    getItem(pos);
 
-                if (listenner != null) {
-                    listenner.onPlusClick(getItem(position).getUrlShop());
-                    MyApplication.get().sendEvent(
-                            AnalyticsEvent.SHOP_CATEGORY,
-                            AnalyticsEvent.SHOP_ACTION,
-                            AnalyticsEvent.SHOP_ICON_LABEL);
+                    if (listenner != null) {
+                        listenner.onPlusClick(getItem(position).getUrlShop());
+                        MyApplication.get().sendEvent(
+                                AnalyticsEvent.SHOP_CATEGORY,
+                                AnalyticsEvent.SHOP_ACTION,
+                                AnalyticsEvent.SHOP_ICON_LABEL);
 
-                    MyApplication.get().sendEvent(
-                            AnalyticsEvent.NAME_SHOP_CATEGORY,
-                            AnalyticsEvent.NAME_SHOP_ACTION,
-                            String.valueOf(getItem(position).getId()));
+                        MyApplication.get().sendEvent(
+                                AnalyticsEvent.NAME_SHOP_CATEGORY,
+                                AnalyticsEvent.NAME_SHOP_ACTION,
+                                String.valueOf(getItem(position).getId()));
+                    }
                 }
-            }
-        });
+            });
 
-        holder.favoriteShop.setChecked(getItem(position).getFavoriteShop());
-        holder.favoriteShop.setTag(position);
-        holder.favoriteShop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int pos = (Integer) v.getTag();
-                boolean checked = ((CompoundButton) v).isChecked();
-                getItem(pos).setFavoriteShop(checked);
-                // real save
-                String item = new Gson().toJson(getItem(pos).getId());
+            holder.favoriteShop.setChecked(getItem(position).getFavoriteShop());
+            holder.favoriteShop.setTag(position);
+            holder.favoriteShop.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = (Integer) v.getTag();
+                    boolean checked = ((CompoundButton) v).isChecked();
+                    getItem(pos).setFavoriteShop(checked);
+                    // real save
+                    String item = new Gson().toJson(getItem(pos).getId());
 
-                if (checked) {
-                    Log.d(StringVariables.TEST, "save");
-                    PrefUtil.save(getContext(), item);
+                    if (checked) {
+                        Log.d(StringVariables.TEST, "save");
+                        PrefUtil.save(getContext(), item);
 
-                    MyApplication.get().sendEvent(
-                            AnalyticsEvent.SHOP_CATEGORY,
-                            AnalyticsEvent.SHOP_ACTION,
-                            AnalyticsEvent.SHOP_ADD_TO_FAVORITE_LABEL);
+                        MyApplication.get().sendEvent(
+                                AnalyticsEvent.SHOP_CATEGORY,
+                                AnalyticsEvent.SHOP_ACTION,
+                                AnalyticsEvent.SHOP_ADD_TO_FAVORITE_LABEL);
 
-                } else {
-                    Log.d(StringVariables.TEST, "remove");
-                    PrefUtil.remove(getContext(), item);
-                    MyApplication.get().sendEvent(
-                            AnalyticsEvent.SHOP_CATEGORY,
-                            AnalyticsEvent.SHOP_ACTION,
-                            AnalyticsEvent.SHOP_DELETE_FROM_FAVORITE_LABEL);
-                }
+                    } else {
+                        Log.d(StringVariables.TEST, "remove");
+                        PrefUtil.remove(getContext(), item);
+                        MyApplication.get().sendEvent(
+                                AnalyticsEvent.SHOP_CATEGORY,
+                                AnalyticsEvent.SHOP_ACTION,
+                                AnalyticsEvent.SHOP_DELETE_FROM_FAVORITE_LABEL);
+                    }
 
                 /*v.postDelayed(new Runnable() {
                     @Override
@@ -109,32 +110,33 @@ public class ItemListViewAdapter extends ArrayAdapter<Shop> {
                                 " " + PrefUtil.getValueList(getContext()).size(), Toast.LENGTH_SHORT).show();
                     }
                 }, 1000);*/
-            }
-        });
-
-
-        holder.name.setText(getItem(position).getNameShop());
-        holder.name.setTag(position);
-        holder.name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int pos = (Integer) v.getTag();
-                getItem(pos);
-
-                if (listenner != null) {
-                    listenner.onPlusClick(getItem(position).getUrlShop());
-                    MyApplication.get().sendEvent(
-                            AnalyticsEvent.SHOP_CATEGORY,
-                            AnalyticsEvent.SHOP_ACTION,
-                            AnalyticsEvent.SHOP_NAME_LABEL);
-
-                    MyApplication.get().sendEvent(
-                            AnalyticsEvent.ICON_CATEGORY,
-                            AnalyticsEvent.ICON_ACTION,
-                            String.valueOf(getItem(position).getId()));
                 }
-            }
-        });
+            });
+
+
+            holder.name.setText(getItem(position).getNameShop());
+            holder.name.setTag(position);
+            holder.name.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = (Integer) v.getTag();
+                    getItem(pos);
+
+                    if (listenner != null) {
+                        listenner.onPlusClick(getItem(position).getUrlShop());
+                        MyApplication.get().sendEvent(
+                                AnalyticsEvent.SHOP_CATEGORY,
+                                AnalyticsEvent.SHOP_ACTION,
+                                AnalyticsEvent.SHOP_NAME_LABEL);
+
+                        MyApplication.get().sendEvent(
+                                AnalyticsEvent.ICON_CATEGORY,
+                                AnalyticsEvent.ICON_ACTION,
+                                String.valueOf(getItem(position).getId()));
+                    }
+                }
+            });
+        }
 
         convertView.setOnClickListener(onClickListener(position));
 
