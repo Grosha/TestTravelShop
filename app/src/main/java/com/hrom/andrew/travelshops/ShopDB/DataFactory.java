@@ -94,7 +94,7 @@ public class DataFactory {
         listMountain.add(new Shop(1025, R.drawable.icon_vershyna, "Вершина", "http://vershyna.com.ua/", false));
         listMountain.add(new Shop(1026, R.drawable.icon_freestyle, "Freestyle", "http://www.freestyle.org.ua/", false));
         listMountain.add(new Shop(1027, R.drawable.icon_turkul, "Turkul", "http://turkul.net/", false));
-        listMountain.add(new Shop(1028, R.drawable.icon_campsite, "Campsite", "http://campsite.com.ua/", false));
+        //listMountain.add(new Shop(1028, R.drawable.icon_campsite, "Campsite", "http://campsite.com.ua/", false));
         listMountain.add(new Shop(1029, R.drawable.icon_8000, "8000", "http://www.8000.com.ua/", false));
         listMountain.add(new Shop(1030, R.drawable.icon_alpsport, "Alpsport", "http://alpsport.kiev.ua/", false));
         listMountain.add(new Shop(1031, R.drawable.icon_fram_equipment, "Fram Equipment", "http://fram-equip.com/uk", false));
