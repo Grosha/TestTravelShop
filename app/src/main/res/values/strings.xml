@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">FreeRideX</string>
     <string name="title_activity_travel">FreeRideX</string>
-    <!--<string name="API_KEY">AIzaSyCO7xM6RwZOaR9-Fiyo_2Uqy5UtNSPEr7Q</string>-->
+    <string name="API_KEY">AIzaSyD6RtYtAVZh-30OIMACRgLHJquODxwwP7Y</string>//release
     <string name="action_map">Map</string>
     <string name="action_search">search</string>
     <string name="action_share">share</string>
     <string name="action_settings">action_settings</string>
     <!--<string name="API_KEY">AIzaSyByL9twlxY5dhKM1Gr43FxoVuIVlCiHey4</string>-->
-    <string name="API_KEY">AIzaSyDsY_msHz_Mm-dSjFw_OZqW1G6wHDaLxwM</string>
+    <!--<string name="API_KEY">AIzaSyDsY_msHz_Mm-dSjFw_OZqW1G6wHDaLxwM</string>-->
     <string name="preference_file_key">com.hrom.andrew.travelshops.PREFERENCE_FILE_KEY</string>
     <string name="banner_ad_unit_id">ca-app-pub-5331719326093705/5366465272</string>
     <string name="interstitail_ad_unit_id">ca-app-pub-5331719326093705/5366465272</string>
